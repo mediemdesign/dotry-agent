@@ -1,0 +1,58 @@
+{
+  "updated": "2026-06-05 05:55:45",
+  "stats": {
+    "sources_scanned": 15,
+    "signals_detected": 92,
+    "top_trends": 5
+  },
+  "trends": [
+    {
+      "name": "Viral Pasta Rezepte",
+      "category": "Comfort Food",
+      "score": 92,
+      "confidence": 95,
+      "description": "TikTok-Videos von schnellen, visuell beeindruckenden Pasta-Kreationen generieren Millionen Views. Die Kombination aus einfachen Zutaten und spektakulärem visuellen Appeal macht diese Rezepte zum perfekten Social-Media-Content.",
+      "why_trending": "Einfach, schnell und extrem visuell ansprechend"
+    },
+    {
+      "name": "High-Protein Meal Prep",
+      "category": "Meal Prep",
+      "score": 88,
+      "confidence": 92,
+      "description": "Fitness-Creator dominieren Social Media mit organisierten Meal-Prep-Videos für muskelaufbau-orientierte Ernährung. Die Kombination aus Health-Trend und visueller Satisfaction durch organisierte Behälter spricht ein großes Publikum an.",
+      "why_trending": "Fitness-Trend trifft auf Organizer-Aesthetic"
+    },
+    {
+      "name": "Smash Burger Variationen",
+      "category": "Comfort Food",
+      "score": 87,
+      "confidence": 88,
+      "description": "Die Kunstfertigkeit beim Zerdrücken von Burger-Patties erzeugt satisfying ASMR-Content, der viral wird. Unzählige kreative Variationen mit unterschiedlichen Toppings halten den Trend frisch und wiederholbar.",
+      "why_trending": "ASMR-Content mit endlosen Variations-Möglichkeiten"
+    },
+    {
+      "name": "Koreanische Streetfood",
+      "category": "Asian Fusion",
+      "score": 86,
+      "confidence": 90,
+      "description": "Durch koreanische Popkultur weltweit beliebt, faszinieren authentische Streetfood-Videos Millionen mit authentischen Zubereitungsmethoden. Die Kombination aus kulturellem Interesse und exotischem Appeal treibt kontinuierliche Viralität.",
+      "why_trending": "K-Culture Boom trifft authentische Foodie-Ästhetik"
+    },
+    {
+      "name": "Chili-Crisp Everything",
+      "category": "Snacks",
+      "score": 85,
+      "confidence": 87,
+      "description": "Das würzige Topping wird auf alles von Desserts bis Pizza gesprenkelt und schafft virale Überraschungsmomente. Die Möglichkeit, damit fast jedes Gericht zu transformieren, macht es zum universellen Trend-Beschleuniger.",
+      "why_trending": "Universelles Topping für unerwartete Geschmackskombinationen"
+    }
+  ],
+  "logs": [
+    "[05:55:01] Agent gestartet...",
+    "[05:55:02] 15 Food-Themen geladen",
+    "[05:55:03] Claude API analysiert Trends...",
+    "[05:55:04] 5 Top-Trends identifiziert",
+    "[05:55:05] Virality-Scores berechnet",
+    "[05:55:06] trends.json aktualisiert ✓"
+  ]
+}
