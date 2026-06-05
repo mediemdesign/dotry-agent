@@ -1,13 +1,10 @@
 name: dotry.ai Deploy to Cloudflare
 
 on:
-  # Startet automatisch nach dem Food Trend Agent
   workflow_run:
     workflows: ["dotry.ai Food Trend Agent"]
     types:
       - completed
-
-  # Auch manuell startbar
   workflow_dispatch:
 
 permissions:
@@ -19,25 +16,33 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Nur deployen wenn Agent erfolgreich war
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
 
     steps:
       - name: Code auschecken
         uses: actions/checkout@v4
         with:
-          # Neuesten Stand holen (inkl. trends.json vom Agent)
           ref: main
+
+      - name: Node.js 24 einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Wrangler installieren
+        run: npm install -g wrangler
 
       - name: Zeige zu deployende Files
         run: |
-          echo "=== Files die deployed werden ==="
-          ls -la *.html *.css *.json *.py 2>/dev/null || true
-          echo "=================================="
+          echo "=== Files ==="
+          ls -la *.html *.css *.json 2>/dev/null || true
 
       - name: Auf Cloudflare Pages deployen
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=website-278 --commit-dirty=true
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          wrangler pages deploy . \
+            --project-name=website-278 \
+            --commit-dirty=true \
+            --branch=main
