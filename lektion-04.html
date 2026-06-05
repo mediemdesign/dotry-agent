@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 4: Mein Kind nutzt KI für Hausaufgaben – Problem oder Chance? – do try ai</title>
+  <meta name="description" content="KI und Hausaufgaben – ehrliche Einschätzung für Eltern. Wann KI hilft, wann sie schadet und wie du das Gespräch mit deinem Kind führst." />
+  <meta name="keywords" content="Kinder KI Hausaufgaben, ChatGPT Schule, KI Schüler, KI Eltern Tipps, Hausaufgaben KI erlaubt, dotry.ai" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-04.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-04.html" />
+  <meta property="og:title" content="Mein Kind nutzt KI für Hausaufgaben – Problem oder Chance?" />
+  <meta property="og:description" content="Ehrliche Einschätzung für Eltern – wann KI hilft, wann sie schadet und wie du das Gespräch mit deinem Kind führst." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Google Consent Mode -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.08);
+      --orange:#f97316;--orange-glow:rgba(249,115,22,0.08);
+      --purple:#a855f7;--purple-glow:rgba(168,85,247,0.08);
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .logo img{height:40px;width:auto;}
+    .logo{text-decoration:none;}
+    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    .progress-bar{position:fixed;top:77px;left:0;right:0;height:3px;background:var(--border);z-index:99;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));width:0%;transition:width 0.1s;}
+
+    main{max-width:800px;margin:0 auto;padding:140px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--blue-glow);color:var(--blue-light);border:1px solid rgba(37,99,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+
+    .phase{margin:56px 0;}
+    .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .phase-icon{width:48px;height:48px;background:var(--blue-glow);border:1px solid rgba(37,99,255,0.25);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .phase-num{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);display:block;margin-bottom:2px;}
+    .phase-header h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+
+    .article-body p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.75;}
+    .article-body p strong{color:var(--text);}
+
+    .section-divider{height:1px;background:var(--border);margin:48px 0;}
+
+    /* TOOL CARDS */
+    .tool-card {
+      border-radius:var(--radius);
+      padding:32px;
+      margin:24px 0;
+      border:1px solid var(--border);
+    }
+
+    .tool-card.chatgpt { background: rgba(249,115,22,0.05); border-color: rgba(249,115,22,0.2); }
+    .tool-card.claude  { background: var(--blue-glow); border-color: rgba(37,99,255,0.2); }
+    .tool-card.perplexity { background: var(--purple-glow); border-color: rgba(168,85,247,0.2); }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .tool-emoji {
+      font-size: 2rem;
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tool-card.chatgpt .tool-emoji { background: rgba(249,115,22,0.1); }
+    .tool-card.claude .tool-emoji  { background: var(--blue-glow); }
+    .tool-card.perplexity .tool-emoji { background: var(--purple-glow); }
+
+    .tool-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .tool-card.chatgpt .tool-name { color: var(--orange); }
+    .tool-card.claude .tool-name  { color: var(--blue-light); }
+    .tool-card.perplexity .tool-name { color: var(--purple); }
+
+    .tool-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .tool-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .tool-card p strong { color: var(--text); }
+
+    .tool-best {
+      margin-top: 16px;
+    }
+
+    .tool-best-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 50px;
+    }
+
+    .tool-card.chatgpt .tool-tag { background: rgba(249,115,22,0.1); color: var(--orange); border: 1px solid rgba(249,115,22,0.2); }
+    .tool-card.claude .tool-tag  { background: var(--blue-glow); color: var(--blue-light); border: 1px solid rgba(37,99,255,0.2); }
+    .tool-card.perplexity .tool-tag { background: var(--purple-glow); color: var(--purple); border: 1px solid rgba(168,85,247,0.2); }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 50px;
+      transition: opacity 0.2s;
+    }
+    .tool-link:hover { opacity: 0.8; }
+    .tool-card.chatgpt .tool-link { background: rgba(249,115,22,0.1); color: var(--orange); border: 1px solid rgba(249,115,22,0.2); }
+    .tool-card.claude .tool-link  { background: var(--blue-glow); color: var(--blue-light); border: 1px solid rgba(37,99,255,0.2); }
+    .tool-card.perplexity .tool-link { background: var(--purple-glow); color: var(--purple); border: 1px solid rgba(168,85,247,0.2); }
+
+    /* QUICK REFERENCE */
+    .quick-ref {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 28px 0;
+    }
+
+    .quick-ref-header {
+      padding: 16px 24px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg3);
+    }
+
+    .quick-ref-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quick-ref-row:last-child { border-bottom: none; }
+
+    .quick-ref-cell {
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      border-right: 1px solid var(--border);
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .quick-ref-cell:last-child { border-right: none; }
+    .quick-ref-cell.situation { font-weight: 600; color: var(--text); }
+    .quick-ref-cell.winner { font-weight: 700; }
+    .quick-ref-cell.chatgpt-win { color: var(--orange); }
+    .quick-ref-cell.claude-win  { color: var(--blue-light); }
+    .quick-ref-cell.perplexity-win { color: var(--purple); }
+
+    .quick-ref-head {
+      background: var(--bg3);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .quick-ref-head .quick-ref-cell { color: var(--text-muted); }
+
+    /* TIP BOX */
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+
+    /* CHECKLIST */
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s,color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(37,99,255,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;transition:all 0.2s;margin-top:1px;}
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;max-width:480px;margin-left:auto;margin-right:auto;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* COOKIE BANNER */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-text strong{color:var(--text);}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;transition:background 0.2s;white-space:nowrap;}
+    .cookie-accept:hover{background:var(--blue-light);}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+    .cookie-decline:hover{border-color:var(--text-muted);color:var(--text);}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      nav{padding:16px 20px;}
+      .quick-ref-row{grid-template-columns:1fr 1fr;}
+      .quick-ref-cell:nth-child(1){grid-column:1/-1;border-right:none;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+  </style>
+ 
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+  
+</head>
+<<body>
+
+  <nav>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+    <a href="lektionen.html" class="nav-back">← Alle Lektionen</a>
+  </nav>
+
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">👨‍👩‍👧 Für Eltern</span>
+      <span class="read-time">📖 Lektion #4 · 8 Min Lesezeit</span>
+    </div>
+
+    <h1>Mein Kind nutzt KI<br>für Hausaufgaben –<br>Problem oder Chance?</h1>
+
+    <p class="article-intro">
+      Dein Kind tippt eine Frage in ChatGPT statt selbst nachzudenken – und du weißt nicht ob du eingreifen sollst. <strong>Diese Frage beschäftigt gerade fast alle Eltern.</strong> Hier bekommst du keine Panik-Antwort und keine blinde Begeisterung – sondern eine ehrliche Einschätzung wann KI hilft, wann sie schadet und wie du das Gespräch führst.
+    </p>
+
+    <div class="article-body">
+
+      <!-- PHASE 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">💡</div>
+          <div>
+            <span class="phase-num">Phase 1 · Impuls</span>
+            <h2>Verbieten hilft nicht – aber blind erlauben auch nicht</h2>
+          </div>
+        </div>
+
+        <p>KI aus dem Kinderzimmer verbannen funktioniert nicht. Die Tools sind kostenlos, überall verfügbar und dein Kind nutzt sie sowieso – ob du es weißt oder nicht. <strong>Die Frage ist nicht ob, sondern wie.</strong></p>
+
+        <p>Gleichzeitig hat nicht jede KI-Nutzung denselben Wert. Es gibt einen riesigen Unterschied zwischen einem Kind das KI nutzt um zu lernen – und einem das KI nutzt um nicht lernen zu müssen.</p>
+
+        <div class="reality-grid">
+          <div class="reality-col">
+            <div class="reality-label problem">⚠️ Das ist ein Problem</div>
+            <div class="reality-box problem">
+              <ul>
+                <li>KI schreibt den Aufsatz – Kind denkt nicht mit</li>
+                <li>Antwort kopieren ohne zu verstehen warum</li>
+                <li>KI als Abkürzung um Nachdenken zu vermeiden</li>
+                <li>Falsche Infos ungeprüft übernehmen</li>
+              </ul>
+            </div>
+          </div>
+          <div class="reality-col">
+            <div class="reality-label chance">✅ Das ist eine Chance</div>
+            <div class="reality-box chance">
+              <ul>
+                <li>KI erklärt einen Begriff den die Lehrerin nicht erklärt hat</li>
+                <li>Feedback auf einen bereits geschriebenen Text</li>
+                <li>Üben mit KI als Gesprächspartner</li>
+                <li>Komplexe Themen einfach erklärt bekommen</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Die einfache Regel:</strong> KI als Lehrer nutzen – okay. KI als Abschreiber nutzen – nicht okay. Der Unterschied: Versteht dein Kind danach mehr als vorher?</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">📋</div>
+          <div>
+            <span class="phase-num">Phase 2 · Nachmachen</span>
+            <h2>5 typische Situationen – und was du tun solltest</h2>
+          </div>
+        </div>
+
+        <p>Hier sind die häufigsten Situationen die Eltern erleben – mit einer ehrlichen Einschätzung:</p>
+
+        <div class="situation-grid">
+
+          <div class="situation-card">
+            <div class="situation-icon">📝</div>
+            <div>
+              <h3>Kind lässt KI den Aufsatz schreiben</h3>
+              <p>Das Kind gibt das Thema ein, kopiert den Text und gibt ihn ab – ohne selbst einen Satz geschrieben zu haben.</p>
+              <span class="situation-verdict no">✗ Eingreifen</span>
+              <p style="margin-top:10px;">Das umgeht den Lerneffekt komplett. Nicht weil Abschreiben schlimm ist – sondern weil das Kind nie lernt Gedanken zu formulieren. Gespräch führen, nicht verbieten.</p>
+            </div>
+          </div>
+
+          <div class="situation-card">
+            <div class="situation-icon">🔍</div>
+            <div>
+              <h3>Kind fragt KI nach Erklärungen</h3>
+              <p>"Erkläre mir wie Photosynthese funktioniert" – Kind liest, versteht, schreibt dann selbst.</p>
+              <span class="situation-verdict ok">✓ Absolut okay</span>
+              <p style="margin-top:10px;">Das ist genau das wofür KI ideal ist. Besser als Wikipedia weil die Erklärung auf das Niveau des Kindes angepasst werden kann.</p>
+            </div>
+          </div>
+
+          <div class="situation-card">
+            <div class="situation-icon">✏️</div>
+            <div>
+              <h3>Kind lässt seinen Text von KI verbessern</h3>
+              <p>Kind schreibt selbst, gibt den Text dann in KI ein und fragt: "Was kann ich besser machen?"</p>
+              <span class="situation-verdict ok">✓ Sehr gut</span>
+              <p style="margin-top:10px;">Das ist wie ein Tutor der Feedback gibt. Das Kind lernt aus den Verbesserungsvorschlägen – wenn es versteht warum etwas geändert wurde.</p>
+            </div>
+          </div>
+
+          <div class="situation-card">
+            <div class="situation-icon">🧮</div>
+            <div>
+              <h3>Kind lässt Mathe-Aufgaben lösen</h3>
+              <p>Kind gibt die Aufgabe ein, bekommt die Lösung – und schreibt sie ab.</p>
+              <span class="situation-verdict caution">⚠️ Kommt drauf an</span>
+              <p style="margin-top:10px;">Wenn das Kind den Lösungsweg versteht und nachvollzieht – okay. Wenn es nur die Zahl abschreibt – Problem. KI kann den Rechenweg Schritt für Schritt erklären, das ist wertvoller als die fertige Lösung.</p>
+            </div>
+          </div>
+
+          <div class="situation-card">
+            <div class="situation-icon">🌍</div>
+            <div>
+              <h3>Kind recherchiert mit KI für ein Referat</h3>
+              <p>Kind nutzt KI statt Google um Infos zu sammeln.</p>
+              <span class="situation-verdict caution">⚠️ Mit Vorsicht</span>
+              <p style="margin-top:10px;">KI erfindet manchmal Fakten – das ist kein Witz. Für Referate immer die wichtigsten Aussagen mit einer zweiten Quelle prüfen. Das ist auch eine wichtige Medienkompetenz die Kinder lernen sollten.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="warning-box">
+          <p><strong>⚠️ Das sollten alle Eltern wissen:</strong> KI-Tools wie ChatGPT sind ab 13 Jahren freigegeben. Jüngere Kinder sollten KI nur mit einem Elternteil gemeinsam nutzen. Und: KI erfindet manchmal Fakten die völlig falsch sind – das nennt man "Halluzinieren". Kinder müssen das wissen.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px;">Das Gespräch führen – so geht's</h2>
+        <p>Du musst kein KI-Experte sein um mit deinem Kind darüber zu reden. Diese drei Fragen reichen:</p>
+
+        <div class="copy-box">
+          <div class="copy-box-label">💬 Drei Fragen für das Gespräch mit deinem Kind</div>
+          <button class="copy-btn" onclick="copyPrompt()">Kopieren</button>
+          <pre id="prompt-text">1. "Kannst du mir erklären was du da gemacht hast?" 
+→ Wenn das Kind es erklären kann – hat es verstanden.
+→ Wenn nicht – war KI ein Abschreiber, kein Lehrer.
+
+2. "Was hast du dabei gelernt?"
+→ Die ehrlichste Frage überhaupt.
+
+3. "Hast du die Antwort auch woanders gecheckt?"
+→ Medienkompetenz: KI kann falsch liegen.</pre>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Bonus-Tipp:</strong> Nutze KI gemeinsam mit deinem Kind. Gebt gemeinsam eine Frage ein und schaut was rauskommt. So lernst du selbst wie es funktioniert – und dein Kind lernt es richtig einzusetzen.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">🚀</div>
+          <div>
+            <span class="phase-num">Phase 3 · Anwenden</span>
+            <h2>Was du heute tun kannst</h2>
+          </div>
+        </div>
+
+        <p>Du brauchst kein langes Elterngespräch und keine neuen Regeln. Fang klein an:</p>
+
+        <ul class="checklist">
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Frag dein Kind heute Abend beiläufig: <em style="color:var(--blue-light);">"Nutzt ihr in der Schule eigentlich schon KI?"</em> – hör einfach zu.</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Öffne gemeinsam <strong style="color:var(--text);">claude.ai</strong> und lass dein Kind dir zeigen wie es KI nutzt</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Stell die drei Fragen aus dem Kasten oben wenn du das nächste Mal Hausaufgaben siehst</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Erkläre deinem Kind: <em style="color:var(--blue-light);">"KI kann falsch liegen – immer kurz checken"</em></span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Entscheide gemeinsam eine einfache Regel – z.B. <em style="color:var(--blue-light);">"KI zum Erklären ja, KI zum Abschreiben nein"</em></span></li>
+        </ul>
+
+        <div class="tip-box">
+          <p><strong>🎯 Das Wichtigste:</strong> Dein Kind wird KI nutzen – mit oder ohne dich. Mit dir ist es besser. Du musst kein Experte sein – neugierig reicht.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- NEXT LESSON -->
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 4 abgeschlossen</div>
+      <h3>Nächste Lektion:<br>KI-Begriffe einfach erklärt – das Glossar</h3>
+      <p>Prompt, Halluzinieren, Modell, Token – alle Begriffe die du hörst, einfach erklärt. Zum Nachschlagen.</p>
+      <a href="lektion-05.html" class="btn-primary">Weiter zu Lektion 5 →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics um zu verstehen wie Besucher dotry.ai nutzen – anonym. Mehr in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK, verstanden</button>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      document.getElementById('progress').style.width = progress + '%';
+    });
+
+    function copyPrompt() {
+      const text = document.getElementById('prompt-text').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '✓ Kopiert!';
+        btn.style.background = '#22c55e';
+        setTimeout(() => { btn.textContent = 'Kopieren'; btn.style.background = ''; }, 2000);
+      });
+    }
+
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check').textContent = el.classList.contains('done') ? '✅' : '☐';
+    }
+
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent) document.getElementById('cookie-banner').style.display = 'none';
+      if (consent === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+  <script>
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });</script>
+</body>
+</html>

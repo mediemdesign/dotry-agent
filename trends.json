@@ -1,8 +1,8 @@
 {
-  "updated": "2026-06-05 05:55:45",
+  "updated": "2026-06-01 15:53:19",
   "stats": {
     "sources_scanned": 15,
-    "signals_detected": 92,
+    "signals_detected": 81,
     "top_trends": 5
   },
   "trends": [
@@ -11,48 +11,48 @@
       "category": "Comfort Food",
       "score": 92,
       "confidence": 95,
-      "description": "TikTok-Videos von schnellen, visuell beeindruckenden Pasta-Kreationen generieren Millionen Views. Die Kombination aus einfachen Zutaten und spektakulärem visuellen Appeal macht diese Rezepte zum perfekten Social-Media-Content.",
-      "why_trending": "Einfach, schnell und extrem visuell ansprechend"
+      "description": "TikTok-Videos von kreativen Pasta-Variationen erreichen Millionen Views durch kurze, satisfying Cooking-Videos. Die Kombination aus Einfachheit und visueller Ästhetik macht diese Rezepte extrem shareable.",
+      "why_trending": "Kurze Videos, einfache Zutaten, hohe Viralität"
     },
     {
       "name": "High-Protein Meal Prep",
       "category": "Meal Prep",
-      "score": 88,
+      "score": 89,
       "confidence": 92,
-      "description": "Fitness-Creator dominieren Social Media mit organisierten Meal-Prep-Videos für muskelaufbau-orientierte Ernährung. Die Kombination aus Health-Trend und visueller Satisfaction durch organisierte Behälter spricht ein großes Publikum an.",
-      "why_trending": "Fitness-Trend trifft auf Organizer-Aesthetic"
-    },
-    {
-      "name": "Smash Burger Variationen",
-      "category": "Comfort Food",
-      "score": 87,
-      "confidence": 88,
-      "description": "Die Kunstfertigkeit beim Zerdrücken von Burger-Patties erzeugt satisfying ASMR-Content, der viral wird. Unzählige kreative Variationen mit unterschiedlichen Toppings halten den Trend frisch und wiederholbar.",
-      "why_trending": "ASMR-Content mit endlosen Variations-Möglichkeiten"
+      "description": "Fitness- und Wellness-Community treibt den Trend von proteinreichen Mahlzeiten an, die sich perfekt vorbereiten lassen. Der Fokus auf Gesundheit und Body Goals spricht gezielt die Gen-Z an.",
+      "why_trending": "Fitness-Trend, Gesundheitsbewusstsein, zeitersparnis"
     },
     {
       "name": "Koreanische Streetfood",
       "category": "Asian Fusion",
-      "score": 86,
-      "confidence": 90,
-      "description": "Durch koreanische Popkultur weltweit beliebt, faszinieren authentische Streetfood-Videos Millionen mit authentischen Zubereitungsmethoden. Die Kombination aus kulturellem Interesse und exotischem Appeal treibt kontinuierliche Viralität.",
-      "why_trending": "K-Culture Boom trifft authentische Foodie-Ästhetik"
+      "score": 87,
+      "confidence": 88,
+      "description": "Koreanische Küche bleibt durch authentische Streetfood-Videos und Mukbang-Content enorm beliebt auf sozialen Medien. Die visuellen und geschmacklichen Kontraste faszinieren das globale Publikum.",
+      "why_trending": "Asiatische Trends, authentische Rezepte, ASMR-Potential"
     },
     {
-      "name": "Chili-Crisp Everything",
+      "name": "Chili Crisp Everything",
       "category": "Snacks",
-      "score": 85,
-      "confidence": 87,
-      "description": "Das würzige Topping wird auf alles von Desserts bis Pizza gesprenkelt und schafft virale Überraschungsmomente. Die Möglichkeit, damit fast jedes Gericht zu transformieren, macht es zum universellen Trend-Beschleuniger.",
-      "why_trending": "Universelles Topping für unerwartete Geschmackskombinationen"
+      "score": 86,
+      "confidence": 85,
+      "description": "Das würzige, knusprige Topping wird auf alles gepackt und generiert massenhaft User-generated Content. Die Versatilität und das Geschmackserlebnis machen es zum perfekten Social-Media-Phänomen.",
+      "why_trending": "Vielseitig einsetzbar, Geschmacksexplosion, Trend-Phänomen"
+    },
+    {
+      "name": "Bento Box Ästhetik",
+      "category": "Meal Prep",
+      "score": 84,
+      "confidence": 83,
+      "description": "Die japanische Lunch-Kultur verbindet Funktionalität mit kunstvoller Präsentation und wird als Lifestyle-Content massiv konsumiert. Besonders auf Instagram dominieren perfekt arrangierte Bento-Boxen die Feeds.",
+      "why_trending": "Visuell perfekt, organisiert, Instagram-freundlich"
     }
   ],
   "logs": [
-    "[05:55:01] Agent gestartet...",
-    "[05:55:02] 15 Food-Themen geladen",
-    "[05:55:03] Claude API analysiert Trends...",
-    "[05:55:04] 5 Top-Trends identifiziert",
-    "[05:55:05] Virality-Scores berechnet",
-    "[05:55:06] trends.json aktualisiert ✓"
+    "[15:53:01] Agent gestartet...",
+    "[15:53:02] 15 Food-Themen geladen",
+    "[15:53:03] Claude API analysiert Trends...",
+    "[15:53:04] 5 Top-Trends identifiziert",
+    "[15:53:05] Virality-Scores berechnet",
+    "[15:53:06] trends.json aktualisiert ✓"
   ]
 }

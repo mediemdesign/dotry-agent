@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Trend Agent – do try ai</title>
+  <meta name="description" content="KI-Agent der täglich die viralen Food-Trends von Instagram & TikTok analysiert." />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.1);
+      --orange:#f97316;--purple:#a855f7;--yellow:#f59e0b;--pink:#ec4899;
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(8,12,18,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .logo img{height:36px;width:auto;}
+    .logo{text-decoration:none;}
+    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.88rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    /* HERO */
+    .hero {
+      padding: 120px 24px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(37,99,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .agent-live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green-glow);
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: 50px;
+      padding: 7px 18px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100%{opacity:1;transform:scale(1);}
+      50%{opacity:0.4;transform:scale(0.7);}
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--orange), var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .hero-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* STATUS BAR */
+    .status-bar {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 10px 48px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .status-bar .dot { width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;flex-shrink:0; }
+
+    /* MAIN */
+    .main-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .stat-card:hover { border-color: rgba(37,99,255,0.3); }
+
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+
+    /* SECTION HEADER */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title-text {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .section-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: var(--blue-glow);
+      color: var(--blue-light);
+      border: 1px solid rgba(37,99,255,0.2);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* TRENDS GRID */
+    .trends-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .trend-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+      animation: fadeUp 0.5s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trend-card:hover {
+      border-color: rgba(37,99,255,0.35);
+      transform: translateY(-4px);
+    }
+
+    .trend-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+
+    @keyframes fadeUp {
+      from{opacity:0;transform:translateY(16px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .trend-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .trend-rank-badge {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+    }
+
+    .trend-score-pill {
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: 50px;
+    }
+
+    .trend-name {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+
+    .trend-why {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue-light);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .trend-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 16px;
+    }
+
+    /* SCORE BAR */
+    .score-bar-wrap { margin-bottom: 16px; }
+    .score-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    .score-bar-bg {
+      height: 6px;
+      background: var(--bg3);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .score-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+      width: 0%;
+    }
+
+    .trend-footer {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .trend-cat-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+    }
+
+    .trend-conf {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* SIDEBAR LAYOUT */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+    }
+
+    /* LOG */
+    .log-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .log-card h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .log-entry {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--green);
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: logIn 0.3s ease forwards;
+    }
+    .log-entry:last-child { border-bottom: none; }
+
+    @keyframes logIn {
+      from{opacity:0;transform:translateX(-6px);}
+      to{opacity:1;transform:translateX(0);}
+    }
+
+    /* HOW IT WORKS */
+    .how-card {
+      background: var(--bg2);
+      border: 1px solid rgba(37,99,255,0.15);
+      border-radius: var(--radius);
+      padding: 24px;
+    }
+
+    .how-card h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 18px;
+    }
+
+    .how-step {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 14px;
+      align-items: flex-start;
+    }
+
+    .how-num {
+      width: 24px; height: 24px;
+      background: var(--blue-glow);
+      border: 1px solid rgba(37,99,255,0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--blue-light);
+      flex-shrink: 0;
+    }
+
+    .how-step p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .how-step strong { color: var(--text); }
+
+    .lektion-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--blue-light);
+      transition: gap 0.2s;
+    }
+    .lektion-link:hover { gap: 14px; }
+
+    /* ERROR */
+    .error-box {
+      background: rgba(239,68,68,0.07);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      color: #ef4444;
+      grid-column: 1 / -1;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+    footer a{color:var(--text-muted);text-decoration:none;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:768px){
+      nav{padding:14px 20px;}
+      .stats-grid{grid-template-columns:repeat(2,1fr);}
+      .trends-grid{grid-template-columns:1fr;}
+      .bottom-grid{grid-template-columns:1fr;}
+      .status-bar{padding:10px 20px;}
+      footer{flex-direction:column;gap:8px;text-align:center;}
+    }
+
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
+    <a href="lektion-06.html" class="nav-back">← Wie der Agent funktioniert</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="agent-live-badge">
+      <div class="pulse-dot"></div>
+      KI-Agent Live
+    </div>
+    <h1>Virale <em>Food Trends</em><br>analysiert von KI</h1>
+    <p class="hero-sub">Ein autonomer Agent scannt wöchentlich Instagram & TikTok Signale und bewertet die heißesten Food-Trends – powered by Claude AI.</p>
+    <div class="hero-meta">
+      <span>🤖 Claude AI</span>
+      <span>📸 Instagram & TikTok Signale</span>
+      <span>📅 Wöchentlich aktualisiert</span>
+    </div>
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="status-bar">
+    <div class="dot"></div>
+    <span id="status-text">Agent wird geladen...</span>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-container">
+
+    <!-- STATS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num" id="stat-sources" style="color:var(--blue-light)">–</div>
+        <div class="stat-label">Quellen gescannt</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-signals" style="color:var(--orange)">–</div>
+        <div class="stat-label">Signale erkannt</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-trends" style="color:var(--green)">–</div>
+        <div class="stat-label">Top Trends</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="stat-avg" style="color:var(--purple)">–</div>
+        <div class="stat-label">Ø Virality Score</div>
+      </div>
+    </div>
+
+    <!-- TRENDS -->
+    <div class="section-header">
+      <div class="section-title-text">🔥 Diese Woche viral</div>
+      <div class="section-badge">KI-Analyse</div>
+    </div>
+
+    <div class="trends-grid" id="trends-container">
+      <!-- Wird dynamisch befüllt -->
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="bottom-grid">
+      <div class="log-card">
+        <h3>⚡ Agent Log</h3>
+        <div id="logs-container"></div>
+      </div>
+      <div class="how-card">
+        <h3>🤖 Wie funktioniert das?</h3>
+        <div class="how-step">
+          <div class="how-num">1</div>
+          <p><strong>Quellen sammeln</strong> – Seed-Themen aus Food & Social Media Trends</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">2</div>
+          <p><strong>Claude analysiert</strong> – KI bewertet Virality, Kategorie und Trend-Stärke</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">3</div>
+          <p><strong>Score berechnen</strong> – Jeder Trend bekommt einen Virality-Score von 0–100</p>
+        </div>
+        <div class="how-step">
+          <div class="how-num">4</div>
+          <p><strong>Dashboard updaten</strong> – trends.json wird geschrieben, Frontend lädt live</p>
+        </div>
+        <a href="lektion-06.html" class="lektion-link">
+          Selbst bauen – Lektion 6 →
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:26px;" /></a>
+    <span>Food Trend Agent · Powered by Claude AI · <span id="footer-updated">–</span></span>
+    <div style="display:flex;gap:16px;">
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    // Kategorie Farben
+    const CAT_COLORS = {
+      'Comfort Food': {c:'#f97316',bg:'rgba(249,115,22,0.1)',border:'rgba(249,115,22,0.2)'},
+      'Health':       {c:'#22c55e',bg:'rgba(34,197,94,0.1)', border:'rgba(34,197,94,0.2)'},
+      'Asian Fusion': {c:'#a855f7',bg:'rgba(168,85,247,0.1)',border:'rgba(168,85,247,0.2)'},
+      'Dessert':      {c:'#ec4899',bg:'rgba(236,72,153,0.1)',border:'rgba(236,72,153,0.2)'},
+      'Snacks':       {c:'#f59e0b',bg:'rgba(245,158,11,0.1)',border:'rgba(245,158,11,0.2)'},
+      'Meal Prep':    {c:'#2563ff',bg:'rgba(37,99,255,0.1)', border:'rgba(37,99,255,0.2)'},
+      'General Food': {c:'#8894b0',bg:'rgba(136,148,176,0.1)',border:'rgba(136,148,176,0.2)'},
+    };
+
+    function getColor(cat) {
+      return CAT_COLORS[cat] || CAT_COLORS['General Food'];
+    }
+
+    function scoreToColor(score) {
+      if (score >= 85) return {c:'#22c55e',bg:'rgba(34,197,94,0.1)',border:'rgba(34,197,94,0.25)'};
+      if (score >= 70) return {c:'#f59e0b',bg:'rgba(245,158,11,0.1)',border:'rgba(245,158,11,0.25)'};
+      return {c:'#8894b0',bg:'rgba(136,148,176,0.1)',border:'rgba(136,148,176,0.25)'};
+    }
+
+    function animateNum(el, target) {
+      let n = 0;
+      const step = Math.max(1, Math.ceil(target / 40));
+      const t = setInterval(() => {
+        n = Math.min(n + step, target);
+        el.textContent = n;
+        if (n >= target) clearInterval(t);
+      }, 35);
+    }
+
+    function renderStats(stats, trends) {
+      animateNum(document.getElementById('stat-sources'), stats.sources_scanned);
+      animateNum(document.getElementById('stat-signals'), stats.signals_detected);
+      animateNum(document.getElementById('stat-trends'),  stats.top_trends);
+      const avg = Math.round(trends.reduce((a,t) => a + t.score, 0) / trends.length);
+      animateNum(document.getElementById('stat-avg'), avg);
+    }
+
+    function renderTrends(trends) {
+      const container = document.getElementById('trends-container');
+      container.innerHTML = '';
+
+      trends.forEach((t, i) => {
+        const cat   = getColor(t.category);
+        const score = scoreToColor(t.score);
+        const delay = i * 0.1;
+
+        const card = document.createElement('div');
+        card.className = 'trend-card';
+        card.style.animationDelay = delay + 's';
+        card.style.setProperty('--card-color', cat.c);
+        card.innerHTML = `
+          <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,${cat.c},${score.c});border-radius:16px 16px 0 0;"></div>
+          <div class="trend-card-top">
+            <span class="trend-rank-badge"># ${i + 1}</span>
+            <span class="trend-score-pill" style="color:${score.c};background:${score.bg};border:1px solid ${score.border}">
+              ${t.score} / 100
+            </span>
+          </div>
+          <div class="trend-name">${t.name}</div>
+          ${t.why_trending ? `<div class="trend-why">💡 ${t.why_trending}</div>` : ''}
+          <div class="score-bar-wrap">
+            <div class="score-bar-label">
+              <span>Virality Score</span>
+              <span>Konfidenz: ${t.confidence}%</span>
+            </div>
+            <div class="score-bar-bg">
+              <div class="score-bar-fill" id="bar-${i}" style="background:linear-gradient(90deg,${cat.c},${score.c})"></div>
+            </div>
+          </div>
+          <p class="trend-desc">${t.description}</p>
+          <div class="trend-footer">
+            <span class="trend-cat-tag" style="color:${cat.c};background:${cat.bg};border:1px solid ${cat.border}">${t.category}</span>
+          </div>`;
+
+        container.appendChild(card);
+
+        // Animate score bar after render
+        setTimeout(() => {
+          const bar = document.getElementById(`bar-${i}`);
+          if (bar) bar.style.width = t.score + '%';
+        }, 300 + i * 100);
+      });
+    }
+
+    function renderLogs(logs) {
+      const container = document.getElementById('logs-container');
+      container.innerHTML = '';
+      logs.forEach((log, i) => {
+        setTimeout(() => {
+          const div = document.createElement('div');
+          div.className = 'log-entry';
+          div.style.animationDelay = (i * 0.08) + 's';
+          div.textContent = log;
+          container.appendChild(div);
+        }, i * 300);
+      });
+    }
+
+    // Eingebettete Fallback-Daten – immer sichtbar auch ohne Server
+    const FALLBACK_DATA = {
+  "updated": "2026-06-01 15:53:19",
+  "stats": {
+    "sources_scanned": 15,
+    "signals_detected": 81,
+    "top_trends": 5
+  },
+  "trends": [
+    {
+      "name": "Viral Pasta Rezepte",
+      "category": "Comfort Food",
+      "score": 92,
+      "confidence": 95,
+      "description": "TikTok-Videos von kreativen Pasta-Variationen erreichen Millionen Views durch kurze, satisfying Cooking-Videos. Die Kombination aus Einfachheit und visueller Ästhetik macht diese Rezepte extrem shareable.",
+      "why_trending": "Kurze Videos, einfache Zutaten, hohe Viralität"
+    },
+    {
+      "name": "High-Protein Meal Prep",
+      "category": "Meal Prep",
+      "score": 89,
+      "confidence": 92,
+      "description": "Fitness- und Wellness-Community treibt den Trend von proteinreichen Mahlzeiten an, die sich perfekt vorbereiten lassen. Der Fokus auf Gesundheit und Body Goals spricht gezielt die Gen-Z an.",
+      "why_trending": "Fitness-Trend, Gesundheitsbewusstsein, zeitersparnis"
+    },
+    {
+      "name": "Koreanische Streetfood",
+      "category": "Asian Fusion",
+      "score": 87,
+      "confidence": 88,
+      "description": "Koreanische Küche bleibt durch authentische Streetfood-Videos und Mukbang-Content enorm beliebt auf sozialen Medien. Die visuellen und geschmacklichen Kontraste faszinieren das globale Publikum.",
+      "why_trending": "Asiatische Trends, authentische Rezepte, ASMR-Potential"
+    },
+    {
+      "name": "Chili Crisp Everything",
+      "category": "Snacks",
+      "score": 86,
+      "confidence": 85,
+      "description": "Das würzige, knusprige Topping wird auf alles gepackt und generiert massenhaft User-generated Content. Die Versatilität und das Geschmackserlebnis machen es zum perfekten Social-Media-Phänomen.",
+      "why_trending": "Vielseitig einsetzbar, Geschmacksexplosion, Trend-Phänomen"
+    },
+    {
+      "name": "Bento Box Ästhetik",
+      "category": "Meal Prep",
+      "score": 84,
+      "confidence": 83,
+      "description": "Die japanische Lunch-Kultur verbindet Funktionalität mit kunstvoller Präsentation und wird als Lifestyle-Content massiv konsumiert. Besonders auf Instagram dominieren perfekt arrangierte Bento-Boxen die Feeds.",
+      "why_trending": "Visuell perfekt, organisiert, Instagram-freundlich"
+    }
+  ],
+  "logs": [
+    "[15:53:01] Agent gestartet...",
+    "[15:53:02] 15 Food-Themen geladen",
+    "[15:53:03] Claude API analysiert Trends...",
+    "[15:53:04] 5 Top-Trends identifiziert",
+    "[15:53:05] Virality-Scores berechnet",
+    "[15:53:06] trends.json aktualisiert ✓"
+  ]
+};
+
+    async function loadData() {
+      let data = null;
+
+      // Versuche trends.json zu laden
+      try {
+        const resp = await fetch('trends.json?t=' + Date.now());
+        if (resp.ok) {
+          data = await resp.json();
+        }
+      } catch(e) {
+        // Fallback wird verwendet
+      }
+
+      // Fallback wenn trends.json nicht verfügbar
+      if (!data) data = FALLBACK_DATA;
+
+      // Status Bar
+      const updated = new Date(data.updated);
+      document.getElementById('status-text').textContent =
+        `Agent aktiv — zuletzt aktualisiert: ${updated.toLocaleDateString('de-AT', {day:'2-digit',month:'2-digit',year:'numeric'})} ${updated.toLocaleTimeString('de-AT', {hour:'2-digit',minute:'2-digit'})}`;
+      document.getElementById('footer-updated').textContent =
+        `Stand: KW ${getWeek(updated)} / ${updated.getFullYear()}`;
+
+      renderStats(data.stats, data.trends);
+      renderTrends(data.trends);
+      renderLogs(data.logs);
+    }
+
+    function getWeek(date) {
+      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    loadData();
+  </script>
+  <script>
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+  </script>
+</body>
+</html>

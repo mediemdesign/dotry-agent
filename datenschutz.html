@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung – dotry.ai</title>
+  	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Datenschutzerklärung für dotry.ai gemäß DSGVO." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://dotry.ai/datenschutz.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-GGV180NB9T');
+	</script>
+	
+  <style>
+    :root {
+      --bg: #080c12;
+      --bg2: #0e1420;
+      --blue: #2563ff;
+      --blue-light: #4d85ff;
+      --text: #f0f4ff;
+      --text-muted: #8894b0;
+      --border: rgba(255,255,255,0.07);
+      --radius: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(8,12,18,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo img { height: 40px; width: auto; }
+    .logo { text-decoration: none; }
+
+    .nav-back {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 140px 24px 80px;
+    }
+
+    .page-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .last-updated {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ds-block {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 36px;
+      margin-bottom: 20px;
+    }
+
+    .ds-block h2 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 16px;
+    }
+
+    .ds-block h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin: 20px 0 8px;
+    }
+
+    .ds-block p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.75;
+      margin-bottom: 12px;
+    }
+
+    .ds-block p:last-child { margin-bottom: 0; }
+
+    .ds-block a {
+      color: var(--blue-light);
+      text-decoration: none;
+    }
+    .ds-block a:hover { text-decoration: underline; }
+
+    .ds-block ul {
+      list-style: none;
+      margin: 8px 0;
+    }
+
+    .ds-block ul li {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      padding: 6px 0;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .ds-block ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--blue-light);
+      font-size: 0.8rem;
+    }
+
+    .notice {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      line-height: 1.65;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .ds-block { padding: 24px 20px; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    /* COOKIE BANNER */
+    .cookie-banner {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      background: var(--bg2);
+      border: 1px solid rgba(37,99,255,0.25);
+      border-radius: 16px;
+      padding: 20px 28px;
+      max-width: 560px;
+      width: calc(100% - 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    .cookie-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .cookie-text a {
+      color: var(--blue-light);
+      text-decoration: none;
+    }
+
+    .cookie-text strong { color: var(--text); }
+
+    .cookie-buttons {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .cookie-accept {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .cookie-accept:hover { background: var(--blue-light); }
+
+    .cookie-decline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .cookie-decline:hover { border-color: var(--text-muted); color: var(--text); }
+
+    @media (max-width: 560px) {
+      .cookie-banner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+  </style>
+  
+   <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+  
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+  
+    <a href="/" class="nav-back">← Zurück zur Startseite</a>
+  </nav>
+
+  <main>
+    <div class="page-label">Rechtliches</div>
+    <h1>Datenschutzerklärung</h1>
+    <p class="last-updated">Stand: Mai 2026 · Gemäß DSGVO und österreichischem Datenschutzgesetz (DSG)</p>
+
+    <div class="ds-block">
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Verantwortlicher im Sinne der DSGVO:<br/><br/>
+        Manfred Eilmsteiner<br/>
+        4052 Ansfelden<br/>
+		Österreich<br/>
+        E-Mail: <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      </p>
+    </div>
+
+    <div class="ds-block">
+      <h2>2. Welche Daten wir erheben</h2>
+      <p>Wir erheben nur Daten die du uns aktiv mitteilst – und nur das Nötigste:</p>
+      <ul>
+        <li><strong style="color:var(--text);">Newsletter-Anmeldung:</strong> E-Mail-Adresse, optional Vorname</li>
+        <li><strong style="color:var(--text);">Kontakt per E-Mail:</strong> Deine E-Mail-Adresse und der Inhalt deiner Nachricht</li>
+      </ul>
+      <p style="margin-top:12px;">Es werden keine Cookies gesetzt, kein Tracking durchgeführt und keine Analyse-Tools wie Google Analytics verwendet.</p>
+    </div>
+
+    <div class="ds-block">
+      <h2>3. Zweck der Datenverarbeitung</h2>
+      <p>Deine E-Mail-Adresse verwenden wir ausschließlich um dir den dotry.ai Newsletter zuzusenden – also kurze KI-Impulse für den Alltag. Deine Daten werden nicht für Werbezwecke Dritter verwendet und nicht verkauft.</p>
+    </div>
+
+    <div class="ds-block">
+      <h2>4. Rechtsgrundlage</h2>
+      <p>Die Verarbeitung deiner E-Mail-Adresse erfolgt auf Basis deiner freiwilligen Einwilligung gemäß <strong style="color:var(--text);">Art. 6 Abs. 1 lit. a DSGVO</strong>. Du kannst diese Einwilligung jederzeit widerrufen.</p>
+    </div>
+
+    <div class="ds-block">
+      <h2>5. Drittanbieter – Formspree</h2>
+      <p>Für die Verarbeitung von Newsletter-Anmeldungen nutzen wir den Dienst <strong style="color:var(--text);">Formspree</strong> (Formspree Inc., USA). Deine eingetragene E-Mail-Adresse wird dabei an Formspree übermittelt und dort gespeichert.</p>
+      <p>Formspree ist nach dem EU-US Data Privacy Framework zertifiziert. Weitere Informationen findest du in der <a href="https://formspree.io/legal/privacy-policy" target="_blank">Datenschutzerklärung von Formspree</a>.</p>
+    </div>
+
+
+    <div class="ds-block">
+      <h2>6. Google Analytics</h2>
+      <p>Diese Website nutzt <strong style="color:var(--text);">Google Analytics 4</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland) um anonymisierte Nutzungsstatistiken zu erheben – zum Beispiel welche Seiten besucht werden und wie lange Besucher bleiben.</p>
+      <p>Wir haben die IP-Anonymisierung aktiviert – deine IP-Adresse wird dabei gekürzt und ist nicht rückverfolgbar. Es werden keine persönlichen Daten gespeichert.</p>
+      <p><strong style="color:var(--text);">Consent Mode:</strong> Google Analytics ist standardmäßig deaktiviert. Es werden erst Daten gesammelt wenn du dem Cookie-Banner zustimmst. Du kannst deine Entscheidung jederzeit durch Löschen des Browser-Speichers zurücksetzen.</p>
+      <p>Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank">Google Datenschutzerklärung</a></p>
+    </div>
+
+    <div class="ds-block">
+      <h2>7. Speicherdauer</h2>
+      <p>Deine Daten werden gespeichert solange du den Newsletter abonniert hast. Nach einer Abmeldung werden deine Daten innerhalb von 30 Tagen gelöscht.</p>
+    </div>
+
+    <div class="ds-block">
+      <h2>8. Deine Rechte</h2>
+      <p>Du hast jederzeit das Recht auf:</p>
+      <ul>
+        <li>Auskunft über deine gespeicherten Daten</li>
+        <li>Berichtigung unrichtiger Daten</li>
+        <li>Löschung deiner Daten</li>
+        <li>Widerruf deiner Einwilligung</li>
+        <li>Beschwerde bei der österreichischen Datenschutzbehörde (<a href="https://www.dsb.gv.at" target="_blank">dsb.gv.at</a>)</li>
+      </ul>
+      <p style="margin-top:12px;">Für alle Anfragen schreib uns einfach an: <a href="mailto:hi@dotry.ai">hi@dotry.ai</a></p>
+    </div>
+
+    <div class="ds-block">
+      <h2>9. Newsletter abmelden</h2>
+      <p>Du kannst den Newsletter jederzeit abbestellen. Schreib dazu einfach eine kurze E-Mail an <a href="mailto:hi@dotry.ai">hi@dotry.ai</a> – wir löschen deine Adresse umgehend.</p>
+    </div>
+
+    <div class="ds-block">
+      <h2>10. Hosting & technische Infrastruktur</h2>
+      <p>Diese Website wird gehostet über <strong style="color:var(--text);">Cloudflare Pages</strong> (Cloudflare Inc., USA). Beim Aufruf der Website werden technisch notwendige Verbindungsdaten (z.B. IP-Adresse) kurzzeitig verarbeitet. Weitere Informationen: <a href="https://www.cloudflare.com/privacypolicy/" target="_blank">Cloudflare Datenschutzerklärung</a>.</p>
+    </div>
+
+    <p class="notice">
+      Bei Fragen zur Datenschutzerklärung wende dich bitte an <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+    </p>
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex; gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });</script>
+</body>
+</html>

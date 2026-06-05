@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 7: Automatisierung mit GitHub Actions – do try ai</title>
+  <meta name="description" content="Den KI-Agent vollautomatisch laufen lassen – jeden Montag, ohne einen Finger zu rühren. GitHub Actions macht es möglich." />
+  <meta name="keywords" content="GitHub Actions automatisierung, KI Agent automatisch, Cron Job Python, dotry.ai Lektion 7" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-07.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-07.html" />
+  <meta property="og:title" content="Lektion 7: Automatisierung mit GitHub Actions" />
+  <meta property="og:description" content="Den KI-Agent vollautomatisch laufen lassen – jeden Montag, ohne einen Finger zu rühren." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+   <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.08);
+      --red:#ef4444;--red-glow:rgba(239,68,68,0.08);
+      --yellow:#f59e0b;--yellow-glow:rgba(245,158,11,0.08);
+      --orange:#f97316;
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .logo img{height:40px;width:auto;}
+    .logo{text-decoration:none;}
+    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    /* DROPDOWN */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 16px 48px rgba(0,0,0,0.5);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 6px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+    .dd-track-label.einsteiger{color:#22c55e;}
+    .dd-track-label.anwender{color:var(--blue-light);}
+    .dd-track-label.technik{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-item-num{width:24px;height:24px;background:var(--bg3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;color:var(--text-muted);flex-shrink:0;}
+    .dd-item-num.einsteiger{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-item-num.anwender{background:var(--blue-glow);color:var(--blue-light);}
+    .dd-item-num.technik{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-item-info{flex:1;}
+    .dd-item-title{font-size:0.83rem;font-weight:700;color:var(--text);}
+    .dd-item-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 7px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){.lessons-dropdown-menu{left:0;transform:none;}}
+
+    /* QUICK NAV */
+    .quick-nav{position:sticky;top:117px;z-index:90;background:rgba(8,12,18,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+    .quick-nav::-webkit-scrollbar{display:none;}
+    .quick-nav-item{display:flex;align-items:center;gap:7px;padding:11px 14px;font-size:0.8rem;font-weight:600;color:var(--text-muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;flex-shrink:0;}
+    .quick-nav-item:hover{color:var(--text);}
+    .quick-nav-item.active{color:var(--blue-light);border-bottom-color:var(--blue);}
+    .quick-nav-item .qn-num{background:var(--blue-glow);color:var(--blue-light);border-radius:50px;padding:1px 6px;font-size:0.68rem;font-weight:800;}
+    @media(max-width:640px){.quick-nav{padding:0 12px;}.quick-nav-item{padding:10px 10px;font-size:0.75rem;}}
+
+    /* MOBILE BADGE */
+    .mobile-lesson-info{display:none;}
+    @media(max-width:640px){
+      .mobile-lesson-info{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--bg2);border-bottom:1px solid var(--border);font-size:0.78rem;font-weight:700;}
+      .mobile-lesson-num{color:var(--blue-light);}
+      .mobile-lesson-level{padding:3px 10px;border-radius:50px;font-size:0.7rem;background:var(--green-glow);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    }
+
+    .progress-bar{position:sticky;top:77px;left:0;right:0;height:3px;background:var(--border);z-index:89;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));width:0%;transition:width 0.1s;}
+
+    main{max-width:800px;margin:0 auto;padding:60px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--blue-glow);color:var(--blue-light);border:1px solid rgba(37,99,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+
+    .phase{margin:56px 0;}
+    .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .phase-icon{width:48px;height:48px;background:var(--blue-glow);border:1px solid rgba(37,99,255,0.25);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .phase-num{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);display:block;margin-bottom:2px;}
+    .phase-header h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+
+    .article-body p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.75;}
+    .article-body p strong{color:var(--text);}
+
+    .section-divider{height:1px;background:var(--border);margin:48px 0;}
+
+    /* SIGNAL CARDS */
+    .signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0;}
+    .signal-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:border-color 0.2s;}
+    .signal-card:hover{border-color:rgba(239,68,68,0.3);}
+    .signal-icon{font-size:1.4rem;margin-bottom:10px;}
+    .signal-title{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:6px;}
+    .signal-desc{font-size:0.82rem;color:var(--text-muted);line-height:1.6;}
+    .signal-example{font-size:0.78rem;color:var(--red);margin-top:8px;font-style:italic;}
+
+    /* TOOL CARDS */
+    .tool-list{display:flex;flex-direction:column;gap:12px;margin:24px 0;}
+    .tool-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;text-decoration:none;transition:border-color 0.2s,transform 0.2s;}
+    .tool-card:hover{border-color:rgba(37,99,255,0.3);transform:translateY(-2px);}
+    .tool-emoji{font-size:1.5rem;}
+    .tool-name{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:3px;}
+    .tool-desc{font-size:0.8rem;color:var(--text-muted);}
+    .tool-free{font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:50px;background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);white-space:nowrap;}
+    .tool-paid{font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:50px;background:rgba(245,158,11,0.1);color:var(--yellow);border:1px solid rgba(245,158,11,0.2);white-space:nowrap;}
+
+    /* COPY BOX */
+    .copy-box{background:var(--bg3);border:2px solid var(--blue);border-radius:var(--radius);padding:28px;margin:24px 0;position:relative;}
+    .copy-box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue-light);margin-bottom:14px;}
+    .copy-box pre{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;line-height:1.75;color:var(--text);white-space:pre-wrap;word-break:break-word;}
+    .copy-btn{position:absolute;top:20px;right:20px;background:var(--blue);color:#fff;border:none;padding:7px 16px;border-radius:50px;font-family:inherit;font-size:0.78rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
+    .copy-btn:hover{background:var(--blue-light);}
+
+    /* TIP / WARNING BOX */
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+    .warning-box{background:rgba(245,158,11,0.07);border-left:3px solid var(--yellow);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .warning-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .warning-box strong{color:var(--yellow)!important;}
+
+    /* CHECKLIST */
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s,color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(37,99,255,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;margin-top:1px;}
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;max-width:480px;margin-left:auto;margin-right:auto;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* COOKIE */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-text strong{color:var(--text);}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      nav{padding:16px 20px;}
+      .signal-grid{grid-template-columns:1fr;}
+      .tool-card{grid-template-columns:auto 1fr;}
+      .tool-free,.tool-paid{display:none;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+ 
+ /* BEFORE AFTER */
+    .before-after{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+    .ba-col{display:flex;flex-direction:column;gap:10px;}
+    .ba-label{display:flex;align-items:center;gap:8px;font-size:0.75rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:7px 14px;border-radius:50px;width:fit-content;}
+    .ba-label.before{background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.2);}
+    .ba-label.after{background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.2);}
+    .ba-box{border-radius:var(--radius);padding:20px;font-size:0.9rem;line-height:1.65;flex:1;color:var(--text-muted);}
+    .ba-box.before{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15);}
+    .ba-box.after{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);}
+
+    /* FLOW DIAGRAM */
+    .flow-diagram{display:flex;align-items:center;gap:8px;margin:28px 0;flex-wrap:wrap;justify-content:center;}
+    .flow-box{background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:12px;padding:14px 18px;text-align:center;min-width:120px;}
+    .flow-box-icon{font-size:1.4rem;margin-bottom:6px;}
+    .flow-box-label{font-size:0.78rem;font-weight:700;color:var(--blue-light);}
+    .flow-box-sub{font-size:0.68rem;color:var(--text-muted);margin-top:3px;}
+    .flow-arrow{color:var(--text-muted);font-size:1.2rem;flex-shrink:0;}
+
+    /* CODE BLOCKS */
+    .code-block{background:var(--code-bg);border:1px solid var(--border);border-radius:var(--radius);margin:20px 0;overflow:hidden;}
+    .code-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border);font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+    .code-filename{color:var(--blue-light);}
+    .code-copy{background:transparent;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-family:inherit;font-size:0.7rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .code-copy:hover{border-color:var(--blue);color:var(--blue-light);}
+    .code-block pre{padding:20px;font-family:'Courier New',monospace;font-size:0.82rem;line-height:1.7;color:#e2e8f0;overflow-x:auto;white-space:pre;}
+    .cm{color:#64748b;}
+    .ck{color:#7dd3fc;}
+    .cs{color:#86efac;}
+    .co{color:#f97316;}
+
+    /* STEP LIST */
+    .step-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+    .step-list li{display:flex;align-items:flex-start;gap:14px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);}
+    .step-num{width:28px;height:28px;background:var(--orange-glow);border:1px solid rgba(249,115,22,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:var(--orange);flex-shrink:0;margin-top:2px;}
+
+    /* TIP BOX */
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+
+    .warning-box{background:rgba(249,115,22,0.07);border-left:3px solid var(--orange);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .warning-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .warning-box strong{color:var(--orange)!important;}
+
+    /* CHECKLIST */
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s,color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(37,99,255,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;margin-top:1px;}
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;max-width:480px;margin-left:auto;margin-right:auto;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* COOKIE */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-text strong{color:var(--text);}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      nav{padding:16px 20px;}
+      .before-after{grid-template-columns:1fr;}
+      .flow-diagram{flex-direction:column;}
+      .flow-arrow{transform:rotate(90deg);}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+  
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+ 
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
+
+ <!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+    <a href="/" class="nav-back">← Startseite</a>
+  </nav>
+
+    <div class="qn-track">
+      <a href="lektion-07.html" class="quick-nav-item active"><span class="qn-num"></span></a>
+    </div>
+  </div>
+
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">⚙️ Automatisierung</span>
+      <span class="read-time">📖 Lektion #7 · 15 Min · 🟠 Technik-Track</span>
+    </div>
+
+    <h1>Automatisierung mit<br>GitHub Actions</h1>
+
+    <p class="article-intro">
+      Der Agent aus Lektion 6 läuft – aber du musst ihn noch manuell starten. <strong>Das ändern wir jetzt.</strong> Mit GitHub Actions läuft der Agent jeden Montag automatisch, aktualisiert die Trends und niemand muss einen Finger rühren. Einmal einrichten – für immer automatisch.
+    </p>
+
+    <div class="article-body">
+
+      <div class="level-badge technik">🟠 Technik-Track · Python & GitHub Grundkenntnisse hilfreich</div>
+
+      <!-- PHASE 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">💡</div>
+          <div>
+            <span class="phase-num">Phase 1 · Impuls</span>
+            <h2>Manuell vs. automatisch – der Unterschied</h2>
+          </div>
+        </div>
+
+        <p>Bisher sieht dein wöchentlicher Workflow so aus: Terminal öffnen, API Key setzen, Script starten, trends.json hochladen, Cloudflare deployen. Das sind 5 manuelle Schritte – jede Woche.</p>
+
+        <div class="before-after">
+          <div class="ba-col">
+            <div class="ba-label before">😓 Jetzt – manuell</div>
+            <div class="ba-box before">
+              Jeden Montag: Terminal öffnen → API Key setzen → python3 run_agent.py → trends.json kopieren → auf Cloudflare hochladen. 5 Schritte, ~10 Minuten.
+            </div>
+          </div>
+          <div class="ba-col">
+            <div class="ba-label after">✅ Nach dieser Lektion</div>
+            <div class="ba-box after">
+              GitHub Actions startet jeden Montag um 8:00 Uhr automatisch. Du wachst auf – die neuen Trends sind bereits online. 0 Schritte, 0 Minuten.
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Was ist GitHub Actions?</strong> Ein kostenloser Service von GitHub der Code automatisch ausführt – nach einem Zeitplan, bei einem Commit oder auf Knopfdruck. Perfekt für wiederkehrende Aufgaben wie unseren Agent.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">📋</div>
+          <div>
+            <span class="phase-num">Phase 2 · Nachmachen</span>
+            <h2>So funktioniert der automatische Ablauf</h2>
+          </div>
+        </div>
+
+        <p>GitHub Actions führt jeden Montag diese Schritte automatisch aus:</p>
+
+        <div class="flow-diagram">
+          <div class="flow-box">
+            <div class="flow-box-icon">⏰</div>
+            <div class="flow-box-label">Montag 8:00</div>
+            <div class="flow-box-sub">Cron startet</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">🐍</div>
+            <div class="flow-box-label">Python läuft</div>
+            <div class="flow-box-sub">run_agent.py</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">🧠</div>
+            <div class="flow-box-label">Claude analysiert</div>
+            <div class="flow-box-sub">API Call</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">📄</div>
+            <div class="flow-box-label">trends.json</div>
+            <div class="flow-box-sub">wird gespeichert</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">🌐</div>
+            <div class="flow-box-label">Live online</div>
+            <div class="flow-box-sub">Cloudflare Pages</div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">Schritt 1 – GitHub Repository einrichten</h2>
+
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div><strong style="color:var(--text);">github.com</strong> öffnen → Account erstellen falls noch nicht vorhanden → kostenlos</div></li>
+          <li><div class="step-num">2</div><div><strong style="color:var(--text);">"New Repository"</strong> klicken → Name: <code style="color:var(--blue-light);">dotry-agent</code> → Private → Create</div></li>
+          <li><div class="step-num">3</div><div>Alle Agent-Dateien hochladen: <code style="color:var(--blue-light);">run_agent.py</code>, <code style="color:var(--blue-light);">fetch_sources.py</code>, <code style="color:var(--blue-light);">analyze_trends.py</code></div></li>
+        </ul>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">Schritt 2 – API Key als Secret speichern</h2>
+
+        <p>Der API Key darf nie in einer Datei stehen. GitHub bietet dafür "Secrets" – verschlüsselte Variablen die nur der Workflow lesen kann:</p>
+
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div>Im Repository: <strong style="color:var(--text);">Settings → Secrets and variables → Actions → New repository secret</strong></div></li>
+          <li><div class="step-num">2</div><div>Name: <code style="color:var(--blue-light);">ANTHROPIC_API_KEY</code> · Value: deinen API Key einfügen → Save</div></li>
+        </ul>
+
+        <div class="warning-box">
+          <p><strong>⚠️ Wichtig:</strong> Den API Key niemals direkt in eine Datei schreiben. Immer als Secret speichern – dann ist er verschlüsselt und sicher.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">Schritt 3 – Workflow Datei erstellen</h2>
+
+        <p>Das Herzstück der Automatisierung. Erstelle diese Datei in deinem Repository unter <code style="color:var(--blue-light);">.github/workflows/agent.yml</code>:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">.github/workflows/agent.yml</span>
+            <button class="code-copy" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre id="code-workflow"><span class="co">name:</span> <span class="cs">dotry.ai Food Trend Agent</span>
+
+<span class="co">on:</span>
+  <span class="co">schedule:</span>
+    <span class="cm"># Jeden Montag um 8:00 Uhr (UTC)</span>
+    - <span class="co">cron:</span> <span class="cs">'0 8 * * 1'</span>
+  <span class="co">workflow_dispatch:</span>  <span class="cm"># Auch manuell startbar</span>
+
+<span class="co">jobs:</span>
+  <span class="co">run-agent:</span>
+    <span class="co">runs-on:</span> ubuntu-latest
+
+    <span class="co">steps:</span>
+      - <span class="co">name:</span> <span class="cs">Code auschecken</span>
+        <span class="co">uses:</span> actions/checkout@v4
+
+      - <span class="co">name:</span> <span class="cs">Python einrichten</span>
+        <span class="co">uses:</span> actions/setup-python@v5
+        <span class="co">with:</span>
+          <span class="co">python-version:</span> <span class="cs">'3.11'</span>
+
+      - <span class="co">name:</span> <span class="cs">Abhängigkeiten installieren</span>
+        <span class="co">run:</span> pip install feedparser anthropic
+
+      - <span class="co">name:</span> <span class="cs">Agent starten</span>
+        <span class="co">env:</span>
+          <span class="co">ANTHROPIC_API_KEY:</span> <span class="cs">${{ secrets.ANTHROPIC_API_KEY }}</span>
+        <span class="co">run:</span> python3 run_agent.py
+
+      - <span class="co">name:</span> <span class="cs">trends.json committen</span>
+        <span class="co">run:</span> |
+          git config user.name "dotry-agent"
+          git config user.email "hi@dotry.ai"
+          git add trends.json
+          git diff --staged --quiet || git commit -m "🤖 Weekly trends update $(date +'%Y-%m-%d')"
+          git push</pre>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Cron erklärt:</strong> <code style="color:var(--blue-light);">'0 8 * * 1'</code> bedeutet: Minute 0, Stunde 8, jeder Tag des Monats, jeder Monat, Wochentag 1 (Montag). Willst du täglich? <code style="color:var(--blue-light);">'0 8 * * *'</code></p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">Schritt 4 – Cloudflare mit GitHub verbinden</h2>
+
+        <p>Damit Cloudflare Pages automatisch die neue trends.json lädt sobald GitHub sie aktualisiert:</p>
+
+        <ul class="step-list">
+          <li><div class="step-num">1</div><div><strong style="color:var(--text);">Cloudflare Dashboard</strong> → Workers & Pages → deine dotry.ai Page → Settings → Builds & Deployments</div></li>
+          <li><div class="step-num">2</div><div><strong style="color:var(--text);">"Connect to Git"</strong> → GitHub verbinden → dotry-agent Repository auswählen</div></li>
+          <li><div class="step-num">3</div><div>Branch: <code style="color:var(--blue-light);">main</code> · Build command: leer lassen · Root: <code style="color:var(--blue-light);">/</code> → Save</div></li>
+        </ul>
+
+        <p>Ab jetzt: Wenn GitHub Actions die trends.json committed → Cloudflare erkennt den Push → deployed automatisch → dotry.ai zeigt die neuen Trends. <strong>Vollautomatisch.</strong></p>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">🚀</div>
+          <div>
+            <span class="phase-num">Phase 3 · Anwenden</span>
+            <h2>Deine Checkliste zum Abhaken</h2>
+          </div>
+        </div>
+
+        <ul class="checklist">
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>GitHub Account erstellen auf <strong style="color:var(--text);">github.com</strong></span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Neues Repository <code style="color:var(--blue-light);">dotry-agent</code> erstellen (Private)</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Agent-Dateien hochladen: run_agent.py, fetch_sources.py, analyze_trends.py</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>API Key als Secret speichern: Settings → Secrets → <code style="color:var(--blue-light);">ANTHROPIC_API_KEY</code></span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Workflow-Datei erstellen: <code style="color:var(--blue-light);">.github/workflows/agent.yml</code></span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Workflow manuell testen: Actions → "dotry.ai Food Trend Agent" → Run workflow</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Cloudflare mit GitHub verbinden → automatisches Deployment einrichten</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Nächsten Montag abwarten – und die automatisch aktualisierten Trends auf dotry.ai bewundern 🎉</span></li>
+        </ul>
+
+        <div class="tip-box">
+          <p><strong>🎯 Tipp: Workflow manuell testen</strong> – Du musst nicht bis Montag warten. Im GitHub Repository unter <strong>Actions → "dotry.ai Food Trend Agent" → "Run workflow"</strong> kannst du den Agent sofort manuell starten und schauen ob alles funktioniert.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- NEXT LESSON -->
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 7 abgeschlossen</div>
+      <h3>Nächste Lektion:<br>KI-Inhalte erkennen & enttarnen</h3>
+      <p>Wie erkennst du KI-generierte Fotos, Videos und Texte? Mit konkreten Zeichen und kostenlosen Tools.</p>
+      <a href="lektion-08.html" class="btn-primary">Weiter zu Lektion 8 →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="datenschutz.html">Mehr erfahren</a></p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const progress = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+      document.getElementById('progress').style.width = Math.min(progress, 100) + '%';
+    });
+
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = '✓ Kopiert!';
+        btn.style.color = '#22c55e';
+        setTimeout(() => { btn.textContent = 'Kopieren'; btn.style.color = ''; }, 2000);
+      });
+    }
+
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check').textContent = el.classList.contains('done') ? '✅' : '☐';
+    }
+
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const c = localStorage.getItem('cookie_consent');
+      if (c) document.getElementById('cookie-banner').style.display = 'none';
+      if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+/* ═══════════════════════════════════════
+   dotry.ai – Zentrale Navigation CSS
+   Einbinden: <link rel="stylesheet" href="nav.css">
+   ═══════════════════════════════════════ */
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(8,12,18,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo img { height: 40px; width: auto; }
+.logo { text-decoration: none; }
+
+.nav-back {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+  white-space: nowrap;
+}
+.nav-back:hover { color: var(--text); }
+
+/* PROGRESS BAR */
+.progress-bar {
+  position: fixed;
+  top: 77px; left: 0; right: 0;
+  height: 3px;
+  background: var(--border);
+  z-index: 99;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  width: 0%;
+  transition: width 0.1s;
+}
+
+/* ── DROPDOWN NAV ── */
+.lessons-dropdown-wrap { position: relative; display: inline-block; }
+
+.lessons-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+  padding: 9px 20px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.lessons-dropdown-btn:hover { border-color: var(--blue); color: var(--text); }
+.lessons-dropdown-btn .dd-arrow { transition: transform 0.2s; font-size: 0.7rem; display: inline-block; }
+.lessons-dropdown-btn.open .dd-arrow { transform: rotate(180deg); }
+
+.lessons-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 320px;
+  max-height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37,99,255,0.3) transparent;
+  background: var(--bg2);
+  border: 1px solid rgba(37,99,255,0.2);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  z-index: 500;
+  display: none;
+  animation: ddIn 0.15s ease;
+}
+.lessons-dropdown-menu::-webkit-scrollbar { width: 4px; }
+.lessons-dropdown-menu::-webkit-scrollbar-track { background: transparent; }
+.lessons-dropdown-menu::-webkit-scrollbar-thumb { background: rgba(37,99,255,0.3); border-radius: 2px; }
+.lessons-dropdown-menu.open { display: block; }
+
+@keyframes ddIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.dd-track-label {
+  padding: 10px 16px 7px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.02);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.dd-track-label.g { color: #22c55e; background: rgba(34,197,94,0.05); }
+.dd-track-label.b { color: var(--blue-light); background: rgba(37,99,255,0.05); }
+.dd-track-label.o { color: #f97316; background: rgba(249,115,22,0.05); }
+
+.dd-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  text-decoration: none;
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--border);
+}
+.dd-item:last-child { border-bottom: none; }
+.dd-item:hover { background: rgba(37,99,255,0.07); }
+
+.dd-num {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.62rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.dd-num.g { background: rgba(34,197,94,0.1); color: #22c55e; }
+.dd-num.b { background: rgba(37,99,255,0.15); color: var(--blue-light); }
+.dd-num.o { background: rgba(249,115,22,0.1); color: #f97316; }
+
+.dd-info { flex: 1; }
+.dd-title { font-size: 0.84rem; font-weight: 700; color: var(--text); }
+.dd-meta  { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
+
+.dd-badge { font-size: 0.62rem; font-weight: 700; padding: 2px 8px; border-radius: 50px; flex-shrink: 0; }
+.dd-badge.live { background: rgba(34,197,94,0.1); color: #22c55e; border: 1px solid rgba(34,197,94,0.2); }
+.dd-badge.soon { background: rgba(255,255,255,0.04); color: var(--text-muted); border: 1px solid var(--border); }
+
+/* MOBILE */
+@media (max-width: 640px) {
+  nav { padding: 14px 16px; }
+  .nav-back { font-size: 0.82rem; }
+
+  .lessons-dropdown-menu {
+    left: 0;
+    transform: none;
+    min-width: 290px;
+    max-height: 60vh;
+  }
+  .lessons-dropdown-menu.open { animation: ddInM 0.15s ease; }
+
+  @keyframes ddInM {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}

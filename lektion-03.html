@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 3: ChatGPT, Claude oder Perplexity – wann nehme ich was? – do try ai</title>
+  <meta name="description" content="Die drei wichtigsten KI-Tools im ehrlichen Vergleich. Kein Fachjargon – nur konkrete Beispiele wann welches Tool am besten passt." />
+  <meta name="keywords" content="ChatGPT vs Claude, Perplexity Vergleich, welches KI Tool, ChatGPT Deutsch, Claude AI, KI Vergleich Alltag, dotry.ai" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-03.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-03.html" />
+  <meta property="og:title" content="ChatGPT, Claude oder Perplexity – wann nehme ich was?" />
+  <meta property="og:description" content="Die drei wichtigsten KI-Tools im ehrlichen Vergleich – für welche Aufgabe welches Tool am besten passt." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <!-- Google Consent Mode -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.08);
+      --orange:#f97316;--orange-glow:rgba(249,115,22,0.08);
+      --purple:#a855f7;--purple-glow:rgba(168,85,247,0.08);
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .logo img{height:40px;width:auto;}
+    .logo{text-decoration:none;}
+    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    .progress-bar{position:fixed;top:77px;left:0;right:0;height:3px;background:var(--border);z-index:99;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));width:0%;transition:width 0.1s;}
+
+    main{max-width:800px;margin:0 auto;padding:140px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--blue-glow);color:var(--blue-light);border:1px solid rgba(37,99,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+
+    .phase{margin:56px 0;}
+    .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .phase-icon{width:48px;height:48px;background:var(--blue-glow);border:1px solid rgba(37,99,255,0.25);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .phase-num{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);display:block;margin-bottom:2px;}
+    .phase-header h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+
+    .article-body p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.75;}
+    .article-body p strong{color:var(--text);}
+
+    .section-divider{height:1px;background:var(--border);margin:48px 0;}
+
+    /* TOOL CARDS */
+    .tool-card {
+      border-radius:var(--radius);
+      padding:32px;
+      margin:24px 0;
+      border:1px solid var(--border);
+    }
+
+    .tool-card.chatgpt { background: rgba(249,115,22,0.05); border-color: rgba(249,115,22,0.2); }
+    .tool-card.claude  { background: var(--blue-glow); border-color: rgba(37,99,255,0.2); }
+    .tool-card.perplexity { background: var(--purple-glow); border-color: rgba(168,85,247,0.2); }
+
+    .tool-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .tool-emoji {
+      font-size: 2rem;
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .tool-card.chatgpt .tool-emoji { background: rgba(249,115,22,0.1); }
+    .tool-card.claude .tool-emoji  { background: var(--blue-glow); }
+    .tool-card.perplexity .tool-emoji { background: var(--purple-glow); }
+
+    .tool-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .tool-card.chatgpt .tool-name { color: var(--orange); }
+    .tool-card.claude .tool-name  { color: var(--blue-light); }
+    .tool-card.perplexity .tool-name { color: var(--purple); }
+
+    .tool-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .tool-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .tool-card p strong { color: var(--text); }
+
+    .tool-best {
+      margin-top: 16px;
+    }
+
+    .tool-best-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tool-tag {
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 50px;
+    }
+
+    .tool-card.chatgpt .tool-tag { background: rgba(249,115,22,0.1); color: var(--orange); border: 1px solid rgba(249,115,22,0.2); }
+    .tool-card.claude .tool-tag  { background: var(--blue-glow); color: var(--blue-light); border: 1px solid rgba(37,99,255,0.2); }
+    .tool-card.perplexity .tool-tag { background: var(--purple-glow); color: var(--purple); border: 1px solid rgba(168,85,247,0.2); }
+
+    .tool-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 50px;
+      transition: opacity 0.2s;
+    }
+    .tool-link:hover { opacity: 0.8; }
+    .tool-card.chatgpt .tool-link { background: rgba(249,115,22,0.1); color: var(--orange); border: 1px solid rgba(249,115,22,0.2); }
+    .tool-card.claude .tool-link  { background: var(--blue-glow); color: var(--blue-light); border: 1px solid rgba(37,99,255,0.2); }
+    .tool-card.perplexity .tool-link { background: var(--purple-glow); color: var(--purple); border: 1px solid rgba(168,85,247,0.2); }
+
+    /* QUICK REFERENCE */
+    .quick-ref {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin: 28px 0;
+    }
+
+    .quick-ref-header {
+      padding: 16px 24px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg3);
+    }
+
+    .quick-ref-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .quick-ref-row:last-child { border-bottom: none; }
+
+    .quick-ref-cell {
+      padding: 14px 18px;
+      font-size: 0.85rem;
+      border-right: 1px solid var(--border);
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .quick-ref-cell:last-child { border-right: none; }
+    .quick-ref-cell.situation { font-weight: 600; color: var(--text); }
+    .quick-ref-cell.winner { font-weight: 700; }
+    .quick-ref-cell.chatgpt-win { color: var(--orange); }
+    .quick-ref-cell.claude-win  { color: var(--blue-light); }
+    .quick-ref-cell.perplexity-win { color: var(--purple); }
+
+    .quick-ref-head {
+      background: var(--bg3);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .quick-ref-head .quick-ref-cell { color: var(--text-muted); }
+
+    /* TIP BOX */
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+
+    /* CHECKLIST */
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s,color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(37,99,255,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;transition:all 0.2s;margin-top:1px;}
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;max-width:480px;margin-left:auto;margin-right:auto;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* COOKIE BANNER */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-text strong{color:var(--text);}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;transition:background 0.2s;white-space:nowrap;}
+    .cookie-accept:hover{background:var(--blue-light);}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+    .cookie-decline:hover{border-color:var(--text-muted);color:var(--text);}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      nav{padding:16px 20px;}
+      .quick-ref-row{grid-template-columns:1fr 1fr;}
+      .quick-ref-cell:nth-child(1){grid-column:1/-1;border-right:none;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+  </style>
+  
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+  
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+    <a href="lektionen.html" class="nav-back">← Alle Lektionen</a>
+  </nav>
+
+
+      <a href="lektion-07.html" class="quick-nav-item"><span class="qn-num"></span></a>
+    </div>
+  </div>
+
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">🔍 Ehrlichkeitstest</span>
+      <span class="read-time">📖 Lektion #3 · 7 Min Lesezeit</span>
+    </div>
+
+    <h1>ChatGPT, Claude oder<br>Perplexity – wann nehme ich was?</h1>
+
+    <p class="article-intro">
+      Drei Tools, drei Stärken – und alle drei kostenlos nutzbar. <strong>Du brauchst nicht alle drei gleichzeitig.</strong> Aber wenn du weißt wann du welches öffnest, sparst du Zeit und bekommst bessere Ergebnisse. Hier ist die ehrliche Übersicht – ohne Werbung, ohne Fachjargon.
+    </p>
+
+    <div class="article-body">
+
+      <!-- PHASE 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">💡</div>
+          <div>
+            <span class="phase-num">Phase 1 · Impuls</span>
+            <h2>Warum drei Tools und nicht nur eines?</h2>
+          </div>
+        </div>
+
+        <p>Die häufigste Frage die wir hören: <strong>"Reicht nicht einfach ChatGPT?"</strong> Oft ja. Aber manchmal bekommst du mit dem richtigen Tool in der Hälfte der Zeit ein doppelt so gutes Ergebnis.</p>
+
+        <p>Stell dir vor du brauchst einen Hammer, eine Säge und einen Schraubenzieher. Technisch kannst du alles mit dem Hammer erledigen – aber es macht keinen Spaß und das Ergebnis ist schlechter. Genauso ist es mit KI-Tools.</p>
+
+        <div class="tip-box">
+          <p><strong>💡 Die Kurzformel:</strong> ChatGPT wenn du etwas erstellen willst. Claude wenn du etwas durchdenken willst. Perplexity wenn du etwas wissen willst.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">📋</div>
+          <div>
+            <span class="phase-num">Phase 2 · Nachmachen</span>
+            <h2>Die drei Tools – ehrlich erklärt</h2>
+          </div>
+        </div>
+
+        <!-- CHATGPT -->
+        <div class="tool-card chatgpt">
+          <div class="tool-header">
+            <div class="tool-emoji">🟠</div>
+            <div>
+              <div class="tool-name">ChatGPT</div>
+              <div class="tool-tagline">Der Allrounder – gut für fast alles</div>
+            </div>
+          </div>
+          <p>ChatGPT von OpenAI ist der bekannteste KI-Assistent – und das aus gutem Grund. Er ist vielseitig, schnell und versteht auch unklare Anfragen gut. <strong>Wenn du nicht weißt welches Tool du nehmen sollst – nimm ChatGPT.</strong></p>
+          <p>Besonders stark ist ChatGPT beim kreativen Schreiben, beim Brainstorming und bei alltäglichen Aufgaben wie E-Mails, Zusammenfassungen oder Ideensuche. Mit der kostenlosen Version kommst du im Alltag sehr weit.</p>
+          <div class="tool-best">
+            <div class="tool-best-label">Am besten für:</div>
+            <div class="tool-tags">
+              <span class="tool-tag">✍️ Texte schreiben</span>
+              <span class="tool-tag">💡 Ideen sammeln</span>
+              <span class="tool-tag">📧 E-Mails formulieren</span>
+              <span class="tool-tag">🎨 Kreative Aufgaben</span>
+              <span class="tool-tag">📝 Kurze Zusammenfassungen</span>
+            </div>
+          </div>
+          <a href="https://chatgpt.com" target="_blank" class="tool-link">→ chatgpt.com öffnen</a>
+        </div>
+
+        <!-- CLAUDE -->
+        <div class="tool-card claude">
+          <div class="tool-header">
+            <div class="tool-emoji">🔵</div>
+            <div>
+              <div class="tool-name">Claude</div>
+              <div class="tool-tagline">Der Nachdenkliche – für komplexe Aufgaben</div>
+            </div>
+          </div>
+          <p>Claude von Anthropic ist das Tool das wir bei dotry.ai selbst am meisten nutzen. <strong>Claude denkt länger nach bevor er antwortet – und das merkt man.</strong> Die Antworten sind oft nuancierter, strukturierter und ehrlicher wenn etwas unklar ist.</p>
+          <p>Besonders stark ist Claude bei langen Texten, komplexen Fragen und wenn du ein Dokument oder eine E-Mail wirklich gut formuliert haben willst. Claude sagt dir auch wenn eine Frage keine eindeutige Antwort hat – statt dir etwas zu erfinden.</p>
+          <div class="tool-best">
+            <div class="tool-best-label">Am besten für:</div>
+            <div class="tool-tags">
+              <span class="tool-tag">📄 Lange Texte analysieren</span>
+              <span class="tool-tag">🤔 Komplexe Fragen</span>
+              <span class="tool-tag">✉️ Wichtige E-Mails</span>
+              <span class="tool-tag">📊 Dokumente verstehen</span>
+              <span class="tool-tag">🧠 Durchdenken von Entscheidungen</span>
+            </div>
+          </div>
+          <a href="https://claude.ai" target="_blank" class="tool-link">→ claude.ai öffnen</a>
+        </div>
+
+        <!-- PERPLEXITY -->
+        <div class="tool-card perplexity">
+          <div class="tool-header">
+            <div class="tool-emoji">🟣</div>
+            <div>
+              <div class="tool-name">Perplexity</div>
+              <div class="tool-tagline">Der Rechercheur – für aktuelle Infos</div>
+            </div>
+          </div>
+          <p>Perplexity ist eine KI-Suchmaschine – und damit grundlegend anders als die anderen zwei. <strong>Perplexity sucht in Echtzeit im Internet und zeigt dir immer die Quellen.</strong> Das ist der entscheidende Unterschied.</p>
+          <p>ChatGPT und Claude haben einen Wissensstand der Monate alt ist. Perplexity weiß was heute passiert. Wenn du aktuelle Informationen brauchst, Fakten prüfen willst oder Quellen benötigst – ist Perplexity dein Tool.</p>
+          <div class="tool-best">
+            <div class="tool-best-label">Am besten für:</div>
+            <div class="tool-tags">
+              <span class="tool-tag">🔎 Aktuelle Nachrichten</span>
+              <span class="tool-tag">✅ Fakten prüfen</span>
+              <span class="tool-tag">📚 Recherche mit Quellen</span>
+              <span class="tool-tag">💰 Preise & Produkte vergleichen</span>
+              <span class="tool-tag">📰 Was passiert gerade?</span>
+            </div>
+          </div>
+          <a href="https://perplexity.ai" target="_blank" class="tool-link">→ perplexity.ai öffnen</a>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- QUICK REFERENCE TABLE -->
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px;">Schnellübersicht – wann was?</h2>
+        <p>Kurz nachschlagen wenn du nicht sicher bist:</p>
+
+        <div class="quick-ref">
+          <div class="quick-ref-row quick-ref-head">
+            <div class="quick-ref-cell">Situation</div>
+            <div class="quick-ref-cell">ChatGPT 🟠</div>
+            <div class="quick-ref-cell">Claude 🔵</div>
+            <div class="quick-ref-cell">Perplexity 🟣</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">E-Mail schreiben</div>
+            <div class="quick-ref-cell winner chatgpt-win">✓ Stark</div>
+            <div class="quick-ref-cell winner claude-win">✓ Stark</div>
+            <div class="quick-ref-cell">– Nicht ideal</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">Aktuelle News checken</div>
+            <div class="quick-ref-cell">– Veraltet</div>
+            <div class="quick-ref-cell">– Veraltet</div>
+            <div class="quick-ref-cell winner perplexity-win">✓ Perfekt</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">Langes Dokument verstehen</div>
+            <div class="quick-ref-cell">○ Gut</div>
+            <div class="quick-ref-cell winner claude-win">✓ Am besten</div>
+            <div class="quick-ref-cell">– Nicht ideal</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">Ideen brainstormen</div>
+            <div class="quick-ref-cell winner chatgpt-win">✓ Am besten</div>
+            <div class="quick-ref-cell">○ Gut</div>
+            <div class="quick-ref-cell">– Nicht ideal</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">Fakten prüfen</div>
+            <div class="quick-ref-cell">⚠️ Vorsicht</div>
+            <div class="quick-ref-cell">⚠️ Vorsicht</div>
+            <div class="quick-ref-cell winner perplexity-win">✓ Mit Quellen</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">Meeting zusammenfassen</div>
+            <div class="quick-ref-cell winner chatgpt-win">✓ Stark</div>
+            <div class="quick-ref-cell winner claude-win">✓ Stark</div>
+            <div class="quick-ref-cell">– Nicht ideal</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">Komplexe Entscheidung</div>
+            <div class="quick-ref-cell">○ Gut</div>
+            <div class="quick-ref-cell winner claude-win">✓ Am besten</div>
+            <div class="quick-ref-cell">○ Mit Quellen</div>
+          </div>
+          <div class="quick-ref-row">
+            <div class="quick-ref-cell situation">Produkt recherchieren</div>
+            <div class="quick-ref-cell">⚠️ Veraltet</div>
+            <div class="quick-ref-cell">⚠️ Veraltet</div>
+            <div class="quick-ref-cell winner perplexity-win">✓ Aktuell</div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>⚠️ Wichtiger Hinweis:</strong> Alle drei Tools können Fehler machen und Dinge erfinden – besonders bei Fakten und Zahlen. Bei wichtigen Entscheidungen immer die Quellen prüfen. Perplexity zeigt dir zumindest woher die Infos kommen.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">🚀</div>
+          <div>
+            <span class="phase-num">Phase 3 · Anwenden</span>
+            <h2>Probiere alle drei heute aus</h2>
+          </div>
+        </div>
+
+        <p>Der beste Weg um ein Gefühl für die Unterschiede zu bekommen – stelle allen drei dieselbe Frage und vergleiche die Antworten. Zum Beispiel:</p>
+
+        <div class="tip-box">
+          <p><strong>🎯 Deine erste Aufgabe:</strong> Öffne alle drei Tools und tippe dieselbe Frage ein – zum Beispiel: <em>"Was sind die Vorteile von Homeoffice für Eltern?"</em> Schau wie unterschiedlich die Antworten sind. Du wirst sofort ein Gefühl bekommen welches Tool dir persönlich am meisten liegt.</p>
+        </div>
+
+        <ul class="checklist">
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Öffne <strong style="color:var(--text);">chatgpt.com</strong> und stelle eine Frage die dich gerade beschäftigt</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Öffne <strong style="color:var(--text);">claude.ai</strong> und stelle dieselbe Frage</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Öffne <strong style="color:var(--text);">perplexity.ai</strong> und stelle dieselbe Frage – schau auf die Quellen</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Vergleiche die drei Antworten – welche gefällt dir am besten?</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Merke dir: für aktuelle Infos → Perplexity, für komplexe Texte → Claude, für alles andere → ChatGPT</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- NEXT LESSON -->
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 3 abgeschlossen</div>
+      <h3>Nächste Lektion:<br>Was dein Kind mit KI macht – und was du wissen solltest</h3>
+      <p>Die wichtigsten Begriffe die Kinder verwenden – einfach erklärt für Eltern die mitreden wollen.</p>
+      <a href="lektion-04.html" class="btn-primary">Weiter zu Lektion 4 →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <!-- COOKIE BANNER -->
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics um zu verstehen wie Besucher dotry.ai nutzen – anonym. Mehr in unserer <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK, verstanden</button>
+    </div>
+  </div>
+
+  <script>
+    // Progress bar
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const scrollTop = doc.scrollTop || document.body.scrollTop;
+      const scrollHeight = doc.scrollHeight - doc.clientHeight;
+      const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+      document.getElementById('progress').style.width = progress + '%';
+    });
+
+    // Checklist
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check').textContent = el.classList.contains('done') ? '✅' : '☐';
+    }
+
+    // Cookie Consent
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'denied' });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent) document.getElementById('cookie-banner').style.display = 'none';
+      if (consent === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+  <script>
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });</script>
+</body>
+</html>

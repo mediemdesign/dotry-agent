@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 5: KI-Begriffe einfach erklärt – das Glossar – do try ai</title>
+  <meta name="description" content="Prompt, Halluzinieren, Modell, Token – alle KI-Begriffe die du hörst, einfach erklärt. Kein Jargon, zum Nachschlagen." />
+  <meta name="keywords" content="KI Begriffe erklärt, Prompt Definition, ChatGPT Begriffe, KI Glossar Deutsch, Was ist ein Modell KI, dotry.ai" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-05.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-05.html" />
+  <meta property="og:title" content="KI-Begriffe einfach erklärt – das Glossar" />
+  <meta property="og:description" content="Alle KI-Begriffe die du hörst, einfach erklärt. Zum Nachschlagen." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--yellow:#f59e0b;--red:#ef4444;
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .logo img{height:40px;width:auto;}
+    .logo{text-decoration:none;}
+    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    /* QUICK NAV */
+    .quick-nav{position:sticky;top:80px;z-index:90;background:rgba(8,12,18,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+    .quick-nav::-webkit-scrollbar{display:none;}
+    .quick-nav-item{display:flex;align-items:center;gap:7px;padding:12px 16px;font-size:0.82rem;font-weight:600;color:var(--text-muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;}
+    .quick-nav-item:hover{color:var(--text);}
+    .quick-nav-item.active{color:var(--blue-light);border-bottom-color:var(--blue);}
+    .quick-nav-item .qn-num{background:var(--blue-glow);color:var(--blue-light);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:800;}
+    .quick-nav-item.soon-item{opacity:0.4;cursor:default;pointer-events:none;}
+
+    .progress-bar{position:sticky;top:77px;left:0;right:0;height:3px;background:var(--border);z-index:89;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));width:0%;transition:width 0.1s;}
+
+    main{max-width:800px;margin:0 auto;padding:60px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--blue-glow);color:var(--blue-light);border:1px solid rgba(37,99,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:36px;padding-bottom:36px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+
+    /* SEARCH */
+    .glossar-search {
+      position: relative;
+      margin-bottom: 32px;
+    }
+    .glossar-search input {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 14px 24px 14px 48px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .glossar-search input:focus { border-color: var(--blue); }
+    .glossar-search input::placeholder { color: var(--text-muted); }
+    .glossar-search .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* ALPHABET NAV */
+    .alpha-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 36px;
+    }
+    .alpha-btn {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .alpha-btn:hover { border-color: var(--blue); color: var(--blue-light); }
+    .alpha-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+
+    /* GLOSSAR ENTRIES */
+    .glossar-section { margin-bottom: 48px; }
+
+    .glossar-letter {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .glossar-entry {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+    .glossar-entry:hover { border-color: rgba(37,99,255,0.3); }
+
+    .entry-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .entry-term {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .entry-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .entry-tag.basic { background: rgba(34,197,94,0.1); color: var(--green); border: 1px solid rgba(34,197,94,0.2); }
+    .entry-tag.mittel { background: var(--blue-glow); color: var(--blue-light); border: 1px solid rgba(37,99,255,0.2); }
+    .entry-tag.fortgeschritten { background: rgba(245,158,11,0.1); color: var(--yellow); border: 1px solid rgba(245,158,11,0.2); }
+
+    .entry-body {
+      margin-top: 12px;
+    }
+
+    .entry-definition {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .entry-example {
+      font-size: 0.85rem;
+      color: var(--blue-light);
+      background: var(--blue-glow);
+      border-radius: 8px;
+      padding: 10px 14px;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .entry-example::before {
+      content: '💡 Beispiel: ';
+      font-style: normal;
+      font-weight: 700;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: 48px 24px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;max-width:480px;margin-left:auto;margin-right:auto;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* COOKIE */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-text strong{color:var(--text);}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;transition:background 0.2s;white-space:nowrap;}
+    .cookie-accept:hover{background:var(--blue-light);}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+    .cookie-decline:hover{border-color:var(--text-muted);color:var(--text);}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;transition:color 0.2s;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      nav{padding:16px 20px;}
+      .quick-nav{padding:0 16px;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+  </style>
+  
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+  
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+    <a href="lektionen.html" class="nav-back">← Alle Lektionen</a>
+  </nav>
+
+
+      <a href="lektion-07.html" class="quick-nav-item"><span class="qn-num"></span></a>
+    </div>
+  </div>
+
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">🧠 Glossar</span>
+      <span class="read-time">📖 Lektion #5 · Zum Nachschlagen</span>
+    </div>
+
+    <h1>KI-Begriffe einfach erklärt</h1>
+
+    <p class="article-intro">
+      Du hörst ständig Wörter wie "Prompt", "Modell" oder "Halluzinieren" – aber niemand erklärt was das eigentlich bedeutet. <strong>Hier findest du alle wichtigen KI-Begriffe in einer Sprache die jeder versteht.</strong> Kein Studium nötig, kein Vorwissen erforderlich.
+    </p>
+
+    <!-- SEARCH -->
+    <div class="glossar-search">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="search-input" placeholder="Begriff suchen – z.B. 'Prompt' oder 'Modell'..." oninput="filterGlossar()" />
+    </div>
+
+    <!-- ALPHABET NAV -->
+    <div class="alpha-nav" id="alpha-nav">
+      <button class="alpha-btn active" onclick="filterAlpha('all', this)">Alle</button>
+      <button class="alpha-btn" onclick="filterAlpha('A', this)">A</button>
+      <button class="alpha-btn" onclick="filterAlpha('C', this)">C</button>
+      <button class="alpha-btn" onclick="filterAlpha('F', this)">F</button>
+      <button class="alpha-btn" onclick="filterAlpha('G', this)">G</button>
+      <button class="alpha-btn" onclick="filterAlpha('H', this)">H</button>
+      <button class="alpha-btn" onclick="filterAlpha('K', this)">K</button>
+      <button class="alpha-btn" onclick="filterAlpha('L', this)">L</button>
+      <button class="alpha-btn" onclick="filterAlpha('M', this)">M</button>
+      <button class="alpha-btn" onclick="filterAlpha('P', this)">P</button>
+      <button class="alpha-btn" onclick="filterAlpha('T', this)">T</button>
+    </div>
+
+    <div id="no-results" class="no-results">
+      Kein Begriff gefunden. Versuch es mit einem anderen Suchbegriff.
+    </div>
+
+    <!-- A -->
+    <div class="glossar-section" data-letter="A">
+      <div class="glossar-letter">A</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Agent</span>
+          <span class="entry-tag fortgeschritten">Fortgeschritten</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Ein KI-Agent ist ein System das nicht nur antwortet – sondern selbstständig Aufgaben erledigt. Es kann Tools nutzen, im Internet suchen, Dateien erstellen und mehrere Schritte hintereinander ausführen ohne dass du jeden Schritt einzeln eingibst.</p>
+          <p class="entry-example">Du sagst: "Recherchiere die drei günstigsten Flüge nach Wien nächste Woche und schick mir eine Zusammenfassung." Der Agent erledigt das von selbst.</p>
+        </div>
+      </div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">API</span>
+          <span class="entry-tag fortgeschritten">Fortgeschritten</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Eine Schnittstelle über die Programme miteinander kommunizieren. Wenn eine App KI-Funktionen hat – zum Beispiel ein Übersetzer der im Hintergrund ChatGPT nutzt – dann passiert das über eine API.</p>
+          <p class="entry-example">Netflix nutzt eine API um Empfehlungen zu berechnen. Viele Apps nutzen die OpenAI-API um ChatGPT einzubinden.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- C -->
+    <div class="glossar-section" data-letter="C">
+      <div class="glossar-letter">C</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">ChatGPT</span>
+          <span class="entry-tag basic">Basis</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Das bekannteste KI-Tool von OpenAI. Ein Chatbot mit dem du in natürlicher Sprache schreiben kannst – wie eine SMS, nur an eine sehr kluge KI. Kostenlos nutzbar unter chatgpt.com.</p>
+          <p class="entry-example">Du tippst: "Erkläre mir wie Zinsen funktionieren – einfach erklärt für einen 12-Jährigen." ChatGPT antwortet sofort mit einer verständlichen Erklärung.</p>
+        </div>
+      </div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Claude</span>
+          <span class="entry-tag basic">Basis</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Ein KI-Assistent von Anthropic – dem Unternehmen das dotry.ai selbst nutzt. Claude ist besonders stark bei langen Texten, nuancierten Fragen und wenn es darum geht ehrliche, durchdachte Antworten zu geben. Kostenlos unter claude.ai.</p>
+          <p class="entry-example">Für komplexe E-Mails, lange Dokumente oder Entscheidungen die du durchdenken willst – Claude ist oft die bessere Wahl als ChatGPT.</p>
+        </div>
+      </div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Context Window</span>
+          <span class="entry-tag mittel">Mittel</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Wie viel Text eine KI auf einmal "lesen" und berücksichtigen kann. Je größer das Context Window, desto längere Dokumente oder Gespräche kann die KI verarbeiten. Wenn du zu viel Text schickst – "vergisst" die KI den Anfang des Gesprächs.</p>
+          <p class="entry-example">Wenn du ein ganzes Buch in ChatGPT einfügst und es Fragen dazu beantworten soll – kann es sein dass es den Anfang nicht mehr "kennt".</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- F -->
+    <div class="glossar-section" data-letter="F">
+      <div class="glossar-letter">F</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Fine-Tuning</span>
+          <span class="entry-tag fortgeschritten">Fortgeschritten</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Ein KI-Modell wird nachträglich auf spezifische Daten trainiert um es für einen bestimmten Zweck zu optimieren. Ein allgemeines Modell wird zum Spezialisten – zum Beispiel für Medizin, Recht oder einen bestimmten Schreibstil.</p>
+          <p class="entry-example">Ein Unternehmen trainiert ein Modell auf seinen eigenen Support-Chats – das Modell lernt dann genau wie das Unternehmen mit Kunden kommuniziert.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- G -->
+    <div class="glossar-section" data-letter="G">
+      <div class="glossar-letter">G</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Generative KI</span>
+          <span class="entry-tag basic">Basis</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">KI die nicht nur analysiert sondern neue Inhalte erstellt – Texte, Bilder, Musik, Code. ChatGPT, Claude, Midjourney und Dall-E sind generative KI-Tools. Der Begriff "generativ" kommt vom Englischen "to generate" – erzeugen.</p>
+          <p class="entry-example">Du gibst ein Stichwort ein – die KI generiert daraus einen vollständigen Text, ein Bild oder eine Melodie.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- H -->
+    <div class="glossar-section" data-letter="H">
+      <div class="glossar-letter">H</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Halluzinieren</span>
+          <span class="entry-tag basic">Basis</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Wenn eine KI Fakten erfindet die nicht stimmen – aber so überzeugend klingt als ob sie stimmen würden. Das ist das größte Problem bei KI-Tools und passiert regelmäßig. Besonders gefährlich bei Zahlen, Namen, Daten und Quellen.</p>
+          <p class="entry-example">Du fragst ChatGPT nach einer wissenschaftlichen Studie – es nennt dir Titel, Autor und Jahr. Du googlest danach – die Studie existiert nicht. ChatGPT hat sie erfunden.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- K -->
+    <div class="glossar-section" data-letter="K">
+      <div class="glossar-letter">K</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">KI / Künstliche Intelligenz</span>
+          <span class="entry-tag basic">Basis</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Computerprogramme die Aufgaben erledigen die normalerweise menschliche Intelligenz erfordern – Texte verstehen, Bilder erkennen, Entscheidungen treffen. Moderne KI lernt aus riesigen Datenmengen statt durch explizite Programmierung.</p>
+          <p class="entry-example">Dein Spam-Filter ist KI. Die Gesichtserkennung am iPhone ist KI. ChatGPT ist KI. Alexa ist KI.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- L -->
+    <div class="glossar-section" data-letter="L">
+      <div class="glossar-letter">L</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">LLM – Large Language Model</span>
+          <span class="entry-tag mittel">Mittel</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Das technische Herzstück hinter ChatGPT, Claude und Co. Ein sehr großes KI-Modell das auf Milliarden von Texten trainiert wurde und dadurch Sprache versteht und erzeugen kann. "Large" bezieht sich auf die riesige Menge an Trainingsdaten und Parametern.</p>
+          <p class="entry-example">GPT-4 von OpenAI und Claude 3 von Anthropic sind bekannte LLMs. Wenn jemand von "dem Modell" spricht – meinen sie meist das LLM dahinter.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- M -->
+    <div class="glossar-section" data-letter="M">
+      <div class="glossar-letter">M</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Modell</span>
+          <span class="entry-tag mittel">Mittel</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Das trainierte KI-System im Hintergrund. ChatGPT ist die Benutzeroberfläche – GPT-4 ist das Modell dahinter. Verschiedene Modelle haben verschiedene Stärken, Kosten und Fähigkeiten. Neuere Modelle sind meist leistungsfähiger.</p>
+          <p class="entry-example">ChatGPT kostenlos nutzt GPT-3.5. ChatGPT Plus nutzt GPT-4. Claude.ai nutzt Claude 3. Das Modell bestimmt die Qualität der Antworten.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- P -->
+    <div class="glossar-section" data-letter="P">
+      <div class="glossar-letter">P</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Perplexity</span>
+          <span class="entry-tag basic">Basis</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Eine KI-Suchmaschine die in Echtzeit im Internet sucht und Antworten mit Quellenangaben liefert. Anders als ChatGPT hat Perplexity immer aktuelle Informationen und zeigt dir woher die Antworten stammen.</p>
+          <p class="entry-example">Statt Google zu fragen "beste Restaurants Wien 2026" – fragst du Perplexity und bekommst eine strukturierte Antwort mit Links zu aktuellen Bewertungen.</p>
+        </div>
+      </div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Prompt</span>
+          <span class="entry-tag basic">Basis</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Die Eingabe die du an eine KI schickst – also alles was du ins Textfeld tippst. Ein guter Prompt enthält Kontext, eine klare Aufgabe und oft auch Angaben zu Tonfall und Länge. Das Ergebnis ist immer nur so gut wie der Prompt.</p>
+          <p class="entry-example">"Schreib eine E-Mail" ist ein schlechter Prompt. "Schreib eine freundliche E-Mail an meinen Chef Thomas in der ich um einen freien Tag am 20. Juni bitte – maximal 5 Sätze" ist ein guter Prompt.</p>
+        </div>
+      </div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Prompt Engineering</span>
+          <span class="entry-tag mittel">Mittel</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Die Kunst bessere Prompts zu schreiben um bessere Ergebnisse von KI zu bekommen. Kein Programmierwissen nötig – aber ein Verständnis dafür wie KI "denkt" und was gute Eingaben ausmacht. Das ist genau das was dotry.ai dir beibringt.</p>
+          <p class="entry-example">Statt "schreib mir was über Klimawandel" – "Erkläre die drei wichtigsten Ursachen des Klimawandels für Schüler der 8. Klasse in drei kurzen Absätzen."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- T -->
+    <div class="glossar-section" data-letter="T">
+      <div class="glossar-letter">T</div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Token</span>
+          <span class="entry-tag mittel">Mittel</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Die kleinste Einheit in der KI Text verarbeitet – ungefähr 3-4 Buchstaben oder ein kurzes Wort. KI liest und schreibt keine Buchstaben – sondern Tokens. Das ist auch die Einheit über die KI-API-Nutzung abgerechnet wird.</p>
+          <p class="entry-example">Das Wort "Hausaufgabe" ist etwa 3-4 Tokens. Ein durchschnittlicher Satz hat 15-20 Tokens. Lange Texte = viele Tokens = höhere Kosten bei bezahlter Nutzung.</p>
+        </div>
+      </div>
+
+      <div class="glossar-entry">
+        <div class="entry-header">
+          <span class="entry-term">Training / Trainieren</span>
+          <span class="entry-tag mittel">Mittel</span>
+        </div>
+        <div class="entry-body">
+          <p class="entry-definition">Der Prozess bei dem ein KI-Modell aus riesigen Datenmengen lernt. Milliarden von Texten aus dem Internet werden verarbeitet – das Modell lernt Muster, Zusammenhänge und Sprache. Das Training dauert Monate und kostet Millionen.</p>
+          <p class="entry-example">GPT-4 wurde auf einem Großteil des verfügbaren Internets trainiert – Bücher, Artikel, Webseiten, Code. Daher "weiß" es so viel.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEXT -->
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 5 abgeschlossen</div>
+      <h3>Nächste Lektion:<br>Baue deinen ersten KI-Agenten</h3>
+      <p>Lerne wie ein autonomer KI-Agent aufgebaut ist – und baue deinen eigenen in unter einer Stunde.</p>
+      <a href="lektion-06.html" class="btn-primary">Weiter zu Lektion 6 →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="datenschutz.html">Mehr erfahren</a></p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Progress
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const progress = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+      document.getElementById('progress').style.width = Math.min(progress, 100) + '%';
+    });
+
+    // Search
+    function filterGlossar() {
+      const q = document.getElementById('search-input').value.toLowerCase();
+      const entries = document.querySelectorAll('.glossar-entry');
+      const sections = document.querySelectorAll('.glossar-section');
+      let found = 0;
+
+      sections.forEach(s => s.style.display = '');
+      entries.forEach(e => {
+        const text = e.textContent.toLowerCase();
+        const match = !q || text.includes(q);
+        e.style.display = match ? '' : 'none';
+        if (match) found++;
+      });
+
+      // Hide empty sections
+      sections.forEach(s => {
+        const visible = [...s.querySelectorAll('.glossar-entry')].some(e => e.style.display !== 'none');
+        s.style.display = visible ? '' : 'none';
+      });
+
+      document.getElementById('no-results').style.display = found === 0 ? 'block' : 'none';
+    }
+
+    // Alpha filter
+    function filterAlpha(letter, btn) {
+      document.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('search-input').value = '';
+
+      const sections = document.querySelectorAll('.glossar-section');
+      sections.forEach(s => {
+        s.style.display = (letter === 'all' || s.dataset.letter === letter) ? '' : 'none';
+      });
+      document.querySelectorAll('.glossar-entry').forEach(e => e.style.display = '');
+      document.getElementById('no-results').style.display = 'none';
+    }
+
+    // Cookie
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const c = localStorage.getItem('cookie_consent');
+      if (c) document.getElementById('cookie-banner').style.display = 'none';
+      if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+  <script>
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });</script>
+</body>
+</html>

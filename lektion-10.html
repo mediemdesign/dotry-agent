@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 10: iPhone Fotos automatisch sortieren – do try ai</title>
+  <meta name="description" content="Python Script das iPhone Fotos automatisch nach Aufnahmedatum und Ort sortiert. Einmal einrichten – nie wieder Foto-Chaos." />
+  <meta name="keywords" content="iPhone Fotos sortieren automatisch, Python EXIF GPS, Fotos organisieren, dotry.ai Lektion 10" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-10.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-10.html" />
+  <meta property="og:title" content="Lektion 10: iPhone Fotos automatisch sortieren" />
+  <meta property="og:description" content="Python Script das iPhone Fotos automatisch nach Aufnahmedatum und Ort sortiert." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="nav.css" />
+
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.08);
+      --orange:#f97316;--orange-glow:rgba(249,115,22,0.08);
+      --yellow:#f59e0b;
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+      --code-bg:#0a0f1a;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    main{max-width:800px;margin:0 auto;padding:120px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--orange-glow);color:var(--orange);border:1px solid rgba(249,115,22,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+
+    .phase{margin:56px 0;}
+    .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .phase-icon{width:48px;height:48px;background:var(--orange-glow);border:1px solid rgba(249,115,22,0.25);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .phase-num{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--orange);display:block;margin-bottom:2px;}
+    .phase-header h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+
+    .article-body p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.75;}
+    .article-body p strong{color:var(--text);}
+    .section-divider{height:1px;background:var(--border);margin:48px 0;}
+
+    /* FOLDER PREVIEW */
+    .folder-preview{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin:24px 0;font-family:'Courier New',monospace;font-size:0.85rem;line-height:1.9;}
+    .folder-preview .folder{color:var(--blue-light);font-weight:700;}
+    .folder-preview .file{color:var(--text-muted);padding-left:20px;}
+    .folder-preview .highlight{color:var(--green);}
+
+    /* FLOW */
+    .flow{display:flex;align-items:center;gap:8px;margin:28px 0;flex-wrap:wrap;justify-content:center;}
+    .flow-box{background:var(--bg2);border:1px solid rgba(249,115,22,0.2);border-radius:12px;padding:14px 18px;text-align:center;min-width:110px;}
+    .flow-icon{font-size:1.4rem;margin-bottom:6px;}
+    .flow-label{font-size:0.78rem;font-weight:700;color:var(--orange);}
+    .flow-sub{font-size:0.68rem;color:var(--text-muted);margin-top:3px;}
+    .flow-arrow{color:var(--text-muted);font-size:1.2rem;}
+
+    /* STEP CARDS */
+    .step-cards{display:flex;flex-direction:column;gap:14px;margin:20px 0;}
+    .step-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;}
+    .step-card-num{width:36px;height:36px;background:var(--orange-glow);border:2px solid rgba(249,115,22,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:800;color:var(--orange);flex-shrink:0;}
+    .step-card-title{font-size:0.95rem;font-weight:800;color:var(--text);margin-bottom:6px;}
+    .step-card-desc{font-size:0.86rem;color:var(--text-muted);line-height:1.6;}
+    .step-cmd{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Courier New',monospace;font-size:0.82rem;color:#86efac;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;overflow-x:auto;}
+    .cmd-copy{background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:0.75rem;padding:2px 6px;flex-shrink:0;transition:color 0.2s;}
+    .cmd-copy:hover{color:var(--green);}
+    .step-success{font-size:0.78rem;color:var(--green);margin-top:8px;}
+    .step-hint{font-size:0.78rem;color:var(--yellow);margin-top:8px;}
+
+    /* CODE BLOCK */
+    .code-block{background:var(--code-bg);border:1px solid var(--border);border-radius:var(--radius);margin:20px 0;overflow:hidden;}
+    .code-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border);font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+    .code-filename{color:var(--orange);}
+    .code-copy{background:transparent;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-family:inherit;font-size:0.7rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .code-copy:hover{border-color:var(--orange);color:var(--orange);}
+    .code-block pre{padding:20px;font-family:'Courier New',monospace;font-size:0.8rem;line-height:1.7;color:#e2e8f0;overflow-x:auto;white-space:pre;}
+    .cm{color:#64748b;} .cs{color:#86efac;} .ck{color:#7dd3fc;} .co{color:#f97316;}
+
+    /* TIP / WARNING */
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+    .warning-box{background:rgba(245,158,11,0.07);border-left:3px solid var(--yellow);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .warning-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .warning-box strong{color:var(--yellow)!important;}
+
+    /* CHECKLIST */
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(249,115,22,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;margin-top:1px;}
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* DOWNLOAD BUTTON */
+    .download-btn{display:inline-flex;align-items:center;gap:10px;background:var(--orange);color:#fff;padding:14px 28px;border-radius:50px;font-size:0.95rem;font-weight:800;text-decoration:none;transition:background 0.2s,transform 0.15s;margin:8px 0;}
+    .download-btn:hover{background:#ea6c00;transform:translateY(-2px);}
+
+    /* COOKIE */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      .flow{flex-direction:column;}
+      .flow-arrow{transform:rotate(90deg);}
+      .step-card{grid-template-columns:1fr;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+  
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+  
+</head>
+<body>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">📸 Automatisierung</span>
+      <span class="read-time">📖 Lektion #10 · 15 Min · 🟠 Technik-Track</span>
+    </div>
+
+    <h1>iPhone Fotos automatisch<br>sortieren mit Python</h1>
+
+    <p class="article-intro">
+      Tausende Fotos auf dem iPhone – und alles liegt durcheinander. <strong>Ein Python Script liest das Aufnahmedatum und den GPS-Ort direkt aus jedem Foto und sortiert alles automatisch in Ordner</strong> wie <code style="color:var(--orange);">2026-05 – Wien</code> oder <code style="color:var(--orange);">2026-06 – Kreta</code>. Einmal einrichten – nie wieder Foto-Chaos.
+    </p>
+
+    <div class="article-body">
+
+      <!-- PHASE 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">💡</div>
+          <div>
+            <span class="phase-num">Phase 1 · Impuls</span>
+            <h2>So sieht das Ergebnis aus</h2>
+          </div>
+        </div>
+
+        <p>Das Script legt diese Ordnerstruktur automatisch an:</p>
+
+        <div class="folder-preview">
+          <div class="folder">📁 Fotos_Sortiert/</div>
+          <div class="folder" style="padding-left:20px;">📁 <span class="highlight">2026-05 – Wien/</span></div>
+          <div class="file">IMG_0042.jpg</div>
+          <div class="file">IMG_0043.jpg</div>
+          <div class="file">IMG_0044.heic</div>
+          <div class="folder" style="padding-left:20px;">📁 <span class="highlight">2026-06 – Kreta/</span></div>
+          <div class="file">IMG_0187.jpg</div>
+          <div class="file">IMG_0188.jpg</div>
+          <div class="folder" style="padding-left:20px;">📁 <span class="highlight">2026-06 – Ansfelden/</span></div>
+          <div class="file">IMG_0201.jpg</div>
+          <div class="folder" style="padding-left:20px;">📁 <span class="highlight">2026-07 – Unbekannt/</span></div>
+          <div class="file">IMG_0299.png</div>
+        </div>
+
+        <div class="flow">
+          <div class="flow-box">
+            <div class="flow-icon">📱</div>
+            <div class="flow-label">iPhone Fotos</div>
+            <div class="flow-sub">auf Mac/PC kopiert</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-icon">🔍</div>
+            <div class="flow-label">EXIF lesen</div>
+            <div class="flow-sub">Datum + GPS</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-icon">🗺️</div>
+            <div class="flow-label">Ort ermitteln</div>
+            <div class="flow-sub">OpenStreetMap</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-box">
+            <div class="flow-icon">📁</div>
+            <div class="flow-label">Sortieren</div>
+            <div class="flow-sub">Datum – Ort</div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Was ist EXIF?</strong> Jedes iPhone-Foto enthält unsichtbare Metadaten – Aufnahmezeitpunkt, GPS-Koordinaten, Kameraeinstellungen. Das Script liest diese Daten und nutzt sie zur automatischen Sortierung.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">📋</div>
+          <div>
+            <span class="phase-num">Phase 2 · Nachmachen</span>
+            <h2>Schritt für Schritt einrichten</h2>
+          </div>
+        </div>
+
+        <div class="step-cards">
+
+          <div class="step-card">
+            <div class="step-card-num">1</div>
+            <div>
+              <div class="step-card-title">Fotos vom iPhone auf den Computer kopieren</div>
+              <div class="step-card-desc">
+                <strong style="color:var(--text);">Mac:</strong> iPhone anschließen → Finder öffnen → iPhone auswählen → Fotos auf Desktop ziehen<br/>
+                <strong style="color:var(--text);">Windows:</strong> iPhone anschließen → Explorer → iPhone → DCIM Ordner → kopieren<br/><br/>
+                Alle Fotos in einen Ordner legen, z.B. <code style="color:var(--orange);">Desktop/iPhone_Fotos</code>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-num">2</div>
+            <div>
+              <div class="step-card-title">Python & Pakete installieren</div>
+              <div class="step-card-desc">Terminal öffnen und eingeben:</div>
+              <div class="step-cmd"><span>pip install Pillow requests</span><button class="cmd-copy" onclick="copyCmd(this,'pip install Pillow requests')">📋</button></div>
+              <div class="step-success">✅ "Successfully installed..." → weiter zu Schritt 3</div>
+              <div class="step-hint">⚠️ Mac: pip3 install Pillow requests</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-num">3</div>
+            <div>
+              <div class="step-card-title">Script herunterladen</div>
+              <div class="step-card-desc">Das Script herunterladen und auf dem Desktop speichern:</div>
+              <div style="margin-top:12px;">
+                <a href="foto_sortierer.py" download class="download-btn">
+                  📥 foto_sortierer.py herunterladen
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-num">4</div>
+            <div>
+              <div class="step-card-title">Pfade anpassen (2 Zeilen im Script)</div>
+              <div class="step-card-desc">Das Script in einem Texteditor öffnen und diese zwei Zeilen anpassen:</div>
+              <div class="code-block" style="margin-top:12px;">
+                <div class="code-header">
+                  <span class="code-filename">foto_sortierer.py – Einstellungen</span>
+                  <button class="code-copy" onclick="copyCode(this)">Kopieren</button>
+                </div>
+                <pre><span class="cm"># Wo liegen deine iPhone Fotos?</span>
+QUELL_ORDNER = <span class="cs">"~/Desktop/iPhone_Fotos"</span>
+
+<span class="cm"># Wo sollen die sortierten Fotos hin?</span>
+ZIEL_ORDNER = <span class="cs">"~/Desktop/Fotos_Sortiert"</span></pre>
+              </div>
+              <div class="step-hint">⚠️ Tilde (~) bedeutet dein Home-Verzeichnis. Alternativ: "/Users/deinname/Desktop/iPhone_Fotos"</div>
+            </div>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-num">5</div>
+            <div>
+              <div class="step-card-title">Script starten!</div>
+              <div class="step-card-desc">Terminal öffnen, in den Ordner mit dem Script wechseln und starten:</div>
+              <div class="step-cmd"><span>cd ~/Desktop && python3 foto_sortierer.py</span><button class="cmd-copy" onclick="copyCmd(this,'cd ~/Desktop && python3 foto_sortierer.py')">📋</button></div>
+              <div class="step-success">✅ Du siehst wie jedes Foto verarbeitet wird:<br/>
+              [1/247] IMG_0042.jpg ... ✅ → 2026-05 – Wien/<br/>
+              [2/247] IMG_0043.jpg ... ✅ → 2026-05 – Wien/<br/>
+              ...</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="warning-box">
+          <p><strong>⚠️ Wichtig:</strong> Das Script <strong>kopiert</strong> deine Fotos – es verschiebt oder löscht nichts. Deine Originalfotos bleiben unverändert im Quellordner. Du kannst es also bedenkenlos ausprobieren.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.2rem;font-weight:800;margin-bottom:16px;">Den Script anpassen</h2>
+
+        <p>Im Script gibt es mehrere Einstellungen die du anpassen kannst:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">foto_sortierer.py – Alle Einstellungen</span>
+            <button class="code-copy" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><span class="cm"># Quell- und Zielordner</span>
+QUELL_ORDNER = <span class="cs">"~/Desktop/iPhone_Fotos"</span>
+ZIEL_ORDNER  = <span class="cs">"~/Desktop/Fotos_Sortiert"</span>
+
+<span class="cm"># Welche Dateitypen sollen sortiert werden?</span>
+FOTO_TYPEN = {<span class="cs">".jpg"</span>, <span class="cs">".jpeg"</span>, <span class="cs">".png"</span>, <span class="cs">".heic"</span>, <span class="cs">".heif"</span>}
+
+<span class="cm"># GPS-Ortsnamen via Internet abrufen?</span>
+<span class="cm"># True  = Wien, Kreta, Ansfelden (braucht Internet)</span>
+<span class="cm"># False = nur Datum, kein Ortsname</span>
+ORT_ABRUFEN = <span class="ck">True</span>
+
+<span class="cm"># Vorhandene Fotos überspringen?</span>
+<span class="cm"># True = keine Duplikate (empfohlen)</span>
+DUPLIKATE_UEBERSPRINGEN = <span class="ck">True</span></pre>
+        </div>
+
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">🚀</div>
+          <div>
+            <span class="phase-num">Phase 3 · Anwenden</span>
+            <h2>Deine Checkliste</h2>
+          </div>
+        </div>
+
+        <ul class="checklist">
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Fotos vom iPhone auf Computer kopieren</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span><code style="color:var(--orange);">pip install Pillow requests</code> ausführen</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>foto_sortierer.py herunterladen und Pfade anpassen</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Script starten und ersten Durchlauf ansehen</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Ergebnis in Fotos_Sortiert prüfen – alles korrekt?</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Script als wöchentlichen Workflow einrichten</span></li>
+        </ul>
+
+        <div class="tip-box">
+          <p><strong>🎯 Nächster Level:</strong> Kombiniere das mit Lektion 7 – GitHub Actions startet den Foto-Sortierer automatisch wenn du neue Fotos in einen Cloud-Ordner lädst. Vollautomatisch, komplett ohne Klick.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- NEXT LESSON -->
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 10 abgeschlossen</div>
+      <h3>Nie wieder Foto-Chaos! 📸</h3>
+      <p>Neue Lektionen kommen jede Woche. Trag dich in den Newsletter ein damit du nichts verpasst.</p>
+      <a href="lektionen.html" class="btn-primary">Alle Lektionen →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="datenschutz.html">Mehr erfahren</a></p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check').textContent = el.classList.contains('done') ? '✅' : '☐';
+    }
+
+    function copyCmd(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅';
+        setTimeout(() => btn.textContent = '📋', 1500);
+      });
+    }
+
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = '✓ Kopiert!';
+        btn.style.color = '#22c55e';
+        setTimeout(() => { btn.textContent = 'Kopieren'; btn.style.color = ''; }, 2000);
+      });
+    }
+
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const c = localStorage.getItem('cookie_consent');
+      if (c) document.getElementById('cookie-banner').style.display = 'none';
+      if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+</body>
+</html>

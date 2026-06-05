@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>do try ai – KI im Alltag, in 15 Minuten anwendbar</title>
+	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="description" content="Kurze KI-Impulse für den Alltag. Keine Theorie, kein Jargon – nur konkrete Schritte die du heute noch umsetzen kannst." />
+  <meta name="keywords" content="KI im Alltag, Künstliche Intelligenz einfach erklärt, ChatGPT Anleitung Deutsch, KI für Einsteiger, KI Tipps Österreich, Claude AI Anleitung, KI Prompts Deutsch, KI ohne Vorkenntnisse, AI Tools Deutsch, KI für Arbeitnehmer, KI für Eltern, dotry.ai" />
+  <meta name="author" content="dotry.ai" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="de" />
+  <link rel="canonical" href="https://dotry.ai/" />
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dotry.ai/" />
+  <meta property="og:title" content="do try ai – KI im Alltag, in 15 Minuten anwendbar" />
+  <meta property="og:description" content="Kurze KI-Impulse für den Alltag. Keine Theorie, kein Jargon – nur konkrete Schritte die du heute noch umsetzen kannst." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="do try ai – KI im Alltag, in 15 Minuten anwendbar" />
+  <meta name="twitter:description" content="Kurze KI-Impulse für den Alltag. Keine Theorie, kein Jargon – nur konkrete Schritte die du heute noch umsetzen kannst." />
+  <meta name="twitter:image" content="https://dotry.ai/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="nav.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+	<script>
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+
+	gtag('config', 'G-GGV180NB9T');
+	</script>
+
+  <style>
+    :root {
+      --bg: #080c12;
+      --bg2: #0e1420;
+      --bg3: #141c2e;
+      --blue: #2563ff;
+      --blue-light: #4d85ff;
+      --blue-glow: rgba(37, 99, 255, 0.18);
+      --text: #f0f4ff;
+      --text-muted: #8894b0;
+      --border: rgba(255,255,255,0.07);
+      --radius: 16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(8,12,18,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .logo-badge {
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 8px;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-cta {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .nav-cta:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(37,99,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 7px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-badge span {
+      width: 7px; height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 6px #22c55e;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      max-width: 800px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue-light);
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      margin: 20px auto 0;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-social {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 28px;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .hero-social svg { color: var(--blue-light); }
+
+    .hero-cta {
+      margin-top: 36px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.6s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 15px 32px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--blue-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37,99,255,0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 15px 32px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      text-decoration: none;
+    }
+    .btn-secondary:hover { border-color: var(--blue); color: var(--text); }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-glow), var(--blue), var(--blue-glow), transparent);
+      margin: 0 48px;
+      opacity: 0.5;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 96px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 52px;
+    }
+
+    .step-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .step-card:hover {
+      border-color: rgba(37,99,255,0.35);
+      transform: translateY(-4px);
+    }
+
+    .step-number {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--blue-light);
+      margin-bottom: 16px;
+    }
+
+    .step-icon {
+      width: 44px; height: 44px;
+      background: var(--blue-glow);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 1.3rem;
+    }
+
+    .step-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .step-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── FORMATS ── */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 52px;
+    }
+
+    .format-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .format-card:hover {
+      border-color: rgba(37,99,255,0.35);
+      transform: translateY(-3px);
+    }
+    .format-card:last-child {
+      grid-column: 1 / -1;
+    }
+
+    .format-emoji {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      background: var(--bg3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .format-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .format-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .format-example {
+      font-size: 0.8rem;
+      color: var(--blue-light);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ── FOR WHOM ── */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 52px;
+    }
+
+    .audience-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .audience-card:hover {
+      border-color: rgba(37,99,255,0.35);
+      transform: translateY(-4px);
+    }
+
+    .audience-icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .audience-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .audience-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── LERNPFAD ── */
+    .lernpfad-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .lp-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+
+    .lp-card.available:hover {
+      border-color: rgba(37,99,255,0.4);
+      transform: translateY(-3px);
+    }
+
+    .lp-card.soon {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    .lp-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .lp-num {
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--blue-light);
+    }
+
+    .lp-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+    }
+
+    .lp-badge.available {
+      background: rgba(34,197,94,0.1);
+      color: #22c55e;
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+
+    .lp-badge.soon {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .lp-emoji { font-size: 1.8rem; }
+
+    .lp-card h3 {
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .lp-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .lp-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    .lp-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .lp-arrow {
+      font-size: 0.9rem;
+      color: var(--blue-light);
+      transition: transform 0.2s;
+    }
+
+    .lp-card.available:hover .lp-arrow { transform: translateX(4px); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      text-align: center;
+      padding: 96px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(37,99,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .cta-inner p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 36px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    footer a:hover { color: var(--text); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    /* ── NEWSLETTER ── */
+    .newsletter-section {
+      padding: 80px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .newsletter-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(37,99,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .newsletter-inner {
+      max-width: 520px;
+      margin: 0 auto;
+      position: relative;
+      background: var(--bg2);
+      border: 1px solid rgba(37,99,255,0.2);
+      border-radius: 24px;
+      padding: 48px 40px;
+    }
+
+    .newsletter-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-light);
+      margin-bottom: 16px;
+    }
+
+    .newsletter-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .newsletter-sub {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 28px;
+    }
+
+    .newsletter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      text-decoration: none;
+      padding: 15px 32px;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-bottom: 18px;
+    }
+
+    .newsletter-btn:hover {
+      background: var(--blue-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(37,99,255,0.35);
+    }
+
+    .newsletter-hint {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 220px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 13px 22px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+    .newsletter-form input:focus { border-color: var(--blue); }
+
+    .newsletter-form button {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 13px 28px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .newsletter-form button:hover {
+      background: var(--blue-light);
+      transform: translateY(-2px);
+    }
+
+    .newsletter-success {
+      display: none;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 12px;
+      padding: 14px 20px;
+      color: #22c55e;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 20px; }
+      .steps { grid-template-columns: 1fr; }
+      .formats-grid { grid-template-columns: 1fr; }
+      .formats-grid .format-card:last-child { grid-column: 1; }
+      .audience-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+      .lernpfad-grid { grid-template-columns: 1fr; }
+      section { padding: 64px 20px; }
+      .newsletter-inner { padding: 36px 24px; }
+    }
+
+    /* COOKIE BANNER */
+    .cookie-banner {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      background: var(--bg2);
+      border: 1px solid rgba(37,99,255,0.25);
+      border-radius: 16px;
+      padding: 20px 28px;
+      max-width: 560px;
+      width: calc(100% - 48px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    .cookie-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .cookie-text a {
+      color: var(--blue-light);
+      text-decoration: none;
+    }
+
+    .cookie-text strong { color: var(--text); }
+
+    .cookie-buttons {
+      display: flex;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .cookie-accept {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .cookie-accept:hover { background: var(--blue-light); }
+
+    .cookie-decline {
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      padding: 9px 16px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .cookie-decline:hover { border-color: var(--text-muted); color: var(--text); }
+
+    @media (max-width: 560px) {
+      .cookie-banner { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── AUDIENCE PILLS ── */
+    .audience-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 40px;
+    }
+
+    .audience-pill {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 12px 22px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .audience-pill:hover {
+      border-color: rgba(37,99,255,0.3);
+      color: var(--text);
+    }
+
+    .audience-pill strong { color: var(--text); }
+
+    /* ── TREND WIDGET ── */
+    .trend-widget {
+      background: var(--bg2);
+      border: 1px solid rgba(249,115,22,0.2);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-top: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .trend-widget::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f97316, #ec4899, #a855f7);
+    }
+
+    .trend-widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .trend-widget-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .trend-live-dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    .trend-widget-link {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--blue-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap 0.2s;
+    }
+    .trend-widget-link:hover { gap: 8px; }
+
+    .trend-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .trend-mini-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .trend-mini-card:hover {
+      border-color: rgba(249,115,22,0.3);
+      transform: translateY(-3px);
+    }
+
+    .trend-mini-rank {
+      font-size: 0.65rem;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .trend-mini-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .trend-mini-bar-bg {
+      height: 4px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .trend-mini-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .trend-mini-score {
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    @media(max-width:768px) {
+      .trend-mini-grid { grid-template-columns: repeat(2,1fr); }
+    }
+
+  </style>
+
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">
+      <span></span> Neue Impulse jede Woche
+    </div>
+    <h1>KI im Alltag –<br>in <em>15 Minuten</em> anwendbar.</h1>
+    <p class="hero-sub">Kurze Impulse die du heute noch umsetzen kannst. Kein Jargon, keine Theorie.</p>
+    <div class="hero-social">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      Bereits von hunderten Österreichern genutzt
+    </div>
+    <div class="hero-cta">
+      <a href="lektion-01.html" class="btn-primary">Erste Lektion starten →</a>
+      <a href="#wie" class="btn-secondary">Wie funktioniert's?</a>
+    </div>
+  </div>
+
+
+
+  <div class="section-divider"></div>
+
+  <!-- LERNPFAD -->
+  <section id="lernpfad">
+    <div class="section-label">Dein Lernpfad</div>
+    <h2 class="section-title">10 Lektionen live.<br>Neue kommen jede Woche.</h2>
+    <p class="section-sub">Starte mit Lektion 1 – jede Lektion baut auf der vorherigen auf. Kein Vorwissen nötig.</p>
+
+    <div class="lernpfad-grid">
+
+      <a href="lektion-01.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">01</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">✍️</div>
+        <h3>So bekommst du von KI was du wirklich willst</h3>
+        <p>Die 4 Zutaten eines guten Prompts – anhand eines Beispiels das jeder kennt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 15 Min · 📋 Prompt inklusive</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-02.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">02</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🎙️</div>
+        <h3>Meeting zusammenfassen – in unter 5 Minuten</h3>
+        <p>Aus einer rohen Mitschrift ein sauberes Fazit mit Tasks – mit einem einzigen Prompt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 5 Min · ⚡ Vorher / Nachher</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-03.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">03</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🔍</div>
+        <h3>ChatGPT, Claude oder Perplexity – wann nehme ich was?</h3>
+        <p>Die drei wichtigsten KI-Tools im ehrlichen Vergleich – für welche Aufgabe welches passt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 7 Min · 🔍 Vergleich</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-04.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">04</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">👨‍👩‍👧</div>
+        <h3>Mein Kind nutzt KI für Hausaufgaben – Problem oder Chance?</h3>
+        <p>Ehrliche Einschätzung für Eltern – wann KI hilft, wann sie schadet.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 8 Min · 👨‍👩‍👧 Für Eltern</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-05.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">05</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🧠</div>
+        <h3>KI-Begriffe einfach erklärt – das Glossar</h3>
+        <p>Alle Begriffe die du hörst, einfach erklärt. Mit Suchfunktion.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">🔍 Nachschlagen · 🧠 Glossar</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-06.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">06</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🤖</div>
+        <h3>Baue deinen ersten KI-Agenten</h3>
+        <p>Autonome KI die selbstständig arbeitet – Schritt für Schritt erklärt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 10 Min · 🤖 Fortgeschritten</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-07.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">07</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">⚙️</div>
+        <h3>GitHub Actions Automatisierung</h3>
+        <p>Agent läuft vollautomatisch – jeden Montag ohne Klick.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 15 Min · 🟠 Technik</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-08.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">08</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🔍</div>
+        <h3>KI-Inhalte erkennen & enttarnen</h3>
+        <p>Fotos, Videos, Texte – so erkennst du was KI ist.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 10 Min · 🟢 Für alle</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-09.html" class="lp-card available">
+        <div class="lp-card-top"><div class="lp-num">09</div><span class="lp-badge available">✓ Live</span></div>
+        <div class="lp-emoji">📝</div>
+        <h3>Claude in Word – Mitschriften</h3>
+        <p>Notizen → sauberes Protokoll in 3 Minuten.</p>
+        <div class="lp-footer"><span class="lp-meta">⏱️ 10 Min · 🔵 Anwender</span><span class="lp-arrow">→</span></div>
+      </a>
+
+      <a href="lektion-10.html" class="lp-card available">
+        <div class="lp-card-top"><div class="lp-num">10</div><span class="lp-badge available">✓ Live</span></div>
+        <div class="lp-emoji">📸</div>
+        <h3>iPhone Fotos automatisch sortieren</h3>
+        <p>Tausende iPhone Fotos werden sauber und automatisch in Ordner sortiert.</p>
+        <div class="lp-footer"><span class="lp-meta">⏱️ 15 Min · 🟠 Technik</span><span class="lp-arrow">→</span></div>
+      </a>	  
+
+    </div>
+
+    <div style="text-align:center; margin-top:32px;">
+      <a href="lektionen.html" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;">
+        Alle Lektionen ansehen →
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FOR WHOM -->
+  <section id="fuer-wen">
+    <div class="section-label">Für wen ist das?</div>
+    <h2 class="section-title">Für wen ist dotry.ai?</h2>
+    <p class="section-sub">Nicht für Entwickler – sondern für alle die KI endlich praktisch nutzen wollen.</p>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">💼</div>
+        <h3>Arbeitnehmer</h3>
+        <p>Die bei Meetings hören „wir müssen KI nutzen" – und endlich mitreden und mitgestalten wollen.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">👨‍👩‍👧</div>
+        <h3>Eltern</h3>
+        <p>Die verstehen wollen was ihre Kinder mit KI online machen – und es selbst sinnvoll einsetzen wollen.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">⏰</div>
+        <h3>Alle ohne Zeit</h3>
+        <p>Die keine Zeit für lange Kurse haben – aber trotzdem am Ball bleiben und profitieren wollen.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="section-divider"></div>
+
+ <!-- TREND WIDGET -->
+  <section>
+    <div class="section-label">KI-Agent Live</div>
+    <h2 class="section-title">Virale Food Trends –<br>diese Woche auf Instagram</h2>
+    <p class="section-sub">Ein KI-Agent analysiert wöchentlich die heißesten Food-Trends. Powered by Claude AI.</p>
+
+    <div class="trend-widget">
+      <div class="trend-widget-header">
+        <div class="trend-widget-title">
+          <div class="trend-live-dot"></div>
+          🔥 Top 5 Food Trends – KW 23 / 2026
+        </div>
+        <a href="agent_dashboard.html" class="trend-widget-link">
+          Vollständige Analyse →
+        </a>
+      </div>
+
+      <div class="trend-mini-grid">
+        <a href="agent_dashboard.html" class="trend-mini-card">
+          <div class="trend-mini-rank">#1 · COMFORT</div>
+          <div class="trend-mini-name">Viral Pasta Rezepte</div>
+          <div class="trend-mini-bar-bg"><div class="trend-mini-bar-fill" style="width:92%;background:linear-gradient(90deg,#f59e0b,#f97316)"></div></div>
+          <div class="trend-mini-score" style="color:#f59e0b">92 / 100</div>
+        </a>
+        <a href="agent_dashboard.html" class="trend-mini-card">
+          <div class="trend-mini-rank">#2 · MEAL PREP</div>
+          <div class="trend-mini-name">High-Protein Meal Prep</div>
+          <div class="trend-mini-bar-bg"><div class="trend-mini-bar-fill" style="width:88%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
+          <div class="trend-mini-score" style="color:#22c55e">89 / 100</div>
+        </a>
+        <a href="agent_dashboard.html" class="trend-mini-card">
+          <div class="trend-mini-rank">#3 · ASIAN FUSION</div>
+          <div class="trend-mini-name">Koreanische Streetfood</div>
+          <div class="trend-mini-bar-bg"><div class="trend-mini-bar-fill" style="width:85%;background:linear-gradient(90deg,#f97316,#ef4444)"></div></div>
+          <div class="trend-mini-score" style="color:#f97316">87 / 100</div>
+        </a>
+        <a href="agent_dashboard.html" class="trend-mini-card">
+          <div class="trend-mini-rank">#4 · SNACKS</div>
+          <div class="trend-mini-name">Chili Crisp Everything</div>
+          <div class="trend-mini-bar-bg"><div class="trend-mini-bar-fill" style="width:81%;background:linear-gradient(90deg,#2563ff,#4d85ff)"></div></div>
+          <div class="trend-mini-score" style="color:#4d85ff">86 / 100</div>
+        </a>
+        <a href="agent_dashboard.html" class="trend-mini-card">
+          <div class="trend-mini-rank">#5 · MEAL PREP</div>
+          <div class="trend-mini-name">Bento Box Ästhetik</div>
+          <div class="trend-mini-bar-bg"><div class="trend-mini-bar-fill" style="width:78%;background:linear-gradient(90deg,#ec4899,#a855f7)"></div></div>
+          <div class="trend-mini-score" style="color:#ec4899">84 / 100</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="start">
+    <div class="cta-inner">
+      <h2>Bereit loszulegen?</h2>
+      <p>Starte jetzt mit deiner ersten kostenlosen Lektion. Keine Anmeldung nötig.</p>
+      <a href="lektion-01.html" class="btn-primary" style="font-size:1.1rem; padding: 17px 40px;">
+        Erste Lektion starten →
+      </a>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="newsletter-label">📬 Newsletter</div>
+      <h2 class="newsletter-title">Kurze KI-Impulse –<br>direkt in dein Postfach.</h2>
+      <p class="newsletter-sub">Einmal pro Woche. Kein Spam. Jederzeit abmeldbar.</p>
+      <div class="newsletter-success" id="newsletter-success">
+        ✅ Super – du bist dabei! Schau bald in dein Postfach.
+      </div>
+      <form class="newsletter-form" id="newsletter-form"
+            action="https://formspree.io/f/meedewoj"
+            method="POST">
+        <input type="email" name="email" placeholder="deine@email.com" required />
+        <button type="submit">Anmelden →</button>
+      </form>
+      <p class="newsletter-hint">✓ Kostenlos &nbsp;·&nbsp; ✓ Kein Spam &nbsp;·&nbsp; ✓ Jederzeit abmeldbar</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="/" class="logo">
+      <img src="logo.png" alt="do try ai" style="height:28px;" />
+    </a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex; gap:20px; align-items:center;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    // Newsletter Form
+    const form = document.getElementById('newsletter-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            form.style.display = 'none';
+            document.getElementById('newsletter-success').style.display = 'block';
+          }
+        } catch (err) {
+          console.error('Form error:', err);
+        }
+      });
+    }
+  </script>
+
+  <script>
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });</script>
+</body>
+</html>

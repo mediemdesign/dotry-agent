@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 6: Dein erster Blick auf KI-Agenten – do try ai</title>
+  <meta name="description" content="Was ist ein KI-Agent? Wie funktioniert er – und was kann er im Alltag? Einfach erklärt mit Live-Demo. Für Technik-Begeisterte: selbst bauen." />
+  <meta name="keywords" content="KI Agent einfach erklärt, AI Agent Alltag, Claude API Agent, KI automatisierung, dotry.ai" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-06.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-06.html" />
+  <meta property="og:title" content="Lektion 6: Dein erster Blick auf KI-Agenten" />
+  <meta property="og:description" content="Was ist ein KI-Agent? Einfach erklärt mit Live-Demo. Für Technik-Begeisterte: selbst bauen." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.08);
+      --orange:#f97316;--orange-glow:rgba(249,115,22,0.08);
+      --purple:#a855f7;--purple-glow:rgba(168,85,247,0.08);
+      --yellow:#f59e0b;
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+      --code-bg:#0a0f1a;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .logo img{height:40px;width:auto;}
+    .logo{text-decoration:none;}
+    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    .quick-nav{position:sticky;top:117px;z-index:90;background:rgba(8,12,18,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 48px;display:flex;align-items:center;gap:4px;overflow-x:auto;scrollbar-width:none;}
+    .quick-nav::-webkit-scrollbar{display:none;}
+    .quick-nav-item{display:flex;align-items:center;gap:7px;padding:12px 16px;font-size:0.82rem;font-weight:600;color:var(--text-muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;}
+    .quick-nav-item:hover{color:var(--text);}
+    .quick-nav-item.active{color:var(--blue-light);border-bottom-color:var(--blue);}
+    .quick-nav-item .qn-num{background:var(--blue-glow);color:var(--blue-light);border-radius:50px;padding:1px 7px;font-size:0.7rem;font-weight:800;}
+
+    .progress-bar{position:sticky;top:77px;left:0;right:0;height:3px;background:var(--border);z-index:89;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));width:0%;transition:width 0.1s;}
+
+    main{max-width:800px;margin:0 auto;padding:60px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--blue-glow);color:var(--blue-light);border:1px solid rgba(37,99,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+
+    /* LEVEL BADGES */
+    .level-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 50px;
+      padding: 5px 16px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .level-badge.basis {
+      background: var(--green-glow);
+      border: 1px solid rgba(34,197,94,0.25);
+      color: var(--green);
+    }
+    .level-badge.advanced {
+      background: var(--orange-glow);
+      border: 1px solid rgba(249,115,22,0.25);
+      color: var(--orange);
+    }
+
+    .phase{margin:56px 0;}
+    .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .phase-icon{width:48px;height:48px;background:var(--blue-glow);border:1px solid rgba(37,99,255,0.25);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .phase-num{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);display:block;margin-bottom:2px;}
+    .phase-header h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+
+    .article-body p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.75;}
+    .article-body p strong{color:var(--text);}
+
+    .section-divider{height:1px;background:var(--border);margin:48px 0;}
+
+    /* CHATBOT VS AGENT */
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+    .compare-box{border-radius:var(--radius);padding:24px;}
+    .compare-box.chatbot{background:rgba(136,148,176,0.06);border:1px solid rgba(136,148,176,0.15);}
+    .compare-box.agent{background:var(--green-glow);border:1px solid rgba(34,197,94,0.2);}
+    .compare-label{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;}
+    .compare-box.chatbot .compare-label{color:var(--text-muted);}
+    .compare-box.agent .compare-label{color:var(--green);}
+    .compare-box h3{font-size:1rem;font-weight:800;margin-bottom:8px;}
+    .compare-box p{font-size:0.88rem;color:var(--text-muted);line-height:1.6;margin:0;}
+
+    /* EXAMPLE CARDS */
+    .example-grid{display:flex;flex-direction:column;gap:14px;margin:24px 0;}
+    .example-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:22px 24px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;transition:border-color 0.2s;}
+    .example-card:hover{border-color:rgba(37,99,255,0.3);}
+    .example-icon{font-size:1.6rem;width:48px;height:48px;background:var(--bg3);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .example-card h3{font-size:0.98rem;font-weight:700;color:var(--text);margin-bottom:5px;}
+    .example-card p{font-size:0.86rem;color:var(--text-muted);line-height:1.6;margin:0;}
+    .example-saving{font-size:0.78rem;font-weight:700;color:var(--green);margin-top:8px;}
+
+    /* LIVE DEMO EMBED */
+    .demo-embed{background:var(--bg2);border:1px solid rgba(249,115,22,0.2);border-radius:var(--radius);overflow:hidden;margin:28px 0;position:relative;}
+    .demo-embed::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#f97316,#ec4899,#a855f7);}
+    .demo-embed-header{padding:16px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);}
+    .demo-embed-title{display:flex;align-items:center;gap:8px;font-size:0.85rem;font-weight:700;}
+    .demo-live-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2s infinite;}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
+    .demo-link-btn{font-size:0.78rem;font-weight:700;color:var(--blue-light);text-decoration:none;display:flex;align-items:center;gap:5px;}
+    .demo-trends{padding:20px 24px;}
+    .demo-trend-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);}
+    .demo-trend-row:last-child{border-bottom:none;}
+    .demo-rank{font-size:0.68rem;font-weight:800;color:var(--text-muted);width:20px;flex-shrink:0;}
+    .demo-trend-info{flex:1;}
+    .demo-trend-name{font-size:0.9rem;font-weight:700;color:var(--text);}
+    .demo-trend-cat{font-size:0.72rem;color:var(--text-muted);}
+    .demo-score-wrap{width:120px;flex-shrink:0;}
+    .demo-score-bar-bg{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-bottom:4px;}
+    .demo-score-bar{height:100%;border-radius:3px;}
+    .demo-score-num{font-size:0.72rem;font-weight:700;text-align:right;}
+
+    /* TIP BOX */
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+
+    /* ADVANCED SECTION */
+    .advanced-section{background:var(--bg2);border:2px solid rgba(249,115,22,0.2);border-radius:20px;padding:36px;margin:48px 0;position:relative;overflow:hidden;}
+    .advanced-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--yellow));}
+    .advanced-header{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+    .advanced-icon{font-size:1.4rem;}
+    .advanced-header h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;}
+    .advanced-intro{font-size:0.92rem;color:var(--text-muted);line-height:1.7;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+
+    /* ARCHITECTURE */
+    .arch-steps{display:flex;align-items:center;gap:8px;margin:24px 0;flex-wrap:wrap;}
+    .arch-box{background:var(--bg3);border:1px solid rgba(37,99,255,0.2);border-radius:12px;padding:12px 18px;font-size:0.82rem;font-weight:700;color:var(--blue-light);text-align:center;}
+    .arch-sub{font-size:0.68rem;font-weight:500;color:var(--text-muted);margin-top:3px;}
+    .arch-arrow{color:var(--text-muted);font-size:1rem;}
+
+    /* CODE BLOCKS */
+    .code-block{background:var(--code-bg);border:1px solid var(--border);border-radius:var(--radius);margin:20px 0;overflow:hidden;}
+    .code-header{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border);font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;}
+    .code-filename{color:var(--blue-light);}
+    .code-copy{background:transparent;border:1px solid var(--border);border-radius:6px;padding:3px 10px;font-family:inherit;font-size:0.7rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .code-copy:hover{border-color:var(--blue);color:var(--blue-light);}
+    .code-block pre{padding:20px;font-family:'Courier New',monospace;font-size:0.82rem;line-height:1.7;color:#e2e8f0;overflow-x:auto;white-space:pre;}
+    .cm{color:#64748b;}
+    .ck{color:#7dd3fc;}
+    .cs{color:#86efac;}
+
+    /* STEP LIST */
+    .step-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+    .step-list li{display:flex;align-items:flex-start;gap:14px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.9rem;color:var(--text-muted);}
+    .step-num{width:26px;height:26px;background:var(--orange-glow);border:1px solid rgba(249,115,22,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;color:var(--orange);flex-shrink:0;margin-top:2px;}
+
+    /* ── LEVEL NAVIGATOR ── */
+    .level-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:0 0 48px;}
+    .level-nav-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-decoration:none;transition:border-color 0.2s,transform 0.2s;display:block;}
+    .level-nav-card:hover{transform:translateY(-3px);}
+    .level-nav-card.green{border-color:rgba(34,197,94,0.3);}
+    .level-nav-card.green:hover{border-color:rgba(34,197,94,0.6);}
+    .level-nav-card.blue{border-color:rgba(37,99,255,0.3);}
+    .level-nav-card.blue:hover{border-color:rgba(37,99,255,0.6);}
+    .level-nav-card.orange{border-color:rgba(249,115,22,0.3);}
+    .level-nav-card.orange:hover{border-color:rgba(249,115,22,0.6);}
+    .level-nav-emoji{font-size:1.4rem;margin-bottom:8px;}
+    .level-nav-label{font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;}
+    .level-nav-card.green .level-nav-label{color:#22c55e;}
+    .level-nav-card.blue .level-nav-label{color:var(--blue-light);}
+    .level-nav-card.orange .level-nav-label{color:var(--orange);}
+    .level-nav-title{font-size:0.88rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+    .level-nav-desc{font-size:0.75rem;color:var(--text-muted);line-height:1.4;}
+    .level-nav-arrow{font-size:0.75rem;margin-top:10px;font-weight:700;}
+    .level-nav-card.green .level-nav-arrow{color:#22c55e;}
+    .level-nav-card.blue .level-nav-arrow{color:var(--blue-light);}
+    .level-nav-card.orange .level-nav-arrow{color:var(--orange);}
+
+    /* ── BLOCK B STEP BY STEP ── */
+    .blockb-section{background:var(--bg2);border:2px solid rgba(37,99,255,0.2);border-radius:20px;padding:36px;margin:48px 0;position:relative;overflow:hidden;}
+    .blockb-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-light));}
+    .blockb-header{display:flex;align-items:center;gap:14px;margin-bottom:8px;}
+    .blockb-icon{font-size:1.4rem;}
+    .blockb-header h2{font-size:1.3rem;font-weight:800;letter-spacing:-0.02em;}
+    .blockb-intro{font-size:0.92rem;color:var(--text-muted);line-height:1.7;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+    .os-tabs{display:flex;gap:8px;margin-bottom:20px;}
+    .os-tab{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:6px 16px;font-family:inherit;font-size:0.8rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .os-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+    .os-content{display:none;}
+    .os-content.active{display:block;}
+    .step-cards{display:flex;flex-direction:column;gap:14px;margin:0;}
+    .step-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start;}
+    .step-card-num{width:36px;height:36px;background:var(--blue-glow);border:2px solid rgba(37,99,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:800;color:var(--blue-light);flex-shrink:0;}
+    .step-card-title{font-size:0.95rem;font-weight:800;color:var(--text);margin-bottom:6px;}
+    .step-card-desc{font-size:0.86rem;color:var(--text-muted);line-height:1.6;margin-bottom:8px;}
+    .step-card-cmd{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:'Courier New',monospace;font-size:0.82rem;color:#86efac;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;overflow-x:auto;}
+    .cmd-copy{background:transparent;border:none;color:var(--text-muted);cursor:pointer;font-size:0.75rem;padding:2px 6px;border-radius:4px;transition:color 0.2s;flex-shrink:0;}
+    .cmd-copy:hover{color:var(--green);}
+    .step-card-hint{font-size:0.78rem;color:var(--yellow);margin-top:8px;display:flex;align-items:flex-start;gap:5px;}
+    .step-card-success{font-size:0.78rem;color:var(--green);margin-top:8px;display:flex;align-items:flex-start;gap:5px;}
+    @media(max-width:640px){.level-nav{grid-template-columns:1fr;}.step-card{grid-template-columns:1fr;}}
+
+        /* CHECKLIST */
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s,color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(37,99,255,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;margin-top:1px;}
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;max-width:480px;margin-left:auto;margin-right:auto;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* COOKIE */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-text strong{color:var(--text);}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      nav{padding:16px 20px;}
+      .quick-nav{padding:0 16px;}
+      .compare-grid{grid-template-columns:1fr;}
+      .arch-steps{flex-direction:column;}
+      .arch-arrow{transform:rotate(90deg);}
+      .example-card{grid-template-columns:1fr;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+  </style>
+  
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+  
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+    <a href="lektionen.html" class="nav-back">← Alle Lektionen</a>
+  </nav>
+
+
+      <a href="lektion-07.html" class="quick-nav-item"><span class="qn-num"></span></a>
+    </div>
+  </div>
+
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">🤖 Lektion 6</span>
+      <span class="read-time">📖 10 Min · Basis + optional Technik-Teil</span>
+    </div>
+
+    <h1>KI-Agenten –<br>was steckt dahinter?</h1>
+
+    <p class="article-intro">
+      Bisher haben wir KI immer manuell angewiesen – du tippst, die KI antwortet. <strong>Ein Agent macht das nächste Level:</strong> Er erledigt Aufgaben selbstständig, ohne dass du jeden Schritt eingibst. In dieser Lektion siehst du wie das funktioniert – und was ein echter Agent live tut.
+    </p>
+
+    <!-- LEVEL NAVIGATOR -->
+
+    <!-- LEVEL NAVIGATOR -->
+    <div class="level-nav">
+      <a href="#block-a" class="level-nav-card green">
+        <div class="level-nav-emoji">🟢</div>
+        <div class="level-nav-label">Block A – Für alle</div>
+        <div class="level-nav-title">Verstehen & ansehen</div>
+        <div class="level-nav-desc">Kein Vorwissen nötig. Was ist ein Agent, wie sieht er live aus?</div>
+        <div class="level-nav-arrow">↓ Direkt dorthin</div>
+      </a>
+      <a href="#block-b" class="level-nav-card blue">
+        <div class="level-nav-emoji">🔵</div>
+        <div class="level-nav-label">Block B – Einsteiger</div>
+        <div class="level-nav-title">Step by Step aufbauen</div>
+        <div class="level-nav-desc">Mit Python Grundkenntnissen. Schritt für Schritt erklärt.</div>
+        <div class="level-nav-arrow">↓ Direkt dorthin</div>
+      </a>
+      <a href="#block-c" class="level-nav-card orange">
+        <div class="level-nav-emoji">🟠</div>
+        <div class="level-nav-label">Block C – Fortgeschritten</div>
+        <div class="level-nav-title">Code verstehen & anpassen</div>
+        <div class="level-nav-desc">Architektur, Code-Erklärung, eigene Themen einbauen.</div>
+        <div class="level-nav-arrow">↓ Direkt dorthin</div>
+      </a>
+    </div>
+
+    <div class="article-body">
+
+      <!-- ── BLOCK A ── -->
+      <div id="block-a"></div>
+      <div class="level-badge basis">🟢 Für alle – kein Vorwissen nötig</div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">💡</div>
+          <div>
+            <span class="phase-num">Phase 1 · Impuls</span>
+            <h2>Chatbot vs. Agent – der Unterschied in einem Satz</h2>
+          </div>
+        </div>
+
+        <p>Du kennst ChatGPT und Claude bereits – du schreibst, die KI antwortet. Das ist ein <strong>Chatbot</strong>. Praktisch, aber du bist immer der Fahrer.</p>
+
+        <p>Ein <strong>Agent</strong> ist anders. Du gibst ihm ein Ziel – und er entscheidet selbst wie er dahin kommt. Er kann mehrere Schritte hintereinander ausführen, Daten sammeln, analysieren und Ergebnisse speichern. Du bist nicht mehr der Fahrer – du bist der Chef.</p>
+
+        <div class="compare-grid">
+          <div class="compare-box chatbot">
+            <div class="compare-label">💬 Chatbot</div>
+            <h3>Du führst – KI folgt</h3>
+            <p>Du stellst eine Frage, die KI antwortet einmal. Beim nächsten Schritt fragst du wieder. Jeder Schritt braucht dich.</p>
+          </div>
+          <div class="compare-box agent">
+            <div class="compare-label">🤖 Agent</div>
+            <h3>Du gibst ein Ziel – Agent erledigt es</h3>
+            <p>Du sagst was du willst. Der Agent plant, führt aus und liefert das Ergebnis. Du tust nichts außer warten.</p>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Merksatz:</strong> Ein Chatbot beantwortet Fragen. Ein Agent erledigt Aufgaben. Der Unterschied ist Autonomie – wie ein Assistent der nicht auf jede Einzelanweisung wartet.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- ── PHASE 2 ── -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">📋</div>
+          <div>
+            <span class="phase-num">Phase 2 · Nachmachen</span>
+            <h2>Ein echter Agent – live ansehen</h2>
+          </div>
+        </div>
+
+        <p>Reden wir nicht lange – schau dir an was ein Agent tatsächlich tut. Dieser Agent analysiert jede Woche automatisch die viralen Food-Trends auf Instagram und TikTok und bewertet sie mit KI:</p>
+
+        <!-- LIVE DEMO EMBED -->
+        <div class="demo-embed">
+          <div class="demo-embed-header">
+            <div class="demo-embed-title">
+              <div class="demo-live-dot"></div>
+              🍕 Food Trend Agent – Ergebnis diese Woche
+            </div>
+            <a href="agent_dashboard.html" class="demo-link-btn" target="_blank">
+              Vollständig ansehen →
+            </a>
+          </div>
+          <div class="demo-trends" id="demo-trends">
+            <!-- Wird dynamisch oder als Fallback gezeigt -->
+            <div class="demo-trend-row">
+              <div class="demo-rank">#1</div>
+              <div class="demo-trend-info">
+                <div class="demo-trend-name">Viral Pasta Rezepte</div>
+                <div class="demo-trend-cat">Comfort Food · Konfidenz: 95%</div>
+              </div>
+              <div class="demo-score-wrap">
+                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:92%;background:linear-gradient(90deg,#f59e0b,#f97316)"></div></div>
+                <div class="demo-score-num" style="color:#f59e0b">92/100</div>
+              </div>
+            </div>
+            <div class="demo-trend-row">
+              <div class="demo-rank">#2</div>
+              <div class="demo-trend-info">
+                <div class="demo-trend-name">High-Protein Meal Prep</div>
+                <div class="demo-trend-cat">Meal Prep · Konfidenz: 92%</div>
+              </div>
+              <div class="demo-score-wrap">
+                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:88%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
+                <div class="demo-score-num" style="color:#22c55e">89/100</div>
+              </div>
+            </div>
+            <div class="demo-trend-row">
+              <div class="demo-rank">#3</div>
+              <div class="demo-trend-info">
+                <div class="demo-trend-name">Koreanische Streetfood</div>
+                <div class="demo-trend-cat">Asian Fusion · Konfidenz: 88%</div>
+              </div>
+              <div class="demo-score-wrap">
+                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:85%;background:linear-gradient(90deg,#f97316,#ef4444)"></div></div>
+                <div class="demo-score-num" style="color:#f97316">87/100</div>
+              </div>
+            </div>
+            <div class="demo-trend-row">
+              <div class="demo-rank">#4</div>
+              <div class="demo-trend-info">
+                <div class="demo-trend-name">Chili Crisp Everything</div>
+                <div class="demo-trend-cat">Snacks · Konfidenz: 85%</div>
+              </div>
+              <div class="demo-score-wrap">
+                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:81%;background:linear-gradient(90deg,#2563ff,#4d85ff)"></div></div>
+                <div class="demo-score-num" style="color:#4d85ff">86/100</div>
+              </div>
+            </div>
+            <div class="demo-trend-row">
+              <div class="demo-rank">#5</div>
+              <div class="demo-trend-info">
+                <div class="demo-trend-name">Bento Box Ästhetik</div>
+                <div class="demo-trend-cat">Meal Prep · Konfidenz: 83%</div>
+              </div>
+              <div class="demo-score-wrap">
+                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:78%;background:linear-gradient(90deg,#ec4899,#a855f7)"></div></div>
+                <div class="demo-score-num" style="color:#ec4899">84/100</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p>Was du gerade siehst ist das <strong>automatische Ergebnis</strong> eines Agents der wöchentlich läuft – kein manuelles Eintippen, keine Copy-Paste Arbeit. Der Agent hat die Themen gesammelt, Claude hat sie analysiert und bewertet, das Ergebnis wurde gespeichert.</p>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">3 Alltagsbeispiele wo Agents Zeit sparen</h2>
+        <p>Food-Trends sind nur ein Beispiel. Agents können fast jede wiederkehrende Aufgabe übernehmen:</p>
+
+        <div class="example-grid">
+          <div class="example-card">
+            <div class="example-icon">📧</div>
+            <div>
+              <h3>E-Mail Zusammenfassung</h3>
+              <p>Ein Agent scannt täglich deinen Posteingang, filtert wichtige Emails und schickt dir um 8 Uhr eine kurze Zusammenfassung – was dringend ist, was warten kann.</p>
+              <div class="example-saving">⏱️ Spart ~20 Min täglich</div>
+            </div>
+          </div>
+          <div class="example-card">
+            <div class="example-icon">📊</div>
+            <div>
+              <h3>Wöchentlicher Report</h3>
+              <p>Ein Agent sammelt automatisch Zahlen aus verschiedenen Quellen, erstellt jeden Montag einen Bericht und schickt ihn ans Team – ohne dass jemand einen Finger rührt.</p>
+              <div class="example-saving">⏱️ Spart ~2 Std pro Woche</div>
+            </div>
+          </div>
+          <div class="example-card">
+            <div class="example-icon">🔍</div>
+            <div>
+              <h3>Markt-Monitoring</h3>
+              <p>Ein Agent beobachtet täglich Mitbewerber, neue Produkte oder Preisänderungen und meldet sich nur wenn etwas Relevantes passiert.</p>
+              <div class="example-saving">⏱️ Spart stundenlange manuelle Recherche</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- ── PHASE 3 ── -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">🚀</div>
+          <div>
+            <span class="phase-num">Phase 3 · Anwenden</span>
+            <h2>Deine Aufgabe – nachdenken, nicht nachmachen</h2>
+          </div>
+        </div>
+
+        <p>Für diese Phase musst du nichts installieren. Stell dir einfach vor welche wiederkehrende Aufgabe in deinem Alltag ein Agent übernehmen könnte:</p>
+
+        <ul class="checklist">
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Schau dir das <a href="agent_dashboard.html" target="_blank" style="color:var(--blue-light);">Live Dashboard</a> an – sieh wie ein echter Agent aussieht</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Denk an eine Aufgabe die du jede Woche manuell erledigst – könnte ein Agent das übernehmen?</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Schreib den Ablauf in 3 Schritten auf: Was sammelt der Agent? Was analysiert er? Was gibt er aus?</span></li>
+        </ul>
+
+        <div class="tip-box">
+          <p><strong>🎯 Das Wichtigste:</strong> Du musst keinen Agent selbst bauen um davon zu profitieren. Verstehen wie Agents denken – das reicht um bessere Entscheidungen darüber zu treffen wann und wie du KI-Automatisierung einsetzt.</p>
+        </div>
+      </div>
+
+
+      <!-- ── BLOCK B ── -->
+      <div id="block-b"></div>
+      <div class="blockb-section">
+        <div class="level-badge" style="background:rgba(37,99,255,0.1);border:1px solid rgba(37,99,255,0.25);color:var(--blue-light);margin-bottom:20px;">🔵 Block B – Einsteiger mit Python Grundkenntnissen</div>
+        <div class="blockb-header">
+          <div class="blockb-icon">🔵</div>
+          <h2>Den Agent selbst aufbauen – Schritt für Schritt</h2>
+        </div>
+        <p class="blockb-intro">
+          Du hast den Agent live gesehen – jetzt baust du ihn selbst. Keine Angst: Jeder Schritt ist genau erklärt. Du brauchst nur einen Computer, eine Internetverbindung und etwas Geduld. Wähle zuerst dein Betriebssystem:
+        </p>
+
+        <!-- OS TABS -->
+        <div class="os-tabs">
+          <button class="os-tab active" onclick="switchOS('mac', this)">🍎 Mac</button>
+          <button class="os-tab" onclick="switchOS('windows', this)">🪟 Windows</button>
+        </div>
+
+        <!-- MAC STEPS -->
+        <div class="os-content active" id="os-mac">
+          <div class="step-cards">
+
+            <div class="step-card">
+              <div class="step-card-num">1</div>
+              <div>
+                <div class="step-card-title">Python prüfen – hast du es schon?</div>
+                <div class="step-card-desc">Öffne das Terminal (CMD+Leertaste → "Terminal" tippen → Enter). Dann diesen Befehl eingeben:</div>
+                <div class="step-card-cmd"><span>python3 --version</span><button class="cmd-copy" onclick="copyCmd(this, 'python3 --version')">📋</button></div>
+                <div class="step-card-success">✅ Wenn du "Python 3.x.x" siehst – perfekt, weiter zu Schritt 2.</div>
+                <div class="step-card-hint">⚠️ Wenn "command not found" erscheint → python.org öffnen → Download → Installieren → Terminal neu starten.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">2</div>
+              <div>
+                <div class="step-card-title">Projektordner anlegen</div>
+                <div class="step-card-desc">Im Terminal einen neuen Ordner erstellen und hineinwechseln:</div>
+                <div class="step-card-cmd"><span>mkdir dotry-agent && cd dotry-agent</span><button class="cmd-copy" onclick="copyCmd(this, 'mkdir dotry-agent && cd dotry-agent')">📋</button></div>
+                <div class="step-card-success">✅ Du siehst jetzt "dotry-agent" am Ende deiner Terminal-Zeile.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">3</div>
+              <div>
+                <div class="step-card-title">Die 3 Agent-Dateien herunterladen</div>
+                <div class="step-card-desc">Lade diese 3 Dateien herunter und lege sie in den dotry-agent Ordner:</div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+                  <a href="fetch_sources.py" download style="background:var(--blue-glow);border:1px solid rgba(37,99,255,0.2);border-radius:8px;padding:8px 14px;font-size:0.82rem;font-weight:700;color:var(--blue-light);text-decoration:none;display:flex;align-items:center;gap:8px;">📥 fetch_sources.py herunterladen</a>
+                  <a href="analyze_trends.py" download style="background:var(--blue-glow);border:1px solid rgba(37,99,255,0.2);border-radius:8px;padding:8px 14px;font-size:0.82rem;font-weight:700;color:var(--blue-light);text-decoration:none;display:flex;align-items:center;gap:8px;">📥 analyze_trends.py herunterladen</a>
+                  <a href="run_agent.py" download style="background:var(--blue-glow);border:1px solid rgba(37,99,255,0.2);border-radius:8px;padding:8px 14px;font-size:0.82rem;font-weight:700;color:var(--blue-light);text-decoration:none;display:flex;align-items:center;gap:8px;">📥 run_agent.py herunterladen</a>
+                </div>
+                <div class="step-card-hint">⚠️ Tipp: Rechtsklick auf den Link → "Speichern unter" → in den dotry-agent Ordner.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">4</div>
+              <div>
+                <div class="step-card-title">Pakete installieren</div>
+                <div class="step-card-desc">Diese zwei Pakete braucht der Agent. Im Terminal eingeben:</div>
+                <div class="step-card-cmd"><span>pip3 install feedparser anthropic</span><button class="cmd-copy" onclick="copyCmd(this, 'pip3 install feedparser anthropic')">📋</button></div>
+                <div class="step-card-success">✅ Du siehst "Successfully installed..." – perfekt.</div>
+                <div class="step-card-hint">⚠️ Wenn "pip3: command not found" → stattdessen: python3 -m pip install feedparser anthropic</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">5</div>
+              <div>
+                <div class="step-card-title">API Key holen</div>
+                <div class="step-card-desc">Geh auf <strong style="color:var(--text);">console.anthropic.com</strong> → Account erstellen → "API Keys" → "Create Key" → Key kopieren. Dann im Terminal:</div>
+                <div class="step-card-cmd"><span>export ANTHROPIC_API_KEY=sk-ant-dein-key-hier</span><button class="cmd-copy" onclick="copyCmd(this, 'export ANTHROPIC_API_KEY=sk-ant-dein-key-hier')">📋</button></div>
+                <div class="step-card-hint">⚠️ Den echten Key einfügen – nicht den Beispiel-Text. Der Key beginnt mit "sk-ant-".</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">6</div>
+              <div>
+                <div class="step-card-title">Sicherstellen dass du im richtigen Ordner bist</div>
+                <div class="step-card-desc">Im Terminal prüfen ob die 3 Dateien da sind:</div>
+                <div class="step-card-cmd"><span>ls</span><button class="cmd-copy" onclick="copyCmd(this, 'ls')">📋</button></div>
+                <div class="step-card-success">✅ Du solltest sehen: analyze_trends.py · fetch_sources.py · run_agent.py</div>
+                <div class="step-card-hint">⚠️ Falls nicht: cd ~/Downloads/dotry-agent (oder wo du die Dateien gespeichert hast)</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">7</div>
+              <div>
+                <div class="step-card-title">Agent starten! 🚀</div>
+                <div class="step-card-desc">Jetzt den Agent ausführen:</div>
+                <div class="step-card-cmd"><span>python3 run_agent.py</span><button class="cmd-copy" onclick="copyCmd(this, 'python3 run_agent.py')">📋</button></div>
+                <div class="step-card-success">✅ Du siehst:<br/>dotry.ai Food Trend Agent<br/>Sources prepared: 15 topics<br/>Claude analyzed 5 trends<br/>Done → trends.json updated ✓</div>
+                <div class="step-card-hint">⚠️ Wenn "401 Authentication error" erscheint → API Key nochmal setzen (Schritt 5).</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">8</div>
+              <div>
+                <div class="step-card-title">Dashboard im Browser öffnen 🎉</div>
+                <div class="step-card-desc">Die agent_dashboard.html herunterladen, in denselben Ordner legen und im Browser öffnen – oder direkt hier ansehen:</div>
+                <a href="agent_dashboard.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;background:var(--green);color:#fff;padding:10px 20px;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none;">🤖 Live Dashboard ansehen →</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- WINDOWS STEPS -->
+        <div class="os-content" id="os-windows">
+          <div class="step-cards">
+
+            <div class="step-card">
+              <div class="step-card-num">1</div>
+              <div>
+                <div class="step-card-title">Python prüfen – hast du es schon?</div>
+                <div class="step-card-desc">Öffne die Eingabeaufforderung (Windows-Taste → "cmd" tippen → Enter). Dann eingeben:</div>
+                <div class="step-card-cmd"><span>python --version</span><button class="cmd-copy" onclick="copyCmd(this, 'python --version')">📋</button></div>
+                <div class="step-card-success">✅ Wenn du "Python 3.x.x" siehst – perfekt, weiter zu Schritt 2.</div>
+                <div class="step-card-hint">⚠️ Wenn nichts erscheint → python.org öffnen → "Download Python 3.x" → Installieren → ✅ "Add Python to PATH" anklicken → cmd neu starten.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">2</div>
+              <div>
+                <div class="step-card-title">Projektordner anlegen</div>
+                <div class="step-card-desc">In der Eingabeaufforderung einen Ordner erstellen:</div>
+                <div class="step-card-cmd"><span>mkdir dotry-agent && cd dotry-agent</span><button class="cmd-copy" onclick="copyCmd(this, 'mkdir dotry-agent && cd dotry-agent')">📋</button></div>
+                <div class="step-card-success">✅ Du siehst jetzt "dotry-agent" in der Pfadzeile.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">3</div>
+              <div>
+                <div class="step-card-title">Die 3 Agent-Dateien herunterladen</div>
+                <div class="step-card-desc">Lade diese 3 Dateien herunter und lege sie in den dotry-agent Ordner:</div>
+                <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+                  <a href="fetch_sources.py" download style="background:var(--blue-glow);border:1px solid rgba(37,99,255,0.2);border-radius:8px;padding:8px 14px;font-size:0.82rem;font-weight:700;color:var(--blue-light);text-decoration:none;display:flex;align-items:center;gap:8px;">📥 fetch_sources.py herunterladen</a>
+                  <a href="analyze_trends.py" download style="background:var(--blue-glow);border:1px solid rgba(37,99,255,0.2);border-radius:8px;padding:8px 14px;font-size:0.82rem;font-weight:700;color:var(--blue-light);text-decoration:none;display:flex;align-items:center;gap:8px;">📥 analyze_trends.py herunterladen</a>
+                  <a href="run_agent.py" download style="background:var(--blue-glow);border:1px solid rgba(37,99,255,0.2);border-radius:8px;padding:8px 14px;font-size:0.82rem;font-weight:700;color:var(--blue-light);text-decoration:none;display:flex;align-items:center;gap:8px;">📥 run_agent.py herunterladen</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">4</div>
+              <div>
+                <div class="step-card-title">Pakete installieren</div>
+                <div class="step-card-desc">In der Eingabeaufforderung eingeben:</div>
+                <div class="step-card-cmd"><span>pip install feedparser anthropic</span><button class="cmd-copy" onclick="copyCmd(this, 'pip install feedparser anthropic')">📋</button></div>
+                <div class="step-card-success">✅ Du siehst "Successfully installed..." – perfekt.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">5</div>
+              <div>
+                <div class="step-card-title">API Key holen & setzen</div>
+                <div class="step-card-desc">Geh auf <strong style="color:var(--text);">console.anthropic.com</strong> → Account erstellen → "API Keys" → "Create Key" → Key kopieren. Dann in der Eingabeaufforderung:</div>
+                <div class="step-card-cmd"><span>set ANTHROPIC_API_KEY=sk-ant-dein-key-hier</span><button class="cmd-copy" onclick="copyCmd(this, 'set ANTHROPIC_API_KEY=sk-ant-dein-key-hier')">📋</button></div>
+                <div class="step-card-hint">⚠️ Den echten Key einfügen. Wichtig: Diesen Befehl in jeder neuen Eingabeaufforderung wiederholen.</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">6</div>
+              <div>
+                <div class="step-card-title">Prüfen ob die Dateien da sind</div>
+                <div class="step-card-cmd"><span>dir</span><button class="cmd-copy" onclick="copyCmd(this, 'dir')">📋</button></div>
+                <div class="step-card-success">✅ Du solltest sehen: analyze_trends.py · fetch_sources.py · run_agent.py</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">7</div>
+              <div>
+                <div class="step-card-title">Agent starten! 🚀</div>
+                <div class="step-card-cmd"><span>python run_agent.py</span><button class="cmd-copy" onclick="copyCmd(this, 'python run_agent.py')">📋</button></div>
+                <div class="step-card-success">✅ Du siehst:<br/>dotry.ai Food Trend Agent<br/>Sources prepared: 15 topics<br/>Claude analyzed 5 trends<br/>Done → trends.json updated ✓</div>
+                <div class="step-card-hint">⚠️ Wenn "401 error" → API Key nochmal setzen (Schritt 5).</div>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <div class="step-card-num">8</div>
+              <div>
+                <div class="step-card-title">Dashboard im Browser öffnen 🎉</div>
+                <div class="step-card-desc">Die agent_dashboard.html herunterladen, in denselben Ordner legen und doppelklicken – oder direkt hier:</div>
+                <a href="agent_dashboard.html" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-top:10px;background:var(--green);color:#fff;padding:10px 20px;border-radius:50px;font-size:0.85rem;font-weight:700;text-decoration:none;">🤖 Live Dashboard ansehen →</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- ── END BLOCK B ── -->
+
+      <!-- ── BLOCK C ── -->
+      <div id="block-c"></div>
+      <div class="advanced-section">
+
+        <div class="level-badge advanced" style="margin-bottom:20px;">🟠 Block C – Fortgeschritten · Den Agent zu deinem machen</div>
+
+        <div class="advanced-header">
+          <div class="advanced-icon">🟠</div>
+          <h2>Den Agent verstehen – und anpassen</h2>
+        </div>
+
+        <p class="advanced-intro">
+          Du hast den Agent zum Laufen gebracht. Jetzt geht es einen Schritt weiter: <strong style="color:var(--text);">Was macht jede Datei wirklich?</strong> Und wie baust du den Agent so um, dass er nicht mehr Food-Trends analysiert – sondern deine eigene Nische?
+        </p>
+
+        <!-- WHAT EACH FILE DOES -->
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:16px;">Was macht jede Datei wirklich?</h3>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:32px;">
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
+            <div style="font-size:0.82rem;font-weight:800;color:#f97316;margin-bottom:6px;">📥 fetch_sources.py</div>
+            <div style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">Liefert die <strong style="color:var(--text);">Rohstoff-Liste</strong> – die Themen die Claude analysieren soll. Aktuell sind das 15 kuratierte Food-Begriffe. <strong style="color:var(--text);">Das ist die einzige Datei die du ändern musst</strong> um eine andere Nische zu analysieren.</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
+            <div style="font-size:0.82rem;font-weight:800;color:var(--blue-light);margin-bottom:6px;">🧠 analyze_trends.py</div>
+            <div style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">Schickt die Themen an Claude und gibt ihm genaue Anweisungen wie er antworten soll. <strong style="color:var(--text);">Der Prompt hier bestimmt die Qualität der Analyse.</strong> Du kannst Kategorien, Sprache und Ausgabeformat anpassen.</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:18px 20px;">
+            <div style="font-size:0.82rem;font-weight:800;color:var(--green);margin-bottom:6px;">⚙️ run_agent.py</div>
+            <div style="font-size:0.88rem;color:var(--text-muted);line-height:1.6;">Der Dirigent – ruft fetch und analyze auf, baut das JSON zusammen und speichert es. <strong style="color:var(--text);">Diese Datei musst du kaum anfassen.</strong></div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- CUSTOMIZE EXAMPLE -->
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">Beispiel: Von Food-Trends zu KI-Tool-Trends</h3>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:16px;">Nur 2 Änderungen – und der Agent analysiert eine komplett andere Nische:</p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">fetch_sources.py – Themen austauschen</span>
+            <button class="code-copy" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><span class="cm"># VORHER: Food-Trends</span>
+FOOD_SEED_TOPICS = [
+    <span class="cs">"viral pasta recipes TikTok 2026"</span>,
+    <span class="cs">"high protein meal prep trending"</span>,
+    ...
+]
+
+<span class="cm"># NACHHER: KI-Tool-Trends – einfach austauschen!</span>
+FOOD_SEED_TOPICS = [
+    <span class="cs">"Claude AI neue Features 2026"</span>,
+    <span class="cs">"Cursor AI coding viral"</span>,
+    <span class="cs">"Perplexity vs Google trending"</span>,
+    <span class="cs">"GPT-4o updates viral"</span>,
+    <span class="cs">"AI Agents automation trending"</span>,
+    <span class="cs">"Midjourney v7 viral"</span>,
+    <span class="cs">"Sora video AI trending"</span>,
+]</pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <span class="code-filename">analyze_trends.py – Prompt und Kategorien anpassen</span>
+            <button class="code-copy" onclick="copyCode(this)">Kopieren</button>
+          </div>
+          <pre><span class="cm"># VORHER: Food-Kategorien</span>
+<span class="cs">"category": "eine von: Comfort Food, Health, Asian Fusion..."</span>
+
+<span class="cm"># NACHHER: KI-Tool-Kategorien</span>
+<span class="cs">"category": "eine von: Bildgenerierung, Textgenerierung, Coding, Automatisierung, Suche"</span>
+
+<span class="cm"># Und den Prompt-Titel anpassen:</span>
+<span class="cm"># "Du bist ein Food-Trend Analyst"</span>
+<span class="cm"># → "Du bist ein KI-Tool Analyst"</span></pre>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Ideen für eigene Nischen:</strong> Sport-Trends · Reiseziele · Aktien-Signale · Stellenangebote · lokale Events · Gaming-Trends · Mode. Die Architektur bleibt immer gleich – nur die Themen und Kategorien ändern sich.</p>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- PROMPT TUNING -->
+        <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:8px;">Den Prompt verfeinern</h3>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:16px;">Der Prompt in analyze_trends.py ist der mächtigste Hebel. Kleine Änderungen – große Wirkung:</p>
+
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px 18px;">
+            <div style="font-size:0.78rem;font-weight:700;color:var(--blue-light);margin-bottom:6px;">Sprache ändern</div>
+            <div style="font-size:0.85rem;color:var(--text-muted);">Füge hinzu: <span style="color:#86efac;font-family:monospace;">"Antworte auf Englisch"</span> → für internationale Märkte</div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px 18px;">
+            <div style="font-size:0.78rem;font-weight:700;color:var(--blue-light);margin-bottom:6px;">Mehr Trends</div>
+            <div style="font-size:0.85rem;color:var(--text-muted);">Ändere: <span style="color:#86efac;font-family:monospace;">"wähle die 5 interessantesten"</span> → <span style="color:#86efac;font-family:monospace;">"wähle die 10 interessantesten"</span></div>
+          </div>
+          <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:16px 18px;">
+            <div style="font-size:0.78rem;font-weight:700;color:var(--blue-light);margin-bottom:6px;">Zielgruppe angeben</div>
+            <div style="font-size:0.85rem;color:var(--text-muted);">Füge hinzu: <span style="color:#86efac;font-family:monospace;">"Erkläre es für Menschen ohne Vorkenntnisse"</span></div>
+          </div>
+        </div>
+
+      </div>
+      <!-- ══ END BLOCK C ══ -->
+
+    </div>
+
+    <!-- NEXT LESSON -->
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 6 abgeschlossen</div>
+      <h3>Nächste Lektion:<br>Automatisierung mit GitHub Actions</h3>
+      <p>Der Agent läuft bald vollautomatisch – jeden Montag, ohne dass du etwas tust. GitHub Actions macht's möglich.</p>
+      <a href="lektion-07.html" class="btn-primary">Weiter zu Lektion 7 →</a>     
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="datenschutz.html">Mehr erfahren</a></p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    // Progress bar
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const progress = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+      document.getElementById('progress').style.width = Math.min(progress, 100) + '%';
+    });
+
+    // Copy code
+    function copyCode(btn) {
+      const pre = btn.closest('.code-block').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = '✓ Kopiert!';
+        btn.style.color = '#22c55e';
+        setTimeout(() => { btn.textContent = 'Kopieren'; btn.style.color = ''; }, 2000);
+      });
+    }
+
+    // Checklist
+
+    function switchOS(os, btn) {
+      document.querySelectorAll('.os-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.os-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('os-' + os).classList.add('active');
+    }
+
+    function copyCmd(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅';
+        setTimeout(() => btn.textContent = '📋', 1500);
+      });
+    }
+
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check').textContent = el.classList.contains('done') ? '✅' : '☐';
+    }
+
+    // Cookie
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const c = localStorage.getItem('cookie_consent');
+      if (c) document.getElementById('cookie-banner').style.display = 'none';
+      if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+  <script>
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });</script>
+</body>
+</html>

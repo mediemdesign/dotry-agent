@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 9: Claude in Word – Mitschriften auswerten – do try ai</title>
+  <meta name="description" content="Claude direkt in Microsoft Word nutzen – Besprechungsmitschriften digitalisieren, strukturieren und auswerten in unter 5 Minuten." />
+  <meta name="keywords" content="Claude Word, KI Word einbinden, Besprechungsprotokoll KI, Microsoft Word AI, dotry.ai Lektion 9" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-09.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-09.html" />
+  <meta property="og:title" content="Lektion 9: Claude in Word – Mitschriften auswerten" />
+  <meta property="og:description" content="Claude direkt in Word nutzen – Besprechungsmitschriften in unter 5 Minuten strukturieren und auswerten." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.08);
+      --orange:#f97316;--yellow:#f59e0b;
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+    .logo img{height:40px;width:auto;}
+    .logo{text-decoration:none;}
+    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.9rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
+    .nav-back:hover{color:var(--text);}
+
+    /* DROPDOWN */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 16px 48px rgba(0,0,0,0.5);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 6px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border);}
+    .dd-track-label.einsteiger{color:#22c55e;}
+    .dd-track-label.anwender{color:var(--blue-light);}
+    .dd-track-label.technik{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-item-num{width:24px;height:24px;background:var(--bg3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;color:var(--text-muted);flex-shrink:0;}
+    .dd-item-num.einsteiger{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-item-num.anwender{background:var(--blue-glow);color:var(--blue-light);}
+    .dd-item-num.technik{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-item-info{flex:1;}
+    .dd-item-title{font-size:0.83rem;font-weight:700;color:var(--text);}
+    .dd-item-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 7px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid var(--border);}
+
+    /* QUICK NAV */
+    .quick-nav{position:sticky;top:77px;z-index:90;background:rgba(8,12,18,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none;}
+    .quick-nav::-webkit-scrollbar{display:none;}
+    .qn-track{font-size:0.65rem;font-weight:800;letter-spacing:0.06em;padding:0 8px 0 4px;white-space:nowrap;flex-shrink:0;opacity:0.8;}
+    .qn-track.g{color:#22c55e;}
+    .qn-track.b{color:var(--blue-light);}
+    .qn-track.o{color:#f97316;}
+    .qn-divider{width:1px;height:18px;background:var(--border);margin:0 6px;flex-shrink:0;}
+    .quick-nav-item{display:flex;align-items:center;gap:5px;padding:10px 10px;font-size:0.76rem;font-weight:600;color:var(--text-muted);text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;transition:color 0.2s,border-color 0.2s;flex-shrink:0;}
+    .quick-nav-item:hover{color:var(--text);}
+    .quick-nav-item.active{color:var(--blue-light);border-bottom-color:var(--blue);}
+    .quick-nav-item .qn-num{border-radius:50px;padding:1px 6px;font-size:0.62rem;font-weight:800;}
+    .quick-nav-item.active .qn-num{background:var(--blue-glow);color:var(--blue-light);}
+    .quick-nav-item:not(.active) .qn-num{background:rgba(255,255,255,0.05);color:var(--text-muted);}
+    @media(max-width:768px){
+      .quick-nav{padding:0 8px;}
+      .quick-nav-item{padding:9px 7px;font-size:0.7rem;}
+      .qn-track{display:none;}
+      .qn-divider{display:none;}
+    }
+
+    /* MOBILE BADGE */
+    .mobile-lesson-info{display:none;}
+    @media(max-width:640px){
+      .mobile-lesson-info{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:var(--bg2);border-bottom:1px solid var(--border);font-size:0.78rem;font-weight:700;}
+      .mobile-lesson-num{color:var(--blue-light);}
+      .mobile-lesson-level{padding:3px 10px;border-radius:50px;font-size:0.7rem;background:var(--green-glow);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    }
+
+    .progress-bar{position:sticky;top:77px;left:0;right:0;height:3px;background:var(--border);z-index:89;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));width:0%;transition:width 0.1s;}
+
+    main{max-width:800px;margin:0 auto;padding:60px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--blue-glow);color:var(--blue-light);border:1px solid rgba(37,99,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+
+    .phase{margin:56px 0;}
+    .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .phase-icon{width:48px;height:48px;background:var(--blue-glow);border:1px solid rgba(37,99,255,0.25);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .phase-num{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);display:block;margin-bottom:2px;}
+    .phase-header h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+
+    .article-body p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.75;}
+    .article-body p strong{color:var(--text);}
+    .section-divider{height:1px;background:var(--border);margin:48px 0;}
+
+    /* BEFORE AFTER */
+    .before-after{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+    .ba-label{display:flex;align-items:center;gap:8px;font-size:0.75rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;padding:7px 14px;border-radius:50px;width:fit-content;margin-bottom:10px;}
+    .ba-label.before{background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.2);}
+    .ba-label.after{background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.2);}
+    .ba-box{border-radius:var(--radius);padding:20px;font-size:0.88rem;line-height:1.65;color:var(--text-muted);}
+    .ba-box.before{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15);}
+    .ba-box.after{background:rgba(34,197,94,0.05);border:1px solid rgba(34,197,94,0.15);}
+
+    /* STEP LIST */
+    .step-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin:20px 0;}
+    .step-list li{display:flex;align-items:flex-start;gap:14px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);}
+    .step-num{width:28px;height:28px;background:var(--blue-glow);border:1px solid rgba(37,99,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:var(--blue-light);flex-shrink:0;margin-top:2px;}
+
+    /* COPY PROMPT BOX */
+    .copy-box{background:var(--bg3);border:2px solid var(--blue);border-radius:var(--radius);padding:28px;margin:24px 0;position:relative;}
+    .copy-box-label{font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue-light);margin-bottom:14px;}
+    .copy-box pre{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.92rem;line-height:1.75;color:var(--text);white-space:pre-wrap;word-break:break-word;}
+    .copy-btn{position:absolute;top:20px;right:20px;background:var(--blue);color:#fff;border:none;padding:7px 16px;border-radius:50px;font-family:inherit;font-size:0.78rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
+    .copy-btn:hover{background:var(--blue-light);}
+
+    /* TIP BOX */
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+
+    /* CHECKLIST */
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(37,99,255,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;margin-top:1px;}
+
+    /* NEXT LESSON */
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;max-width:480px;margin-left:auto;margin-right:auto;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    /* COOKIE */
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      nav{padding:16px 20px;}
+      .before-after{grid-template-columns:1fr;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+
+    /* ── DROPDOWN NAV ── */
+    .lessons-dropdown-wrap{position:relative;display:inline-block;}
+    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
+    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
+    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
+    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
+    .lessons-dropdown-menu.open{display:block;}
+    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
+    .dd-track-label.g{color:#22c55e;}
+    .dd-track-label.b{color:var(--blue-light);}
+    .dd-track-label.o{color:#f97316;}
+    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
+    .dd-item:last-child{border-bottom:none;}
+    .dd-item:hover{background:rgba(37,99,255,0.07);}
+    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
+    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
+    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
+    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
+    .dd-info{flex:1;}
+    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
+    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
+    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
+    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
+    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
+    @media(max-width:640px){
+      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
+      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
+      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
+    }
+  </style>
+  
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+  
+</head>
+<body>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+  
+    <a href="lektionen.html" class="nav-back">← Alle Lektionen</a>
+  </nav>
+    <div class="qn-divider"></div>    <a href="lektion-07.html" class="quick-nav-item"><span class="qn-num"></span></a>
+  </div>
+
+
+  <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">📝 Word & KI</span>
+      <span class="read-time">📖 Lektion #9 · 10 Min · 🔵 Anwender</span>
+    </div>
+
+    <h1>Claude in Word –<br>Mitschriften digitalisieren<br>& auswerten</h1>
+
+    <p class="article-intro">
+      Du sitzt in einem Meeting, kritzelst Notizen – und danach liegt ein Zettel voller Stichworte vor dir. <strong>Was wäre wenn Claude diesen Zettel in 2 Minuten in ein sauberes Protokoll verwandelt?</strong> Mit Aufgaben, Verantwortlichkeiten und nächsten Schritten. Diese Lektion zeigt dir wie das geht – direkt in Microsoft Word.
+    </p>
+
+    <div class="article-body">
+
+      <!-- PHASE 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">💡</div>
+          <div>
+            <span class="phase-num">Phase 1 · Impuls</span>
+            <h2>Vorher / Nachher – der Unterschied in der Praxis</h2>
+          </div>
+        </div>
+
+        <p>So sieht ein typisches Meeting-Ende aus – und was Claude daraus macht:</p>
+
+        <div class="before-after">
+          <div>
+            <div class="ba-label before">😓 Vorher – deine Notizen</div>
+            <div class="ba-box before">
+              Q3 Budget – Thomas macht Übersicht bis Fr<br/>
+              neues CRM System – Angebot einholen, Sarah<br/>
+              Website Relaunch – Termin September?<br/>
+              Praktikant ab Juli – HR informieren<br/>
+              nächstes Meeting 2 Wochen
+            </div>
+          </div>
+          <div>
+            <div class="ba-label after">✅ Nachher – Claude Protokoll</div>
+            <div class="ba-box after">
+              <strong>Besprechungsprotokoll – 31.05.2026</strong><br/><br/>
+              <strong>Beschlüsse:</strong><br/>
+              • CRM-System: Angebote werden eingeholt<br/>
+              • Website Relaunch: Zieldatum September<br/><br/>
+              <strong>Aufgaben:</strong><br/>
+              • Thomas → Budget Q3 Übersicht bis Freitag<br/>
+              • Sarah → CRM Angebote einholen<br/>
+              • HR → Praktikant ab Juli informieren<br/><br/>
+              <strong>Nächstes Meeting:</strong> In 2 Wochen
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Zeitersparnis:</strong> Ein durchschnittliches Meeting-Protokoll von Hand schreiben dauert 20–40 Minuten. Mit Claude: unter 3 Minuten. Multipliziert mit 3 Meetings pro Woche – das sind über 2 Stunden die du dir sparst.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">📋</div>
+          <div>
+            <span class="phase-num">Phase 2 · Nachmachen</span>
+            <h2>Drei Wege – such dir den passenden aus</h2>
+          </div>
+        </div>
+
+        <p>Je nachdem wie du arbeitest gibt es drei Möglichkeiten Claude für Mitschriften zu nutzen:</p>
+
+        <!-- WAY 1 -->
+        <div style="background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:28px;margin:24px 0;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:var(--blue-glow);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;">1</div>
+            <div>
+              <div style="font-size:1rem;font-weight:800;color:var(--text);">Weg A – Claude.ai im Browser (einfachste Option)</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">Kein Setup · Kostenlos · Funktioniert sofort</div>
+            </div>
+          </div>
+          <ul class="step-list">
+            <li><div class="step-num">1</div><div>Notizen nach dem Meeting abtippen oder einscannen (Handy-Kamera reicht)</div></li>
+            <li><div class="step-num">2</div><div><strong style="color:var(--text);">claude.ai</strong> öffnen → Prompt unten kopieren → Notizen einfügen → Enter</div></li>
+            <li><div class="step-num">3</div><div>Ergebnis kopieren → in Word einfügen → fertig ✅</div></li>
+          </ul>
+        </div>
+
+        <!-- WAY 2 -->
+        <div style="background:var(--bg2);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius);padding:28px;margin:24px 0;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(34,197,94,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:#22c55e;font-weight:800;">2</div>
+            <div>
+              <div style="font-size:1rem;font-weight:800;color:var(--text);">Weg B – Word Dokument direkt hochladen</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">Für bestehende Word-Dokumente · Claude liest direkt</div>
+            </div>
+          </div>
+          <ul class="step-list">
+            <li><div class="step-num">1</div><div>Notizen als Word-Datei (.docx) speichern</div></li>
+            <li><div class="step-num">2</div><div>Claude.ai öffnen → 📎 Datei-Symbol → Word-Datei hochladen</div></li>
+            <li><div class="step-num">3</div><div>Prompt eingeben → Claude liest das Dokument direkt und antwortet</div></li>
+            <li><div class="step-num">4</div><div>Ergebnis als neues Word-Dokument speichern</div></li>
+          </ul>
+        </div>
+
+        <!-- WAY 3 -->
+        <div style="background:var(--bg2);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius);padding:28px;margin:24px 0;">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+            <div style="width:36px;height:36px;background:rgba(245,158,11,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;color:var(--yellow);font-weight:800;">3</div>
+            <div>
+              <div style="font-size:1rem;font-weight:800;color:var(--text);">Weg C – Foto der handschriftlichen Notizen</div>
+              <div style="font-size:0.8rem;color:var(--text-muted);">Für handgeschriebene Mitschriften · Claude kann Handschrift lesen</div>
+            </div>
+          </div>
+          <ul class="step-list">
+            <li><div class="step-num">1</div><div>Notizzettel mit dem Handy fotografieren – gutes Licht, möglichst gerade</div></li>
+            <li><div class="step-num">2</div><div>Claude.ai öffnen → 📎 → Foto hochladen</div></li>
+            <li><div class="step-num">3</div><div>Prompt eingeben → Claude liest die Handschrift und erstellt das Protokoll</div></li>
+          </ul>
+          <div class="tip-box" style="margin-top:16px;margin-bottom:0;">
+            <p><strong>💡 Tipp:</strong> Das funktioniert auch mit Flipchart-Fotos, Whiteboard-Aufnahmen oder Post-it Wänden aus Workshops.</p>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">Der Prompt – einfach kopieren</h2>
+
+        <p>Dieser Prompt funktioniert für alle drei Wege. Passe ihn nach Bedarf an:</p>
+
+        <div class="copy-box">
+          <div class="copy-box-label">📋 Basis-Prompt – Mitschrift zu Protokoll</div>
+          <button class="copy-btn" id="copy-btn-1" onclick="copyPrompt('prompt-1', 'copy-btn-1')">Kopieren</button>
+          <pre id="prompt-1">Bitte wandle meine Meeting-Mitschrift in ein strukturiertes Besprechungsprotokoll um.
+
+Erstelle folgende Abschnitte:
+1. Datum und Teilnehmer (falls bekannt)
+2. Besprochene Themen (kurze Zusammenfassung je Punkt)
+3. Beschlüsse und Ergebnisse
+4. Aufgaben mit Verantwortlichkeit und Deadline (falls erwähnt)
+5. Nächste Schritte / nächstes Meeting
+
+Schreibe professionell aber klar verständlich. Wenn Informationen fehlen, lass den Abschnitt weg.
+
+Hier meine Mitschrift:
+[HIER DEINE NOTIZEN EINFÜGEN]</pre>
+        </div>
+
+        <div class="copy-box" style="border-color:var(--green);">
+          <div class="copy-box-label" style="color:var(--green);">📋 Erweiterter Prompt – mit Analyse</div>
+          <button class="copy-btn" id="copy-btn-2" onclick="copyPrompt('prompt-2', 'copy-btn-2')" style="background:var(--green);">Kopieren</button>
+          <pre id="prompt-2">Bitte analysiere meine Meeting-Mitschrift und erstelle:
+
+1. Strukturiertes Protokoll (Themen, Beschlüsse, Aufgaben, nächste Schritte)
+2. Kurze Zusammenfassung in 3 Sätzen für Personen die nicht dabei waren
+3. Offene Fragen die im Meeting nicht geklärt wurden
+4. Dringende To-Dos (falls vorhanden – was muss vor dem nächsten Meeting erledigt sein?)
+
+Hier meine Mitschrift:
+[HIER DEINE NOTIZEN EINFÜGEN]</pre>
+        </div>
+
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">🚀</div>
+          <div>
+            <span class="phase-num">Phase 3 · Anwenden</span>
+            <h2>Jetzt ausprobieren – deine Checkliste</h2>
+          </div>
+        </div>
+
+        <p>Nimm deine nächste Meeting-Mitschrift und teste es direkt:</p>
+
+        <ul class="checklist">
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Prompt oben kopieren</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span><strong style="color:var(--text);">claude.ai</strong> öffnen – kostenloser Account reicht</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Deine Notizen einfügen – getippt, Foto oder Word-Datei</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Protokoll ansehen – bei Bedarf nachbessern: "Mache Punkt 3 kürzer" oder "Füge einen Betreff für die E-Mail hinzu"</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Ergebnis als Word-Datei speichern oder direkt per E-Mail versenden</span></li>
+        </ul>
+
+        <div class="tip-box">
+          <p><strong>🎯 Nächster Level:</strong> Du kannst Claude auch bitten das Protokoll direkt als E-Mail zu formulieren – "Schreib daraus eine E-Mail an alle Teilnehmer" – und es dann nur noch abschicken.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- NEXT LESSON -->
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 9 abgeschlossen</div>
+      <h3>Nächste Lektion:<br>iPhone Fotos automatisch sortieren</h3>
+      <p>Tausende iPhone Fotos werden sauber und automatisch in Ordner sortiert.</p>
+      <a href="lektion-10.html" class="btn-primary">Weiter zu Lektion 10 →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="datenschutz.html">Mehr erfahren</a></p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const doc = document.documentElement;
+      const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+      document.getElementById('progress').style.width = Math.min(p, 100) + '%';
+    });
+
+    function copyPrompt(id, btnId) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById(btnId);
+        const orig = btn.textContent;
+        btn.textContent = '✓ Kopiert!';
+        btn.style.background = '#22c55e';
+        setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2000);
+      });
+    }
+
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check').textContent = el.classList.contains('done') ? '✅' : '☐';
+    }
+
+    function toggleDropdown(btn) {
+      const isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      if (!isOpen) {
+        btn.classList.add('open');
+        document.getElementById('lessons-dropdown').classList.add('open');
+      }
+    }
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.lessons-dropdown-wrap')) {
+        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+      }
+    });
+
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const c = localStorage.getItem('cookie_consent');
+      if (c) document.getElementById('cookie-banner').style.display = 'none';
+      if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+</body>
+</html>
