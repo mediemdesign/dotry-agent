@@ -1,0 +1,43 @@
+name: dotry.ai Deploy to Cloudflare
+
+on:
+  # Startet automatisch nach dem Food Trend Agent
+  workflow_run:
+    workflows: ["dotry.ai Food Trend Agent"]
+    types:
+      - completed
+
+  # Auch manuell startbar
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Nur deployen wenn Agent erfolgreich war
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+        with:
+          # Neuesten Stand holen (inkl. trends.json vom Agent)
+          ref: main
+
+      - name: Zeige zu deployende Files
+        run: |
+          echo "=== Files die deployed werden ==="
+          ls -la *.html *.css *.json *.py 2>/dev/null || true
+          echo "=================================="
+
+      - name: Auf Cloudflare Pages deployen
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=website-278 --commit-dirty=true
