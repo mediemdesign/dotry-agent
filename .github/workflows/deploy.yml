@@ -43,6 +43,6 @@ jobs:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
           wrangler pages deploy . \
-            --project-name=website-278 \
+            --project-name=website \
             --commit-dirty=true \
             --branch=main
