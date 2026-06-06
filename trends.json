@@ -1,8 +1,8 @@
 {
-  "updated": "2026-06-06 04:54:45",
+  "updated": "2026-06-06 19:44:24",
   "stats": {
     "sources_scanned": 15,
-    "signals_detected": 48,
+    "signals_detected": 104,
     "top_trends": 5
   },
   "trends": [
@@ -11,48 +11,48 @@
       "category": "Comfort Food",
       "score": 92,
       "confidence": 95,
-      "description": "Pasta-Videos dominieren TikTok mit einfachen, visuell spektakulären Rezepten die schnell nachzumachen sind. Die Kombination aus Nostalgie und kreativen Variationen spricht alle Altersgruppen an.",
-      "why_trending": "Einfach, visuell, endlose Variations-möglichkeiten"
+      "description": "TikTok-Creator teilen täglich neue Pasta-Variationen mit visuellen ASMR-Effekten. Die Kombination aus Einfachheit, visueller Attraktivität und Wiederholbarkeit macht diese Rezepte zu Dauerbrenner-Content.",
+      "why_trending": "ASMR-Effekte und einfache Zubereitung"
     },
     {
       "name": "High-Protein Meal Prep",
-      "category": "Health",
+      "category": "Meal Prep",
       "score": 88,
       "confidence": 92,
-      "description": "Fitness-orientierte Creator zeigen aufwändig geplante Mahlzeiten für die ganze Woche mit Fokus auf Protein und Makros. Dieser Trend spricht Health-conscious Millennial und Gen-Z an.",
-      "why_trending": "Fitness-Trend trifft Effizienz und Planung"
+      "description": "Fitness-orientierte Creator zeigen organisierte Meal-Prep-Videos mit hohem Proteingehalt. Der Trend verbindet Lifestyle, Gesundheit und ästhetische Organisation perfekt für Social Media.",
+      "why_trending": "Fitness-Trend und ästhetische Organisationsinhalte"
     },
     {
-      "name": "Koreanische Straßenküche",
+      "name": "Koreanische Streetfood",
       "category": "Asian Fusion",
       "score": 87,
-      "confidence": 88,
-      "description": "K-Food bleibt durch authentische Street-Food-Videos viral, vom Tteokbokki bis Hotteok mit hochgradig sensorischen ASMR-Elementen. Die Ästhetik und Authentizität faszinieren internationale Audiences.",
-      "why_trending": "Authentizität, Sensorik, kulturelle Faszination"
+      "confidence": 93,
+      "description": "Koreanische Snacks und Street-Food-Rezepte dominieren Instagram Reels mit authentischen Zubereitungstechniken. Der Authentizitätstrend kombiniert mit East-Asian-Ästhetik schafft hohe Engagement-Raten.",
+      "why_trending": "Authentizität und East-Asian Food Aesthetic"
     },
     {
-      "name": "Chili-Crisp Alles",
-      "category": "Snacks",
+      "name": "Smash Burger Variationen",
+      "category": "Comfort Food",
       "score": 85,
-      "confidence": 87,
-      "description": "Das Gewürz-Öl wird auf alles gestreut und in Content dokumentiert, von Pizza bis Desserts. Der Trend verbindet Geschmack-Hacks mit dem Dopamin-Effekt von Würzigkeit.",
-      "why_trending": "Umami-Trend, vielseitig, instagrammable"
+      "confidence": 88,
+      "description": "Die satisfaktive Zubereitung von Smash Burgers mit kreativen Toppings verbreitet sich viral durch Zufriedenheits-Content. Der Fokus auf Textur und Crusting spricht visuell sehr an.",
+      "why_trending": "Satisfying ASMR und visueller Zubereitungsprozess"
     },
     {
-      "name": "Bento-Box Ästhetik",
-      "category": "Meal Prep",
+      "name": "Frozen Honey TikTok",
+      "category": "Snacks",
       "score": 84,
-      "confidence": 86,
-      "description": "Japanisches Bento-Konzept wird durch visuell perfekt arrangierte Boxen zum Instagram-Hit mit ASMR-Appeal. Die Ästhetik und minimalistische Ordnung sprechen perfektionistische Creator an.",
-      "why_trending": "Visuell perfekt, japanischer Minimalismus-Trend"
+      "confidence": 91,
+      "description": "Das Trend-Phänomen gefrorener Honig mit Chewy-Textur und Geschmacksintensität erobert Gen-Z. Der niedrige Produktaufwand bei maximalem visuellen Impact macht es zum perfekten TikTok-Trend.",
+      "why_trending": "Niedriger Aufwand, maximaler visueller Impact"
     }
   ],
   "logs": [
-    "[04:54:01] Agent gestartet...",
-    "[04:54:02] 15 Food-Themen geladen",
-    "[04:54:03] Claude API analysiert Trends...",
-    "[04:54:04] 5 Top-Trends identifiziert",
-    "[04:54:05] Virality-Scores berechnet",
-    "[04:54:06] trends.json aktualisiert ✓"
+    "[19:44:01] Agent gestartet...",
+    "[19:44:02] 15 Food-Themen geladen",
+    "[19:44:03] Claude API analysiert Trends...",
+    "[19:44:04] 5 Top-Trends identifiziert",
+    "[19:44:05] Virality-Scores berechnet",
+    "[19:44:06] trends.json aktualisiert ✓"
   ]
 }
