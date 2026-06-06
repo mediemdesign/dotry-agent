@@ -461,65 +461,12 @@
               Vollständig ansehen →
             </a>
           </div>
-          <div class="demo-trends" id="demo-trends">
-            <!-- Wird dynamisch oder als Fallback gezeigt -->
-            <div class="demo-trend-row">
-              <div class="demo-rank">#1</div>
-              <div class="demo-trend-info">
-                <div class="demo-trend-name">Viral Pasta Rezepte</div>
-                <div class="demo-trend-cat">Comfort Food · Konfidenz: 95%</div>
-              </div>
-              <div class="demo-score-wrap">
-                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:92%;background:linear-gradient(90deg,#f59e0b,#f97316)"></div></div>
-                <div class="demo-score-num" style="color:#f59e0b">92/100</div>
-              </div>
-            </div>
-            <div class="demo-trend-row">
-              <div class="demo-rank">#2</div>
-              <div class="demo-trend-info">
-                <div class="demo-trend-name">High-Protein Meal Prep</div>
-                <div class="demo-trend-cat">Meal Prep · Konfidenz: 92%</div>
-              </div>
-              <div class="demo-score-wrap">
-                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:88%;background:linear-gradient(90deg,#22c55e,#16a34a)"></div></div>
-                <div class="demo-score-num" style="color:#22c55e">89/100</div>
-              </div>
-            </div>
-            <div class="demo-trend-row">
-              <div class="demo-rank">#3</div>
-              <div class="demo-trend-info">
-                <div class="demo-trend-name">Koreanische Streetfood</div>
-                <div class="demo-trend-cat">Asian Fusion · Konfidenz: 88%</div>
-              </div>
-              <div class="demo-score-wrap">
-                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:85%;background:linear-gradient(90deg,#f97316,#ef4444)"></div></div>
-                <div class="demo-score-num" style="color:#f97316">87/100</div>
-              </div>
-            </div>
-            <div class="demo-trend-row">
-              <div class="demo-rank">#4</div>
-              <div class="demo-trend-info">
-                <div class="demo-trend-name">Chili Crisp Everything</div>
-                <div class="demo-trend-cat">Snacks · Konfidenz: 85%</div>
-              </div>
-              <div class="demo-score-wrap">
-                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:81%;background:linear-gradient(90deg,#2563ff,#4d85ff)"></div></div>
-                <div class="demo-score-num" style="color:#4d85ff">86/100</div>
-              </div>
-            </div>
-            <div class="demo-trend-row">
-              <div class="demo-rank">#5</div>
-              <div class="demo-trend-info">
-                <div class="demo-trend-name">Bento Box Ästhetik</div>
-                <div class="demo-trend-cat">Meal Prep · Konfidenz: 83%</div>
-              </div>
-              <div class="demo-score-wrap">
-                <div class="demo-score-bar-bg"><div class="demo-score-bar" style="width:78%;background:linear-gradient(90deg,#ec4899,#a855f7)"></div></div>
-                <div class="demo-score-num" style="color:#ec4899">84/100</div>
-              </div>
+          <div class="demo-trends" id="demo-trends-l6">
+            <div style="text-align:center;padding:24px;color:var(--text-muted);font-size:0.85rem;">
+              ⏳ Aktuelle Trends werden geladen...
             </div>
           </div>
-        </div>
+        </div></div>
 
         <p>Was du gerade siehst ist das <strong>automatische Ergebnis</strong> eines Agents der wöchentlich läuft – kein manuelles Eintippen, keine Copy-Paste Arbeit. Der Agent hat die Themen gesammelt, Claude hat sie analysiert und bewertet, das Ergebnis wurde gespeichert.</p>
 
@@ -666,7 +613,10 @@
               <div>
                 <div class="step-card-title">Sicherstellen dass du im richtigen Ordner bist</div>
                 <div class="step-card-desc">Im Terminal prüfen ob die 3 Dateien da sind:</div>
-                <div class="step-card-cmd"><span>ls</span><button class="cmd-copy" onclick="copyCmd(this, 'ls')">📋</button></div>
+                <div class="step-card-cmd"><span>analyze_trends.py</br>
+				fetch_sources.py</br>
+				run_agent.py</br>
+				</span><button class="cmd-copy" onclick="copyCmd(this, 'run_agent.py')">📋</button></div>
                 <div class="step-card-success">✅ Du solltest sehen: analyze_trends.py · fetch_sources.py · run_agent.py</div>
                 <div class="step-card-hint">⚠️ Falls nicht: cd ~/Downloads/dotry-agent (oder wo du die Dateien gespeichert hast)</div>
               </div>
@@ -996,5 +946,44 @@ FOOD_SEED_TOPICS = [
         document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
       }
     });</script>
+
+  <script>
+    async function loadDemoTrends() {
+      const SCORE_COLOR = (s) => s >= 85 ? '#22c55e' : s >= 70 ? '#f59e0b' : '#8894b0';
+      const CAT_COLORS = {
+        'Comfort Food':'#f97316','Health':'#22c55e','Asian Fusion':'#a855f7',
+        'Dessert':'#ec4899','Snacks':'#f59e0b','Meal Prep':'#2563ff','General Food':'#8894b0'
+      };
+      try {
+        const resp = await fetch('trends.json?t=' + Date.now());
+        if (!resp.ok) throw new Error('not found');
+        const data = await resp.json();
+        const container = document.getElementById('demo-trends-l6');
+        container.innerHTML = '';
+        data.trends.slice(0, 5).forEach((t, i) => {
+          const color = CAT_COLORS[t.category] || '#8894b0';
+          const sc = SCORE_COLOR(t.score);
+          container.innerHTML += `
+            <div class="demo-trend-row">
+              <div class="demo-rank">#${i+1}</div>
+              <div class="demo-trend-info">
+                <div class="demo-trend-name">${t.name}</div>
+                <div class="demo-trend-cat">${t.category} · Konfidenz: ${t.confidence}%</div>
+              </div>
+              <div class="demo-score-wrap">
+                <div class="demo-score-bar-bg">
+                  <div class="demo-score-bar" style="width:${t.score}%;background:linear-gradient(90deg,${color},${sc})"></div>
+                </div>
+                <div class="demo-score-num" style="color:${sc}">${t.score}/100</div>
+              </div>
+            </div>`;
+        });
+      } catch(e) {
+        document.getElementById('demo-trends-l6').innerHTML =
+          '<div style="text-align:center;padding:20px;color:var(--text-muted);font-size:0.85rem;">Trends werden aktualisiert...</div>';
+      }
+    }
+    loadDemoTrends();
+  </script>
 </body>
 </html>
