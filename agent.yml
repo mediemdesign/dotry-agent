@@ -1,0 +1,68 @@
+name: dotry.ai Food Trend Agent
+
+on:
+  schedule:
+    # Jeden Montag um 8:00 Uhr UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch:  # Manuell startbar per Klick
+
+# Permissions für Git Push
+permissions:
+  contents: write
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Abhängigkeiten installieren
+        run: pip install feedparser anthropic
+
+      - name: Zeige Dateistruktur
+        run: |
+          echo "=== Python Files ==="
+          find . -name "*.py" -not -path "./.git/*"
+
+      - name: Agent starten
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -f "run_agent.py" ]; then
+            echo "✅ run_agent.py gefunden im Root"
+            python3 run_agent.py
+          else
+            AGENT=$(find . -name "run_agent.py" -not -path "./.git/*" | head -1)
+            if [ -n "$AGENT" ]; then
+              echo "✅ Gefunden: $AGENT"
+              cd $(dirname $AGENT) && python3 run_agent.py
+            else
+              echo "❌ run_agent.py nicht gefunden!"
+              exit 1
+            fi
+          fi
+
+      - name: trends.json committen & pushen
+        run: |
+          git config user.name "dotry-agent[bot]"
+          git config user.email "hi@dotry.ai"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "Keine Änderungen – nichts zu committen"
+          else
+            git commit -m "🤖 Weekly trends update $(date +'%Y-%m-%d')"
+            git push origin HEAD:main
+          fi

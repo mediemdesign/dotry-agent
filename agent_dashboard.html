@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="nav.css" />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
@@ -23,11 +24,6 @@
     body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;}
 
     /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(8,12,18,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
-    .logo img{height:36px;width:auto;}
-    .logo{text-decoration:none;}
-    .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.88rem;font-weight:500;display:flex;align-items:center;gap:6px;transition:color 0.2s;}
-    .nav-back:hover{color:var(--text);}
 
     /* HERO */
     .hero {
@@ -460,45 +456,43 @@
     }
 
 
-    /* ── DROPDOWN NAV ── */
-    .lessons-dropdown-wrap{position:relative;display:inline-block;}
-    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
-    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
-    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
-    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
-    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
-    .lessons-dropdown-menu.open{display:block;}
-    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
-    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
-    .dd-track-label.g{color:#22c55e;}
-    .dd-track-label.b{color:var(--blue-light);}
-    .dd-track-label.o{color:#f97316;}
-    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
-    .dd-item:last-child{border-bottom:none;}
-    .dd-item:hover{background:rgba(37,99,255,0.07);}
-    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
-    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
-    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
-    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
-    .dd-info{flex:1;}
-    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
-    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
-    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
-    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
-    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
-    @media(max-width:640px){
-      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
-      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
-      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    }
   </style>
+
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
 </head>
 <body>
 
-  <nav>
-    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
-    <a href="lektion-06.html" class="nav-back">← Wie der Agent funktioniert</a>
-  </nav>
+  <div id="nav-placeholder"></div>
 
   <!-- HERO -->
   <div class="hero">
@@ -698,62 +692,62 @@
 
     // Eingebettete Fallback-Daten – immer sichtbar auch ohne Server
     const FALLBACK_DATA = {
-  "updated": "2026-06-01 15:53:19",
-  "stats": {
-    "sources_scanned": 15,
-    "signals_detected": 81,
-    "top_trends": 5
-  },
-  "trends": [
-    {
-      "name": "Viral Pasta Rezepte",
-      "category": "Comfort Food",
-      "score": 92,
-      "confidence": 95,
-      "description": "TikTok-Videos von kreativen Pasta-Variationen erreichen Millionen Views durch kurze, satisfying Cooking-Videos. Die Kombination aus Einfachheit und visueller Ästhetik macht diese Rezepte extrem shareable.",
-      "why_trending": "Kurze Videos, einfache Zutaten, hohe Viralität"
-    },
-    {
-      "name": "High-Protein Meal Prep",
-      "category": "Meal Prep",
-      "score": 89,
-      "confidence": 92,
-      "description": "Fitness- und Wellness-Community treibt den Trend von proteinreichen Mahlzeiten an, die sich perfekt vorbereiten lassen. Der Fokus auf Gesundheit und Body Goals spricht gezielt die Gen-Z an.",
-      "why_trending": "Fitness-Trend, Gesundheitsbewusstsein, zeitersparnis"
-    },
-    {
-      "name": "Koreanische Streetfood",
-      "category": "Asian Fusion",
-      "score": 87,
-      "confidence": 88,
-      "description": "Koreanische Küche bleibt durch authentische Streetfood-Videos und Mukbang-Content enorm beliebt auf sozialen Medien. Die visuellen und geschmacklichen Kontraste faszinieren das globale Publikum.",
-      "why_trending": "Asiatische Trends, authentische Rezepte, ASMR-Potential"
-    },
-    {
-      "name": "Chili Crisp Everything",
-      "category": "Snacks",
-      "score": 86,
-      "confidence": 85,
-      "description": "Das würzige, knusprige Topping wird auf alles gepackt und generiert massenhaft User-generated Content. Die Versatilität und das Geschmackserlebnis machen es zum perfekten Social-Media-Phänomen.",
-      "why_trending": "Vielseitig einsetzbar, Geschmacksexplosion, Trend-Phänomen"
-    },
-    {
-      "name": "Bento Box Ästhetik",
-      "category": "Meal Prep",
-      "score": 84,
-      "confidence": 83,
-      "description": "Die japanische Lunch-Kultur verbindet Funktionalität mit kunstvoller Präsentation und wird als Lifestyle-Content massiv konsumiert. Besonders auf Instagram dominieren perfekt arrangierte Bento-Boxen die Feeds.",
-      "why_trending": "Visuell perfekt, organisiert, Instagram-freundlich"
-    }
-  ],
-  "logs": [
-    "[15:53:01] Agent gestartet...",
-    "[15:53:02] 15 Food-Themen geladen",
-    "[15:53:03] Claude API analysiert Trends...",
-    "[15:53:04] 5 Top-Trends identifiziert",
-    "[15:53:05] Virality-Scores berechnet",
-    "[15:53:06] trends.json aktualisiert ✓"
-  ]
+      "updated": "2026-05-23 07:41:42",
+      "stats": {
+            "sources_scanned": 15,
+            "signals_detected": 95,
+            "top_trends": 5
+      },
+      "trends": [
+            {
+                  "name": "Chili Crisp Everything",
+                  "category": "Snacks",
+                  "score": 92,
+                  "confidence": 88,
+                  "description": "Chili Crisp als universelles Topping erobert soziale Medien. Von Pasta bis Eis – fast nichts bleibt verschont.",
+                  "why_trending": "Einfach anzuwenden, visuell spektakulär"
+            },
+            {
+                  "name": "High Protein Pasta",
+                  "category": "Health",
+                  "score": 88,
+                  "confidence": 85,
+                  "description": "Pasta aus Hülsenfrüchten explodiert auf TikTok. Gym-Community trifft Italian-Food-Lovers.",
+                  "why_trending": "Fitness-Trend trifft Comfort Food"
+            },
+            {
+                  "name": "Smash Burger Variations",
+                  "category": "Comfort Food",
+                  "score": 85,
+                  "confidence": 82,
+                  "description": "Der klassische Smash Burger entwickelt sich weiter – Korean BBQ, Birria und Mediterranean als neue Varianten.",
+                  "why_trending": "Unendliche Variationen, einfach nachzumachen"
+            },
+            {
+                  "name": "Bento Box Aesthetic",
+                  "category": "Meal Prep",
+                  "score": 81,
+                  "confidence": 79,
+                  "description": "Japanische Lunchboxen als Content-Format. Ordnung, Farbe und Portionierung dominieren Food-Instagram.",
+                  "why_trending": "Meal Prep trifft visuellen Content"
+            },
+            {
+                  "name": "Dubai Chocolate",
+                  "category": "Dessert",
+                  "score": 78,
+                  "confidence": 90,
+                  "description": "Pistachio-Tahini gefüllte Schokolade aus Dubai ist der neue virale Dessert-Hit in Europa.",
+                  "why_trending": "Exotisch, fotogen, nachmachbar"
+            }
+      ],
+      "logs": [
+            "[07:41:01] Agent gestartet...",
+            "[07:41:02] 15 Themen geladen",
+            "[07:41:03] Claude API analysiert Trends...",
+            "[07:41:04] 5 Top-Trends identifiziert",
+            "[07:41:05] Virality-Scores berechnet",
+            "[07:41:06] trends.json aktualisiert ✓"
+      ]
 };
 
     async function loadData() {
@@ -794,21 +788,6 @@
     loadData();
   </script>
   <script>
-    function toggleDropdown(btn) {
-      const isOpen = btn.classList.contains('open');
-      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
-      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
-      if (!isOpen) {
-        btn.classList.add('open');
-        document.getElementById('lessons-dropdown').classList.add('open');
-      }
-    }
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.lessons-dropdown-wrap')) {
-        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
-        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
-      }
-    });
   </script>
 </body>
 </html>
