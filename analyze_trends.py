@@ -68,8 +68,7 @@ Mindestens 3 Trends müssen Emerging oder Growing sein.
 
 Antworte NUR mit einem JSON Array:
 
-[
-{
+{{
 "name": "Trend Name",
 "category": "freie Kategorie",
 "trend_type": "Emerging",
@@ -77,8 +76,7 @@ Antworte NUR mit einem JSON Array:
 "confidence": 90,
 "description": "2 Sätze auf Deutsch warum dieser Trend viral wird.",
 "why_trending": "max 8 Wörter"
-}
-]
+}}
 
 Gib exakt 5 Trends zurück.
 Nur JSON.
