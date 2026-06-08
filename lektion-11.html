@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lektion 11: KI als persönlicher E-Mail Assistent – do try ai</title>
+  <meta name="description" content="50 E-Mails pro Tag? KI liest, priorisiert und schreibt Antworten vor – du klickst nur noch Senden. Mit kopierbaren Prompts für Gmail und Outlook." />
+  <meta name="keywords" content="KI E-Mail Assistent, Claude E-Mail schreiben, ChatGPT Outlook, E-Mail Prompts, dotry.ai Lektion 11" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/lektion-11.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dotry.ai/lektion-11.html" />
+  <meta property="og:title" content="Lektion 11: KI als persönlicher E-Mail Assistent" />
+  <meta property="og:description" content="50 E-Mails pro Tag? KI liest, priorisiert und schreibt Antworten vor." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', { analytics_storage: 'denied' });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GGV180NB9T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GGV180NB9T', { 'anonymize_ip': true });
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="nav.css" />
+
+  <style>
+    :root {
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--blue-glow:rgba(37,99,255,0.15);
+      --green:#22c55e;--green-glow:rgba(34,197,94,0.08);
+      --orange:#f97316;--yellow:#f59e0b;
+      --text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,0.07);--radius:16px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+
+    main{max-width:800px;margin:0 auto;padding:120px 24px 80px;}
+
+    .article-meta{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;}
+    .tag{background:var(--blue-glow);color:var(--blue-light);border:1px solid rgba(37,99,255,0.2);border-radius:50px;padding:4px 14px;font-size:0.75rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;}
+    .read-time{color:var(--text-muted);font-size:0.82rem;}
+    h1{font-size:clamp(1.9rem,5vw,2.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.15;margin-bottom:20px;}
+    .article-intro{font-size:1.05rem;color:var(--text-muted);line-height:1.75;margin-bottom:48px;padding-bottom:48px;border-bottom:1px solid var(--border);}
+    .article-intro strong{color:var(--text);}
+    .phase{margin:56px 0;}
+    .phase-header{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
+    .phase-icon{width:48px;height:48px;background:var(--blue-glow);border:1px solid rgba(37,99,255,0.25);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+    .phase-num{font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue-light);display:block;margin-bottom:2px;}
+    .phase-header h2{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;}
+    .article-body p{font-size:1rem;color:var(--text-muted);margin-bottom:18px;line-height:1.75;}
+    .article-body p strong{color:var(--text);}
+    .section-divider{height:1px;background:var(--border);margin:48px 0;}
+
+    .time-save{background:var(--green-glow);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius);padding:24px 28px;margin:24px 0;display:flex;align-items:center;gap:20px;}
+    .time-save-num{font-size:2.8rem;font-weight:800;color:var(--green);letter-spacing:-0.03em;flex-shrink:0;}
+    .time-save-text{font-size:0.92rem;color:var(--text-muted);line-height:1.6;}
+    .time-save-text strong{color:var(--text);}
+
+    .email-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0;}
+    .email-box{border-radius:var(--radius);overflow:hidden;}
+    .email-box-header{padding:10px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+    .email-box.before .email-box-header{background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.2);border-bottom:none;}
+    .email-box.after  .email-box-header{background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.2);border-bottom:none;}
+    .email-box-body{padding:16px;font-size:0.85rem;line-height:1.7;color:var(--text-muted);}
+    .email-box.before .email-box-body{background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.15);border-top:none;border-radius:0 0 var(--radius) var(--radius);}
+    .email-box.after  .email-box-body{background:rgba(34,197,94,0.04);border:1px solid rgba(34,197,94,0.15);border-top:none;border-radius:0 0 var(--radius) var(--radius);}
+
+    .use-cases{display:flex;flex-direction:column;gap:14px;margin:24px 0;}
+    .use-case-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.2s;}
+    .use-case-card:hover{border-color:rgba(37,99,255,0.3);}
+    .use-case-header{display:flex;align-items:center;gap:14px;padding:16px 20px;cursor:pointer;user-select:none;}
+    .use-case-emoji{font-size:1.3rem;flex-shrink:0;}
+    .use-case-title{font-size:0.95rem;font-weight:700;color:var(--text);flex:1;}
+    .use-case-time{font-size:0.72rem;font-weight:700;padding:3px 10px;border-radius:50px;background:rgba(34,197,94,0.1);color:var(--green);border:1px solid rgba(34,197,94,0.2);white-space:nowrap;}
+    .use-case-toggle{font-size:0.8rem;color:var(--text-muted);transition:transform 0.2s;}
+    .use-case-card.open .use-case-toggle{transform:rotate(180deg);}
+    .use-case-body{display:none;padding:0 20px 20px;border-top:1px solid var(--border);}
+    .use-case-card.open .use-case-body{display:block;}
+
+    .copy-box{background:var(--bg3);border:2px solid var(--blue);border-radius:var(--radius);padding:24px;margin:16px 0;position:relative;}
+    .copy-box-label{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--blue-light);margin-bottom:12px;}
+    .copy-box pre{font-family:'Plus Jakarta Sans',sans-serif;font-size:0.9rem;line-height:1.75;color:var(--text);white-space:pre-wrap;word-break:break-word;}
+    .copy-btn{position:absolute;top:16px;right:16px;background:var(--blue);color:#fff;border:none;padding:6px 14px;border-radius:50px;font-family:inherit;font-size:0.75rem;font-weight:700;cursor:pointer;transition:background 0.2s;}
+    .copy-btn:hover{background:var(--blue-light);}
+
+    .platform-tabs{display:flex;gap:8px;margin-bottom:16px;}
+    .platform-tab{display:flex;align-items:center;gap:7px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-family:inherit;font-size:0.82rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
+    .platform-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;}
+    .platform-content{display:none;}
+    .platform-content.active{display:block;}
+
+    .tip-box{background:rgba(37,99,255,0.07);border-left:3px solid var(--blue);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .tip-box strong{color:var(--blue-light)!important;}
+    .warning-box{background:rgba(245,158,11,0.07);border-left:3px solid var(--yellow);border-radius:0 var(--radius) var(--radius) 0;padding:18px 24px;margin:24px 0;}
+    .warning-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
+    .warning-box strong{color:var(--yellow)!important;}
+
+    .checklist{list-style:none;display:flex;flex-direction:column;gap:10px;margin:20px 0;}
+    .checklist li{display:flex;align-items:flex-start;gap:12px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px 18px;font-size:0.92rem;color:var(--text-muted);transition:border-color 0.2s;cursor:pointer;user-select:none;}
+    .checklist li:hover{border-color:rgba(37,99,255,0.3);color:var(--text);}
+    .checklist li.done{border-color:rgba(34,197,94,0.3);color:var(--text);}
+    .check{font-size:1rem;flex-shrink:0;margin-top:1px;}
+
+    .next-lesson{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);padding:40px;text-align:center;margin-top:64px;}
+    .done-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);color:#22c55e;border-radius:50px;padding:5px 16px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:18px;}
+    .next-lesson h3{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:10px;}
+    .next-lesson p{color:var(--text-muted)!important;font-size:0.95rem!important;margin-bottom:28px!important;}
+    .btn-primary{background:var(--blue);color:#fff;border:none;padding:13px 28px;border-radius:50px;font-family:inherit;font-size:0.95rem;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s,transform 0.15s;}
+    .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);}
+
+    .cookie-banner{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:999;background:var(--bg2);border:1px solid rgba(37,99,255,0.25);border-radius:16px;padding:20px 28px;max-width:560px;width:calc(100% - 48px);display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 40px rgba(0,0,0,0.4);animation:slideUp 0.4s ease;}
+    @keyframes slideUp{from{opacity:0;transform:translateX(-50%) translateY(20px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+    .cookie-text{font-size:0.85rem;color:var(--text-muted);line-height:1.5;}
+    .cookie-text a{color:var(--blue-light);text-decoration:none;}
+    .cookie-buttons{display:flex;gap:10px;flex-shrink:0;}
+    .cookie-accept{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:700;cursor:pointer;white-space:nowrap;}
+    .cookie-decline{background:transparent;color:var(--text-muted);border:1px solid var(--border);padding:9px 16px;border-radius:50px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;white-space:nowrap;}
+
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:0.85rem;}
+    footer a{color:var(--text-muted);text-decoration:none;}
+    footer a:hover{color:var(--text);}
+
+    @media(max-width:640px){
+      .email-compare{grid-template-columns:1fr;}
+      .time-save{flex-direction:column;text-align:center;}
+      footer{flex-direction:column;gap:12px;text-align:center;}
+      .cookie-banner{flex-direction:column;align-items:flex-start;}
+    }
+  </style>
+  
+   <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+ 
+</head>
+<body>
+
+<!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+  <main>
+
+    <div class="article-meta">
+      <span class="tag">📧 E-Mail & KI</span>
+      <span class="read-time">📖 Lektion #11 · 10 Min · 🟢 Einsteiger</span>
+    </div>
+
+    <h1>KI als persönlicher<br>E-Mail Assistent</h1>
+
+    <p class="article-intro">
+      Der durchschnittliche Büroarbeiter verbringt <strong>2,5 Stunden pro Tag</strong> mit E-Mails. Lesen, sortieren, antworten, formulieren – das frisst Zeit die du besser nutzen könntest. <strong>KI liest, priorisiert und schreibt Antworten vor.</strong> Du entscheidest nur noch ob du auf Senden klickst.
+    </p>
+
+    <div class="article-body">
+
+      <!-- PHASE 1 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">💡</div>
+          <div>
+            <span class="phase-num">Phase 1 · Impuls</span>
+            <h2>Was KI mit deinen E-Mails macht</h2>
+          </div>
+        </div>
+
+        <div class="time-save">
+          <div class="time-save-num">2,5h</div>
+          <div class="time-save-text">
+            <strong>täglich mit E-Mails verschwendet</strong> – laut McKinsey verbringen Wissensarbeiter 28% ihrer Arbeitszeit in der Inbox. Mit KI als Assistent: <strong>unter 45 Minuten</strong>. Das sind fast 2 Stunden zurück – jeden Tag.
+          </div>
+        </div>
+
+        <p>Schau dir den Unterschied an einem konkreten Beispiel an:</p>
+
+        <div class="email-compare">
+          <div class="email-box before">
+            <div class="email-box-header">😓 Ohne KI – 15 Minuten</div>
+            <div class="email-box-body">E-Mail kommt rein. Du liest sie dreimal. Du überlegst wie du antwortest. Du formulierst. Du überarbeitest. Du schickst – und bist dir immer noch nicht sicher ob der Ton passt.</div>
+          </div>
+          <div class="email-box after">
+            <div class="email-box-header">✅ Mit KI – 2 Minuten</div>
+            <div class="email-box-body">E-Mail kommt rein. Du kopierst sie in Claude. KI liefert drei Antwort-Varianten in verschiedenen Tönen. Du wählst eine, passt einen Satz an – fertig.</div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>💡 Wichtiger Hinweis:</strong> Kopiere keine vertraulichen Kundendaten in öffentliche KI-Tools. Nutze Platzhalter – z.B. "Kunde X" statt dem echten Namen.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 2 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">📋</div>
+          <div>
+            <span class="phase-num">Phase 2 · Nachmachen</span>
+            <h2>6 Situationen – 6 kopierbare Prompts</h2>
+          </div>
+        </div>
+
+        <p>Für jede E-Mail Situation gibt es einen Prompt der sofort funktioniert. Klick auf eine Situation:</p>
+
+        <div class="use-cases">
+
+          <div class="use-case-card" onclick="toggleUseCase(this)">
+            <div class="use-case-header">
+              <div class="use-case-emoji">📨</div>
+              <div class="use-case-title">E-Mail zusammenfassen & priorisieren</div>
+              <div class="use-case-time">⏱️ spart 5 Min/E-Mail</div>
+              <div class="use-case-toggle">▼</div>
+            </div>
+            <div class="use-case-body">
+              <p style="font-size:0.88rem;color:var(--text-muted);margin:12px 0;">Perfekt wenn du eine lange E-Mail bekommst und schnell wissen willst was darin steht und ob sie dringend ist.</p>
+              <div class="copy-box">
+                <div class="copy-box-label">📋 Prompt kopieren</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyPrompt(this)">Kopieren</button>
+                <pre>Fasse diese E-Mail in 3 Sätzen zusammen:
+1. Worum geht es?
+2. Was wird von mir erwartet?
+3. Wie dringend ist es? (sofort / diese Woche / kein Stress)
+
+E-Mail:
+[E-MAIL HIER EINFÜGEN]</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="use-case-card" onclick="toggleUseCase(this)">
+            <div class="use-case-header">
+              <div class="use-case-emoji">✍️</div>
+              <div class="use-case-title">Antwort schreiben – professionell & freundlich</div>
+              <div class="use-case-time">⏱️ spart 10 Min/E-Mail</div>
+              <div class="use-case-toggle">▼</div>
+            </div>
+            <div class="use-case-body">
+              <p style="font-size:0.88rem;color:var(--text-muted);margin:12px 0;">Du weißt was du sagen willst – aber die Formulierung kostet Zeit.</p>
+              <div class="copy-box">
+                <div class="copy-box-label">📋 Prompt kopieren</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyPrompt(this)">Kopieren</button>
+                <pre>Schreibe eine professionelle und freundliche Antwort auf diese E-Mail.
+
+Meine Kernaussage: [WAS DU SAGEN WILLST – in Stichworten]
+Tonfall: [professionell / locker / formell]
+Länge: [kurz (3-4 Sätze) / mittel / ausführlich]
+
+Original E-Mail:
+[E-MAIL HIER EINFÜGEN]</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="use-case-card" onclick="toggleUseCase(this)">
+            <div class="use-case-header">
+              <div class="use-case-emoji">😤</div>
+              <div class="use-case-title">Schwierige E-Mail – Absage oder schlechte Nachricht</div>
+              <div class="use-case-time">⏱️ spart 20 Min/E-Mail</div>
+              <div class="use-case-toggle">▼</div>
+            </div>
+            <div class="use-case-body">
+              <p style="font-size:0.88rem;color:var(--text-muted);margin:12px 0;">Absagen, Beschwerden oder unangenehme Nachrichten – das kostet am meisten Energie.</p>
+              <div class="copy-box">
+                <div class="copy-box-label">📋 Prompt kopieren</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyPrompt(this)">Kopieren</button>
+                <pre>Schreibe eine E-Mail die folgende schwierige Nachricht übermittelt, dabei aber respektvoll und professionell bleibt.
+
+Situation: [Was ist passiert / was muss ich mitteilen]
+Kernaussage: [Was sage ich konkret ab / was ist die schlechte Nachricht]
+Beziehung zum Empfänger: [Kunde / Kollege / Vorgesetzter / Lieferant]
+
+Bitte gib mir zwei Varianten: eine direktere und eine einfühlsamere.</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="use-case-card" onclick="toggleUseCase(this)">
+            <div class="use-case-header">
+              <div class="use-case-emoji">🔁</div>
+              <div class="use-case-title">Follow-up – höflich aber bestimmt</div>
+              <div class="use-case-time">⏱️ spart 8 Min/E-Mail</div>
+              <div class="use-case-toggle">▼</div>
+            </div>
+            <div class="use-case-body">
+              <p style="font-size:0.88rem;color:var(--text-muted);margin:12px 0;">Du hast keine Antwort bekommen und willst nachhaken ohne aufdringlich zu wirken.</p>
+              <div class="copy-box">
+                <div class="copy-box-label">📋 Prompt kopieren</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyPrompt(this)">Kopieren</button>
+                <pre>Schreibe ein höfliches Follow-up auf eine E-Mail die ich vor [X Tagen/Wochen] gesendet habe und auf die ich noch keine Antwort erhalten habe.
+
+Kontext: [Worum ging es in der ursprünglichen E-Mail]
+Dringlichkeit: [dringend / wichtig aber geduldig / low priority]
+
+Das Follow-up soll: freundlich, nicht vorwurfsvoll und maximal 4 Sätze lang sein.</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="use-case-card" onclick="toggleUseCase(this)">
+            <div class="use-case-header">
+              <div class="use-case-emoji">🌍</div>
+              <div class="use-case-title">E-Mail übersetzen & kulturell anpassen</div>
+              <div class="use-case-time">⏱️ spart 15 Min/E-Mail</div>
+              <div class="use-case-toggle">▼</div>
+            </div>
+            <div class="use-case-body">
+              <p style="font-size:0.88rem;color:var(--text-muted);margin:12px 0;">Nicht nur übersetzen – sondern auch an die Kommunikationskultur des Empfängers anpassen.</p>
+              <div class="copy-box">
+                <div class="copy-box-label">📋 Prompt kopieren</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyPrompt(this)">Kopieren</button>
+                <pre>Übersetze diese E-Mail auf [Englisch / Französisch / Italienisch] und passe sie dabei an die Kommunikationskultur des Ziellandes an.
+
+Empfänger-Land: [Land]
+Beziehung: [formell / halbformell / locker]
+
+Hinweis: Erkläre kurz ob du etwas angepasst hast und warum.
+
+E-Mail:
+[E-MAIL HIER EINFÜGEN]</pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="use-case-card" onclick="toggleUseCase(this)">
+            <div class="use-case-header">
+              <div class="use-case-emoji">📋</div>
+              <div class="use-case-title">Inbox analysieren – was ist wirklich wichtig?</div>
+              <div class="use-case-time">⏱️ spart 30 Min/Tag</div>
+              <div class="use-case-toggle">▼</div>
+            </div>
+            <div class="use-case-body">
+              <p style="font-size:0.88rem;color:var(--text-muted);margin:12px 0;">Du hast 30+ E-Mails und weißt nicht womit du anfangen sollst. KI priorisiert für dich.</p>
+              <div class="copy-box">
+                <div class="copy-box-label">📋 Prompt kopieren</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyPrompt(this)">Kopieren</button>
+                <pre>Ich habe folgende E-Mails in meiner Inbox. Bitte priorisiere sie:
+
+1. [Absender] – [Betreff] – [1 Satz worum es geht]
+2. [Absender] – [Betreff] – [1 Satz worum es geht]
+3. [Absender] – [Betreff] – [1 Satz worum es geht]
+
+Ich bin [deine Rolle]. Bitte erstelle eine Prioritätsliste:
+- 🔴 Sofort (heute)
+- 🟡 Bald (diese Woche)  
+- 🟢 Wann immer (kein Stress)
+
+Und schlage vor welche ich delegieren oder ignorieren kann.</pre>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.25rem;font-weight:800;margin-bottom:8px;">Für Gmail & Outlook – so geht es konkret</h2>
+        <p style="margin-bottom:20px;">Wähle deinen E-Mail Client:</p>
+
+        <div class="platform-tabs">
+          <button class="platform-tab active" onclick="switchPlatform('gmail', this)">📧 Gmail</button>
+          <button class="platform-tab" onclick="switchPlatform('outlook', this)">📮 Outlook</button>
+        </div>
+
+        <div id="platform-gmail" class="platform-content active">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+            <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:16px;color:var(--text);">Gmail + Claude.ai – der schnellste Weg</h3>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;gap:12px;font-size:0.88rem;color:var(--text-muted);">
+                <span style="background:var(--blue-glow);color:var(--blue-light);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;flex-shrink:0;margin-top:2px;">1</span>
+                <span>E-Mail in Gmail öffnen → Text markieren → <strong style="color:var(--text);">Strg+C</strong> kopieren</span>
+              </div>
+              <div style="display:flex;gap:12px;font-size:0.88rem;color:var(--text-muted);">
+                <span style="background:var(--blue-glow);color:var(--blue-light);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;flex-shrink:0;margin-top:2px;">2</span>
+                <span><strong style="color:var(--text);">claude.ai</strong> öffnen → Prompt einfügen → E-Mail einfügen → Enter</span>
+              </div>
+              <div style="display:flex;gap:12px;font-size:0.88rem;color:var(--text-muted);">
+                <span style="background:var(--blue-glow);color:var(--blue-light);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;flex-shrink:0;margin-top:2px;">3</span>
+                <span>Antwort kopieren → in Gmail "Antworten" einfügen → anpassen → Senden</span>
+              </div>
+            </div>
+            <div class="tip-box" style="margin-top:16px;">
+              <p><strong>💡 Tipp:</strong> Claude.ai als Lesezeichen in der Lesezeichenleiste – dann mit einem Klick erreichbar während du in Gmail arbeitest.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="platform-outlook" class="platform-content">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:24px;">
+            <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:16px;color:var(--text);">Outlook + Claude.ai – genauso einfach</h3>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="display:flex;gap:12px;font-size:0.88rem;color:var(--text-muted);">
+                <span style="background:var(--blue-glow);color:var(--blue-light);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;flex-shrink:0;margin-top:2px;">1</span>
+                <span>E-Mail in Outlook öffnen → Text markieren → <strong style="color:var(--text);">Strg+C</strong></span>
+              </div>
+              <div style="display:flex;gap:12px;font-size:0.88rem;color:var(--text-muted);">
+                <span style="background:var(--blue-glow);color:var(--blue-light);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;flex-shrink:0;margin-top:2px;">2</span>
+                <span><strong style="color:var(--text);">claude.ai</strong> öffnen → Prompt + E-Mail einfügen → Antwort generieren</span>
+              </div>
+              <div style="display:flex;gap:12px;font-size:0.88rem;color:var(--text-muted);">
+                <span style="background:var(--blue-glow);color:var(--blue-light);border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;flex-shrink:0;margin-top:2px;">3</span>
+                <span>Antwort kopieren → in Outlook "Antworten" einfügen → Senden</span>
+              </div>
+            </div>
+            <div class="tip-box" style="margin-top:16px;">
+              <p><strong>💡 Outlook Web Tipp:</strong> Wenn du Outlook im Browser nutzt – öffne Claude.ai nebeneinander im geteilten Fenster. Kein Tab-Wechseln nötig.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- PHASE 3 -->
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-icon">🚀</div>
+          <div>
+            <span class="phase-num">Phase 3 · Anwenden</span>
+            <h2>Deine erste KI-gestützte E-Mail – jetzt</h2>
+          </div>
+        </div>
+
+        <ul class="checklist">
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span><strong style="color:var(--text);">claude.ai</strong> öffnen – kostenloser Account reicht</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Einen der 6 Prompts oben kopieren – passend zur Situation</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Deine E-Mail einfügen und Claude antworten lassen</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Antwort lesen – einen Satz anpassen der nicht passt</span></li>
+          <li onclick="toggleCheck(this)"><span class="check">☐</span><span>Senden – und die gesparte Zeit zählen 🎉</span></li>
+        </ul>
+
+        <div class="warning-box">
+          <p><strong>⚠️ Die goldene Regel:</strong> KI schreibt den Entwurf – du trägst die Verantwortung. Lies jede Antwort bevor du sie sendest. Ein kurzer Check dauert 30 Sekunden und verhindert Missverständnisse.</p>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>🎯 Nächster Level:</strong> Speichere deine besten Prompts als Textbausteine. In Outlook: "Schnellbausteine", in Gmail: "Canned Responses". Einmal einrichten, immer verfügbar.</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="next-lesson">
+      <div class="done-badge">✅ Lektion 11 abgeschlossen</div>
+      <h3>Nie wieder E-Mail-Stress! 📧</h3>
+      <p>Neue Lektionen kommen jede Woche. Trag dich in den Newsletter ein damit du nichts verpasst.</p>
+      <a href="lektionen.html" class="btn-primary">Alle Lektionen →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <div class="cookie-banner" id="cookie-banner">
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="datenschutz.html">Mehr erfahren</a></p>
+    <div class="cookie-buttons">
+      <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
+      <button class="cookie-accept" onclick="acceptCookies()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleUseCase(card) { card.classList.toggle('open'); }
+
+    function switchPlatform(id, btn) {
+      document.querySelectorAll('.platform-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.platform-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('platform-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function copyPrompt(btn) {
+      const pre = btn.closest('.copy-box').querySelector('pre');
+      navigator.clipboard.writeText(pre.innerText).then(() => {
+        btn.textContent = '✓ Kopiert!';
+        btn.style.background = '#22c55e';
+        setTimeout(() => { btn.textContent = 'Kopieren'; btn.style.background = ''; }, 2000);
+      });
+    }
+
+    function toggleCheck(el) {
+      el.classList.toggle('done');
+      el.querySelector('.check').textContent = el.classList.contains('done') ? '✅' : '☐';
+    }
+
+    function acceptCookies() {
+      localStorage.setItem('cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').style.display = 'none';
+      gtag('consent', 'update', { analytics_storage: 'granted' });
+    }
+    function declineCookies() {
+      localStorage.setItem('cookie_consent', 'declined');
+      document.getElementById('cookie-banner').style.display = 'none';
+    }
+    window.addEventListener('DOMContentLoaded', () => {
+      const c = localStorage.getItem('cookie_consent');
+      if (c) document.getElementById('cookie-banner').style.display = 'none';
+      if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
+    });
+  </script>
+
+</body>
+</html>
