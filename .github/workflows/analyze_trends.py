@@ -27,7 +27,7 @@ Antworte NUR mit einem JSON Array (kein Markdown, keine Erklärung davor oder da
 Gib exakt 5 Trends zurück. Nur das JSON Array, absolut nichts anderes."""
 
     body = json.dumps({
-        "model": "claude-haiku-4-5-20251001",
+        "model": "claude-haiku-4-5",
         "max_tokens": 1000,
         "messages": [{"role": "user", "content": prompt}]
     }).encode("utf-8")
@@ -48,7 +48,7 @@ Gib exakt 5 Trends zurück. Nur das JSON Array, absolut nichts anderes."""
         data = json.loads(resp.read())
         text = data["content"][0]["text"].strip()
 
-        # Clean JSON if needed
+        # Clean JSON falls nötig
         if "```" in text:
             text = text.split("```")[1]
             if text.startswith("json"):
@@ -56,19 +56,20 @@ Gib exakt 5 Trends zurück. Nur das JSON Array, absolut nichts anderes."""
         text = text.strip()
 
         trends = json.loads(text)
-        print(f"Claude analyzed {len(trends)} trends successfully")
+        print(f"✅ Claude analyzed {len(trends)} trends successfully")
         return trends
 
     except urllib.error.HTTPError as e:
         error_body = e.read().decode()
-        print(f"Claude API error: {e.code} - {error_body}")
+        print(f"❌ Claude API error: {e.code} - {error_body}")
         return get_fallback_trends()
     except Exception as e:
-        print(f"Analysis error: {e}")
+        print(f"❌ Analysis error: {e}")
         return get_fallback_trends()
 
 
 def get_fallback_trends():
+    print("⚠️  Using fallback trends")
     return [
         {
             "name": "Chili Crisp Everything",

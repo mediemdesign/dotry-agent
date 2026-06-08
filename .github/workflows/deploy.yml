@@ -1,10 +1,12 @@
 name: dotry.ai Deploy to Cloudflare
 
 on:
+  # Startet nach erfolgreichem Agent
   workflow_run:
     workflows: ["dotry.ai Food Trend Agent"]
     types:
       - completed
+  # Auch manuell startbar
   workflow_dispatch:
 
 permissions:
@@ -32,10 +34,12 @@ jobs:
       - name: Wrangler installieren
         run: npm install -g wrangler
 
-      - name: Zeige zu deployende Files
+      - name: Files prüfen
         run: |
-          echo "=== Files ==="
-          ls -la *.html *.css *.json 2>/dev/null || true
+          echo "=== HTML Files ==="
+          ls *.html 2>/dev/null | wc -l
+          echo "=== Alle Files ==="
+          ls -la
 
       - name: Auf Cloudflare Pages deployen
         env:

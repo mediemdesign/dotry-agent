@@ -2,11 +2,9 @@ name: dotry.ai Food Trend Agent
 
 on:
   schedule:
-    # Jeden Montag um 8:00 Uhr UTC
     - cron: '0 8 * * 1'
-  workflow_dispatch:  # Manuell startbar per Klick
+  workflow_dispatch:
 
-# Permissions für Git Push
 permissions:
   contents: write
 
@@ -36,6 +34,8 @@ jobs:
         run: |
           echo "=== Python Files ==="
           find . -name "*.py" -not -path "./.git/*"
+          echo "=== Aktuelles trends.json ==="
+          cat trends.json | python3 -c "import json,sys; d=json.load(sys.stdin); print('Vor Agent - Updated:', d['updated'])" 2>/dev/null || echo "trends.json noch nicht vorhanden"
 
       - name: Agent starten
         env:
@@ -55,14 +55,26 @@ jobs:
             fi
           fi
 
+      - name: Prüfe ob trends.json aktualisiert wurde
+        run: |
+          echo "=== Nach Agent - trends.json Inhalt ==="
+          cat trends.json | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)
+          print('Updated:', d['updated'])
+          print('Trends:')
+          for t in d['trends']:
+              print(f'  - {t[\"name\"]} ({t[\"score\"]})')
+          "
+
       - name: trends.json committen & pushen
         run: |
           git config user.name "dotry-agent[bot]"
           git config user.email "hi@dotry.ai"
-          git add -A
-          if git diff --staged --quiet; then
-            echo "Keine Änderungen – nichts zu committen"
-          else
+          git status
+          git add trends.json
+          git diff --staged --quiet && echo "Keine Änderungen" || (
             git commit -m "🤖 Weekly trends update $(date +'%Y-%m-%d')"
             git push origin HEAD:main
-          fi
+            echo "✅ trends.json erfolgreich gepusht!"
+          )

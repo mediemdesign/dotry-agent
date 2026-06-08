@@ -3,9 +3,11 @@ dotry.ai Food Trend Agent
 =========================
 Starten: python3 run_agent.py
 
-API Key setzen (einmalig):
+API Key setzen (einmalig im Terminal):
   Mac/Linux: export ANTHROPIC_API_KEY=sk-ant-...
   Windows:   set ANTHROPIC_API_KEY=sk-ant-...
+
+Oder direkt hier eintragen (Zeile 16):
 """
 
 import json, os, random
@@ -13,8 +15,13 @@ from datetime import datetime
 from fetch_sources import collect_all_sources
 from analyze_trends import analyze_trends_with_claude, get_fallback_trends
 
-# API Key aus Umgebungsvariable
+# ── API KEY ──────────────────────────────────────────
+# Option A: Umgebungsvariable (empfohlen)
 API_KEY = os.environ.get("ANTHROPIC_API_KEY")
+
+# Option B: Direkt eintragen (nur lokal, nie auf Server!)
+# API_KEY = "sk-ant-..."
+# ─────────────────────────────────────────────────────
 
 def generate_logs():
     now = datetime.now()
@@ -41,6 +48,7 @@ def run_agent():
         trends = analyze_trends_with_claude(sources, API_KEY)
     else:
         print("Step 2: Kein API Key – Fallback-Daten")
+        print("  → Tipp: export ANTHROPIC_API_KEY=sk-ant-...")
         trends = get_fallback_trends()
 
     output = {
@@ -54,10 +62,8 @@ def run_agent():
         "logs": generate_logs()
     }
 
-    # trends.json immer im selben Ordner wie run_agent.py speichern
-    script_dir = os.path.dirname(os.path.abspath(__file__))
-    out_path = os.path.join(script_dir, "trends.json")
-
+    # trends.json im selben Ordner speichern
+    out_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "trends.json")
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(output, f, indent=2, ensure_ascii=False)
 
