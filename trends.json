@@ -1,58 +1,63 @@
 {
-  "updated": "2026-06-06 19:44:24",
+  "updated": "2026-06-08 08:57:11",
   "stats": {
     "sources_scanned": 15,
-    "signals_detected": 104,
+    "signals_detected": 118,
     "top_trends": 5
   },
   "trends": [
     {
-      "name": "Viral Pasta Rezepte",
-      "category": "Comfort Food",
-      "score": 92,
-      "confidence": 95,
-      "description": "TikTok-Creator teilen täglich neue Pasta-Variationen mit visuellen ASMR-Effekten. Die Kombination aus Einfachheit, visueller Attraktivität und Wiederholbarkeit macht diese Rezepte zu Dauerbrenner-Content.",
-      "why_trending": "ASMR-Effekte und einfache Zubereitung"
-    },
-    {
-      "name": "High-Protein Meal Prep",
-      "category": "Meal Prep",
-      "score": 88,
+      "name": "Pickle Flavored Foods",
+      "category": "Savory Condiment Fusion",
+      "trend_type": "Emerging",
+      "score": 89,
       "confidence": 92,
-      "description": "Fitness-orientierte Creator zeigen organisierte Meal-Prep-Videos mit hohem Proteingehalt. Der Trend verbindet Lifestyle, Gesundheit und ästhetische Organisation perfekt für Social Media.",
-      "why_trending": "Fitness-Trend und ästhetische Organisationsinhalte"
+      "description": "Die Pickle-Bewegung erweitert sich vom klassischen Snack zu umfassenden Rezeptkombinationen wie Pickle-Butter, Pickle-Chips und Pickle-infused Dressings. Die visuell auffälligen grünen Akzente und der kontraintuitive Geschmack erzeugen starken Wow-Effekt und Sharing-Potenzial.",
+      "why_trending": "Ungewöhnliche Geschmackskombination, starker Viral-Effekt"
     },
     {
-      "name": "Koreanische Streetfood",
-      "category": "Asian Fusion",
-      "score": 87,
-      "confidence": 93,
-      "description": "Koreanische Snacks und Street-Food-Rezepte dominieren Instagram Reels mit authentischen Zubereitungstechniken. Der Authentizitätstrend kombiniert mit East-Asian-Ästhetik schafft hohe Engagement-Raten.",
-      "why_trending": "Authentizität und East-Asian Food Aesthetic"
-    },
-    {
-      "name": "Smash Burger Variationen",
-      "category": "Comfort Food",
-      "score": 85,
+      "name": "Chili Crisp Everything Trend",
+      "category": "Condiment-Based Cooking",
+      "trend_type": "Growing",
+      "score": 86,
       "confidence": 88,
-      "description": "Die satisfaktive Zubereitung von Smash Burgers mit kreativen Toppings verbreitet sich viral durch Zufriedenheits-Content. Der Fokus auf Textur und Crusting spricht visuell sehr an.",
-      "why_trending": "Satisfying ASMR und visueller Zubereitungsprozess"
+      "description": "Chili Crisp wird zum universalen Finishing Touch für süße und salzige Gerichte, von Desserts bis Pasta, mit perfekter Instagram-Ästhetik durch die glänzenden roten Öltropfen. Die unkomplizierte Anwendbarkeit auf jedes Gericht und die visuell striking Präsentation treiben exponentielles Wachstum.",
+      "why_trending": "Universell einsetzbar, visuell auffällig, hohe Shareability"
     },
     {
-      "name": "Frozen Honey TikTok",
-      "category": "Snacks",
-      "score": 84,
+      "name": "Smash Burger Variations",
+      "category": "Burger Innovation",
+      "trend_type": "Emerging",
+      "score": 85,
+      "confidence": 85,
+      "description": "Über das klassische Smash Burger Konzept hinaus entstehen kreative Variationen mit unerwarteten Füllungen, internationalen Gewürzen und visuell beeindruckenden Schichtungen. Der kraftvolle Zubereitungsprozess und die perfekt knusprige Oberfläche erzeugen hypnotische, swipe-würdige Videos.",
+      "why_trending": "Innovative Zubereitungstechnik, visuelle Dynamik, Customization"
+    },
+    {
+      "name": "Frozen Honey TikTok Trend",
+      "category": "Textured Dessert Innovation",
+      "trend_type": "Peak",
+      "score": 87,
       "confidence": 91,
-      "description": "Das Trend-Phänomen gefrorener Honig mit Chewy-Textur und Geschmacksintensität erobert Gen-Z. Der niedrige Produktaufwand bei maximalem visuellen Impact macht es zum perfekten TikTok-Trend.",
-      "why_trending": "Niedriger Aufwand, maximaler visueller Impact"
+      "description": "Die transformative Textur von tiefgefrorenem Honig erzeugt ein faszinierendes Eat-ASMR-Erlebnis mit kontrastreicher goldener Optik und carameligem Geschmack. Die Einfachheit der Zubereitung kombiniert mit extremer Viralität macht dies zu einem perfekten Kurzformat-Hit.",
+      "why_trending": "ASMR-Appeal, extreme Texturkontraste, kulturelles Phänomen"
+    },
+    {
+      "name": "Birria Tacos Global Adoption",
+      "category": "International Street Food",
+      "trend_type": "Growing",
+      "score": 84,
+      "confidence": 87,
+      "description": "Birria Tacos überschreiten geografische Grenzen und werden global interpretiert mit lokalen Gewürzen und regionalen Fusionsvarianten, während das ikonische rote Öl-Dipping-Visual universell viral ist. Die Kombination aus Tradition, Geschmackskomplexität und cinematischer Präsentation treibt kontinuierliches Wachstum.",
+      "why_trending": "Internationale Fusion, visuell spektakulär, kulturelle Authentizität"
     }
   ],
   "logs": [
-    "[19:44:01] Agent gestartet...",
-    "[19:44:02] 15 Food-Themen geladen",
-    "[19:44:03] Claude API analysiert Trends...",
-    "[19:44:04] 5 Top-Trends identifiziert",
-    "[19:44:05] Virality-Scores berechnet",
-    "[19:44:06] trends.json aktualisiert ✓"
+    "[08:57:01] Agent gestartet...",
+    "[08:57:02] 15 Food-Themen geladen",
+    "[08:57:03] Claude API analysiert Trends...",
+    "[08:57:04] 5 Top-Trends identifiziert",
+    "[08:57:05] Virality-Scores berechnet",
+    "[08:57:06] trends.json aktualisiert ✓"
   ]
 }
