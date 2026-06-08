@@ -1,63 +1,63 @@
 {
-  "updated": "2026-06-08 08:57:11",
+  "updated": "2026-06-08 18:12:23",
   "stats": {
     "sources_scanned": 15,
-    "signals_detected": 118,
+    "signals_detected": 54,
     "top_trends": 5
   },
   "trends": [
     {
       "name": "Pickle Flavored Foods",
-      "category": "Savory Condiment Fusion",
+      "category": "Savory Fusion",
       "trend_type": "Emerging",
       "score": 89,
-      "confidence": 92,
-      "description": "Die Pickle-Bewegung erweitert sich vom klassischen Snack zu umfassenden Rezeptkombinationen wie Pickle-Butter, Pickle-Chips und Pickle-infused Dressings. Die visuell auffälligen grünen Akzente und der kontraintuitive Geschmack erzeugen starken Wow-Effekt und Sharing-Potenzial.",
-      "why_trending": "Ungewöhnliche Geschmackskombination, starker Viral-Effekt"
+      "confidence": 88,
+      "description": "Säuerliche Pickle-Aromen werden in unerwartete Kategorien integriert – von Desserts bis Getränke. Der kontrastive Geschmack und die virale Überraschungskomponente erzeugen massives Engagement und Sharing-Potential.",
+      "why_trending": "Unerwartete Geschmackskombination, viral surprise effect"
     },
     {
-      "name": "Chili Crisp Everything Trend",
-      "category": "Condiment-Based Cooking",
+      "name": "Chili Crisp Everything",
+      "category": "Condiment Innovation",
+      "trend_type": "Growing",
+      "score": 87,
+      "confidence": 89,
+      "description": "Chili Crisp wird zum Universal-Topping für alle Gerichte – sogar auf Desserts und in Getränken. Die Bewegung hat exponentielles Wachstum mit hochvisuellen Reels und eine noch nicht saturierte Nische.",
+      "why_trending": "Visuell spektakulär, unendlose Variationen möglich"
+    },
+    {
+      "name": "Korean Street Food Elevated",
+      "category": "International Trending",
       "trend_type": "Growing",
       "score": 86,
-      "confidence": 88,
-      "description": "Chili Crisp wird zum universalen Finishing Touch für süße und salzige Gerichte, von Desserts bis Pasta, mit perfekter Instagram-Ästhetik durch die glänzenden roten Öltropfen. Die unkomplizierte Anwendbarkeit auf jedes Gericht und die visuell striking Präsentation treiben exponentielles Wachstum.",
-      "why_trending": "Universell einsetzbar, visuell auffällig, hohe Shareability"
+      "confidence": 87,
+      "description": "Authentische koreanische Straßengerichte wie Tteokbokki und Hotteok mit modernen Twists werden global viral. Der Trend verbindet Authentizität mit innovativen Fusion-Elementen und hat extreme visuelle Appeal.",
+      "why_trending": "Authentisch, hochgradig fotogen, globaler Hype"
     },
     {
-      "name": "Smash Burger Variations",
-      "category": "Burger Innovation",
+      "name": "Frozen Honey Alchemy",
+      "category": "Dessert Innovation",
+      "trend_type": "Peak",
+      "score": 84,
+      "confidence": 85,
+      "description": "Gefrorener Honig als texturelle Basis für Desserts und Cocktails schafft unerwartete mouthfeel-Momente. Die ASMR-Komponente und visuelle Transformation garantieren Wiederansichten und Shares.",
+      "why_trending": "ASMR-Element, extreme Visuellität, Textur-Neuheit"
+    },
+    {
+      "name": "Bento Box Luxury Styling",
+      "category": "Presentation Trend",
       "trend_type": "Emerging",
       "score": 85,
-      "confidence": 85,
-      "description": "Über das klassische Smash Burger Konzept hinaus entstehen kreative Variationen mit unerwarteten Füllungen, internationalen Gewürzen und visuell beeindruckenden Schichtungen. Der kraftvolle Zubereitungsprozess und die perfekt knusprige Oberfläche erzeugen hypnotische, swipe-würdige Videos.",
-      "why_trending": "Innovative Zubereitungstechnik, visuelle Dynamik, Customization"
-    },
-    {
-      "name": "Frozen Honey TikTok Trend",
-      "category": "Textured Dessert Innovation",
-      "trend_type": "Peak",
-      "score": 87,
-      "confidence": 91,
-      "description": "Die transformative Textur von tiefgefrorenem Honig erzeugt ein faszinierendes Eat-ASMR-Erlebnis mit kontrastreicher goldener Optik und carameligem Geschmack. Die Einfachheit der Zubereitung kombiniert mit extremer Viralität macht dies zu einem perfekten Kurzformat-Hit.",
-      "why_trending": "ASMR-Appeal, extreme Texturkontraste, kulturelles Phänomen"
-    },
-    {
-      "name": "Birria Tacos Global Adoption",
-      "category": "International Street Food",
-      "trend_type": "Growing",
-      "score": 84,
-      "confidence": 87,
-      "description": "Birria Tacos überschreiten geografische Grenzen und werden global interpretiert mit lokalen Gewürzen und regionalen Fusionsvarianten, während das ikonische rote Öl-Dipping-Visual universell viral ist. Die Kombination aus Tradition, Geschmackskomplexität und cinematischer Präsentation treibt kontinuierliches Wachstum.",
-      "why_trending": "Internationale Fusion, visuell spektakulär, kulturelle Authentizität"
+      "confidence": 86,
+      "description": "Minimalistisch designte Premium-Bento-Boxen mit kurierten Zutaten und kunstvoller Anordnung werden zu Lifestyle-Content. Der Trend verbindet Ästhetik, Nachhaltigkeit und Japanische Kultur in einem perfekt inszeniertem Format.",
+      "why_trending": "Extrem fotogen, Lifestyle-Appeal, nachhaltig"
     }
   ],
   "logs": [
-    "[08:57:01] Agent gestartet...",
-    "[08:57:02] 15 Food-Themen geladen",
-    "[08:57:03] Claude API analysiert Trends...",
-    "[08:57:04] 5 Top-Trends identifiziert",
-    "[08:57:05] Virality-Scores berechnet",
-    "[08:57:06] trends.json aktualisiert ✓"
+    "[18:12:01] Agent gestartet...",
+    "[18:12:02] 15 Food-Themen geladen",
+    "[18:12:03] Claude API analysiert Trends...",
+    "[18:12:04] 5 Top-Trends identifiziert",
+    "[18:12:05] Virality-Scores berechnet",
+    "[18:12:06] trends.json aktualisiert ✓"
   ]
 }
