@@ -7,24 +7,84 @@ CLAUDE_API_URL = "https://api.anthropic.com/v1/messages"
 def analyze_trends_with_claude(raw_sources, api_key):
     topics_list = "\n".join(f"- {t}" for t in raw_sources)
 
-    prompt = f"""Du bist ein Food-Trend Analyst für Social Media. Analysiere diese aktuellen Food-Themen und wähle die 5 interessantesten Trends aus.
+    prompt = f"""Du bist ein Food Trend Scout für TikTok, Instagram Reels, YouTube Shorts und Pinterest.
 
-Themen:
+Analysiere die folgenden aktuellen Food-Themen:
+
 {topics_list}
 
-Antworte NUR mit einem JSON Array (kein Markdown, keine Erklärung davor oder danach):
+DEINE AUFGABE:
+
+Finde die 5 spannendsten AUFKOMMENDEN Food-Trends.
+
+WICHTIG:
+
+Bewerte Trends NICHT nach ihrer allgemeinen Bekanntheit.
+
+Bewerte stattdessen nach:
+
+Wachstumsgeschwindigkeit auf Social Media
+Viralität der letzten 30 Tage
+Wahrscheinlichkeit, in den nächsten 60 Tagen weiter zu wachsen
+Visuelle Attraktivität für Reels und TikTok
+Neuheitswert
+
+Priorisiere:
+
+neue Food-Konzepte
+ungewöhnliche Geschmackskombinationen
+innovative Rezeptideen
+auffällige Präsentationen
+internationale Trends, die gerade global werden
+Gerichte mit starkem "Wow-Effekt"
+
+Vermeide:
+
+dauerhaft etablierte Trends
+generische Fitness-Foods
+klassische Meal-Prep-Inhalte
+Standard-Burger
+allgemeine Pasta-Trends
+offensichtliche Dauerbrenner
+
+Die 5 Trends müssen möglichst unterschiedlich sein.
+
+Nicht mehr als:
+
+1 Dessert
+1 Protein/Fitness Trend
+1 Asian Trend
+
+Für jeden Trend bewerte zusätzlich:
+
+trend_type:
+
+Emerging
+Growing
+Peak
+Declining
+
+Mindestens 3 Trends müssen Emerging oder Growing sein.
+
+Antworte NUR mit einem JSON Array:
+
 [
-  {{
-    "name": "Trend Name (kurz, max 4 Wörter, auf Deutsch)",
-    "category": "eine von: Comfort Food, Health, Asian Fusion, Dessert, Snacks, Meal Prep",
-    "score": 85,
-    "confidence": 90,
-    "description": "2 Sätze auf Deutsch warum dieser Trend gerade auf Instagram und TikTok viral geht.",
-    "why_trending": "Ein konkreter Grund in max 8 Wörtern auf Deutsch"
-  }}
+{
+"name": "Trend Name",
+"category": "freie Kategorie",
+"trend_type": "Emerging",
+"score": 88,
+"confidence": 90,
+"description": "2 Sätze auf Deutsch warum dieser Trend viral wird.",
+"why_trending": "max 8 Wörter"
+}
 ]
 
-Gib exakt 5 Trends zurück. Nur das JSON Array, absolut nichts anderes."""
+Gib exakt 5 Trends zurück.
+Nur JSON.
+Keine Erklärungen.
+Kein Markdown.
+Keine zusätzlichen Texte."""
 
     body = json.dumps({
         "model": "claude-haiku-4-5",
