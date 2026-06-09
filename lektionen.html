@@ -30,7 +30,7 @@
 	gtag('config', 'G-GGV180NB9T');
 	</script>
 
-  <style>
+   <style>
     :root {
       --bg: #080c12;
       --bg2: #0e1420;
@@ -118,29 +118,55 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* FILTER TABS */
-    .filter-tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 36px;
-      flex-wrap: wrap;
-    }
-
-    .filter-tab {
+    /* FILTER DROPDOWN */
+    .filter-wrap { position: relative; display: inline-block; margin-bottom: 36px; }
+    .filter-btn {
+      display: flex; align-items: center; gap: 10px;
       background: var(--bg2);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(37,99,255,0.3);
       border-radius: 50px;
-      padding: 7px 18px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.2s;
+      padding: 10px 20px;
+      font-family: inherit; font-size: 0.88rem; font-weight: 700;
+      color: var(--text); cursor: pointer; transition: all 0.2s;
     }
+    .filter-btn:hover { border-color: var(--blue); }
+    .filter-btn .f-arrow { transition: transform 0.2s; font-size: 0.7rem; }
+    .filter-btn.open .f-arrow { transform: rotate(180deg); }
+    .filter-active-label { color: var(--blue-light); }
 
-    .filter-tab:hover { border-color: var(--blue); color: var(--text); }
-    .filter-tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .filter-menu {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      min-width: 260px; background: var(--bg2);
+      border: 1px solid rgba(37,99,255,0.2);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      z-index: 200; display: none; overflow: hidden;
+      animation: fddIn 0.15s ease;
+    }
+    .filter-menu.open { display: block; }
+    @keyframes fddIn { from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:translateY(0);} }
+
+    .filter-menu-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px; cursor: pointer;
+      font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .filter-menu-item:last-child { border-bottom: none; }
+    .filter-menu-item:hover { background: rgba(37,99,255,0.07); color: var(--text); }
+    .filter-menu-item.active { color: var(--blue-light); background: rgba(37,99,255,0.07); }
+    .filter-menu-item .f-check { margin-left: auto; color: var(--blue-light); font-size: 0.8rem; }
+
+    /* Track badges */
+    .filter-track-label {
+      padding: 8px 16px 4px;
+      font-size: 0.62rem; font-weight: 800;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.02);
+      border-bottom: 1px solid var(--border);
+    }
 
     /* LESSONS GRID */
     .lessons-grid {
@@ -420,37 +446,6 @@
       .cookie-banner { flex-direction: column; align-items: flex-start; }
     }
 
-    /* ── DROPDOWN NAV ── */
-    .lessons-dropdown-wrap{position:relative;display:inline-block;}
-    .lessons-dropdown-btn{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--border);border-radius:50px;padding:9px 20px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--text-muted);cursor:pointer;transition:all 0.2s;}
-    .lessons-dropdown-btn:hover{border-color:var(--blue);color:var(--text);}
-    .lessons-dropdown-btn .dd-arrow{transition:transform 0.2s;font-size:0.7rem;display:inline-block;}
-    .lessons-dropdown-btn.open .dd-arrow{transform:rotate(180deg);}
-    .lessons-dropdown-menu{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);min-width:320px;background:var(--bg2);border:1px solid rgba(37,99,255,0.2);border-radius:var(--radius);box-shadow:0 20px 60px rgba(0,0,0,0.6);z-index:500;overflow:hidden;display:none;animation:ddIn 0.15s ease;}
-    .lessons-dropdown-menu.open{display:block;}
-    @keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
-    .dd-track-label{padding:10px 16px 7px;font-size:0.65rem;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.02);border-bottom:1px solid var(--border);}
-    .dd-track-label.g{color:#22c55e;}
-    .dd-track-label.b{color:var(--blue-light);}
-    .dd-track-label.o{color:#f97316;}
-    .dd-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;transition:background 0.15s;border-bottom:1px solid var(--border);}
-    .dd-item:last-child{border-bottom:none;}
-    .dd-item:hover{background:rgba(37,99,255,0.07);}
-    .dd-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.62rem;font-weight:800;flex-shrink:0;}
-    .dd-num.g{background:rgba(34,197,94,0.1);color:#22c55e;}
-    .dd-num.b{background:rgba(37,99,255,0.15);color:var(--blue-light);}
-    .dd-num.o{background:rgba(249,115,22,0.1);color:#f97316;}
-    .dd-info{flex:1;}
-    .dd-title{font-size:0.84rem;font-weight:700;color:var(--text);}
-    .dd-meta{font-size:0.7rem;color:var(--text-muted);margin-top:1px;}
-    .dd-badge{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;}
-    .dd-badge.live{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2);}
-    .dd-badge.soon{background:rgba(255,255,255,0.04);color:var(--text-muted);border:1px solid var(--border);}
-    @media(max-width:640px){
-      .lessons-dropdown-menu{left:0;transform:none;min-width:290px;}
-      .lessons-dropdown-menu.open{animation:ddInM 0.15s ease;}
-      @keyframes ddInM{from{opacity:0;transform:translateY(-8px);}to{opacity:1;transform:translateY(0);}}
-    }
   </style>
   
   <script>
@@ -506,18 +501,52 @@
     <p class="page-intro">Jede Lektion löst ein konkretes Problem – in 15 Minuten, zum Nachmachen. Starte mit Lektion 1 und arbeite dich durch.</p>
 
     <!-- FILTER -->
-    <div class="filter-tabs">
-      <button class="filter-tab active">Alle</button>
-      <button class="filter-tab">⏱️ 15-Minuten Anleitung</button>
-      <button class="filter-tab">⚡ Vorher / Nachher</button>
-      <button class="filter-tab">📋 Prompt kopieren</button>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:0;">
+    <div class="filter-wrap">
+      <button class="filter-btn" id="filter-btn" onclick="toggleFilter()">
+        🎯 Filter: <span class="filter-active-label" id="filter-label">Alle Lektionen</span>
+        <span class="f-arrow">▼</span>
+      </button>
+      <div class="filter-menu" id="filter-menu">
+        <div class="filter-track-label">Nach Schwierigkeit</div>
+        <div class="filter-menu-item active" onclick="applyFilter('alle', 'Alle Lektionen', this)">
+          📚 Alle Lektionen <span class="f-check">✓</span>
+        </div>
+        <div class="filter-menu-item" onclick="applyFilter('einsteiger', '🟢 Einsteiger', this)">
+          🟢 Einsteiger – Kein Vorwissen
+        </div>
+        <div class="filter-menu-item" onclick="applyFilter('anwender', '🔵 Anwender', this)">
+          🔵 Anwender – Etwas KI-Erfahrung
+        </div>
+        <div class="filter-menu-item" onclick="applyFilter('technik', '🟠 Technik', this)">
+          🟠 Technik – Python Grundkenntnisse
+        </div>
+        <div class="filter-track-label">Nach Format</div>
+        <div class="filter-menu-item" onclick="applyFilter('basics', '🧠 Basics', this)">
+          🧠 Basics
+        </div>
+		<div class="filter-menu-item" onclick="applyFilter('anleitung', '⏱️ 15-Min Anleitung', this)">
+          ⏱️ 15-Minuten Anleitung
+        </div>
+        <div class="filter-menu-item" onclick="applyFilter('vorher-nachher', '⚡ Vorher / Nachher', this)">
+          ⚡ Vorher / Nachher
+        </div>
+        <div class="filter-menu-item" onclick="applyFilter('prompt', '📋 Prompt kopieren', this)">
+          📋 Prompt kopieren
+        </div>
+        <div class="filter-menu-item" onclick="applyFilter('agent', '🤖 Agent', this)">
+          🤖 Agent / Automatisierung
+        </div>
+      </div>
+    </div>
+    <div style="font-size:0.82rem;color:var(--text-muted);font-weight:600;" id="lesson-count">11 Lektionen</div>
     </div>
 
     <!-- LESSONS GRID -->
     <div class="lessons-grid">
 
       <!-- LEKTION 1 – LIVE -->
-      <a href="lektion-01.html" class="lesson-card">
+      <a href="lektion-01.html" class="lesson-card" data-tags="einsteiger anleitung prompt">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 01</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -535,7 +564,7 @@
       </a>
 
       <!-- LEKTION 2 – COMING SOON -->
-      <a href="lektion-02.html" class="lesson-card">
+      <a href="lektion-02.html" class="lesson-card" data-tags="einsteiger vorher-nachher anleitung prompt">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 02</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -553,7 +582,7 @@
       </a>
 
       <!-- LEKTION 3 – COMING SOON -->
-      <a href="lektion-03.html" class="lesson-card">
+      <a href="lektion-03.html" class="lesson-card" data-tags="einsteiger basics">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 03</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -571,7 +600,7 @@
       </a>
 
       <!-- LEKTION 4 – COMING SOON -->
-      <a href="lektion-04.html" class="lesson-card">
+      <a href="lektion-04.html" class="lesson-card" data-tags="einsteiger anleitung prompt basics">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 04</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -588,7 +617,7 @@
         </div>
       </a>
 
-      <a href="lektion-05.html" class="lesson-card">
+      <a href="lektion-05.html" class="lesson-card" data-tags="einsteiger basics">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 05</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -605,7 +634,7 @@
         </div>
       </a>
 
-      <a href="lektion-06.html" class="lesson-card">
+      <a href="lektion-06.html" class="lesson-card" data-tags="anwender agent anleitung technik">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 06</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -622,7 +651,7 @@
         </div>
       </a>
 	  
-	  <a href="lektion-07.html" class="lesson-card">
+	  <a href="lektion-07.html" class="lesson-card" data-tags="technik agent">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 07</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -639,7 +668,7 @@
         </div>
       </a>
 
-      <a href="lektion-08.html" class="lesson-card">
+      <a href="lektion-08.html" class="lesson-card" data-tags="einsteiger prompt basics">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 08</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -656,7 +685,7 @@
         </div>
       </a>
 
-      <a href="lektion-09.html" class="lesson-card">
+      <a href="lektion-09.html" class="lesson-card" data-tags="anwender prompt anleitung vorher-nachher">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 09</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -669,8 +698,8 @@
           <span class="lesson-arrow">→</span>
         </div>
       </a>
-      
-	  <a href="lektion-10.html" class="lesson-card">
+	  
+ 	  <a href="lektion-10.html" class="lesson-card" data-tags="technik agent">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 10</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -684,7 +713,7 @@
         </div>
       </a>
 
-	  <a href="lektion-11.html" class="lesson-card">
+      <a href="lektion-11.html" class="lesson-card" data-tags="einsteiger prompt vorher-nachher">
         <div class="lesson-card-top">
           <span class="lesson-num">Lektion 11</span>
           <span class="lesson-tag available">✓ Verfügbar</span>
@@ -698,8 +727,8 @@
         </div>
       </a>
 
-	</div>
-
+    </div>
+	
     <!-- COMING SOON BANNER -->
     <div class="coming-soon-banner">
       <p><strong>Neue Lektionen kommen wöchentlich.</strong><br/>Trag dich in den Newsletter ein – du bekommst eine kurze Email sobald etwas Neues live ist.</p>
@@ -764,5 +793,53 @@
         document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
       }
     });</script>
+
+  <script>
+    function toggleFilter() {
+      const btn = document.getElementById('filter-btn');
+      const menu = document.getElementById('filter-menu');
+      btn.classList.toggle('open');
+      menu.classList.toggle('open');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.filter-wrap')) {
+        document.getElementById('filter-btn').classList.remove('open');
+        document.getElementById('filter-menu').classList.remove('open');
+      }
+    });
+
+    function applyFilter(tag, label, el) {
+      // Update active state
+      document.querySelectorAll('.filter-menu-item').forEach(i => {
+        i.classList.remove('active');
+        const check = i.querySelector('.f-check');
+        if (check) check.remove();
+      });
+      el.classList.add('active');
+      el.innerHTML += '<span class="f-check">✓</span>';
+
+      // Update label
+      document.getElementById('filter-label').textContent = label;
+
+      // Close menu
+      document.getElementById('filter-btn').classList.remove('open');
+      document.getElementById('filter-menu').classList.remove('open');
+
+      // Filter cards
+      const cards = document.querySelectorAll('.lesson-card');
+      let visible = 0;
+      cards.forEach(card => {
+        const tags = card.dataset.tags || '';
+        const show = tag === 'alle' || tags.includes(tag);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+
+      // Update count
+      const countEl = document.getElementById('lesson-count');
+      if (countEl) countEl.textContent = visible + ' Lektionen';
+    }
+  </script>
 </body>
 </html>
