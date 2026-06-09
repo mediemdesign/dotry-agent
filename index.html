@@ -958,6 +958,137 @@
       .trend-mini-grid { grid-template-columns: repeat(2,1fr); }
     }
 
+
+
+    /* ── KI ASSISTENT ── */
+    .assistant-wrap {
+      margin: 0 auto;
+      max-width: 800px;
+    }
+    .assistant-box {
+      background: linear-gradient(135deg, var(--bg2), var(--bg3));
+      border: 1px solid rgba(37,99,255,0.3);
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+    }
+    .assistant-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), #a855f7, var(--green));
+    }
+    .assistant-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 24px 28px 16px;
+    }
+    .assistant-avatar {
+      width: 46px; height: 46px;
+      background: linear-gradient(135deg, var(--blue), #a855f7);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .assistant-avatar::after {
+      content: '';
+      position: absolute;
+      bottom: 1px; right: 1px;
+      width: 11px; height: 11px;
+      background: var(--green);
+      border-radius: 50%;
+      border: 2px solid var(--bg2);
+    }
+    .assistant-name { font-size: 0.95rem; font-weight: 800; color: var(--text); }
+    .assistant-status { font-size: 0.72rem; color: var(--green); font-weight: 600; }
+
+    /* CHAT */
+    .chat-window {
+      height: 240px;
+      overflow-y: auto;
+      padding: 0 28px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      scroll-behavior: smooth;
+    }
+    .chat-window::-webkit-scrollbar { width: 3px; }
+    .chat-window::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    .chat-msg { display: flex; gap: 8px; animation: msgIn 0.3s ease; }
+    .chat-msg.user { flex-direction: row-reverse; }
+    @keyframes msgIn { from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);} }
+
+    .chat-bubble {
+      max-width: 78%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+    .chat-msg.bot  .chat-bubble { background: var(--bg); border: 1px solid var(--border); color: var(--text-muted); border-bottom-left-radius: 4px; }
+    .chat-msg.user .chat-bubble { background: var(--blue); color: #fff; border-bottom-right-radius: 4px; }
+    .chat-bubble a { color: var(--blue-light); text-decoration: underline; }
+
+    .chat-sm-avatar {
+      width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; flex-shrink: 0; margin-top: 2px;
+    }
+    .chat-sm-avatar.bot  { background: linear-gradient(135deg,var(--blue),#a855f7); }
+    .chat-sm-avatar.user { background: var(--bg3); border: 1px solid var(--border); font-size:0.8rem; }
+
+    .typing-wrap { display: flex; gap: 4px; padding: 4px 2px; }
+    .t-dot { width: 6px; height: 6px; background: var(--text-muted); border-radius: 50%; animation: tDot 1.2s infinite; }
+    .t-dot:nth-child(2){animation-delay:.2s;} .t-dot:nth-child(3){animation-delay:.4s;}
+    @keyframes tDot{0%,60%,100%{transform:translateY(0);opacity:.4;}30%{transform:translateY(-5px);opacity:1;}}
+
+    /* QUICK QUESTIONS */
+    .quick-qs {
+      display: flex; flex-wrap: wrap; gap: 7px;
+      padding: 0 28px 14px;
+    }
+    .quick-q {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 50px; padding: 6px 13px;
+      font-family: inherit; font-size: 0.76rem; font-weight: 600;
+      color: var(--text-muted); cursor: pointer; transition: all 0.2s;
+    }
+    .quick-q:hover { border-color: var(--blue); color: var(--blue-light); }
+
+    /* INPUT */
+    .chat-input-row {
+      display: flex; gap: 10px;
+      padding: 14px 28px 20px;
+      border-top: 1px solid var(--border);
+    }
+    .chat-input {
+      flex: 1; background: var(--bg); border: 1px solid var(--border);
+      border-radius: 50px; padding: 10px 18px;
+      font-family: inherit; font-size: 0.86rem; color: var(--text);
+      outline: none; transition: border-color 0.2s;
+    }
+    .chat-input:focus { border-color: var(--blue); }
+    .chat-input::placeholder { color: var(--text-muted); }
+    .chat-send {
+      background: var(--blue); border: none; border-radius: 50%;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 0.9rem;
+      transition: background 0.2s, transform 0.15s; flex-shrink: 0;
+    }
+    .chat-send:hover { background: var(--blue-light); transform: scale(1.05); }
+    .chat-send:disabled { background: var(--bg3); cursor: not-allowed; transform: none; }
+    .assistant-note { font-size: 0.68rem; color: var(--text-muted); text-align: center; padding: 0 28px 14px; opacity: 0.5; }
+
+    @media(max-width:640px) {
+      .assistant-header, .chat-input-row, .quick-qs { padding-left: 18px; padding-right: 18px; }
+      .chat-window { padding: 0 18px 14px; height: 200px; }
+    }
   </style>
 
   <script>
@@ -1020,12 +1151,62 @@
 
 
 
+
+  <div class="section-divider"></div>
+
+  <!-- KI ASSISTENT -->
+  <section>
+    <div class="section-label">🤖 KI-Assistent</div>
+    <h2 class="section-title">Welche Lektion passt zu dir?</h2>
+    <p class="section-sub">Beschreibe deine Situation – der Assistent empfiehlt die passende Lektion.</p>
+
+    <div class="assistant-wrap">
+      <div class="assistant-box">
+
+        <div class="assistant-header">
+          <div class="assistant-avatar">🤖</div>
+          <div>
+            <div class="assistant-name">dotry.ai Assistent</div>
+            <div class="assistant-status">● Online · antwortet sofort</div>
+          </div>
+        </div>
+
+        <div class="chat-window" id="chat-window">
+          <div class="chat-msg bot">
+            <div class="chat-sm-avatar bot">🤖</div>
+            <div class="chat-bubble">
+              Hallo! 👋 Sag mir kurz was du dir wünschst – z.B. <em>"Ich will E-Mails schneller schreiben"</em> oder <em>"Ich bin Einsteiger"</em> – und ich empfehle dir die passende Lektion.
+            </div>
+          </div>
+        </div>
+
+        <div class="quick-qs" id="quick-qs">
+          <button class="quick-q" onclick="sendQ(this)">Ich bin Einsteiger</button>
+          <button class="quick-q" onclick="sendQ(this)">Zeit sparen im Job</button>
+          <button class="quick-q" onclick="sendQ(this)">KI für Eltern</button>
+          <button class="quick-q" onclick="sendQ(this)">Eigenen Agenten bauen</button>
+          <button class="quick-q" onclick="sendQ(this)">E-Mails schneller schreiben</button>
+        </div>
+
+        <div class="chat-input-row">
+          <input type="text" class="chat-input" id="chat-input"
+            placeholder="Deine Frage oder Situation..."
+            onkeydown="if(event.key==='Enter')sendChat()"
+            maxlength="300" />
+          <button class="chat-send" id="chat-send" onclick="sendChat()">➤</button>
+        </div>
+
+        <p class="assistant-note">Powered by Claude AI · Keine Daten werden gespeichert</p>
+      </div>
+    </div>
+  </section>
+
   <div class="section-divider"></div>
 
   <!-- LERNPFAD -->
   <section id="lernpfad">
     <div class="section-label">Dein Lernpfad</div>
-    <h2 class="section-title">10 Lektionen live.<br>Neue kommen jede Woche.</h2>
+    <h2 class="section-title">11 Lektionen live.<br>Neue kommen jede Woche.</h2>
     <p class="section-sub">Starte mit Lektion 1 – jede Lektion baut auf der vorherigen auf. Kein Vorwissen nötig.</p>
 
     <div class="lernpfad-grid">
@@ -1235,6 +1416,43 @@
     </div>
   </div>
 
+
+
+        <!-- QUICK QUESTIONS -->
+      <div class="quick-questions" id="quick-questions">
+        <button class="quick-q" onclick="sendQuickQ(this)">Ich bin Einsteiger – womit anfangen?</button>
+        <button class="quick-q" onclick="sendQuickQ(this)">Ich will Zeit sparen im Job</button>
+        <button class="quick-q" onclick="sendQuickQ(this)">Was kann KI für Eltern tun?</button>
+        <button class="quick-q" onclick="sendQuickQ(this)">Ich will einen eigenen Agenten bauen</button>
+      </div>
+
+      <!-- CHAT WINDOW -->
+      <div class="chat-window" id="chat-window">
+        <div class="chat-msg bot">
+          <div class="chat-avatar-sm bot">🤖</div>
+          <div class="chat-bubble">
+            Hallo! Ich bin der dotry.ai Assistent. Sag mir kurz was du dir wünschst – z.B. <em>"Ich will E-Mails schneller beantworten"</em> oder <em>"Ich bin Einsteiger"</em> – und ich empfehle dir die passende Lektion. 👋
+          </div>
+        </div>
+      </div>
+
+      <!-- INPUT -->
+      <div class="chat-input-wrap">
+        <input
+          type="text"
+          class="chat-input"
+          id="chat-input"
+          placeholder="Schreib deine Frage oder Situation..."
+          onkeydown="if(event.key==='Enter') sendChat()"
+          maxlength="300"
+        />
+        <button class="chat-send-btn" id="chat-send" onclick="sendChat()">➤</button>
+      </div>
+
+      <p class="assistant-note">Deine Fragen werden an Claude AI gesendet · Keine persönlichen Daten speichern</p>
+    </div>
+  </div>
+
   <div class="section-divider"></div>
 
   <!-- NEWSLETTER -->
@@ -1361,6 +1579,127 @@
     }
 
     loadTrendWidget();
+  </script>
+
+
+  <script>
+  // dotry.ai Assistent – intelligentes regelbasiertes System
+  // (Anthropic API erlaubt keine direkten Browser-Anfragen wegen CORS)
+  // Für echte API-Anbindung → server-side Proxy nötig
+
+  const LESSONS = [
+    { id: 1, title: "Richtig prompten", url: "lektion-01.html", tags: ["einsteiger","anfänger","start","prompt","schreiben","grundlagen"], time: "15 Min", track: "🟢" },
+    { id: 2, title: "Meeting zusammenfassen", url: "lektion-02.html", tags: ["meeting","besprechung","zusammenfassen","protokoll","arbeit","job","zeit"], time: "5 Min", track: "🟢" },
+    { id: 3, title: "ChatGPT vs Claude vs Perplexity", url: "lektion-03.html", tags: ["welches tool","chatgpt","claude","perplexity","vergleich","unterschied"], time: "7 Min", track: "🟢" },
+    { id: 4, title: "KI & Hausaufgaben", url: "lektion-04.html", tags: ["eltern","kinder","hausaufgaben","schule","familie"], time: "8 Min", track: "🟢" },
+    { id: 5, title: "KI-Glossar", url: "lektion-05.html", tags: ["begriffe","glossar","was ist","bedeutet","verstehen","wörter"], time: "Nachschlagen", track: "🔵" },
+    { id: 6, title: "Erster KI-Agent", url: "lektion-06.html", tags: ["agent","automatisch","selbstständig","bauen","fortgeschritten"], time: "10 Min", track: "🔵" },
+    { id: 7, title: "GitHub Actions Automatisierung", url: "lektion-07.html", tags: ["automatisierung","github","cron","technisch","python","programmierung"], time: "15 Min", track: "🟠" },
+    { id: 8, title: "KI-Inhalte erkennen", url: "lektion-08.html", tags: ["erkennen","fake","deepfake","bild","video","text","vertrauen"], time: "10 Min", track: "🟢" },
+    { id: 9, title: "Claude in Word – Mitschriften", url: "lektion-09.html", tags: ["word","mitschrift","protokoll","dokument","büro","arbeit","office"], time: "10 Min", track: "🔵" },
+    { id: 10, title: "Foto-Agent", url: "lektion-10.html", tags: ["fotos","iphone","sortieren","organisieren","bilder","automatisch","agent"], time: "20 Min", track: "🟠" },
+    { id: 11, title: "E-Mail Assistent", url: "lektion-11.html", tags: ["email","e-mail","mail","antwort","schreiben","postfach","outlook","gmail","zeit"], time: "10 Min", track: "🟢" },
+  ];
+
+  const RESPONSES = {
+    einsteiger: (matches) => `Perfekt für den Einstieg! Ich empfehle dir:
+
+${matches.map(m => `→ <a href="${m.url}">${m.track} Lektion ${m.id}: ${m.title}</a> (${m.time})`).join('
+')}
+
+Starte einfach mit Lektion 1 – die ist in 15 Minuten erledigt. 🚀`,
+    found: (matches) => `Ich habe ${matches.length === 1 ? 'die passende Lektion' : 'passende Lektionen'} für dich:
+
+${matches.map(m => `→ <a href="${m.url}">${m.track} Lektion ${m.id}: ${m.title}</a> (${m.time})`).join('
+')}
+
+Kann ich dir noch etwas empfehlen?`,
+    notfound: () => `Ich bin nicht sicher welche Lektion am besten passt. Schau dir die <a href="lektionen.html">Lektionen-Übersicht</a> an – dort kannst du nach Schwierigkeit filtern. Oder beschreibe mir genauer was du tun möchtest! 😊`,
+  };
+
+  function findLessons(text) {
+    const lower = text.toLowerCase();
+    const scored = LESSONS.map(l => {
+      const score = l.tags.filter(t => lower.includes(t)).length;
+      return { ...l, score };
+    }).filter(l => l.score > 0).sort((a,b) => b.score - a.score);
+    return scored.slice(0, 2);
+  }
+
+  function isEinsteiger(text) {
+    const t = text.toLowerCase();
+    return ['einsteiger','anfänger','neu','keine ahnung','erste mal','noch nie','wo anfangen','womit'].some(w => t.includes(w));
+  }
+
+  function generateReply(text) {
+    if (isEinsteiger(text)) {
+      const starters = LESSONS.filter(l => [1,2,11].includes(l.id));
+      return RESPONSES.einsteiger(starters);
+    }
+    const matches = findLessons(text);
+    if (matches.length > 0) return RESPONSES.found(matches);
+    return RESPONSES.notfound();
+  }
+
+  let busy = false;
+  const history = [];
+
+  function appendMsg(role, html) {
+    const win = document.getElementById('chat-window');
+    const div = document.createElement('div');
+    div.className = 'chat-msg ' + role;
+    const av = document.createElement('div');
+    av.className = 'chat-sm-avatar ' + role;
+    av.textContent = role === 'bot' ? '🤖' : '😊';
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble';
+    bubble.innerHTML = html.replace(/\n/g, '<br/>');
+    div.appendChild(av);
+    div.appendChild(bubble);
+    win.appendChild(div);
+    win.scrollTop = win.scrollHeight;
+  }
+
+  function showTyping() {
+    const win = document.getElementById('chat-window');
+    const div = document.createElement('div');
+    div.id = 'typing';
+    div.className = 'chat-msg bot';
+    div.innerHTML = '<div class="chat-sm-avatar bot">🤖</div><div class="chat-bubble"><div class="typing-wrap"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div></div></div>';
+    win.appendChild(div);
+    win.scrollTop = win.scrollHeight;
+  }
+
+  function sendChat() {
+    if (busy) return;
+    const input = document.getElementById('chat-input');
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    document.getElementById('quick-qs').style.display = 'none';
+    input.value = '';
+    appendMsg('user', msg);
+
+    busy = true;
+    document.getElementById('chat-send').disabled = true;
+    showTyping();
+
+    // Simulate thinking delay for natural feel
+    setTimeout(() => {
+      const el = document.getElementById('typing');
+      if (el) el.remove();
+      const reply = generateReply(msg);
+      appendMsg('bot', reply);
+      busy = false;
+      document.getElementById('chat-send').disabled = false;
+      input.focus();
+    }, 800 + Math.random() * 600);
+  }
+
+  function sendQ(btn) {
+    document.getElementById('chat-input').value = btn.textContent;
+    sendChat();
+  }
   </script>
 </body>
 </html>
