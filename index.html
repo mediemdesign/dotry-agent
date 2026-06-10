@@ -958,52 +958,340 @@
       .trend-mini-grid { grid-template-columns: repeat(2,1fr); }
     }
 
-
-
-
-    /* ── KI ASSISTENT ── */
-    .asst-box{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid rgba(37,99,255,0.3);border-radius:20px;overflow:hidden;position:relative;max-width:800px;margin:0 auto;}
-    .asst-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#a855f7,var(--green));}
-    .asst-head{display:flex;align-items:center;gap:14px;padding:24px 28px 16px;}
-    .asst-av{width:46px;height:46px;background:linear-gradient(135deg,var(--blue),#a855f7);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;position:relative;}
-    .asst-av::after{content:'';position:absolute;bottom:1px;right:1px;width:11px;height:11px;background:var(--green);border-radius:50%;border:2px solid var(--bg2);}
-    .asst-name{font-size:0.95rem;font-weight:800;color:var(--text);}
-    .asst-status{font-size:0.72rem;color:var(--green);font-weight:600;}
-    .asst-win{height:240px;overflow-y:auto;padding:0 28px 16px;display:flex;flex-direction:column;gap:12px;scroll-behavior:smooth;}
-    .asst-win::-webkit-scrollbar{width:3px;}
-    .asst-win::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
-    .amsg{display:flex;gap:8px;animation:amIn .3s ease;}
-    .amsg.u{flex-direction:row-reverse;}
-    @keyframes amIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-    .abbl{max-width:78%;padding:10px 14px;border-radius:14px;font-size:0.86rem;line-height:1.6;}
-    .amsg.b .abbl{background:var(--bg);border:1px solid var(--border);color:var(--text-muted);border-bottom-left-radius:4px;}
-    .amsg.u .abbl{background:var(--blue);color:#fff;border-bottom-right-radius:4px;}
-    .abbl a{color:var(--blue-light);text-decoration:underline;}
-    .aav{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;margin-top:2px;}
-    .aav.b{background:linear-gradient(135deg,var(--blue),#a855f7);}
-    .aav.u{background:var(--bg3);border:1px solid var(--border);}
-    .tdots{display:flex;gap:4px;padding:4px 2px;}
-    .td{width:6px;height:6px;background:var(--text-muted);border-radius:50%;animation:td 1.2s infinite;}
-    .td:nth-child(2){animation-delay:.2s;}.td:nth-child(3){animation-delay:.4s;}
-    @keyframes td{0%,60%,100%{transform:translateY(0);opacity:.4;}30%{transform:translateY(-5px);opacity:1;}}
-    .asst-qs{display:flex;flex-wrap:wrap;gap:7px;padding:0 28px 14px;}
-    .asst-q{background:var(--bg3);border:1px solid var(--border);border-radius:50px;padding:6px 13px;font-family:inherit;font-size:.76rem;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .2s;}
-    .asst-q:hover{border-color:var(--blue);color:var(--blue-light);}
-    .asst-inp-row{display:flex;gap:10px;padding:14px 28px 20px;border-top:1px solid var(--border);}
-    .asst-inp{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:50px;padding:10px 18px;font-family:inherit;font-size:.86rem;color:var(--text);outline:none;transition:border-color .2s;}
-    .asst-inp:focus{border-color:var(--blue);}
-    .asst-inp::placeholder{color:var(--text-muted);}
-    .asst-send{background:var(--blue);border:none;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:background .2s,transform .15s;flex-shrink:0;}
-    .asst-send:hover{background:var(--blue-light);transform:scale(1.05);}
-    .asst-send:disabled{background:var(--bg3);cursor:not-allowed;transform:none;}
-    .asst-note{font-size:.68rem;color:var(--text-muted);text-align:center;padding:0 28px 14px;opacity:.5;}
-    @media(max-width:640px){
-      .asst-head,.asst-inp-row,.asst-qs{padding-left:16px;padding-right:16px;}
-      .asst-win{padding:0 16px 14px;height:200px;}
-    }
   </style>
 
-  
+  <script>
+    // Zentraler Header laden
+    fetch('nav.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('nav-placeholder').outerHTML = html;
+        // Progress bar scroll
+        window.addEventListener('scroll', () => {
+          const doc = document.documentElement;
+          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+          const bar = document.getElementById('progress');
+          if (bar) bar.style.width = Math.min(p, 100) + '%';
+        });
+        // Dropdown toggle
+        window.toggleDropdown = function(btn) {
+          const isOpen = btn.classList.contains('open');
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          if (!isOpen) {
+            btn.classList.add('open');
+            document.getElementById('lessons-dropdown').classList.add('open');
+          }
+        };
+        document.addEventListener('click', (e) => {
+          if (!e.target.closest('.lessons-dropdown-wrap')) {
+            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
+            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
+          }
+        });
+      });
+  </script>
+</head>
+<body>
+
+  <!-- NAV -->
+  <div id="nav-placeholder"></div>
+
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">
+      <span></span> Neue Impulse jede Woche
+    </div>
+    <h1>KI im Alltag –<br>in <em>15 Minuten</em> anwendbar.</h1>
+    <p class="hero-sub">Kurze Impulse die du heute noch umsetzen kannst. Kein Jargon, keine Theorie.</p>
+    <div class="hero-social">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+      Bereits von hunderten Österreichern genutzt
+    </div>
+    <div class="hero-cta">
+      <a href="lektion-01.html" class="btn-primary">Erste Lektion starten →</a>
+      <a href="#wie" class="btn-secondary">Wie funktioniert's?</a>
+    </div>
+  </div>
+
+
+
+  <div class="section-divider"></div>
+
+  <!-- LERNPFAD -->
+  <section id="lernpfad">
+    <div class="section-label">Dein Lernpfad</div>
+    <h2 class="section-title">10 Lektionen live.<br>Neue kommen jede Woche.</h2>
+    <p class="section-sub">Starte mit Lektion 1 – jede Lektion baut auf der vorherigen auf. Kein Vorwissen nötig.</p>
+
+    <div class="lernpfad-grid">
+
+      <a href="lektion-01.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">01</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">✍️</div>
+        <h3>So bekommst du von KI was du wirklich willst</h3>
+        <p>Die 4 Zutaten eines guten Prompts – anhand eines Beispiels das jeder kennt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 15 Min · 📋 Prompt inklusive</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-02.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">02</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🎙️</div>
+        <h3>Meeting zusammenfassen – in unter 5 Minuten</h3>
+        <p>Aus einer rohen Mitschrift ein sauberes Fazit mit Tasks – mit einem einzigen Prompt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 5 Min · ⚡ Vorher / Nachher</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-03.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">03</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🔍</div>
+        <h3>ChatGPT, Claude oder Perplexity – wann nehme ich was?</h3>
+        <p>Die drei wichtigsten KI-Tools im ehrlichen Vergleich – für welche Aufgabe welches passt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 7 Min · 🔍 Vergleich</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-04.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">04</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">👨‍👩‍👧</div>
+        <h3>Mein Kind nutzt KI für Hausaufgaben – Problem oder Chance?</h3>
+        <p>Ehrliche Einschätzung für Eltern – wann KI hilft, wann sie schadet.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 8 Min · 👨‍👩‍👧 Für Eltern</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-05.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">05</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🧠</div>
+        <h3>KI-Begriffe einfach erklärt – das Glossar</h3>
+        <p>Alle Begriffe die du hörst, einfach erklärt. Mit Suchfunktion.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">🔍 Nachschlagen · 🧠 Glossar</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-06.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">06</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🤖</div>
+        <h3>Baue deinen ersten KI-Agenten</h3>
+        <p>Autonome KI die selbstständig arbeitet – Schritt für Schritt erklärt.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 10 Min · 🤖 Fortgeschritten</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-07.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">07</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">⚙️</div>
+        <h3>GitHub Actions Automatisierung</h3>
+        <p>Agent läuft vollautomatisch – jeden Montag ohne Klick.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 15 Min · 🟠 Technik</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-08.html" class="lp-card available">
+        <div class="lp-card-top">
+          <div class="lp-num">08</div>
+          <span class="lp-badge available">✓ Live</span>
+        </div>
+        <div class="lp-emoji">🔍</div>
+        <h3>KI-Inhalte erkennen & enttarnen</h3>
+        <p>Fotos, Videos, Texte – so erkennst du was KI ist.</p>
+        <div class="lp-footer">
+          <span class="lp-meta">⏱️ 10 Min · 🟢 Für alle</span>
+          <span class="lp-arrow">→</span>
+        </div>
+      </a>
+
+      <a href="lektion-09.html" class="lp-card available">
+        <div class="lp-card-top"><div class="lp-num">09</div><span class="lp-badge available">✓ Live</span></div>
+        <div class="lp-emoji">📝</div>
+        <h3>Claude in Word – Mitschriften</h3>
+        <p>Notizen → sauberes Protokoll in 3 Minuten.</p>
+        <div class="lp-footer"><span class="lp-meta">⏱️ 10 Min · 🔵 Anwender</span><span class="lp-arrow">→</span></div>
+      </a>
+
+      <a href="lektion-10.html" class="lp-card available">
+        <div class="lp-card-top"><div class="lp-num">10</div><span class="lp-badge available">✓ Live</span></div>
+        <div class="lp-emoji">📸</div>
+        <h3>iPhone Fotos automatisch sortieren</h3>
+        <p>Tausende iPhone Fotos werden sauber und automatisch in Ordner sortiert.</p>
+        <div class="lp-footer"><span class="lp-meta">⏱️ 15 Min · 🟠 Technik</span><span class="lp-arrow">→</span></div>
+      </a>	  
+
+    </div>
+
+    <div style="text-align:center; margin-top:32px;">
+      <a href="lektionen.html" class="btn-secondary" style="display:inline-flex;align-items:center;gap:8px;padding:12px 28px;">
+        Alle Lektionen ansehen →
+      </a>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- FOR WHOM -->
+  <section id="fuer-wen">
+    <div class="section-label">Für wen ist das?</div>
+    <h2 class="section-title">Für wen ist dotry.ai?</h2>
+    <p class="section-sub">Nicht für Entwickler – sondern für alle die KI endlich praktisch nutzen wollen.</p>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">💼</div>
+        <h3>Arbeitnehmer</h3>
+        <p>Die bei Meetings hören „wir müssen KI nutzen" – und endlich mitreden und mitgestalten wollen.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">👨‍👩‍👧</div>
+        <h3>Eltern</h3>
+        <p>Die verstehen wollen was ihre Kinder mit KI online machen – und es selbst sinnvoll einsetzen wollen.</p>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">⏰</div>
+        <h3>Alle ohne Zeit</h3>
+        <p>Die keine Zeit für lange Kurse haben – aber trotzdem am Ball bleiben und profitieren wollen.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="section-divider"></div>
+
+ <!-- TREND WIDGET -->
+  <section>
+    <div class="section-label">KI-Agent Live</div>
+    <h2 class="section-title">Virale Food Trends –<br>diese Woche auf Instagram</h2>
+    <p class="section-sub">Ein KI-Agent analysiert wöchentlich die heißesten Food-Trends. Powered by Claude AI.</p>
+
+    <div class="trend-widget">
+      <div class="trend-widget-header">
+        <div class="trend-widget-title">
+          <div class="trend-live-dot"></div>
+          🔥 Top 5 Food Trends – <span id="trend-kw">KI-Agent</span>
+        </div>
+        <a href="agent_dashboard.html" class="trend-widget-link">
+          Vollständige Analyse →
+        </a>
+      </div>
+      <div class="trend-mini-grid" id="trend-mini-grid">
+        <!-- Wird dynamisch geladen -->
+        <div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);font-size:0.85rem;">
+          ⏳ Trends werden geladen...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="start">
+    <div class="cta-inner">
+      <h2>Bereit loszulegen?</h2>
+      <p>Starte jetzt mit deiner ersten kostenlosen Lektion. Keine Anmeldung nötig.</p>
+      <a href="lektion-01.html" class="btn-primary" style="font-size:1.1rem; padding: 17px 40px;">
+        Erste Lektion starten →
+      </a>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- NEWSLETTER -->
+  <div class="newsletter-section">
+    <div class="newsletter-inner">
+      <div class="newsletter-label">📬 Newsletter</div>
+      <h2 class="newsletter-title">Kurze KI-Impulse –<br>direkt in dein Postfach.</h2>
+      <p class="newsletter-sub">Einmal pro Woche. Kein Spam. Jederzeit abmeldbar.</p>
+      <div class="newsletter-success" id="newsletter-success">
+        ✅ Super – du bist dabei! Schau bald in dein Postfach.
+      </div>
+      <form class="newsletter-form" id="newsletter-form"
+            action="https://formspree.io/f/meedewoj"
+            method="POST">
+        <input type="email" name="email" placeholder="deine@email.com" required />
+        <button type="submit">Anmelden →</button>
+      </form>
+      <p class="newsletter-hint">✓ Kostenlos &nbsp;·&nbsp; ✓ Kein Spam &nbsp;·&nbsp; ✓ Jederzeit abmeldbar</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="/" class="logo">
+      <img src="logo.png" alt="do try ai" style="height:28px;" />
+    </a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex; gap:20px; align-items:center;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="impressum.html">Impressum</a>
+      <a href="datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+
+  <script>
+    // Newsletter Form
+    const form = document.getElementById('newsletter-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: data,
+            headers: { 'Accept': 'application/json' }
+          });
+          if (response.ok) {
+            form.style.display = 'none';
+            document.getElementById('newsletter-success').style.display = 'block';
+          }
+        } catch (err) {
+          console.error('Form error:', err);
+        }
+      });
+    }
+  </script>
 
   <script>
     function toggleDropdown(btn) {
@@ -1073,114 +1361,6 @@
     }
 
     loadTrendWidget();
-  </script>
-
-
-
-  <script>
-  (function() {
-    var LL = [
-      {id:1,  t:"Richtig prompten",              u:"lektion-01.html", k:["einsteiger","anfänger","start","prompt","schreiben","grundlagen","neu","erste mal","womit anfangen"], tk:"🟢", tm:"15 Min"},
-      {id:2,  t:"Meeting zusammenfassen",         u:"lektion-02.html", k:["meeting","besprechung","zusammenfassen","protokoll","arbeit","job","zeit sparen"], tk:"🟢", tm:"5 Min"},
-      {id:3,  t:"ChatGPT vs Claude vs Perplexity",u:"lektion-03.html", k:["welches tool","chatgpt","claude","perplexity","vergleich","unterschied","welche ki"], tk:"🟢", tm:"7 Min"},
-      {id:4,  t:"KI & Hausaufgaben",              u:"lektion-04.html", k:["eltern","kinder","hausaufgaben","schule","familie","lernen"], tk:"🟢", tm:"8 Min"},
-      {id:5,  t:"KI-Glossar",                     u:"lektion-05.html", k:["begriffe","glossar","was ist","bedeutet","verstehen","wörter","definiti"], tk:"🔵", tm:"Nachschlagen"},
-      {id:6,  t:"Erster KI-Agent",                u:"lektion-06.html", k:["agent","automatisch","selbstständig","bauen","fortgeschritten","automatisier"], tk:"🔵", tm:"10 Min"},
-      {id:7,  t:"GitHub Actions",                 u:"lektion-07.html", k:["github","cron","python","programmier","technisch","automatisier","schedule"], tk:"🟠", tm:"15 Min"},
-      {id:8,  t:"KI-Inhalte erkennen",            u:"lektion-08.html", k:["erkennen","fake","deepfake","bild","video","vertrauen","echt","manipuliert"], tk:"🟢", tm:"10 Min"},
-      {id:9,  t:"Claude in Word",                 u:"lektion-09.html", k:["word","mitschrift","protokoll","dokument","büro","office","besprechung"], tk:"🔵", tm:"10 Min"},
-      {id:10, t:"Foto-Agent",                     u:"lektion-10.html", k:["foto","fotos","iphone","sortieren","organisieren","bilder","galerie","album"], tk:"🟠", tm:"20 Min"},
-      {id:11, t:"E-Mail Assistent",               u:"lektion-11.html", k:["email","e-mail","mail","antwort","schreiben","postfach","outlook","gmail","korrespondenz"], tk:"🟢", tm:"10 Min"},
-    ];
-
-    var busy = false;
-
-    function addMsg(role, html) {
-      var win = document.getElementById('awin');
-      var d = document.createElement('div');
-      d.className = 'amsg ' + (role === 'bot' ? 'b' : 'u');
-      var av = document.createElement('div');
-      av.className = 'aav ' + (role === 'bot' ? 'b' : 'u');
-      av.textContent = role === 'bot' ? '🤖' : '😊';
-      var bl = document.createElement('div');
-      bl.className = 'abbl';
-      bl.innerHTML = html.replace(/\n/g, '<br>');
-      d.appendChild(av);
-      d.appendChild(bl);
-      win.appendChild(d);
-      win.scrollTop = win.scrollHeight;
-    }
-
-    function showDots() {
-      var win = document.getElementById('awin');
-      var d = document.createElement('div');
-      d.id = 'adots';
-      d.className = 'amsg b';
-      d.innerHTML = '<div class="aav b">🤖</div><div class="abbl"><div class="tdots"><div class="td"></div><div class="td"></div><div class="td"></div></div></div>';
-      win.appendChild(d);
-      win.scrollTop = win.scrollHeight;
-    }
-
-    function hideDots() {
-      var el = document.getElementById('adots');
-      if (el) el.remove();
-    }
-
-    function getReply(txt) {
-      var t = txt.toLowerCase();
-      var isNew = ['einsteiger','anfänger','neu','keine ahnung','erste mal','womit','wo anfangen','beginner'].some(function(w){ return t.includes(w); });
-      if (isNew) {
-        return 'Perfekt für den Einstieg! 🎉 Starte hier:
-
-→ <a href="lektion-01.html">🟢 Lektion 1: Richtig prompten</a> (15 Min)
-→ <a href="lektion-02.html">🟢 Lektion 2: Meeting zusammenfassen</a> (5 Min)
-→ <a href="lektion-11.html">🟢 Lektion 11: E-Mail Assistent</a> (10 Min)
-
-Lektion 1 ist der beste Startpunkt – danach folgt alles andere!';
-      }
-      var scored = LL.map(function(l) {
-        var s = l.k.filter(function(k){ return t.includes(k); }).length;
-        return {l:l, s:s};
-      }).filter(function(x){ return x.s > 0; }).sort(function(a,b){ return b.s - a.s; });
-
-      if (scored.length === 0) {
-        return 'Ich bin nicht ganz sicher welche Lektion am besten passt. Beschreib mir genauer was du tun möchtest – oder schau in die <a href="lektionen.html">Lektionen-Übersicht</a> und filtere nach deinem Level. 😊';
-      }
-      var top = scored.slice(0, 2).map(function(x){ return x.l; });
-      var links = top.map(function(l){ return '→ <a href="'+l.u+'">'+l.tk+' Lektion '+l.id+': '+l.t+'</a> ('+l.tm+')'; }).join('
-');
-      return 'Das passt gut zu dir:
-
-' + links + '
-
-Darf ich noch etwas empfehlen?';
-    }
-
-    window.aDoSend = function() {
-      if (busy) return;
-      var inp = document.getElementById('ainp');
-      var msg = inp.value.trim();
-      if (!msg) return;
-      document.getElementById('aqs').style.display = 'none';
-      inp.value = '';
-      addMsg('user', msg);
-      busy = true;
-      document.getElementById('asnd').disabled = true;
-      showDots();
-      setTimeout(function() {
-        hideDots();
-        addMsg('bot', getReply(msg));
-        busy = false;
-        document.getElementById('asnd').disabled = false;
-        inp.focus();
-      }, 700 + Math.random() * 500);
-    };
-
-    window.aSendQ = function(btn) {
-      document.getElementById('ainp').value = btn.textContent;
-      window.aDoSend();
-    };
-  })();
   </script>
 </body>
 </html>
