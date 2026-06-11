@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lektion 7: Automatisierung mit GitHub Actions – do try ai</title>
+  <title>Session 7: Automatisierung mit GitHub Actions – do try ai</title>
   <meta name="description" content="Den KI-Agent vollautomatisch laufen lassen – jeden Montag, ohne einen Finger zu rühren. GitHub Actions macht es möglich." />
-  <meta name="keywords" content="GitHub Actions automatisierung, KI Agent automatisch, Cron Job Python, dotry.ai Lektion 7" />
+  <meta name="keywords" content="GitHub Actions automatisierung, KI Agent automatisch, Cron Job Python, dotry.ai Session 7" />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://dotry.ai/lektion-07" />
+  <link rel="canonical" href="https://dotry.ai/lektion-07.html" />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://dotry.ai/lektion-07" />
-  <meta property="og:title" content="Lektion 7: Automatisierung mit GitHub Actions" />
+  <meta property="og:url" content="https://dotry.ai/lektion-07.html" />
+  <meta property="og:title" content="Session 7: Automatisierung mit GitHub Actions" />
   <meta property="og:description" content="Den KI-Agent vollautomatisch laufen lassen – jeden Montag, ohne einen Finger zu rühren." />
   <meta property="og:image" content="https://dotry.ai/logo.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
@@ -311,7 +311,784 @@
       footer{flex-direction:column;gap:12px;text-align:center;}
       .cookie-banner{flex-direction:column;align-items:flex-start;}
     }
-  </style>
+  
+/* GLOBAL FIX: scrollbares Sessions-Dropdown */
+.lessons-dropdown-menu {
+  max-height: min(72vh, 620px) !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.lessons-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lessons-dropdown-menu::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+}
+
+.lessons-dropdown-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (max-width: 768px) {
+  .lessons-dropdown-menu {
+    max-height: min(68vh, 520px) !important;
+    left: auto !important;
+    right: 0 !important;
+    transform: none !important;
+    min-width: min(92vw, 340px) !important;
+  }
+}
+
+  
+/* GLOBAL FIX: Scroll-Fortschrittsbalken */
+.progress-bar {
+  position: fixed;
+  top: 77px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  z-index: 99;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light));
+  transition: width 0.1s linear;
+}
+
+@media (max-width: 768px) {
+  .progress-bar {
+    top: 73px;
+  }
+}
+
+
+/* GLOBAL FIX: sichtbarer Scroll-Fortschrittsbalken für Sessions */
+.dotry-scroll-progress {
+  position: fixed !important;
+  top: 76px !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  height: 4px !important;
+  background: rgba(255,255,255,0.08) !important;
+  z-index: 9999 !important;
+  pointer-events: none !important;
+}
+
+.dotry-scroll-progress-fill {
+  display: block !important;
+  height: 100% !important;
+  width: 0%;
+  background: linear-gradient(90deg, #2563ff, #4d85ff) !important;
+  box-shadow: 0 0 12px rgba(77,133,255,0.65) !important;
+  transition: width 0.08s linear !important;
+}
+
+@media (max-width: 768px) {
+  .dotry-scroll-progress {
+    top: 72px !important;
+  }
+}
+
+
+/* ── KI-KOMPASS / GAMIFICATION V1 ── */
+.ai-progress-chip {
+  position: fixed;
+  top: 88px;
+  right: 18px;
+  z-index: 9998;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(14,20,32,0.92);
+  border: 1px solid rgba(37,99,255,0.24);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 800;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+  backdrop-filter: blur(14px);
+}
+
+.ai-progress-chip span {
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.ai-progress-chip strong {
+  color: var(--blue-light);
+}
+
+.ai-compass-card {
+  background: linear-gradient(135deg, var(--bg2), var(--bg3));
+  border: 1px solid rgba(37,99,255,0.24);
+  border-radius: 24px;
+  padding: 32px;
+  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-compass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), #a855f7, #22c55e);
+}
+
+.ai-compass-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.ai-compass-title h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.ai-compass-title p {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  max-width: 560px;
+}
+
+.ai-compass-status {
+  background: rgba(8,12,18,0.42);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px 18px;
+  min-width: 210px;
+}
+
+.ai-level {
+  font-size: 1rem;
+  font-weight: 900;
+  color: var(--blue-light);
+  margin-bottom: 6px;
+}
+
+.ai-level-meta {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.ai-compass-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.ai-compass-wheel {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  background:
+    radial-gradient(circle at center, rgba(8,12,18,0.95) 0 34%, transparent 35%),
+    conic-gradient(
+      var(--compass-1, rgba(255,255,255,0.07)) 0deg 60deg,
+      var(--compass-2, rgba(255,255,255,0.07)) 60deg 120deg,
+      var(--compass-3, rgba(255,255,255,0.07)) 120deg 180deg,
+      var(--compass-4, rgba(255,255,255,0.07)) 180deg 240deg,
+      var(--compass-5, rgba(255,255,255,0.07)) 240deg 300deg,
+      var(--compass-6, rgba(255,255,255,0.07)) 300deg 360deg
+    );
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 0 0 10px rgba(8,12,18,0.72), 0 18px 48px rgba(0,0,0,0.28);
+}
+
+.ai-compass-wheel::after {
+  content: '🧭';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--bg2);
+  border: 1px solid rgba(37,99,255,0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  box-shadow: 0 0 26px rgba(37,99,255,0.16);
+}
+
+.ai-compass-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.ai-skill {
+  background: rgba(8,12,18,0.42);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.ai-skill-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.ai-skill.unlocked {
+  border-color: rgba(37,99,255,0.32);
+}
+
+.ai-skill.unlocked .ai-skill-dot {
+  background: var(--blue);
+  border-color: var(--blue-light);
+  box-shadow: 0 0 12px rgba(77,133,255,0.65);
+}
+
+.ai-skill-name {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.ai-skill-desc {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.ai-energy-wrap {
+  margin-top: 24px;
+  background: rgba(8,12,18,0.42);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.ai-energy-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.ai-energy-head span {
+  color: var(--text-muted);
+}
+
+.ai-energy-bar {
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+
+.ai-energy-fill {
+  height: 100%;
+  width: 0%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue), var(--blue-light), #22c55e);
+  transition: width 0.25s ease;
+}
+
+.ai-next-box {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+.ai-next-box a {
+  color: #fff;
+  background: var(--blue);
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.ai-session-complete {
+  margin: 48px 0 0;
+  background: linear-gradient(135deg, rgba(37,99,255,0.16), rgba(34,197,94,0.1));
+  border: 1px solid rgba(37,99,255,0.28);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.ai-session-complete h3 {
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.ai-session-complete p {
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.ai-complete-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 13px 22px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.ai-complete-btn:hover {
+  background: var(--blue-light);
+  transform: translateY(-1px);
+}
+
+.ai-complete-btn.done {
+  background: #22c55e;
+}
+
+@media (max-width: 900px) {
+  .ai-compass-head,
+  .ai-compass-layout {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+  .ai-compass-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .ai-compass-list {
+    grid-template-columns: 1fr;
+  }
+  .ai-progress-chip {
+    position: static;
+    margin: 12px auto 0;
+    width: fit-content;
+  }
+}
+
+
+/* ── KI-KOMPASS V2: Abschluss-Feedback ── */
+.ai-unlock-feedback {
+  display: none;
+  margin-top: 18px;
+  background: rgba(34,197,94,0.10);
+  border: 1px solid rgba(34,197,94,0.26);
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--text);
+}
+
+.ai-unlock-feedback.show {
+  display: block;
+  animation: aiFeedbackIn 0.28s ease both;
+}
+
+@keyframes aiFeedbackIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ai-unlock-feedback strong {
+  color: #22c55e;
+}
+
+.ai-session-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+
+/* ── KI-KOMPASS V5: Abschluss-Feedback ── */
+.ai-unlock-feedback {
+  display: none;
+  margin-top: 18px;
+  background: rgba(34,197,94,0.10);
+  border: 1px solid rgba(34,197,94,0.26);
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--text);
+}
+.ai-unlock-feedback.show {
+  display: block;
+}
+.ai-unlock-feedback strong {
+  color: #22c55e;
+}
+.ai-session-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+.ai-session-complete {
+  scroll-margin-top: 120px;
+}
+#ki-kompass {
+  scroll-margin-top: 110px;
+}
+
+
+/* ── MERGED SESSION CTA ── */
+.ai-session-complete.merged {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.ai-session-done-panel,
+.ai-session-next-panel {
+  background: rgba(8,12,18,0.36);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+}
+
+.ai-session-next-kicker {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 10px;
+}
+
+.ai-session-next-title {
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1.25;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.ai-session-next-desc {
+  color: var(--text-muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.ai-session-next-panel .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (max-width: 820px) {
+  .ai-session-complete.merged {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ── CLEAN SESSION CTA V7 ── */
+.ai-session-complete.clean {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+
+.ai-session-complete.clean .ai-session-done-panel,
+.ai-session-complete.clean .ai-session-next-panel {
+  background: rgba(8,12,18,0.36);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px 24px;
+}
+
+.ai-session-complete.clean .ai-session-next-panel {
+  text-align: center;
+}
+
+.ai-session-complete.clean .ai-session-next-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(37,99,255,0.12);
+  border: 1px solid rgba(37,99,255,0.24);
+  border-radius: 999px;
+  padding: 6px 13px;
+  color: var(--blue-light);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.ai-session-complete.clean .ai-session-next-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.22;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.ai-session-complete.clean .ai-session-next-desc {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto 24px;
+}
+
+.ai-session-complete.clean .ai-next-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 900;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+
+.ai-session-complete.clean .ai-next-primary:hover {
+  background: var(--blue-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(37,99,255,0.35);
+}
+
+@media (max-width: 820px) {
+  .ai-session-complete.clean {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* KI-Kompass V2 */
+.ai-next-milestone{
+  margin-top:18px;
+  padding:14px;
+  border:1px solid var(--border);
+  border-radius:14px;
+  background:rgba(255,255,255,0.03);
+}
+.ai-next-milestone strong{display:block;margin-bottom:6px}
+.ai-skilltree{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px;
+}
+.ai-node{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  font-size:.85rem;
+}
+.ai-node.done{background:rgba(34,197,94,.15)}
+.ai-node.current{background:rgba(37,99,255,.15)}
+
+
+/* ── DYNAMIC KI-KOMPASS + CLEAN CTA V9 ── */
+.ai-compass-dynamic-meta {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.ai-dyn-card {
+  background: rgba(8,12,18,0.36);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+}
+.ai-dyn-card strong {
+  display: block;
+  color: var(--text);
+  font-size: 0.86rem;
+  margin-bottom: 4px;
+}
+.ai-dyn-card span {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+.ai-skilltree.dynamic {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+.ai-node {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+.ai-node.done {
+  background: rgba(34,197,94,.14);
+  border-color: rgba(34,197,94,.28);
+  color: #22c55e;
+}
+.ai-node.current {
+  background: rgba(37,99,255,.14);
+  border-color: rgba(37,99,255,.32);
+  color: var(--blue-light);
+}
+.ai-session-complete.clean {
+  width: 100%;
+  max-width: 100%;
+  margin: 48px auto 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  align-items: stretch;
+}
+.ai-session-complete.clean .ai-session-done-panel,
+.ai-session-complete.clean .ai-session-next-panel {
+  background: rgba(8,12,18,0.36);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 26px 24px;
+}
+.ai-session-complete.clean .ai-session-next-panel {
+  text-align: center;
+}
+.ai-session-complete.clean .ai-session-next-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(37,99,255,0.12);
+  border: 1px solid rgba(37,99,255,0.24);
+  border-radius: 999px;
+  padding: 6px 13px;
+  color: var(--blue-light);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.ai-session-complete.clean .ai-session-next-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.22;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.ai-session-complete.clean .ai-session-next-desc {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0 auto 24px;
+}
+.ai-session-complete.clean .ai-next-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-weight: 900;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.ai-session-complete.clean .ai-next-primary:hover {
+  background: var(--blue-light);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(37,99,255,0.35);
+}
+.ai-unlock-feedback {
+  display: none;
+  margin-top: 18px;
+  background: rgba(34,197,94,0.10);
+  border: 1px solid rgba(34,197,94,0.26);
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--text);
+}
+.ai-unlock-feedback.show { display: block; }
+.ai-unlock-feedback strong { color: #22c55e; }
+.ai-session-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+#ki-kompass, .ai-session-complete { scroll-margin-top: 110px; }
+@media (max-width: 900px) {
+  .ai-compass-dynamic-meta { grid-template-columns: 1fr; }
+}
+@media (max-width: 820px) {
+  .ai-session-complete.clean { grid-template-columns: 1fr; }
+}
+
+
+/* ── FINAL SESSION CTA STANDARD ── */
+.session-final-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 72px 0 32px;
+  clear: both;
+}
+
+main > .ai-session-complete.clean {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto 32px !important;
+  grid-column: 1 / -1 !important;
+  clear: both !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  gap: 22px !important;
+  align-items: stretch !important;
+}
+
+main > .ai-session-complete.clean .ai-session-done-panel,
+main > .ai-session-complete.clean .ai-session-next-panel {
+  min-height: 100%;
+}
+
+@media (max-width: 820px) {
+  main > .ai-session-complete.clean {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+</style>
   
   <script>
     // Zentraler Header laden
@@ -351,7 +1128,7 @@
   "@type": "Course",
   "name": "Automatisierung mit GitHub Actions",
   "description": "Den KI-Agent vollautomatisch laufen lassen – jeden Montag, ohne einen Finger zu rühren. GitHub Actions macht es möglich.",
-  "url": "https://dotry.ai/lektion-07",
+  "url": "https://dotry.ai/lektion-07.html",
   "inLanguage": "de-AT",
   "provider": {
     "@type": "Organization",
@@ -363,6 +1140,11 @@
 </head>
 <body>
 
+  <div class="dotry-scroll-progress" aria-hidden="true">
+    <div class="dotry-scroll-progress-fill" id="dotry-scroll-progress-fill"></div>
+  </div>
+
+
   <nav>
     <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
 
@@ -373,7 +1155,7 @@
   </nav>
 
     <div class="qn-track">
-      <a href="/lektion-07" class="quick-nav-item active"><span class="qn-num"></span></a>
+      <a href="/lektion-07.html" class="quick-nav-item active"><span class="qn-num"></span></a>
     </div>
   </div>
 
@@ -381,16 +1163,15 @@
   <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 
   <main>
-
-    <div class="article-meta">
+<div class="article-meta">
       <span class="tag">⚙️ Automatisierung</span>
-      <span class="read-time">📖 Lektion #7 · 15 Min · 🟠 Technik-Track</span>
+      <span class="read-time">📖 Session #7 · 15 Min · 🟠 Technik-Track</span>
     </div>
 
     <h1>Automatisierung mit<br>GitHub Actions</h1>
 
     <p class="article-intro">
-      Der Agent aus Lektion 6 läuft – aber du musst ihn noch manuell starten. <strong>Das ändern wir jetzt.</strong> Mit GitHub Actions läuft der Agent jeden Montag automatisch, aktualisiert die Trends und niemand muss einen Finger rühren. Einmal einrichten – für immer automatisch.
+      Der Agent aus Session 6 läuft – aber du musst ihn noch manuell starten. <strong>Das ändern wir jetzt.</strong> Mit GitHub Actions läuft der Agent jeden Montag automatisch, aktualisiert die Trends und niemand muss einen Finger rühren. Einmal einrichten – für immer automatisch.
     </p>
 
     <div class="article-body">
@@ -598,28 +1379,40 @@
 
     </div>
 
-    <!-- NEXT LESSON -->
-    <div class="next-lesson">
-      <div class="done-badge">✅ Lektion 7 abgeschlossen</div>
-      <h3>Nächste Lektion:<br>KI-Inhalte erkennen & enttarnen</h3>
-      <p>Wie erkennst du KI-generierte Fotos, Videos und Texte? Mit konkreten Zeichen und kostenlosen Tools.</p>
-      <a href="/lektion-08" class="btn-primary">Weiter zu Lektion 8 →</a>
+  <div class="session-final-divider" aria-hidden="true"></div>
+
+  <section class="ai-session-complete clean" id="session-complete">
+    <div class="ai-session-done-panel">
+      <h3>🎉 Session 7 abschließen</h3>
+      <p>Übertrage diese Session in deinen KI-Kompass. Danach siehst du sofort, welche Fähigkeit freigeschaltet wurde.</p>
+      <div class="ai-session-actions">
+        <button type="button" class="ai-complete-btn" data-complete-session="7" onclick="dotryCompleteSession(7)">In KI-Kompass übertragen</button>
+      </div>
+      <div class="ai-unlock-feedback" data-unlock-feedback></div>
     </div>
 
-  </main>
+    <div class="ai-session-next-panel">
+      <div class="ai-session-next-kicker">Als Nächstes</div>
+      <div class="ai-session-next-title">Session 8: KI-Inhalte erkennen &amp; enttarnen</div>
+      <p class="ai-session-next-desc">Du lernst, KI-generierte Inhalte besser zu erkennen und kritisch zu prüfen.</p>
+      <a href="/lektion-08.html" class="ai-next-primary">Weiter zu Session 8 →</a>
+    </div>
+
+  </section>
+</main>
 
   <footer>
     <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
     <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
     <div style="display:flex;gap:20px;">
       <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
-      <a href="/impressum">Impressum</a>
-      <a href="/datenschutz">Datenschutz</a>
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
     </div>
   </footer>
 
   <div class="cookie-banner" id="cookie-banner">
-    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="/datenschutz">Mehr erfahren</a></p>
+    <p class="cookie-text"><strong>🍪 Kurze Info:</strong> Wir nutzen Google Analytics – anonym. <a href="/datenschutz.html">Mehr erfahren</a></p>
     <div class="cookie-buttons">
       <button class="cookie-decline" onclick="declineCookies()">Ablehnen</button>
       <button class="cookie-accept" onclick="acceptCookies()">OK</button>
@@ -678,6 +1471,311 @@
       if (c === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
     });
   </script>
+
+
+<script>
+  // Sichtbarer Scroll-Fortschritt für Sessions
+  (function() {
+    function updateDotryScrollProgress() {
+      var doc = document.documentElement;
+      var body = document.body;
+      var scrollTop = doc.scrollTop || body.scrollTop || 0;
+      var scrollHeight = Math.max(
+        body.scrollHeight, doc.scrollHeight,
+        body.offsetHeight, doc.offsetHeight,
+        body.clientHeight, doc.clientHeight
+      );
+      var viewport = window.innerHeight || doc.clientHeight;
+      var maxScroll = Math.max(scrollHeight - viewport, 1);
+      var percent = Math.min(Math.max((scrollTop / maxScroll) * 100, 0), 100);
+      var bar = document.getElementById('dotry-scroll-progress-fill');
+      if (bar) bar.style.width = percent + '%';
+    }
+
+    window.addEventListener('scroll', updateDotryScrollProgress, { passive: true });
+    window.addEventListener('resize', updateDotryScrollProgress);
+    document.addEventListener('DOMContentLoaded', updateDotryScrollProgress);
+    setTimeout(updateDotryScrollProgress, 250);
+    updateDotryScrollProgress();
+  })();
+</script>
+
+
+
+
+
+
+
+
+<script>
+/* dotry.ai KI-Kompass V9 DYNAMIC */
+(function () {
+  var STORAGE_KEY = "dotry_ai_progress_v1";
+  var SESSION_TOTAL = 11;
+
+  var SKILLS = [
+    { id: "kommunikation", name: "Kommunikation", desc: "Bessere Prompts und klarere Antworten", color: "#2563ff", sessions: [1, 11] },
+    { id: "recherche", name: "Recherche", desc: "Tools vergleichen und Informationen prüfen", color: "#4d85ff", sessions: [3, 5] },
+    { id: "produktivitaet", name: "Produktivität", desc: "Meetings, E-Mails und Aufgaben schneller erledigen", color: "#22c55e", sessions: [2, 9] },
+    { id: "kreativitaet", name: "Kreativität", desc: "Ideen, Inhalte und Lernwege entwickeln", color: "#a855f7", sessions: [4, 8] },
+    { id: "automatisierung", name: "Automatisierung", desc: "Wiederkehrende Aufgaben automatisieren", color: "#f59e0b", sessions: [7, 10] },
+    { id: "agenten", name: "Agenten", desc: "Eigene KI-Agenten verstehen und bauen", color: "#ec4899", sessions: [6] }
+  ];
+
+  var LEVELS = [
+    { min: 0, name: "KI-Neuling" },
+    { min: 2, name: "KI-Anwender" },
+    { min: 4, name: "KI-Navigator" },
+    { min: 6, name: "KI-Pilot" }
+  ];
+
+  function uniqueSorted(arr) {
+    var seen = {}, out = [];
+    for (var i = 0; i < arr.length; i++) {
+      var n = parseInt(arr[i], 10);
+      if (n >= 1 && n <= SESSION_TOTAL && !seen[n]) {
+        seen[n] = true;
+        out.push(n);
+      }
+    }
+    out.sort(function(a,b){ return a-b; });
+    return out;
+  }
+
+  function loadProgress() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { completed: [], energy: 45, lastActive: null };
+      var data = JSON.parse(raw);
+      return {
+        completed: uniqueSorted(data.completed || []),
+        energy: typeof data.energy === "number" ? data.energy : 45,
+        lastActive: data.lastActive || null
+      };
+    } catch (e) {
+      return { completed: [], energy: 45, lastActive: null };
+    }
+  }
+
+  function saveProgress(data) {
+    data.completed = uniqueSorted(data.completed || []);
+    data.energy = Math.max(0, Math.min(100, Math.round(data.energy || 45)));
+    data.lastActive = new Date().toISOString();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEY + "_updated_at", String(new Date().getTime()));
+  }
+
+  function includes(arr, value) {
+    for (var i = 0; i < arr.length; i++) if (arr[i] === value) return true;
+    return false;
+  }
+
+  function skillUnlocked(skill, completed) {
+    for (var i = 0; i < skill.sessions.length; i++) {
+      if (includes(completed, skill.sessions[i])) return true;
+    }
+    return false;
+  }
+
+  function unlockedSkills(completed) {
+    var out = [];
+    for (var i = 0; i < SKILLS.length; i++) if (skillUnlocked(SKILLS[i], completed)) out.push(SKILLS[i]);
+    return out;
+  }
+
+  function nextLockedSkill(completed) {
+    for (var i = 0; i < SKILLS.length; i++) {
+      if (!skillUnlocked(SKILLS[i], completed)) return SKILLS[i];
+    }
+    return null;
+  }
+
+  function skillNamesForSession(sessionId) {
+    var names = [];
+    for (var i = 0; i < SKILLS.length; i++) if (includes(SKILLS[i].sessions, sessionId)) names.push(SKILLS[i].name);
+    return names;
+  }
+
+  function levelName(count) {
+    var current = LEVELS[0].name;
+    for (var i = 0; i < LEVELS.length; i++) {
+      if (count >= LEVELS[i].min) current = LEVELS[i].name;
+    }
+    return current;
+  }
+
+  function nextLevelInfo(count) {
+    for (var i = 0; i < LEVELS.length; i++) {
+      if (count < LEVELS[i].min) {
+        return { name: LEVELS[i].name, missing: LEVELS[i].min - count };
+      }
+    }
+    return { name: "Maximaler aktueller Rang", missing: 0 };
+  }
+
+  function nextSession(completed) {
+    for (var i = 1; i <= SESSION_TOTAL; i++) if (!includes(completed, i)) return i;
+    return SESSION_TOTAL;
+  }
+
+  function pad2(n) { return n < 10 ? "0" + n : "" + n; }
+
+  function renderChip() {
+    var data = loadProgress();
+    var completed = data.completed;
+    var unlocked = unlockedSkills(completed);
+    var chipEls = document.querySelectorAll("[data-ai-progress-chip]");
+    for (var i = 0; i < chipEls.length; i++) {
+      chipEls[i].innerHTML = "🧭 <strong>" + levelName(unlocked.length) + "</strong> <span>⚡ " + data.energy + "% · 🎯 " + completed.length + "/" + SESSION_TOTAL + "</span>";
+    }
+  }
+
+  function renderCompass() {
+    var data = loadProgress();
+    var completed = data.completed;
+    var unlocked = unlockedSkills(completed);
+    var unlockedMap = {};
+    for (var i = 0; i < unlocked.length; i++) unlockedMap[unlocked[i].id] = true;
+
+    var nextSkill = nextLockedSkill(completed);
+    var nextLevel = nextLevelInfo(unlocked.length);
+    var next = nextSession(completed);
+
+    var wheelVars = "";
+    for (var w = 0; w < SKILLS.length; w++) {
+      wheelVars += "--compass-" + (w + 1) + ": " + (unlockedMap[SKILLS[w].id] ? SKILLS[w].color : "rgba(255,255,255,0.07)") + ";";
+    }
+
+    var skillHtml = "";
+    var treeHtml = "";
+    for (var s = 0; s < SKILLS.length; s++) {
+      var skill = SKILLS[s];
+      var isUnlocked = !!unlockedMap[skill.id];
+      var isCurrent = nextSkill && nextSkill.id === skill.id;
+      skillHtml += ''
+        + '<div class="ai-skill ' + (isUnlocked ? 'unlocked' : '') + '">'
+        + '<div class="ai-skill-dot"></div>'
+        + '<div><div class="ai-skill-name">' + (isUnlocked ? '✓ ' : '') + skill.name + '</div>'
+        + '<div class="ai-skill-desc">' + skill.desc + '</div></div></div>';
+      treeHtml += '<div class="ai-node ' + (isUnlocked ? 'done' : (isCurrent ? 'current' : '')) + '">' + (isUnlocked ? '✓ ' : (isCurrent ? '→ ' : '○ ')) + skill.name + '</div>';
+    }
+
+    var milestoneText = nextLevel.missing === 0
+      ? "Du hast den aktuell höchsten Rang erreicht."
+      : "Noch " + nextLevel.missing + " Fähigkeit(en) bis " + nextLevel.name + ".";
+
+    var nextSkillText = nextSkill
+      ? nextSkill.name + " freischalten"
+      : "Alle Fähigkeiten freigeschaltet";
+
+    var html = ''
+      + '<div class="ai-compass-card">'
+      + '<div class="ai-compass-head">'
+      + '<div class="ai-compass-title"><h3>Dein KI-Kompass</h3>'
+      + '<p>Schalte mit jeder Session neue KI-Fähigkeiten frei. Nicht Punkte zählen – sondern was du wirklich anwenden kannst.</p></div>'
+      + '<div class="ai-compass-status"><div class="ai-level">🧭 ' + levelName(unlocked.length) + '</div>'
+      + '<div class="ai-level-meta">' + unlocked.length + ' von ' + SKILLS.length + ' Fähigkeiten · ' + completed.length + '/' + SESSION_TOTAL + ' Sessions</div></div>'
+      + '</div>'
+      + '<div class="ai-compass-layout">'
+      + '<div><div class="ai-compass-wheel" style="' + wheelVars + '"></div></div>'
+      + '<div><div class="ai-compass-list">' + skillHtml + '</div>'
+      + '<div class="ai-compass-dynamic-meta">'
+      + '<div class="ai-dyn-card"><strong>🎯 Nächstes Ziel</strong><span>' + milestoneText + '</span></div>'
+      + '<div class="ai-dyn-card"><strong>🔓 Nächste Fähigkeit</strong><span>' + nextSkillText + '</span></div>'
+      + '<div class="ai-dyn-card"><strong>▶ Empfehlung</strong><span>Weiter mit Session ' + next + '.</span></div>'
+      + '</div>'
+      + '<div class="ai-skilltree dynamic">' + treeHtml + '</div>'
+      + '<div class="ai-energy-wrap"><div class="ai-energy-head"><strong>⚡ KI-Energie</strong><span>' + data.energy + '%</span></div>'
+      + '<div class="ai-energy-bar"><div class="ai-energy-fill" style="width:' + data.energy + '%"></div></div></div>'
+      + '<div class="ai-next-box"><span>Nächste Empfehlung: Session ' + next + '</span><a href="/lektion-' + pad2(next) + '.html">Session starten →</a></div>'
+      + '</div></div></div>';
+
+    var compassEls = document.querySelectorAll("[data-ai-compass]");
+    for (var c = 0; c < compassEls.length; c++) compassEls[c].innerHTML = html;
+  }
+
+  function refreshAll() { renderChip(); renderCompass(); }
+
+  function markSessionComplete(sessionId) {
+    sessionId = parseInt(sessionId, 10);
+    var data = loadProgress();
+    var wasNew = !includes(data.completed, sessionId);
+    if (wasNew) data.completed.push(sessionId);
+    data.completed = uniqueSorted(data.completed);
+    data.energy = Math.min(100, (data.energy || 45) + (wasNew ? 18 : 5));
+    saveProgress(data);
+    refreshAll();
+
+    var feedback = document.querySelector("[data-unlock-feedback]");
+    if (feedback) {
+      var names = skillNamesForSession(sessionId);
+      var unlocked = unlockedSkills(data.completed);
+      feedback.innerHTML = wasNew
+        ? '🎉 <strong>Gespeichert!</strong><br>🏆 Fähigkeit freigeschaltet: ' + (names.length ? names.join(", ") : "dein KI-Profil") + '. Neuer Stand: <strong>' + levelName(unlocked.length) + '</strong> · ' + data.completed.length + '/' + SESSION_TOTAL + ' Sessions.'
+        : '✓ Diese Session war bereits gespeichert.<br>Dein aktueller Stand: <strong>' + levelName(unlocked.length) + '</strong> · ' + data.completed.length + '/' + SESSION_TOTAL + ' Sessions.';
+      feedback.classList.add("show");
+    }
+
+    var buttons = document.querySelectorAll("[data-complete-session]");
+    for (var i = 0; i < buttons.length; i++) {
+      if (parseInt(buttons[i].getAttribute("data-complete-session"), 10) === sessionId) {
+        buttons[i].classList.add("done");
+        buttons[i].textContent = "✓ In KI-Kompass übertragen";
+      }
+    }
+
+    var compass = document.getElementById("ki-kompass") || document.querySelector("[data-ai-compass]");
+    if (compass && compass.scrollIntoView) setTimeout(function(){ compass.scrollIntoView({ behavior: "smooth", block: "start" }); }, 150);
+    return data;
+  }
+
+  function initButtons() {
+    var data = loadProgress();
+    var buttons = document.querySelectorAll("[data-complete-session]");
+    for (var i = 0; i < buttons.length; i++) {
+      var id = parseInt(buttons[i].getAttribute("data-complete-session"), 10);
+      if (includes(data.completed, id)) {
+        buttons[i].classList.add("done");
+        buttons[i].textContent = "✓ In KI-Kompass übertragen";
+      }
+      buttons[i].onclick = function(evt) {
+        if (evt && evt.preventDefault) evt.preventDefault();
+        markSessionComplete(parseInt(this.getAttribute("data-complete-session"), 10));
+        return false;
+      };
+    }
+  }
+
+  window.dotryCompleteSession = markSessionComplete;
+  window.dotryRefreshCompass = refreshAll;
+  window.dotryDebugCompass = function() { console.log("dotry.ai progress:", loadProgress(), localStorage.getItem(STORAGE_KEY)); return loadProgress(); };
+  window.dotryResetCompass = function() {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY + "_updated_at");
+    var buttons = document.querySelectorAll("[data-complete-session]");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove("done");
+      buttons[i].textContent = "In KI-Kompass übertragen";
+    }
+    refreshAll();
+    return loadProgress();
+  };
+
+  function boot() { refreshAll(); initButtons(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+
+  window.addEventListener("pageshow", refreshAll);
+  window.addEventListener("focus", refreshAll);
+  window.addEventListener("storage", refreshAll);
+})();
+</script>
+
+
+
+
+
+
 
 </body>
 </html>

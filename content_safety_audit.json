@@ -1,0 +1,171 @@
+{
+  "before": [
+    {
+      "file": "lektion-01.html",
+      "original_words": 631,
+      "previous_latest_words": 475,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-02.html",
+      "original_words": 705,
+      "previous_latest_words": 562,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-03.html",
+      "original_words": 725,
+      "previous_latest_words": 549,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-04.html",
+      "original_words": 805,
+      "previous_latest_words": 648,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-05.html",
+      "original_words": 1002,
+      "previous_latest_words": 821,
+      "original_has_phase3": false,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-06.html",
+      "original_words": 1573,
+      "previous_latest_words": 1492,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": true
+    },
+    {
+      "file": "lektion-07.html",
+      "original_words": 696,
+      "previous_latest_words": 581,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-08.html",
+      "original_words": 886,
+      "previous_latest_words": 756,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-09.html",
+      "original_words": 637,
+      "previous_latest_words": 477,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-10.html",
+      "original_words": 1017,
+      "previous_latest_words": 880,
+      "original_has_phase3": false,
+      "previous_latest_has_phase3": false
+    },
+    {
+      "file": "lektion-11.html",
+      "original_words": 926,
+      "previous_latest_words": 926,
+      "original_has_phase3": true,
+      "previous_latest_has_phase3": true
+    }
+  ],
+  "after": [
+    {
+      "file": "lektion-01.html",
+      "original_words": 631,
+      "rebuilt_words": 631,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-02.html",
+      "original_words": 705,
+      "rebuilt_words": 705,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-03.html",
+      "original_words": 725,
+      "rebuilt_words": 725,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-04.html",
+      "original_words": 805,
+      "rebuilt_words": 805,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-05.html",
+      "original_words": 1002,
+      "rebuilt_words": 1002,
+      "original_has_phase3": false,
+      "rebuilt_has_phase3": false,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-06.html",
+      "original_words": 1573,
+      "rebuilt_words": 1573,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-07.html",
+      "original_words": 696,
+      "rebuilt_words": 696,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-08.html",
+      "original_words": 886,
+      "rebuilt_words": 886,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-09.html",
+      "original_words": 637,
+      "rebuilt_words": 637,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-10.html",
+      "original_words": 1017,
+      "rebuilt_words": 1017,
+      "original_has_phase3": false,
+      "rebuilt_has_phase3": false,
+      "cta_present": true
+    },
+    {
+      "file": "lektion-11.html",
+      "original_words": 926,
+      "rebuilt_words": 926,
+      "original_has_phase3": true,
+      "rebuilt_has_phase3": true,
+      "cta_present": true
+    }
+  ]
+}
