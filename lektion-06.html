@@ -158,6 +158,14 @@
     .tip-box p{margin-bottom:0!important;color:var(--text)!important;font-size:0.92rem!important;}
     .tip-box strong{color:var(--blue-light)!important;}
 
+    .agent-everyday-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:24px 0;}
+    .agent-everyday-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s,transform .2s;}
+    .agent-everyday-card:hover{border-color:rgba(236,72,153,.35);transform:translateY(-2px);}
+    .agent-everyday-icon{font-size:1.45rem;line-height:1;flex-shrink:0;}
+    .agent-everyday-card strong{display:block;color:var(--text);font-size:.92rem;margin-bottom:4px;}
+    .agent-everyday-card span{display:block;color:var(--text-muted);font-size:.82rem;line-height:1.5;}
+    @media(max-width:640px){.agent-everyday-grid{grid-template-columns:1fr;}}
+
     /* ADVANCED SECTION */
     .advanced-section{background:var(--bg2);border:2px solid rgba(249,115,22,0.2);border-radius:20px;padding:36px;margin:48px 0;position:relative;overflow:hidden;}
     .advanced-section::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--orange),var(--yellow));}
@@ -1082,88 +1090,6 @@ main > .ai-session-complete.clean .ai-session-next-panel {
   }
 }
 
-
-
-/* ── V11: Kompass-Absprung nach Sessionabschluss ── */
-.ai-unlock-feedback.show {
-  display: block !important;
-}
-.ai-compass-unlock-card {
-  margin-top: 18px;
-  background: linear-gradient(135deg, rgba(37,99,255,0.18), rgba(34,197,94,0.10));
-  border: 1px solid rgba(77,133,255,0.36);
-  border-radius: 18px;
-  padding: 18px;
-  color: var(--text);
-}
-.ai-compass-unlock-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #22c55e;
-  margin-bottom: 10px;
-}
-.ai-compass-unlock-card strong {
-  color: var(--text);
-}
-.ai-compass-unlock-card p {
-  color: var(--text-muted) !important;
-  font-size: 0.9rem !important;
-  line-height: 1.55 !important;
-  margin: 0 0 14px !important;
-}
-.ai-compass-unlock-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin: 14px 0 16px;
-}
-.ai-compass-unlock-stat {
-  background: rgba(8,12,18,0.42);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 13px;
-}
-.ai-compass-unlock-stat span {
-  display: block;
-  color: var(--text-muted);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.ai-compass-unlock-stat b {
-  color: var(--blue-light);
-  font-size: 0.95rem;
-}
-.ai-compass-open-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  background: var(--blue);
-  color: #fff !important;
-  text-decoration: none;
-  border-radius: 999px;
-  padding: 13px 18px;
-  font-weight: 900;
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-}
-.ai-compass-open-btn:hover {
-  background: var(--blue-light);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 32px rgba(37,99,255,0.35);
-}
-@media (max-width: 640px) {
-  .ai-compass-unlock-grid { grid-template-columns: 1fr; }
-}
-
 </style>
   
   <script>
@@ -1249,6 +1175,14 @@ main > .ai-session-complete.clean .ai-session-next-panel {
     <p class="article-intro">
       Bisher haben wir KI immer manuell angewiesen – du tippst, die KI antwortet. <strong>Ein Agent macht das nächste Level:</strong> Er erledigt Aufgaben selbstständig, ohne dass du jeden Schritt eingibst. In dieser Session siehst du wie das funktioniert – und was ein echter Agent live tut.
     </p>
+
+    <div class="tip-box" style="margin-top:-24px;margin-bottom:44px;">
+      <p>
+        <strong>💡 Praxisvorschau:</strong><br>
+        Heute lernst du, was KI-Agenten sind und warum sie aktuell als einer der spannendsten Bereiche der künstlichen Intelligenz gelten.<br><br>
+        In Session 10 lernst du anschließend einen echten Foto-Agenten kennen, der Fotos automatisch nach Datum und Ort organisiert – für iPhone und Android.
+      </p>
+    </div>
 
     <!-- LEVEL NAVIGATOR -->
 
@@ -1378,6 +1312,42 @@ main > .ai-session-complete.clean .ai-session-next-panel {
               <div class="example-saving">⏱️ Spart stundenlange manuelle Recherche</div>
             </div>
           </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <h2 style="font-size:1.35rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;">KI-Agenten im Alltag</h2>
+        <p>Viele Menschen denken bei KI-Agenten zuerst an Chatbots. Tatsächlich sind Agenten viel breiter: Sie können wiederkehrende Aufgaben übernehmen, Daten prüfen, Ergebnisse vorbereiten und dich nur dann einbeziehen, wenn eine Entscheidung nötig ist.</p>
+
+        <div class="agent-everyday-grid">
+          <div class="agent-everyday-card">
+            <div class="agent-everyday-icon">📸</div>
+            <div><strong>Foto-Agent</strong><span>Sortiert Fotos automatisch nach Datum und Aufnahmeort.</span></div>
+          </div>
+          <div class="agent-everyday-card">
+            <div class="agent-everyday-icon">📧</div>
+            <div><strong>E-Mail-Agent</strong><span>Priorisiert Nachrichten und entwirft passende Antworten.</span></div>
+          </div>
+          <div class="agent-everyday-card">
+            <div class="agent-everyday-icon">📅</div>
+            <div><strong>Kalender-Agent</strong><span>Bereitet Termine vor und organisiert deinen Tag.</span></div>
+          </div>
+          <div class="agent-everyday-card">
+            <div class="agent-everyday-icon">📊</div>
+            <div><strong>Analyse-Agent</strong><span>Wertet Daten aus und erstellt regelmäßige Berichte.</span></div>
+          </div>
+          <div class="agent-everyday-card">
+            <div class="agent-everyday-icon">💻</div>
+            <div><strong>Entwickler-Agent</strong><span>Unterstützt beim Programmieren, Testen und Dokumentieren.</span></div>
+          </div>
+          <div class="agent-everyday-card">
+            <div class="agent-everyday-icon">🔄</div>
+            <div><strong>Automatisierungs-Agent</strong><span>Verbindet Tools und erledigt wiederkehrende Abläufe.</span></div>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <p><strong>🧭 Wichtig:</strong> Ein KI-Agent ist kein einzelnes Tool. Es ist ein System, das ein Ziel verfolgt, mehrere Schritte ausführt und dir Arbeit abnimmt.</p>
         </div>
 
       </div>
@@ -1729,7 +1699,7 @@ FOOD_SEED_TOPICS = [
   <section class="ai-session-complete clean" id="session-complete">
     <div class="ai-session-done-panel">
       <h3>🎉 Session 6 abschließen</h3>
-      <p>Übertrage diese Session in deinen KI-Kompass. Danach erscheint dein persönlicher Absprung zum Kompass.</p>
+      <p>Übertrage diese Session in deinen KI-Kompass. Danach siehst du sofort, welche Fähigkeit freigeschaltet wurde.</p>
       <div class="ai-session-actions">
         <button type="button" class="ai-complete-btn" data-complete-session="6" onclick="dotryCompleteSession(6)">In KI-Kompass übertragen</button>
       </div>
@@ -1737,10 +1707,10 @@ FOOD_SEED_TOPICS = [
     </div>
 
     <div class="ai-session-next-panel">
-      <div class="ai-session-next-kicker">Als Nächstes</div>
-      <div class="ai-session-next-title">Session 7: GitHub Actions Automatisierung</div>
-      <p class="ai-session-next-desc">Du automatisierst deinen Agenten, damit er regelmäßig selbstständig läuft.</p>
-      <a href="/lektion-07.html" class="ai-next-primary">Weiter zu Session 7 →</a>
+      <div class="ai-session-next-kicker">Praxisbeispiel</div>
+      <div class="ai-session-next-title">📸 Session 10: Dein erster Foto-Agent</div>
+      <p class="ai-session-next-desc">Du weißt jetzt, was ein KI-Agent ist. In Session 10 siehst du einen echten Agenten, der Fotos automatisch nach Datum und Ort organisiert.</p>
+      <a href="/lektion-10.html" class="ai-next-primary">Zu Session 10 →</a>
     </div>
 
   </section>
@@ -2113,29 +2083,9 @@ FOOD_SEED_TOPICS = [
     if (feedback) {
       var names = skillNamesForSession(sessionId);
       var unlocked = unlockedSkills(data.completed);
-      if (wasNew) {
-      feedback.innerHTML = ''
-        + '<div class="ai-compass-unlock-card">'
-        + '<div class="ai-compass-unlock-kicker">✅ Fähigkeit freigeschaltet</div>'
-        + '<p><strong>' + (names.length ? names.join(", ") : "Dein KI-Profil") + '</strong> wurde deinem KI-Kompass hinzugefügt.</p>'
-        + '<div class="ai-compass-unlock-grid">'
-        + '<div class="ai-compass-unlock-stat"><span>Dein Stand</span><b>' + levelName(unlocked.length) + '</b></div>'
-        + '<div class="ai-compass-unlock-stat"><span>Fortschritt</span><b>' + unlocked.length + ' von ' + SKILLS.length + ' Fähigkeiten</b></div>'
-        + '</div>'
-        + '<a class="ai-compass-open-btn" href="/ki-kompass.html">🧭 Meinen KI-Kompass ansehen →</a>'
-        + '</div>';
-      } else {
-      feedback.innerHTML = ''
-        + '<div class="ai-compass-unlock-card">'
-        + '<div class="ai-compass-unlock-kicker">✓ Bereits im Kompass</div>'
-        + '<p>Diese Session ist bereits in deinem KI-Kompass gespeichert.</p>'
-        + '<div class="ai-compass-unlock-grid">'
-        + '<div class="ai-compass-unlock-stat"><span>Dein Stand</span><b>' + levelName(unlocked.length) + '</b></div>'
-        + '<div class="ai-compass-unlock-stat"><span>Fortschritt</span><b>' + unlocked.length + ' von ' + SKILLS.length + ' Fähigkeiten</b></div>'
-        + '</div>'
-        + '<a class="ai-compass-open-btn" href="/ki-kompass.html">🧭 Meinen KI-Kompass ansehen →</a>'
-        + '</div>';
-      }
+      feedback.innerHTML = wasNew
+        ? '🎉 <strong>Gespeichert!</strong><br>🏆 Fähigkeit freigeschaltet: ' + (names.length ? names.join(", ") : "dein KI-Profil") + '. Neuer Stand: <strong>' + levelName(unlocked.length) + '</strong> · ' + data.completed.length + '/' + SESSION_TOTAL + ' Sessions.'
+        : '✓ Diese Session war bereits gespeichert.<br>Dein aktueller Stand: <strong>' + levelName(unlocked.length) + '</strong> · ' + data.completed.length + '/' + SESSION_TOTAL + ' Sessions.';
       feedback.classList.add("show");
     }
 
@@ -2147,7 +2097,8 @@ FOOD_SEED_TOPICS = [
       }
     }
 
-    if (feedback && feedback.scrollIntoView) setTimeout(function(){ feedback.scrollIntoView({ behavior: "smooth", block: "center" }); }, 120);
+    var compass = document.getElementById("ki-kompass") || document.querySelector("[data-ai-compass]");
+    if (compass && compass.scrollIntoView) setTimeout(function(){ compass.scrollIntoView({ behavior: "smooth", block: "start" }); }, 150);
     return data;
   }
 
