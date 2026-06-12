@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KI-Fahrplan: Kostenlose KI-Sessions für Einsteiger | do try ai</title>
+  <title>Deine KI-Lernreise: Alle Sessions im Überblick | do try ai</title>
   	<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-	<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Der KI-Fahrplan von do try ai: kurze Sessions zu ChatGPT, Claude, Perplexity, KI-Agenten und Automatisierung – verständlich, praktisch und kostenlos." />
+	<link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Deine KI-Lernreise auf do try ai: 11 Sessions, 6 Fähigkeiten und ein klarer Pfad vom KI-Neuling zum KI-Pilot." />
   <meta name="keywords" content="KI Sessions, KI lernen Deutsch, KI Alltag Anleitung, dotry.ai" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://dotry.ai/lektionen.html" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://dotry.ai/lektionen.html" />
-  <meta property="og:title" content="KI-Fahrplan: Kostenlose KI-Sessions für Einsteiger | do try ai" />
-  <meta property="og:description" content="Der KI-Fahrplan von do try ai: kurze Sessions zu ChatGPT, Claude, Perplexity, KI-Agenten und Automatisierung – verständlich, praktisch und kostenlos." />
+  <meta property="og:title" content="Deine KI-Lernreise: Alle Sessions im Überblick | do try ai" />
+  <meta property="og:description" content="Deine KI-Lernreise auf do try ai: 11 Sessions, 6 Fähigkeiten und ein klarer Pfad vom KI-Neuling zum KI-Pilot." />
   <meta property="og:image" content="https://dotry.ai/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1315,6 +1315,708 @@
   }
 }
 
+
+/* ── KOMPASS LINK UPDATE ── */
+.roadmap-bridge-actions {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  align-items:center;
+}
+.roadmap-bridge .roadmap-secondary-link {
+  background: transparent;
+  border: 1px solid rgba(37,99,255,0.28);
+  color: var(--blue-light);
+}
+.roadmap-journey-title .section-label {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.roadmap-journey-title .section-label::before {
+  content:'🧭';
+}
+
+
+
+/* ── V3: Dein KI-Lernpfad prominent und ruhig ── */
+main {
+  max-width: 1120px;
+}
+.learning-path-hero {
+  margin-bottom: 34px;
+}
+.learning-path-hero .page-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(37,99,255,0.10);
+  border: 1px solid rgba(37,99,255,0.22);
+  border-radius: 999px;
+  padding: 7px 14px;
+  margin-bottom: 18px;
+}
+.learning-path-hero h1 {
+  max-width: 820px;
+  margin-bottom: 16px;
+}
+.learning-path-hero .page-intro {
+  max-width: 680px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.learning-path-overview {
+  padding: 0;
+  margin: 36px 0 48px;
+  max-width: none;
+}
+.learning-path-card {
+  background: linear-gradient(135deg, rgba(14,20,32,.96), rgba(20,28,46,.88));
+  border: 1px solid rgba(37,99,255,.24);
+  border-radius: 28px;
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 70px rgba(0,0,0,.28);
+}
+.learning-path-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue), #a855f7, #22c55e);
+}
+.learning-path-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+.learning-path-copy h2 {
+  font-size: clamp(1.45rem, 3vw, 2.05rem);
+  line-height: 1.15;
+  letter-spacing: -.03em;
+  margin-bottom: 8px;
+}
+.learning-path-copy p {
+  color: var(--text-muted);
+  max-width: 650px;
+  font-size: .95rem;
+}
+.learning-path-status {
+  min-width: 220px;
+  background: rgba(8,12,18,.42);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px 18px;
+}
+.learning-path-status strong {
+  display: block;
+  color: var(--blue-light);
+  font-size: .98rem;
+  margin-bottom: 4px;
+}
+.learning-path-status span {
+  display: block;
+  color: var(--text-muted);
+  font-size: .8rem;
+}
+.roadmap-skill-path.learning-path-lane {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  margin: 22px 0 24px !important;
+}
+.roadmap-skill-path.learning-path-lane .roadmap-skill-node {
+  min-height: 155px !important;
+  border-radius: 18px !important;
+  padding: 18px 14px !important;
+}
+.learning-path-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+.learning-path-mini {
+  background: rgba(8,12,18,.42);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 15px;
+}
+.learning-path-mini strong {
+  display: block;
+  font-size: .86rem;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.learning-path-mini span {
+  display: block;
+  font-size: .78rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+.learning-path-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-top: 22px;
+}
+.learning-path-actions p {
+  color: var(--text-muted);
+  font-size: .88rem;
+  margin: 0;
+}
+.learning-path-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.learning-path-action-buttons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 10px 17px;
+  font-size: .84rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+.learning-path-action-buttons .primary {
+  background: var(--blue);
+  color: #fff;
+}
+.learning-path-action-buttons .secondary {
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+.learning-path-action-buttons .secondary:hover {
+  color: var(--text);
+  border-color: rgba(37,99,255,.34);
+}
+.sessions-heading {
+  margin: 54px 0 26px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: end;
+}
+.sessions-heading h2 {
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  letter-spacing: -.03em;
+  line-height: 1.15;
+}
+.sessions-heading p {
+  color: var(--text-muted);
+  font-size: .9rem;
+  max-width: 420px;
+}
+@media (max-width: 980px) {
+  .learning-path-head { flex-direction: column; }
+  .learning-path-status { width: 100%; }
+  .roadmap-skill-path.learning-path-lane { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .learning-path-summary { grid-template-columns: 1fr; }
+  .sessions-heading { align-items: flex-start; flex-direction: column; }
+}
+@media (max-width: 560px) {
+  .learning-path-card { padding: 24px 18px; border-radius: 24px; }
+  .roadmap-skill-path.learning-path-lane { grid-template-columns: 1fr !important; }
+}
+
+
+
+/* ── V4: Kompakter KI-Lernpfad im Kompass-Stil ── */
+.learning-path-hero { margin-bottom: 28px; }
+.learning-path-hero .page-intro { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
+.v4-compass-overview { margin: 34px 0 54px; }
+.v4-compass-card {
+  background: linear-gradient(135deg, rgba(14,20,32,.98), rgba(20,28,46,.88));
+  border: 1px solid rgba(37,99,255,.24);
+  border-radius: 28px;
+  padding: 28px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 70px rgba(0,0,0,.28);
+}
+.v4-compass-card::before { content:""; position:absolute; inset:0 0 auto 0; height:3px; background:linear-gradient(90deg,var(--blue),#a855f7,#22c55e); }
+.v4-compass-top { display:flex; justify-content:space-between; gap:24px; align-items:flex-start; margin-bottom:24px; }
+.v4-compass-title h2 { font-size:clamp(1.55rem,3.6vw,2.2rem); line-height:1.12; letter-spacing:-.035em; margin-bottom:8px; }
+.v4-compass-title p { color:var(--text-muted); max-width:620px; font-size:.95rem; }
+.v4-compass-cta { display:inline-flex; align-items:center; justify-content:center; white-space:nowrap; background:var(--blue); color:#fff; text-decoration:none; padding:12px 20px; border-radius:999px; font-size:.88rem; font-weight:900; box-shadow:0 10px 28px rgba(37,99,255,.22); transition:background .2s, transform .15s; }
+.v4-compass-cta:hover { background:var(--blue-light); transform:translateY(-1px); }
+.v4-compass-grid { display:grid; grid-template-columns:260px 1fr; gap:28px; align-items:center; }
+.v4-ring-area { text-align:center; }
+.v4-ring { --deg:60deg; width:210px; height:210px; border-radius:50%; margin:4px auto 16px; background:radial-gradient(circle at center,var(--bg) 0 33%,transparent 34%),conic-gradient(var(--blue) 0 var(--deg),rgba(255,255,255,.08) var(--deg) 360deg); border:1px solid rgba(255,255,255,.09); box-shadow:inset 0 0 0 9px rgba(8,12,18,.70),0 20px 55px rgba(0,0,0,.28); position:relative; }
+.v4-ring::after { content:'🧭'; position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-50%); width:70px; height:70px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:var(--bg2); border:1px solid rgba(37,99,255,.28); box-shadow:0 0 26px rgba(37,99,255,.18); font-size:2rem; }
+.v4-energy { font-weight:900; font-size:.93rem; }
+.v4-energy span { color:var(--blue-light); }
+.v4-energy-bar { height:8px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden; margin:10px auto 0; max-width:220px; }
+.v4-energy-fill { height:100%; width:63%; background:linear-gradient(90deg,var(--blue),var(--blue-light),var(--green)); border-radius:999px; }
+.v4-skill-list { display:grid; gap:10px; }
+.v4-skill-row { display:grid; grid-template-columns:40px 1fr; gap:12px; align-items:center; border:1px solid var(--border); border-radius:17px; padding:13px 15px; background:rgba(8,12,18,.38); text-decoration:none; transition:border-color .2s, transform .15s; }
+.v4-skill-row:hover { border-color:rgba(37,99,255,.34); transform:translateY(-1px); }
+.v4-skill-row.done { border-color:rgba(37,99,255,.5); background:rgba(37,99,255,.12); }
+.v4-skill-row.current { border-color:rgba(77,133,255,.35); }
+.v4-skill-badge { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.06); font-weight:900; color:var(--text-muted); }
+.v4-skill-row.done .v4-skill-badge { background:var(--blue); color:#fff; box-shadow:0 0 20px rgba(37,99,255,.32); }
+.v4-skill-row.current .v4-skill-badge { color:var(--blue-light); border:1px solid rgba(37,99,255,.28); }
+.v4-skill-name { font-size:.98rem; font-weight:900; color:var(--text); }
+.v4-skill-desc { font-size:.8rem; color:var(--text-muted); line-height:1.35; margin-top:1px; }
+.v4-next-strip { display:grid; grid-template-columns:repeat(3,1fr); margin-top:22px; border:1px solid var(--border); border-radius:21px; overflow:hidden; background:rgba(8,12,18,.38); }
+.v4-next-card { padding:16px; border-right:1px solid var(--border); }
+.v4-next-card:last-child { border-right:0; }
+.v4-next-card small { display:block; color:var(--text-muted); font-size:.66rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; margin-bottom:7px; }
+.v4-next-card strong { display:block; font-size:.98rem; line-height:1.2; color:var(--text); }
+.v4-next-card span { display:block; color:var(--text-muted); font-size:.79rem; margin-top:5px; }
+.v4-sessions-kicker { display:flex; justify-content:space-between; gap:18px; align-items:center; margin:18px 0 28px; padding:22px 24px; border:1px solid rgba(37,99,255,.22); border-radius:22px; background:rgba(37,99,255,.06); }
+.v4-sessions-kicker strong { font-size:clamp(1.25rem,3vw,1.65rem); letter-spacing:-.03em; }
+.v4-sessions-kicker span { color:var(--text-muted); font-size:.9rem; }
+@media(max-width:900px){ .v4-compass-top{flex-direction:column}.v4-compass-grid{grid-template-columns:1fr}.v4-next-strip{grid-template-columns:1fr}.v4-next-card{border-right:0;border-bottom:1px solid var(--border)}.v4-next-card:last-child{border-bottom:0}.v4-sessions-kicker{flex-direction:column;align-items:flex-start} }
+@media(max-width:560px){ .v4-compass-card{padding:22px;border-radius:24px}.v4-ring{width:176px;height:176px}.v4-compass-cta{width:100%}.v4-skill-row{padding:12px}.v4-compass-title p{font-size:.9rem} }
+
+    }
+
+    /* ── HOMEPAGE V2: JOURNEY PATH ── */
+    .journey-section {
+      padding: 72px 24px 88px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .journey-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 42px;
+    }
+
+    .journey-head .section-sub {
+      max-width: 460px;
+    }
+
+    .journey-path {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .journey-path::before {
+      content: '';
+      position: absolute;
+      left: 6%;
+      right: 6%;
+      top: 38px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(34,197,94,0.5), rgba(37,99,255,0.55), rgba(168,85,247,0.55), rgba(249,115,22,0.55));
+      z-index: 0;
+    }
+
+    .journey-node {
+      position: relative;
+      z-index: 1;
+      background: rgba(14,20,32,0.86);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 14px;
+      min-height: 160px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .journey-node:hover {
+      transform: translateY(-4px);
+      border-color: rgba(37,99,255,0.35);
+      background: rgba(20,28,46,0.96);
+    }
+
+    .journey-dot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg3);
+      border: 1px solid rgba(37,99,255,0.26);
+      box-shadow: 0 0 22px rgba(37,99,255,0.18);
+      font-size: 1.25rem;
+      margin-bottom: 18px;
+    }
+
+    .journey-node h3 {
+      font-size: 0.94rem;
+      font-weight: 900;
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+
+    .journey-node p {
+      color: var(--text-muted);
+      font-size: 0.76rem;
+      line-height: 1.45;
+      margin-bottom: 12px;
+    }
+
+    .journey-node span {
+      display: inline-flex;
+      color: var(--blue-light);
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .journey-summary {
+      margin-top: 34px;
+      background: rgba(37,99,255,0.08);
+      border: 1px solid rgba(37,99,255,0.2);
+      border-radius: 20px;
+      padding: 22px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--text-muted);
+    }
+
+    .journey-summary strong {
+      color: var(--text);
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      letter-spacing: -0.025em;
+    }
+
+    @media (max-width: 980px) {
+      .compass-promo-card {
+        grid-template-columns: 1fr;
+      }
+
+      .journey-head {
+        display: block;
+      }
+
+      .journey-path {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .journey-path::before {
+        left: 35px;
+        right: auto;
+        top: 24px;
+        bottom: 24px;
+        width: 2px;
+        height: auto;
+      }
+
+      .journey-node {
+        min-height: 0;
+        padding-left: 74px;
+      }
+
+      .journey-dot {
+        position: absolute;
+        left: 16px;
+        top: 18px;
+        margin-bottom: 0;
+      }
+
+      .journey-summary {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .compass-promo-section,
+      .journey-section {
+
+
+/* V5 adjustments for sessions overview */
+main { max-width: 1180px; }
+.learning-path-hero-v5 { margin-bottom: 28px; }
+.learning-path-hero-v5 .page-intro { margin-bottom: 0; padding-bottom: 0; border-bottom: 0; }
+.journey-section { padding: 0; margin: 34px 0 46px; max-width: none; }
+.journey-head { margin-bottom: 28px; }
+.journey-summary { margin-top: 26px; }
+.journey-summary .kompass-link {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  box-shadow: 0 10px 28px rgba(37,99,255,.22);
+}
+.journey-summary .kompass-link:hover { background: var(--blue-light); }
+.sessions-heading { scroll-margin-top: 110px; }
+@media (max-width: 768px) {
+  .learning-path-hero-v5 { margin-bottom: 18px; }
+}
+
+
+/* V6: prominenter KI-Kompass Absprung */
+.journey-summary.v6-kompass-summary {
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  gap: 22px !important;
+  align-items: center !important;
+  padding: 24px 26px !important;
+  border: 1px solid rgba(37,99,255,.28) !important;
+  background: linear-gradient(135deg, rgba(37,99,255,.13), rgba(14,20,32,.86)) !important;
+  box-shadow: 0 18px 60px rgba(0,0,0,.25) !important;
+}
+.kompass-summary-copy strong {
+  display: block;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+  line-height: 1.15;
+  letter-spacing: -.035em;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.kompass-summary-copy span {
+  display: block;
+  max-width: 620px;
+  color: var(--text-muted);
+  font-size: .92rem;
+  line-height: 1.55;
+}
+.kompass-hero-link {
+  min-width: 250px;
+  display: grid !important;
+  grid-template-columns: 42px 1fr;
+  gap: 14px;
+  align-items: center;
+  text-decoration: none;
+  background: var(--blue) !important;
+  color: #fff !important;
+  border: 1px solid rgba(77,133,255,.48) !important;
+  border-radius: 20px !important;
+  padding: 16px 18px !important;
+  box-shadow: 0 12px 36px rgba(37,99,255,.35) !important;
+  transition: transform .16s ease, background .2s ease, box-shadow .2s ease;
+}
+.kompass-hero-link:hover {
+  background: var(--blue-light) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 46px rgba(37,99,255,.46) !important;
+}
+.kompass-hero-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 15px;
+  background: rgba(255,255,255,.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+}
+.kompass-hero-text b {
+  display: block;
+  font-size: .98rem;
+  line-height: 1.2;
+}
+.kompass-hero-text small {
+  display: block;
+  color: rgba(255,255,255,.78);
+  font-size: .76rem;
+  line-height: 1.35;
+  margin-top: 3px;
+}
+.sessions-jump-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: .86rem;
+  font-weight: 800;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 11px 18px;
+  margin-left: 10px;
+}
+.sessions-jump-link:hover { color: var(--text); border-color: rgba(37,99,255,.34); }
+@media (max-width: 820px) {
+  .journey-summary.v6-kompass-summary { grid-template-columns: 1fr !important; }
+  .kompass-hero-link { width: 100%; min-width: 0; }
+  .sessions-jump-link { margin-left: 0; width: 100%; }
+}
+
+
+
+/* ── V7: prominenter Kompass-CTA + klare Lernpfad-Farben ── */
+.journey-node:nth-child(1) .journey-dot { border-color: rgba(34,197,94,.45); box-shadow:0 0 20px rgba(34,197,94,.16); }
+.journey-node:nth-child(2) .journey-dot { border-color: rgba(37,99,255,.52); box-shadow:0 0 20px rgba(37,99,255,.18); }
+.journey-node:nth-child(3) .journey-dot { border-color: rgba(77,133,255,.52); box-shadow:0 0 20px rgba(77,133,255,.18); }
+.journey-node:nth-child(4) .journey-dot { border-color: rgba(34,197,94,.52); box-shadow:0 0 20px rgba(34,197,94,.16); }
+.journey-node:nth-child(5) .journey-dot { border-color: rgba(168,85,247,.52); box-shadow:0 0 20px rgba(168,85,247,.18); }
+.journey-node:nth-child(6) .journey-dot { border-color: rgba(236,72,153,.52); box-shadow:0 0 20px rgba(236,72,153,.18); }
+.journey-node:nth-child(7) .journey-dot { border-color: rgba(249,115,22,.52); box-shadow:0 0 20px rgba(249,115,22,.18); }
+.journey-node:nth-child(8) .journey-dot { border-color: rgba(37,99,255,.52); box-shadow:0 0 20px rgba(37,99,255,.18); }
+
+.journey-summary.v7-kompass-summary {
+  display: grid !important;
+  grid-template-columns: 1fr 360px !important;
+  gap: 24px !important;
+  align-items: stretch !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(37,99,255,.30) !important;
+  background: linear-gradient(135deg, rgba(37,99,255,.10), rgba(14,20,32,.96)) !important;
+  border-radius: 24px !important;
+}
+.v7-summary-copy {
+  padding: 28px 30px !important;
+}
+.v7-summary-copy strong {
+  display: block !important;
+  color: var(--text) !important;
+  font-size: clamp(1.35rem, 2.8vw, 1.85rem) !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.035em !important;
+  margin-bottom: 10px !important;
+}
+.v7-summary-copy span {
+  display: block !important;
+  max-width: 680px !important;
+  color: var(--text-muted) !important;
+  font-size: .94rem !important;
+  line-height: 1.6 !important;
+}
+.v7-kompass-card-link {
+  position: relative !important;
+  isolation: isolate !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  min-height: 176px !important;
+  padding: 26px !important;
+  text-decoration: none !important;
+  color: #fff !important;
+  background: linear-gradient(135deg, #2563ff, #4d85ff) !important;
+  border-left: 1px solid rgba(255,255,255,.14) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.18) !important;
+}
+.v7-kompass-card-link::before {
+  content: '';
+  position: absolute;
+  inset: -30% -20% auto auto;
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.16);
+  z-index: -1;
+}
+.v7-kompass-card-link:hover {
+  transform: none !important;
+  background: linear-gradient(135deg, #4d85ff, #2563ff) !important;
+}
+.v7-kompass-topline {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-size: .78rem !important;
+  font-weight: 900 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+  color: rgba(255,255,255,.82) !important;
+}
+.v7-kompass-icon {
+  width: 42px !important;
+  height: 42px !important;
+  border-radius: 15px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(255,255,255,.16) !important;
+  border: 1px solid rgba(255,255,255,.20) !important;
+  font-size: 1.25rem !important;
+}
+.v7-kompass-card-link b {
+  display: block !important;
+  font-size: 1.35rem !important;
+  line-height: 1.12 !important;
+  letter-spacing: -.03em !important;
+  color: #fff !important;
+  margin-top: 20px !important;
+}
+.v7-kompass-card-link small {
+  display: block !important;
+  font-size: .86rem !important;
+  line-height: 1.45 !important;
+  color: rgba(255,255,255,.80) !important;
+  margin-top: 8px !important;
+}
+.v7-kompass-arrow {
+  font-size: 1.4rem !important;
+  font-weight: 900 !important;
+  color: #fff !important;
+  align-self: flex-end !important;
+}
+.v7-session-link-row {
+  margin-top: 14px;
+}
+.v7-session-link-row a {
+  color: var(--blue-light) !important;
+  text-decoration: none !important;
+  font-weight: 900 !important;
+  font-size: .9rem !important;
+}
+.v7-session-link-row a:hover { color: var(--text) !important; }
+@media(max-width: 860px) {
+  .journey-summary.v7-kompass-summary { grid-template-columns: 1fr !important; }
+  .v7-kompass-card-link { border-left: 0 !important; min-height: 150px !important; }
+}
+
+
+
+/* ── V8 FINAL OVERRIDES: prominenter KI-Kompass CTA ── */
+.v8-kompass-hero-cta a:hover{transform:translateY(-2px) !important;filter:saturate(1.08) !important;}
+@media(max-width:860px){.v8-kompass-hero-cta{grid-template-columns:1fr !important}.v8-kompass-big-button{border-left:0 !important;min-height:165px !important}}
+@media(max-width:560px){.v8-kompass-hero-cta{border-radius:22px !important}.v8-summary-copy{padding:24px !important}.v8-kompass-big-button{padding:24px !important}}
+
+
+/* ── V9: KI-Kompass als starker Anker auf der Sessions-Übersicht ── */
+.kompass-anchor-card{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:1fr auto 260px;
+  gap:22px;
+  align-items:center;
+  padding:28px;
+  border-radius:28px;
+  border:1px solid rgba(37,99,255,.42);
+  background:
+    radial-gradient(circle at 100% 0%, rgba(77,133,255,.28), transparent 34%),
+    linear-gradient(135deg, rgba(37,99,255,.18), rgba(14,20,32,.96));
+  box-shadow:0 22px 65px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.06);
+}
+.kompass-anchor-kicker{
+  display:inline-flex;align-items:center;gap:8px;
+  color:#7aa2ff;font-weight:900;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:12px;
+}
+.kompass-anchor-copy strong{
+  display:block;color:var(--text);font-size:clamp(1.35rem,2.7vw,1.9rem);line-height:1.12;letter-spacing:-.035em;max-width:780px;
+}
+.kompass-anchor-copy p{margin-top:12px;color:#a7b4d5;font-size:.95rem;line-height:1.65;max-width:760px;}
+.kompass-anchor-stats{display:flex;gap:10px;align-items:stretch;}
+.kompass-anchor-stats span{min-width:74px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:14px 12px;border-radius:18px;background:rgba(8,12,18,.44);border:1px solid rgba(255,255,255,.08);}
+.kompass-anchor-stats b{font-size:1.25rem;color:#fff;line-height:1;}
+.kompass-anchor-stats small{margin-top:6px;color:#93a2c3;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-align:center;}
+.kompass-anchor-button{height:100%;min-height:112px;display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;color:#fff;font-weight:950;font-size:1rem;border-radius:22px;background:linear-gradient(135deg,#2563ff,#4d85ff);box-shadow:0 16px 40px rgba(37,99,255,.32), inset 0 1px 0 rgba(255,255,255,.22);transition:transform .18s,box-shadow .18s,filter .18s;}
+.kompass-anchor-button:hover{transform:translateY(-2px);filter:saturate(1.08);box-shadow:0 20px 52px rgba(37,99,255,.42), inset 0 1px 0 rgba(255,255,255,.25);}
+@media(max-width:980px){.kompass-anchor-card{grid-template-columns:1fr}.kompass-anchor-stats{justify-content:flex-start;flex-wrap:wrap}.kompass-anchor-button{min-height:70px}}
+@media(max-width:560px){.kompass-anchor-card{padding:22px;border-radius:22px}.kompass-anchor-stats span{min-width:0;flex:1}.kompass-anchor-button{width:100%;}}
+
+
+/* V10 responsive for inline Kompass CTA */
+@media(max-width:900px){.kompass-anchor-card{grid-template-columns:1fr !important}.kompass-anchor-card>a{min-height:78px !important}}
 </style>
   
   <script>
@@ -1355,7 +2057,7 @@
   "@context": "https://schema.org",
   "@type": "CollectionPage",
   "name": "Alle Sessions – do try ai",
-  "description": "Alle KI-Impulse für den Alltag auf einen Blick. Kurze Sessions die du sofort nachmachen kannst – kein Jargon, keine Vorkenntnisse.",
+  "description": "Alle KI-Sessions von do try ai als klare Lernreise: 11 Sessions, 6 Fähigkeiten und ein KI-Kompass, der den nächsten sinnvollen Schritt zeigt.",
   "url": "https://dotry.ai/lektionen.html",
   "inLanguage": "de-AT",
   "isPartOf": {
@@ -1371,67 +2073,100 @@
   <div class="dotry-scroll-progress" aria-hidden="true">
     <div class="dotry-scroll-progress-fill" id="dotry-scroll-progress-fill"></div>
   </div>
-
-
-  <nav>
-    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
-    <a href="/" class="nav-back">← Startseite</a>
-  </nav>
- 
 <!-- NAV -->
   <div id="nav-placeholder"></div>
-  
-  </div>
 
   <main>
-
-  <!-- KI-FAHRPLAN JOURNEY -->
-  <section class="roadmap-journey" id="ki-fahrplan-journey">
-    <div class="roadmap-journey-card">
-      <div class="roadmap-journey-head">
-        <div class="roadmap-journey-title">
-          <div class="section-label">KI-Fahrplan</div>
-          <h2>Dein Weg vom KI-Neuling zum KI-Pilot.</h2>
-          <p>
-            Der KI-Kompass zeigt dir nicht nur, welche Sessions du erledigt hast,
-            sondern welche Fähigkeiten du bereits anwenden kannst.
-          </p>
-        </div>
-        <div class="roadmap-status-panel" data-roadmap-status>
-          <strong>🧭 KI-Neuling</strong>
-          <span>0 von 6 Fähigkeiten freigeschaltet</span>
-        </div>
-      </div>
-
-      <div class="roadmap-skill-path" data-roadmap-skill-path></div>
-
-      <div class="roadmap-dynamic-grid">
-        <div class="roadmap-dynamic-card">
-          <strong>🎯 Nächstes Ziel</strong>
-          <span data-roadmap-next-level>Noch 2 Fähigkeiten bis KI-Anwender.</span>
-        </div>
-        <div class="roadmap-dynamic-card">
-          <strong>🔓 Nächste Fähigkeit</strong>
-          <span data-roadmap-next-skill>Kommunikation freischalten.</span>
-        </div>
-        <div class="roadmap-dynamic-card">
-          <strong>▶ Empfehlung</strong>
-          <span data-roadmap-next-session>Starte mit Session 1.</span>
-        </div>
-      </div>
-
-      <div class="roadmap-bridge">
-        <span>Darunter findest du alle Sessions, sortiert entlang dieser Lernreise.</span>
-        <a data-roadmap-next-link href="/lektion-01.html">Session 1 starten →</a>
-      </div>
+    <div class="learning-path-hero-v5">
+      <div class="page-label">Deine KI-Lernreise</div>
+      <h1>Alle Sessions.<br>Ein klarer Lernpfad.</h1>
+      <p class="page-intro">Hier siehst du, welche Fähigkeiten du mit den Sessions Schritt für Schritt aufbaust. Du kannst der Reise folgen – oder jederzeit dort einsteigen, wo es gerade zu deinem Alltag passt.</p>
     </div>
-  </section>
 
+    <section class="journey-section" id="ki-lernpfad">
+      <div class="journey-head">
+        <div>
+          <div class="section-label">Deine KI-Lernreise</div>
+          <h2 class="section-title">Dein Weg mit KI.</h2>
+        </div>
+        <p class="section-sub">
+          Nicht alles auf einmal. Eine Fähigkeit nach der anderen – von den ersten Prompts bis zu Automatisierungen und KI-Agenten. Neue Sessions erweitern diesen Weg laufend.
+        </p>
+      </div>
 
+      <div class="journey-path">
+        <a class="journey-node" href="/lektion-01.html">
+          <div class="journey-dot">🌱</div>
+          <h3>KI-Neuling</h3>
+          <p>Einsteigen ohne Vorwissen.</p>
+          <span>Start</span>
+        </a>
+        <a class="journey-node" href="/lektion-01.html">
+          <div class="journey-dot">💬</div>
+          <h3>Kommunikation</h3>
+          <p>Lerne, mit KI klarer zu kommunizieren.</p>
+          <span>Session 1</span>
+        </a>
+        <a class="journey-node" href="/lektion-03.html">
+          <div class="journey-dot">🔍</div>
+          <h3>Recherche</h3>
+          <p>Informationen schneller finden und besser prüfen.</p>
+          <span>Sessions 3 + 5</span>
+        </a>
+        <a class="journey-node" href="/lektion-02.html">
+          <div class="journey-dot">⚡</div>
+          <h3>Produktivität</h3>
+          <p>Meetings, E-Mails und Aufgaben beschleunigen.</p>
+          <span>Sessions 2 + 9</span>
+        </a>
+        <a class="journey-node" href="/lektion-04.html">
+          <div class="journey-dot">🎨</div>
+          <h3>Kreativität</h3>
+          <p>Ideen entwickeln und Inhalte besser gestalten.</p>
+          <span>Sessions 4 + 8</span>
+        </a>
+        <a class="journey-node" href="/lektion-06.html">
+          <div class="journey-dot">🤖</div>
+          <h3>Agenten</h3>
+          <p>KI-Agenten verstehen und sinnvoll einsetzen.</p>
+          <span>Session 6</span>
+        </a>
+        <a class="journey-node" href="/lektion-07.html">
+          <div class="journey-dot">🔄</div>
+          <h3>Automatisierung</h3>
+          <p>Wiederkehrende Aufgaben Schritt für Schritt automatisieren.</p>
+          <span>Sessions 7 + 10</span>
+        </a>
+        <a class="journey-node" href="/lektion-09.html">
+          <div class="journey-dot">🚀</div>
+          <h3>Nächste Etappen</h3>
+          <p>Dein Kompass wächst mit neuen Sessions weiter.</p>
+          <span>laufend</span>
+        </a>
+      </div>
 
-    <div class="page-label">Alle Sessions</div>
-    <h1>Dein KI-Fahrplan<br>für den Alltag.</h1>
-    <p class="page-intro">Jede Session löst ein konkretes Problem – in 15 Minuten, zum Nachmachen. Starte mit Session 1 und arbeite dich durch.</p>
+      <div class="kompass-anchor-card" aria-label="Absprung zum KI-Kompass" style="margin-top:34px;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:22px;align-items:stretch;padding:0;border-radius:28px;border:1px solid rgba(37,99,255,.42);background:radial-gradient(circle at 100% 0%, rgba(77,133,255,.32), transparent 36%),linear-gradient(135deg, rgba(37,99,255,.20), rgba(14,20,32,.98));box-shadow:0 22px 65px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.07);overflow:hidden;">
+        <div style="padding:30px 32px;">
+          <div style="display:inline-flex;align-items:center;gap:8px;color:#7aa2ff;font-weight:900;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;">🧭 Arbeite an deinem KI-Kompass</div>
+          <strong style="display:block;color:var(--text);font-size:clamp(1.35rem,2.7vw,1.9rem);line-height:1.12;letter-spacing:-.035em;max-width:780px;">Der Lernpfad zeigt alle Möglichkeiten. Der KI-Kompass zeigt deinen persönlichen Fortschritt.</strong>
+          <p style="margin-top:12px;color:#a7b4d5;font-size:.95rem;line-height:1.65;max-width:760px;">Jede abgeschlossene Session schaltet Fähigkeiten frei und zeigt dir den nächsten sinnvollen Schritt. Neue Sessions erweitern den Weg laufend.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;" aria-hidden="true">
+            <span style="min-width:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 14px;border-radius:16px;background:rgba(8,12,18,.44);border:1px solid rgba(255,255,255,.08);"><b style="font-size:1.18rem;color:#fff;line-height:1;">6</b><small style="margin-top:6px;color:#93a2c3;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-align:center;">Fähigkeiten</small></span>
+            <span style="min-width:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 14px;border-radius:16px;background:rgba(8,12,18,.44);border:1px solid rgba(255,255,255,.08);"><b style="font-size:1.18rem;color:#fff;line-height:1;">11+</b><small style="margin-top:6px;color:#93a2c3;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-align:center;">Sessions</small></span>
+            <span style="min-width:84px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 14px;border-radius:16px;background:rgba(8,12,18,.44);border:1px solid rgba(255,255,255,.08);"><b style="font-size:1.18rem;color:#fff;line-height:1;">∞</b><small style="margin-top:6px;color:#93a2c3;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;text-align:center;">Etappen</small></span>
+          </div>
+        </div>
+        <a href="/ki-kompass.html" style="display:flex;align-items:center;justify-content:center;text-align:center;text-decoration:none;color:#fff;font-weight:950;font-size:1.05rem;padding:28px 24px;background:linear-gradient(135deg,#2563ff,#4d85ff);box-shadow:inset 1px 0 0 rgba(255,255,255,.18), 0 16px 40px rgba(37,99,255,.30);">KI-Kompass öffnen →</a>
+      </div>
+    </section>
+
+<div class="sessions-heading" id="sessions">
+      <div>
+        <div class="page-label">Alle Sessions</div>
+        <h2>Alle Sessions im Überblick.</h2>
+      </div>
+      <p>Filtere nach Thema oder Format und springe direkt in die passende Session.</p>
+    </div>
 
     <!-- FILTER -->
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:0;">
@@ -2188,6 +2923,44 @@
   window.addEventListener("pageshow", renderJourney);
   window.addEventListener("focus", renderJourney);
   window.addEventListener("storage", renderJourney);
+})();
+</script>
+
+
+<script>
+(function(){
+  var STORAGE_KEY="dotry_ai_progress_v1";
+  var SESSION_TOTAL=11;
+  var SKILLS=[
+    {id:"kommunikation",name:"Kommunikation",desc:"Bessere Prompts und klarere Antworten.",sessions:[1,11],href:"/lektion-01.html"},
+    {id:"recherche",name:"Recherche",desc:"Tools vergleichen und Informationen prüfen.",sessions:[3,5],href:"/lektion-03.html"},
+    {id:"produktivitaet",name:"Produktivität",desc:"Meetings, E-Mails und Aufgaben schneller erledigen.",sessions:[2,9],href:"/lektion-02.html"},
+    {id:"kreativitaet",name:"Kreativität",desc:"Ideen, Inhalte und Lernwege entwickeln.",sessions:[4,8],href:"/lektion-04.html"},
+    {id:"agenten",name:"Agenten",desc:"Eigene KI-Agenten verstehen und bauen.",sessions:[6],href:"/lektion-06.html"},
+    {id:"automatisierung",name:"Automatisierung",desc:"Wiederkehrende Aufgaben automatisieren.",sessions:[7,10],href:"/lektion-07.html"}
+  ];
+  function load(){try{var raw=localStorage.getItem(STORAGE_KEY);return raw?JSON.parse(raw):null;}catch(e){return null;}}
+  function includes(a,v){return (a||[]).map(Number).indexOf(v)>=0;}
+  function unlocked(s,c){return s.sessions.some(function(n){return includes(c,n);});}
+  function pad2(n){return n<10?'0'+n:''+n;}
+  function nextSession(c){for(var i=1;i<=SESSION_TOTAL;i++){if(!includes(c,i)) return i;}return SESSION_TOTAL;}
+  function render(){
+    var data=load(); var demo=!data||!Array.isArray(data.completed)||data.completed.length===0;
+    var completed=demo?[1]:(data.completed||[]).map(Number); var energy=demo?63:Math.max(0,Math.min(100,Math.round(data.energy||45)));
+    var count=SKILLS.filter(function(s){return unlocked(s,completed);}).length;
+    var next=SKILLS.find(function(s){return !unlocked(s,completed);}); var nextId=nextSession(completed);
+    var ring=document.querySelector('.v4-ring'); if(ring) ring.style.setProperty('--deg', Math.max(28,Math.round((count/SKILLS.length)*360))+'deg');
+    var fill=document.querySelector('.v4-energy-fill'); if(fill) fill.style.width=energy+'%';
+    var et=document.querySelector('[data-energy-text]'); if(et) et.textContent=energy+'%';
+    var list=document.querySelector('[data-v4-skill-list]');
+    if(list){list.innerHTML=SKILLS.map(function(s,i){var done=unlocked(s,completed);var cur=next&&next.id===s.id;return '<a class="v4-skill-row '+(done?'done':cur?'current':'')+'" href="'+s.href+'"><div class="v4-skill-badge">'+(done?'✓':(i+1))+'</div><div><div class="v4-skill-name">'+s.name+'</div><div class="v4-skill-desc">'+s.desc+'</div></div></a>';}).join('');}
+    var ng=document.querySelector('[data-next-goal]'); if(ng) ng.textContent=next?next.name+' freischalten':'Alle Fähigkeiten freigeschaltet';
+    var ngm=document.querySelector('[data-next-goal-meta]'); if(ngm) ngm.textContent=next?'Noch '+Math.max(1,2-count)+' Fähigkeit(en) bis zum nächsten Level.':'Du bist aktuell KI-Pilot.';
+    var ns=document.querySelector('[data-next-skill]'); if(ns) ns.textContent=next?next.name:'KI-Pilot';
+    var nse=document.querySelector('[data-next-session]'); if(nse) nse.textContent='Weiter mit Session '+nextId;
+    document.querySelectorAll('[data-roadmap-next-link],[data-next-session-link]').forEach(function(a){a.href='/lektion-'+pad2(nextId)+'.html';});
+  }
+  document.addEventListener('DOMContentLoaded',render); window.addEventListener('pageshow',render);
 })();
 </script>
 
