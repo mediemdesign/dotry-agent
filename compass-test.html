@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="de"><head><meta charset="UTF-8"><title>Kompass Test</title></head>
+<body style="font-family:sans-serif;padding:40px;background:#080c12;color:white;">
+<h1>KI-Kompass Test</h1>
+<p>Diese Seite ist nur zum lokalen Testen.</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;">
+<button onclick="dotryCompleteSession(1)">Session 1 speichern</button>
+<button onclick="dotryCompleteSession(2)">Session 2 speichern</button>
+<button onclick="dotryCompleteSession(3)">Session 3 speichern</button>
+<button onclick="dotryCompleteSession(4)">Session 4 speichern</button>
+<button onclick="dotryCompleteSession(5)">Session 5 speichern</button>
+<button onclick="dotryCompleteSession(6)">Session 6 speichern</button>
+<button onclick="dotryCompleteSession(7)">Session 7 speichern</button>
+<button onclick="dotryCompleteSession(8)">Session 8 speichern</button>
+<button onclick="dotryCompleteSession(9)">Session 9 speichern</button>
+<button onclick="dotryCompleteSession(10)">Session 10 speichern</button>
+<button onclick="dotryCompleteSession(11)">Session 11 speichern</button>
+<button onclick="dotryResetCompass()">Reset</button>
+</div>
+<pre id="out" style="background:#111827;padding:16px;border-radius:12px;"></pre>
+<script>
+setInterval(function(){ document.getElementById('out').textContent = localStorage.getItem('dotry_ai_progress_v1'); },500);
+</script>
+
+<script>
+/* dotry.ai KI-Kompass V9 DYNAMIC */
+(function () {
+  var STORAGE_KEY = "dotry_ai_progress_v1";
+  var SESSION_TOTAL = 11;
+
+  var SKILLS = [
+    { id: "kommunikation", name: "Kommunikation", desc: "Bessere Prompts und klarere Antworten", color: "#2563ff", sessions: [1, 11] },
+    { id: "recherche", name: "Recherche", desc: "Tools vergleichen und Informationen prüfen", color: "#4d85ff", sessions: [3, 5] },
+    { id: "produktivitaet", name: "Produktivität", desc: "Meetings, E-Mails und Aufgaben schneller erledigen", color: "#22c55e", sessions: [2, 9] },
+    { id: "kreativitaet", name: "Kreativität", desc: "Ideen, Inhalte und Lernwege entwickeln", color: "#a855f7", sessions: [4, 8] },
+    { id: "automatisierung", name: "Automatisierung", desc: "Wiederkehrende Aufgaben automatisieren", color: "#f59e0b", sessions: [7, 10] },
+    { id: "agenten", name: "Agenten", desc: "Eigene KI-Agenten verstehen und bauen", color: "#ec4899", sessions: [6] }
+  ];
+
+  var LEVELS = [
+    { min: 0, name: "KI-Neuling" },
+    { min: 2, name: "KI-Anwender" },
+    { min: 4, name: "KI-Navigator" },
+    { min: 6, name: "KI-Pilot" }
+  ];
+
+  function uniqueSorted(arr) {
+    var seen = {}, out = [];
+    for (var i = 0; i < arr.length; i++) {
+      var n = parseInt(arr[i], 10);
+      if (n >= 1 && n <= SESSION_TOTAL && !seen[n]) {
+        seen[n] = true;
+        out.push(n);
+      }
+    }
+    out.sort(function(a,b){ return a-b; });
+    return out;
+  }
+
+  function loadProgress() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { completed: [], energy: 45, lastActive: null };
+      var data = JSON.parse(raw);
+      return {
+        completed: uniqueSorted(data.completed || []),
+        energy: typeof data.energy === "number" ? data.energy : 45,
+        lastActive: data.lastActive || null
+      };
+    } catch (e) {
+      return { completed: [], energy: 45, lastActive: null };
+    }
+  }
+
+  function saveProgress(data) {
+    data.completed = uniqueSorted(data.completed || []);
+    data.energy = Math.max(0, Math.min(100, Math.round(data.energy || 45)));
+    data.lastActive = new Date().toISOString();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEY + "_updated_at", String(new Date().getTime()));
+  }
+
+  function includes(arr, value) {
+    for (var i = 0; i < arr.length; i++) if (arr[i] === value) return true;
+    return false;
+  }
+
+  function skillUnlocked(skill, completed) {
+    for (var i = 0; i < skill.sessions.length; i++) {
+      if (includes(completed, skill.sessions[i])) return true;
+    }
+    return false;
+  }
+
+  function unlockedSkills(completed) {
+    var out = [];
+    for (var i = 0; i < SKILLS.length; i++) if (skillUnlocked(SKILLS[i], completed)) out.push(SKILLS[i]);
+    return out;
+  }
+
+  function nextLockedSkill(completed) {
+    for (var i = 0; i < SKILLS.length; i++) {
+      if (!skillUnlocked(SKILLS[i], completed)) return SKILLS[i];
+    }
+    return null;
+  }
+
+  function skillNamesForSession(sessionId) {
+    var names = [];
+    for (var i = 0; i < SKILLS.length; i++) if (includes(SKILLS[i].sessions, sessionId)) names.push(SKILLS[i].name);
+    return names;
+  }
+
+  function levelName(count) {
+    var current = LEVELS[0].name;
+    for (var i = 0; i < LEVELS.length; i++) {
+      if (count >= LEVELS[i].min) current = LEVELS[i].name;
+    }
+    return current;
+  }
+
+  function nextLevelInfo(count) {
+    for (var i = 0; i < LEVELS.length; i++) {
+      if (count < LEVELS[i].min) {
+        return { name: LEVELS[i].name, missing: LEVELS[i].min - count };
+      }
+    }
+    return { name: "Maximaler aktueller Rang", missing: 0 };
+  }
+
+  function nextSession(completed) {
+    for (var i = 1; i <= SESSION_TOTAL; i++) if (!includes(completed, i)) return i;
+    return SESSION_TOTAL;
+  }
+
+  function pad2(n) { return n < 10 ? "0" + n : "" + n; }
+
+  function renderChip() {
+    var data = loadProgress();
+    var completed = data.completed;
+    var unlocked = unlockedSkills(completed);
+    var chipEls = document.querySelectorAll("[data-ai-progress-chip]");
+    for (var i = 0; i < chipEls.length; i++) {
+      chipEls[i].innerHTML = "🧭 <strong>" + levelName(unlocked.length) + "</strong> <span>⚡ " + data.energy + "% · 🎯 " + completed.length + "/" + SESSION_TOTAL + "</span>";
+    }
+  }
+
+  function renderCompass() {
+    var data = loadProgress();
+    var completed = data.completed;
+    var unlocked = unlockedSkills(completed);
+    var unlockedMap = {};
+    for (var i = 0; i < unlocked.length; i++) unlockedMap[unlocked[i].id] = true;
+
+    var nextSkill = nextLockedSkill(completed);
+    var nextLevel = nextLevelInfo(unlocked.length);
+    var next = nextSession(completed);
+
+    var wheelVars = "";
+    for (var w = 0; w < SKILLS.length; w++) {
+      wheelVars += "--compass-" + (w + 1) + ": " + (unlockedMap[SKILLS[w].id] ? SKILLS[w].color : "rgba(255,255,255,0.07)") + ";";
+    }
+
+    var skillHtml = "";
+    var treeHtml = "";
+    for (var s = 0; s < SKILLS.length; s++) {
+      var skill = SKILLS[s];
+      var isUnlocked = !!unlockedMap[skill.id];
+      var isCurrent = nextSkill && nextSkill.id === skill.id;
+      skillHtml += ''
+        + '<div class="ai-skill ' + (isUnlocked ? 'unlocked' : '') + '">'
+        + '<div class="ai-skill-dot"></div>'
+        + '<div><div class="ai-skill-name">' + (isUnlocked ? '✓ ' : '') + skill.name + '</div>'
+        + '<div class="ai-skill-desc">' + skill.desc + '</div></div></div>';
+      treeHtml += '<div class="ai-node ' + (isUnlocked ? 'done' : (isCurrent ? 'current' : '')) + '">' + (isUnlocked ? '✓ ' : (isCurrent ? '→ ' : '○ ')) + skill.name + '</div>';
+    }
+
+    var milestoneText = nextLevel.missing === 0
+      ? "Du hast den aktuell höchsten Rang erreicht."
+      : "Noch " + nextLevel.missing + " Fähigkeit(en) bis " + nextLevel.name + ".";
+
+    var nextSkillText = nextSkill
+      ? nextSkill.name + " freischalten"
+      : "Alle Fähigkeiten freigeschaltet";
+
+    var html = ''
+      + '<div class="ai-compass-card">'
+      + '<div class="ai-compass-head">'
+      + '<div class="ai-compass-title"><h3>Dein KI-Kompass</h3>'
+      + '<p>Schalte mit jeder Session neue KI-Fähigkeiten frei. Nicht Punkte zählen – sondern was du wirklich anwenden kannst.</p></div>'
+      + '<div class="ai-compass-status"><div class="ai-level">🧭 ' + levelName(unlocked.length) + '</div>'
+      + '<div class="ai-level-meta">' + unlocked.length + ' von ' + SKILLS.length + ' Fähigkeiten · ' + completed.length + '/' + SESSION_TOTAL + ' Sessions</div></div>'
+      + '</div>'
+      + '<div class="ai-compass-layout">'
+      + '<div><div class="ai-compass-wheel" style="' + wheelVars + '"></div></div>'
+      + '<div><div class="ai-compass-list">' + skillHtml + '</div>'
+      + '<div class="ai-compass-dynamic-meta">'
+      + '<div class="ai-dyn-card"><strong>🎯 Nächstes Ziel</strong><span>' + milestoneText + '</span></div>'
+      + '<div class="ai-dyn-card"><strong>🔓 Nächste Fähigkeit</strong><span>' + nextSkillText + '</span></div>'
+      + '<div class="ai-dyn-card"><strong>▶ Empfehlung</strong><span>Weiter mit Session ' + next + '.</span></div>'
+      + '</div>'
+      + '<div class="ai-skilltree dynamic">' + treeHtml + '</div>'
+      + '<div class="ai-energy-wrap"><div class="ai-energy-head"><strong>⚡ KI-Energie</strong><span>' + data.energy + '%</span></div>'
+      + '<div class="ai-energy-bar"><div class="ai-energy-fill" style="width:' + data.energy + '%"></div></div></div>'
+      + '<div class="ai-next-box"><span>Nächste Empfehlung: Session ' + next + '</span><a href="/lektion-' + pad2(next) + '.html">Session starten →</a></div>'
+      + '</div></div></div>';
+
+    var compassEls = document.querySelectorAll("[data-ai-compass]");
+    for (var c = 0; c < compassEls.length; c++) compassEls[c].innerHTML = html;
+  }
+
+  function refreshAll() { renderChip(); renderCompass(); }
+
+  function markSessionComplete(sessionId) {
+    sessionId = parseInt(sessionId, 10);
+    var data = loadProgress();
+    var wasNew = !includes(data.completed, sessionId);
+    if (wasNew) data.completed.push(sessionId);
+    data.completed = uniqueSorted(data.completed);
+    data.energy = Math.min(100, (data.energy || 45) + (wasNew ? 18 : 5));
+    saveProgress(data);
+    refreshAll();
+
+    var feedback = document.querySelector("[data-unlock-feedback]");
+    if (feedback) {
+      var names = skillNamesForSession(sessionId);
+      var unlocked = unlockedSkills(data.completed);
+      feedback.innerHTML = wasNew
+        ? '🎉 <strong>Gespeichert!</strong><br>🏆 Fähigkeit freigeschaltet: ' + (names.length ? names.join(", ") : "dein KI-Profil") + '. Neuer Stand: <strong>' + levelName(unlocked.length) + '</strong> · ' + data.completed.length + '/' + SESSION_TOTAL + ' Sessions.'
+        : '✓ Diese Session war bereits gespeichert.<br>Dein aktueller Stand: <strong>' + levelName(unlocked.length) + '</strong> · ' + data.completed.length + '/' + SESSION_TOTAL + ' Sessions.';
+      feedback.classList.add("show");
+    }
+
+    var buttons = document.querySelectorAll("[data-complete-session]");
+    for (var i = 0; i < buttons.length; i++) {
+      if (parseInt(buttons[i].getAttribute("data-complete-session"), 10) === sessionId) {
+        buttons[i].classList.add("done");
+        buttons[i].textContent = "✓ In KI-Kompass übertragen";
+      }
+    }
+
+    var compass = document.getElementById("ki-kompass") || document.querySelector("[data-ai-compass]");
+    if (compass && compass.scrollIntoView) setTimeout(function(){ compass.scrollIntoView({ behavior: "smooth", block: "start" }); }, 150);
+    return data;
+  }
+
+  function initButtons() {
+    var data = loadProgress();
+    var buttons = document.querySelectorAll("[data-complete-session]");
+    for (var i = 0; i < buttons.length; i++) {
+      var id = parseInt(buttons[i].getAttribute("data-complete-session"), 10);
+      if (includes(data.completed, id)) {
+        buttons[i].classList.add("done");
+        buttons[i].textContent = "✓ In KI-Kompass übertragen";
+      }
+      buttons[i].onclick = function(evt) {
+        if (evt && evt.preventDefault) evt.preventDefault();
+        markSessionComplete(parseInt(this.getAttribute("data-complete-session"), 10));
+        return false;
+      };
+    }
+  }
+
+  window.dotryCompleteSession = markSessionComplete;
+  window.dotryRefreshCompass = refreshAll;
+  window.dotryDebugCompass = function() { console.log("dotry.ai progress:", loadProgress(), localStorage.getItem(STORAGE_KEY)); return loadProgress(); };
+  window.dotryResetCompass = function() {
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY + "_updated_at");
+    var buttons = document.querySelectorAll("[data-complete-session]");
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].classList.remove("done");
+      buttons[i].textContent = "In KI-Kompass übertragen";
+    }
+    refreshAll();
+    return loadProgress();
+  };
+
+  function boot() { refreshAll(); initButtons(); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+
+  window.addEventListener("pageshow", refreshAll);
+  window.addEventListener("focus", refreshAll);
+  window.addEventListener("storage", refreshAll);
+})();
+</script>
+
+</body></html>

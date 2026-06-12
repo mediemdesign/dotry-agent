@@ -12,7 +12,7 @@
 ## Hinweis zur Server-Konfiguration
 
 Damit diese Dateien korrekt funktionieren, muss der Server/Cloudflare Clean URLs bedienen bzw. `.html` dauerhaft per 301 auf die Clean URL weiterleiten.
-Beispiel: `/lektion-05.html` → `/lektion-05`.
+Beispiel: `/lektion-05.html` → `/session-05`.
 
 ## Geprüfte Dateien
 
