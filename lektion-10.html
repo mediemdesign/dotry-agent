@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iPhone Fotos automatisch sortieren mit KI-Agent | do try ai</title>
-  <meta name="description" content="Lerne, wie ein Foto-Agent iPhone-Fotos automatisch sortiert: EXIF-Daten, GPS, Vision KI, Make und n8n einfach erklärt." />
-  <meta name="keywords" content="Foto Agent KI, iPhone Fotos automatisch sortieren, n8n Foto Workflow, EXIF GPS, Vision KI Fotos, dotry.ai" />
+  <title>Fotos automatisch nach Datum und Ort sortieren | iPhone & Android | do try ai</title>
+  <meta name="description" content="Lerne, wie ein Foto-Agent iPhone- und Android-Fotos automatisch nach Datum und Ort sortiert: EXIF-Daten, GPS, n8n und Python einfach erklärt." />
+  <meta name="keywords" content="iPhone Fotos automatisch sortieren, Android Fotos automatisch sortieren, Fotos nach Ort sortieren, EXIF GPS Fotos, n8n Foto Workflow, Python Foto Sortierer, dotry.ai" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://dotry.ai/lektion-10.html" />
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://dotry.ai/lektion-10.html" />
-  <meta property="og:title" content="iPhone Fotos automatisch sortieren mit KI-Agent | do try ai" />
-  <meta property="og:description" content="Lerne, wie ein Foto-Agent iPhone-Fotos automatisch sortiert: EXIF-Daten, GPS, Vision KI, Make und n8n einfach erklärt." />
+  <meta property="og:title" content="Fotos automatisch nach Datum und Ort sortieren | iPhone & Android | do try ai" />
+  <meta property="og:description" content="Lerne, wie ein Foto-Agent iPhone- und Android-Fotos automatisch nach Datum und Ort sortiert: EXIF-Daten, GPS, n8n und Python einfach erklärt." />
   <meta property="og:image" content="https://dotry.ai/logo.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -1492,13 +1492,13 @@ main > .ai-session-complete.clean .ai-session-next-panel {
 <!-- HEADER -->
     <div class="live-header">
       <div class="live-badge"><div class="live-dot"></div>Live</div>
-      <span class="track-badge">📖 Session 10 · 🟠 Technik-Track · 20 Min</span>
+      <span class="track-badge">📖 Session 10 · 🟢 Für alle · 🔵 n8n · 🟠 Technik · 20 Min</span>
     </div>
 
-    <h1>Der Foto-Agent</h1>
+    <h1>Fotos automatisch<br>nach Datum und Ort sortieren</h1>
     <p class="subtitle">
-      <strong>Lass KI deine Fotos automatisch organisieren.</strong><br/>
-      EXIF-Daten auslesen, GPS-Orte erkennen, Ordner anlegen – und Vision KI benennt das Foto nach dem was drauf ist.
+      <strong>Dein erster Foto-Agent für iPhone und Android.</strong><br/>
+      EXIF-Daten auslesen, GPS-Orte erkennen, Ordner anlegen – und optional mit Vision KI sinnvolle Dateinamen erzeugen.
     </p>
 
 
@@ -1507,22 +1507,22 @@ main > .ai-session-complete.clean .ai-session-next-panel {
       <a href="#block-a" class="block-nav-card green">
         <div class="block-nav-emoji">🟢</div>
         <div class="block-nav-label">Block A – Für alle</div>
-        <div class="block-nav-title">Verstehen & ansehen</div>
-        <div class="block-nav-desc">Wie der Agent funktioniert. Kein Setup nötig.</div>
+        <div class="block-nav-title">Verstehen</div>
+        <div class="block-nav-desc">Was der Agent macht – inklusive iOS/Android Überblick.</div>
         <div class="block-nav-arrow">↓ Direkt dorthin</div>
       </a>
       <a href="#block-b" class="block-nav-card blue">
         <div class="block-nav-emoji">🔵</div>
         <div class="block-nav-label">Block B – Nachmachen</div>
-        <div class="block-nav-title">n8n Setup</div>
-        <div class="block-nav-desc">Account erstellen, Workflow importieren, starten.</div>
+        <div class="block-nav-title">n8n Workflow</div>
+        <div class="block-nav-desc">Fertigen Workflow importieren und Schritt für Schritt einrichten.</div>
         <div class="block-nav-arrow">↓ Direkt dorthin</div>
       </a>
       <a href="#block-c" class="block-nav-card purple">
         <div class="block-nav-emoji">🟠</div>
-        <div class="block-nav-label">Block C – Bonus</div>
-        <div class="block-nav-title">Erweitern</div>
-        <div class="block-nav-desc">Gesichter, Rechnungen, WhatsApp und mehr.</div>
+        <div class="block-nav-label">Block C – Profis</div>
+        <div class="block-nav-title">Python Script</div>
+        <div class="block-nav-desc">iOS/Android Setup und Download foto_sortierer.py.</div>
         <div class="block-nav-arrow">↓ Direkt dorthin</div>
       </a>
     </div>
@@ -1547,67 +1547,53 @@ main > .ai-session-complete.clean .ai-session-next-panel {
       <div class="section-divider"></div>
 
       <!-- QUELLEN -->
-      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Der Agent überwacht deine Foto-Quelle</h2>
-      <p style="margin-bottom:20px;">Wähle woher deine Fotos kommen – der Workflow funktioniert mit allen drei:</p>
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">iPhone oder Android?</h2>
+      <p style="margin-bottom:20px;">Beide Systeme speichern Fotos mit denselben Grundinformationen. Entscheidend ist nur: Standortzugriff muss beim Fotografieren erlaubt sein.</p>
 
       <div class="source-tabs">
-        <button class="source-tab active" onclick="switchSource('icloud', this)">📱 iCloud Fotos</button>
-        <button class="source-tab" onclick="switchSource('dropbox', this)">📦 Dropbox</button>
-        <button class="source-tab" onclick="switchSource('google', this)">🌐 Google Fotos</button>
+        <button class="source-tab active" onclick="switchSource('iphone', this)">📱 iPhone / iOS</button>
+        <button class="source-tab" onclick="switchSource('android', this)">🤖 Android</button>
       </div>
 
-      <div id="source-icloud" class="source-content">
+      <div id="source-iphone" class="source-content">
         <div class="terminal">
           <div class="terminal-bar">
             <div class="terminal-dot" style="background:#ef4444;"></div>
             <div class="terminal-dot" style="background:#f59e0b;"></div>
             <div class="terminal-dot" style="background:#22c55e;"></div>
-            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:8px;">iCloud Drive → Freigegebene Fotos</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:8px;">iPhone Foto → EXIF-Daten</span>
           </div>
           <div class="terminal-body">
-            <span class="t-comment"># iCloud Fotos in n8n einbinden</span><br/>
-            <span class="t-key">Trigger:</span> <span class="t-val">iCloud Drive – Neue Datei</span><br/>
-            <span class="t-key">Ordner:</span> <span class="t-val">~/Library/Mobile Documents/com~apple~CloudDocs/Fotos</span><br/>
-            <span class="t-key">Filter:</span> <span class="t-val">.jpg, .jpeg, .heic, .png</span>
+            <span class="t-comment"># Typische iPhone-Daten</span><br/>
+            <span class="t-key">Datum & Uhrzeit:</span> <span class="t-val">✅ DateTimeOriginal</span><br/>
+            <span class="t-key">GPS-Koordinaten:</span> <span class="t-val">✅ wenn Standort aktiviert</span><br/>
+            <span class="t-key">Kameramodell:</span> <span class="t-val">✅ iPhone 15 Pro</span><br/>
+            <span class="t-key">Typischer Export:</span> <span class="t-val">iCloud Fotos / DCIM / Import-Ordner</span>
           </div>
         </div>
       </div>
 
-      <div id="source-dropbox" class="source-content" style="display:none;">
+      <div id="source-android" class="source-content" style="display:none;">
         <div class="terminal">
           <div class="terminal-bar">
             <div class="terminal-dot" style="background:#ef4444;"></div>
             <div class="terminal-dot" style="background:#f59e0b;"></div>
             <div class="terminal-dot" style="background:#22c55e;"></div>
-            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:8px;">Dropbox → /Camera Uploads</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:8px;">Android Foto → EXIF-Daten</span>
           </div>
           <div class="terminal-body">
-            <span class="t-comment"># Dropbox Trigger in n8n</span><br/>
-            <span class="t-key">Trigger:</span> <span class="t-val">Dropbox – Watch Folder</span><br/>
-            <span class="t-key">Ordner:</span> <span class="t-val">/Camera Uploads</span><br/>
-            <span class="t-key">Ereignis:</span> <span class="t-val">Neue Datei hochgeladen</span>
+            <span class="t-comment"># Typische Android-Daten</span><br/>
+            <span class="t-key">Datum & Uhrzeit:</span> <span class="t-val">✅ DateTimeOriginal</span><br/>
+            <span class="t-key">GPS-Koordinaten:</span> <span class="t-val">✅ wenn Standort-Zugriff erlaubt</span><br/>
+            <span class="t-key">Kameramodell:</span> <span class="t-val">✅ Samsung / Pixel / Xiaomi / etc.</span><br/>
+            <span class="t-key">Typischer Ordner:</span> <span class="t-val">DCIM/Camera</span>
           </div>
         </div>
       </div>
 
-      <div id="source-google" class="source-content" style="display:none;">
-        <div class="terminal">
-          <div class="terminal-bar">
-            <div class="terminal-dot" style="background:#ef4444;"></div>
-            <div class="terminal-dot" style="background:#f59e0b;"></div>
-            <div class="terminal-dot" style="background:#22c55e;"></div>
-            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:8px;">Google Drive → Fotos Ordner</span>
-          </div>
-          <div class="terminal-body">
-            <span class="t-comment"># Google Drive Trigger in n8n</span><br/>
-            <span class="t-key">Trigger:</span> <span class="t-val">Google Drive – New File</span><br/>
-            <span class="t-key">Ordner:</span> <span class="t-val">Meine Ablage / iPhone Fotos</span><br/>
-            <span class="t-key">MIME Type:</span> <span class="t-val">image/jpeg, image/heic</span>
-          </div>
-        </div>
+      <div class="tip-box">
+        <p><strong>Wichtig:</strong> Android-Fotos haben grundsätzlich dieselben EXIF-Daten wie iPhone-Fotos: Datum, Uhrzeit, GPS-Koordinaten und Kameramodell. Das Python Script liest die EXIF-Daten unabhängig davon, ob das Foto von iOS oder Android kommt.</p>
       </div>
-
-      <div class="section-divider"></div>
 
       <!-- 4 SCHRITTE -->
       <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Was der Agent mit jedem Foto macht</h2>
@@ -1621,14 +1607,14 @@ main > .ai-session-complete.clean .ai-session-next-panel {
           <div class="step-content">
             <div class="step-num">Schritt 1</div>
             <div class="step-title">EXIF-Daten auslesen</div>
-            <div class="step-desc">Jedes iPhone-Foto enthält unsichtbare Metadaten. Der Agent liest sie automatisch aus:</div>
+            <div class="step-desc">Jedes Smartphone-Foto enthält unsichtbare Metadaten. Der Agent liest sie automatisch aus:</div>
             <div class="terminal">
               <div class="terminal-body">
                 <span class="t-key">DateTimeOriginal:</span> <span class="t-val">2026-05-12 14:32:07</span><br/>
                 <span class="t-key">GPSLatitude:</span>      <span class="t-val">48.2484</span><br/>
                 <span class="t-key">GPSLongitude:</span>     <span class="t-val">13.8382</span><br/>
-                <span class="t-key">Make:</span>             <span class="t-val">Apple</span><br/>
-                <span class="t-key">Model:</span>            <span class="t-val">iPhone 15 Pro</span>
+                <span class="t-key">Make:</span>             <span class="t-val">Apple / Samsung / Google</span><br/>
+                <span class="t-key">Model:</span>            <span class="t-val">iPhone 15 Pro / Pixel / Galaxy</span>
               </div>
             </div>
           </div>
@@ -1805,7 +1791,7 @@ main > .ai-session-complete.clean .ai-session-next-panel {
             <div>
               <div class="setup-title">Google Drive verbinden</div>
               <div class="setup-desc">
-                Klick auf den ersten Node <strong style="color:var(--text);">"📱 Neues Foto erkannt"</strong> → rechts "Credential" → "Create new" → Google Account verbinden → Ordner auswählen wo deine iPhone Fotos landen.
+                Klick auf den ersten Node <strong style="color:var(--text);">"📱 Neues Foto erkannt"</strong> → rechts "Credential" → "Create new" → Google Account verbinden → Ordner auswählen wo deine iPhone- oder Android-Fotos landen.
               </div>
               <div class="setup-hint">⚠️ Du musst denselben Google Account verwenden in den du deine Fotos lädst</div>
               <div class="setup-success">✅ Der Node zeigt grün – Verbindung steht</div>
@@ -1870,6 +1856,89 @@ main > .ai-session-complete.clean .ai-session-next-panel {
       <div class="section-divider"></div>
 
       <div id="block-c"></div>
+      <div class="section-divider"></div>
+
+      <!-- BLOCK C – PYTHON -->
+      <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Block C – Python Script für Technik-Profis</h2>
+      <p style="margin-bottom:20px;">Wenn du den Foto-Agent lokal auf deinem Rechner ausführen willst, nutzt du das Python Script. Es kopiert Fotos sicher in neue Ordner und liest Datum sowie GPS direkt aus den EXIF-Daten.</p>
+
+      <div class="source-tabs">
+        <button class="source-tab active" onclick="switchTech('ios', this)">📱 iOS Setup</button>
+        <button class="source-tab" onclick="switchTech('androidtech', this)">🤖 Android Setup</button>
+      </div>
+
+      <div id="tech-ios" class="tech-content">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dot" style="background:#ef4444;"></div><div class="terminal-dot" style="background:#f59e0b;"></div><div class="terminal-dot" style="background:#22c55e;"></div>
+            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:8px;">iPhone Fotos vorbereiten</span>
+          </div>
+          <div class="terminal-body">
+            <span class="t-comment"># Empfehlung</span><br/>
+            <span class="t-key">Quelle:</span> <span class="t-val">~/Desktop/iPhone_Fotos</span><br/>
+            <span class="t-key">Ziel:</span>   <span class="t-val">~/Desktop/Fotos_Sortiert</span><br/>
+            <span class="t-key">Export:</span> <span class="t-val">Fotos-App → Exportieren → Originale exportieren</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="tech-androidtech" class="tech-content" style="display:none;">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="terminal-dot" style="background:#ef4444;"></div><div class="terminal-dot" style="background:#f59e0b;"></div><div class="terminal-dot" style="background:#22c55e;"></div>
+            <span style="font-size:0.75rem;color:var(--text-muted);margin-left:8px;">Android Fotos vorbereiten</span>
+          </div>
+          <div class="terminal-body">
+            <span class="t-comment"># Typischer Android-Pfad am Gerät</span><br/>
+            <span class="t-key">Quelle:</span> <span class="t-val">DCIM/Camera</span><br/>
+            <span class="t-key">Lokal kopieren nach:</span> <span class="t-val">~/Desktop/Android_Fotos</span><br/>
+            <span class="t-key">Ziel:</span> <span class="t-val">~/Desktop/Fotos_Sortiert</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-card">
+        <div class="download-icon">📥</div>
+        <div class="download-info">
+          <div class="download-title">foto_sortierer.py herunterladen</div>
+          <div class="download-desc">Python Script für iPhone und Android · Datum + GPS + Ort · kopiert sicher in sortierte Ordner</div>
+        </div>
+        <a href="foto_sortierer.py" download class="download-btn">⬇️ Python Script herunterladen</a>
+      </div>
+
+      <div class="setup-steps">
+        <div class="setup-step">
+          <div class="setup-num">1</div>
+          <div>
+            <div class="setup-title">Pakete installieren</div>
+            <div class="setup-desc">Das Script braucht Pillow und requests. Für HEIC/HEIF Fotos kann zusätzlich pillow-heif sinnvoll sein.</div>
+            <div class="setup-cmd"><span>pip install Pillow requests pillow-heif</span><button class="setup-copy" onclick="copyText('pip install Pillow requests pillow-heif')">Kopieren</button></div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-num">2</div>
+          <div>
+            <div class="setup-title">Fotos in einen lokalen Ordner kopieren</div>
+            <div class="setup-desc">iPhone: z.B. <strong style="color:var(--text);">~/Desktop/iPhone_Fotos</strong>. Android: z.B. Inhalt von <strong style="color:var(--text);">DCIM/Camera</strong> nach <strong style="color:var(--text);">~/Desktop/Android_Fotos</strong> kopieren.</div>
+          </div>
+        </div>
+        <div class="setup-step">
+          <div class="setup-num">3</div>
+          <div>
+            <div class="setup-title">Script starten</div>
+            <div class="setup-desc">Das Script erkennt die Quelle automatisch, wenn einer der Standardordner vorhanden ist. Du kannst den Pfad oben in der Datei jederzeit anpassen.</div>
+            <div class="setup-cmd"><span>python3 foto_sortierer.py</span><button class="setup-copy" onclick="copyText('python3 foto_sortierer.py')">Kopieren</button></div>
+            <div class="setup-success">✅ Ergebnis: Ordner wie 2026-05 – Wien oder 2026-06 – Kreta</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <p><strong>Warum kopieren statt verschieben?</strong> Das Script arbeitet bewusst sicher: Originalfotos bleiben erhalten. Erst wenn du das Ergebnis geprüft hast, kannst du deine eigene Ablage bereinigen.</p>
+      </div>
+
+      <div class="section-divider"></div>
+
       <!-- BONUS -->
       <h2 style="font-size:1.3rem;font-weight:800;margin-bottom:8px;">Bonus – was du danach noch bauen kannst</h2>
       <p style="margin-bottom:20px;">Dieselbe Architektur funktioniert für viele weitere Anwendungsfälle:</p>
@@ -1884,7 +1953,7 @@ main > .ai-session-complete.clean .ai-session-next-panel {
       </div>
 
       <div class="tip-box">
-        <p><strong>🚀 Kombination mit Session 7:</strong> Wenn du GitHub Actions bereits kennst – den Foto-Agenten kannst du auch als nächtlichen Cron-Job laufen lassen. Neue Fotos in iCloud → Agent startet um 2 Uhr → morgens alles sortiert.</p>
+        <p><strong>🚀 Kombination mit Session 7:</strong> Wenn du GitHub Actions bereits kennst – den Foto-Agenten kannst du auch als nächtlichen Cron-Job laufen lassen. Neue Fotos in deinem Ordner → Agent startet um 2 Uhr → morgens ist alles sortiert.</p>
       </div>
 
     </div>
@@ -2276,6 +2345,19 @@ main > .ai-session-complete.clean .ai-session-next-panel {
 
 
 
+
+
+  <script>
+    function switchTech(id, btn) {
+      document.querySelectorAll('.tech-content').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.source-tabs .source-tab').forEach(tab => {
+        if (tab.parentElement && tab.parentElement.querySelector('[onclick*="switchTech"]')) tab.classList.remove('active');
+      });
+      var target = document.getElementById('tech-' + id);
+      if (target) target.style.display = 'block';
+      if (btn) btn.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
