@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KI-Kompass | do try ai</title>
+  <meta name="description" content="Der KI-Kompass zeigt deinen persönlichen Fortschritt, freigeschaltete KI-Fähigkeiten und den nächsten sinnvollen Schritt." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/ki-kompass.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dotry.ai/ki-kompass.html" />
+  <meta property="og:title" content="KI-Kompass | do try ai" />
+  <meta property="og:description" content="Du arbeitest nicht nur an Sessions. Du arbeitest an deinem KI-Kompass." />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="nav.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;--blue:#2563ff;--blue-light:#4d85ff;--text:#f0f4ff;--text-muted:#8894b0;--border:rgba(255,255,255,.08);--radius:18px;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth} body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;}
+    body::before{content:"";position:fixed;inset:-20% -10% auto -10%;height:620px;background:radial-gradient(circle at 20% 10%,rgba(37,99,255,.16),transparent 35%),radial-gradient(circle at 80% 0%,rgba(34,197,94,.10),transparent 32%);pointer-events:none;z-index:-1;}
+    main{max-width:1180px;margin:0 auto;padding:118px 24px 82px;}
+    .page-head{display:flex;justify-content:space-between;gap:26px;align-items:flex-end;margin-bottom:26px;}
+    .kicker{display:inline-flex;align-items:center;gap:8px;color:#7aa2ff;font-size:.76rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;}
+    h1{font-size:clamp(2rem,4.4vw,3.3rem);line-height:1.04;letter-spacing:-.045em;font-weight:900;max-width:660px;}
+    .page-head p{color:#a7b4d5;max-width:430px;font-size:.98rem;}
+    .compass-shell{border:1px solid rgba(37,99,255,.34);border-radius:30px;background:linear-gradient(135deg,rgba(14,20,32,.96),rgba(10,15,24,.98));box-shadow:0 28px 80px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.05);overflow:hidden;position:relative;}
+    .compass-shell::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,#2563ff,#22c55e,#a855f7,#f59e0b,#ec4899);}
+    .compass-grid{display:grid;grid-template-columns:330px 1fr;gap:26px;padding:30px;align-items:center;}
+    .ring-panel{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:390px;background:rgba(8,12,18,.28);border:1px solid rgba(255,255,255,.06);border-radius:24px;padding:24px;}
+    .compass-ring{--c1:rgba(37,99,255,.22);--c2:rgba(6,182,212,.18);--c3:rgba(34,197,94,.18);--c4:rgba(168,85,247,.18);--c5:rgba(245,158,11,.18);--c6:rgba(236,72,153,.18);width:242px;height:242px;border-radius:50%;position:relative;background:conic-gradient(from -90deg,var(--c1) 0deg 58deg,rgba(8,12,18,.96) 58deg 62deg,var(--c2) 62deg 118deg,rgba(8,12,18,.96) 118deg 122deg,var(--c3) 122deg 178deg,rgba(8,12,18,.96) 178deg 182deg,var(--c4) 182deg 238deg,rgba(8,12,18,.96) 238deg 242deg,var(--c5) 242deg 298deg,rgba(8,12,18,.96) 298deg 302deg,var(--c6) 302deg 358deg,rgba(8,12,18,.96) 358deg 360deg);box-shadow:0 22px 55px rgba(0,0,0,.35),inset 0 0 0 1px rgba(255,255,255,.08);}
+    .compass-ring::before{content:"";position:absolute;inset:24px;border-radius:50%;background:var(--bg2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);}
+    .compass-ring::after{content:"🧭";position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#0a101b;border:1px solid rgba(77,133,255,.35);font-size:2rem;box-shadow:0 0 30px rgba(77,133,255,.18);}
+    .ring-count{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,34px);z-index:2;color:#dbe6ff;font-size:.74rem;font-weight:900;text-align:center;letter-spacing:.04em;}
+    .progress-text{margin-top:22px;text-align:center;}
+    .progress-text strong{display:block;font-size:1.05rem;color:#fff;}
+    .progress-text span{display:block;color:#93a2c3;font-size:.82rem;margin-top:4px;}
+    .skills-panel{display:grid;gap:12px;}
+    .compass-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:4px;}
+    .compass-title h2{font-size:clamp(1.55rem,3vw,2.3rem);letter-spacing:-.04em;line-height:1.05;}
+    .compass-title p{color:#a7b4d5;font-size:.94rem;margin-top:6px;}
+    .level-badge{min-width:190px;background:rgba(8,12,18,.42);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:14px 16px;text-align:left;}
+    .level-badge strong{display:block;color:#7aa2ff;font-size:.98rem}.level-badge span{display:block;color:#93a2c3;font-size:.78rem;margin-top:3px;}
+    .skill-list{display:grid;gap:10px;margin-top:8px;}
+    .skill-row{--skill:#2563ff;display:grid;grid-template-columns:44px 1fr auto;gap:13px;align-items:center;padding:14px 16px;border-radius:18px;background:rgba(8,12,18,.36);border:1px solid rgba(255,255,255,.07);}
+    .skill-row.unlocked{background:linear-gradient(90deg,color-mix(in srgb,var(--skill) 18%,transparent),rgba(8,12,18,.36));border-color:var(--skill);}
+    .skill-row.current{border-color:var(--skill);box-shadow:0 0 28px color-mix(in srgb,var(--skill) 18%,transparent);}
+    .skill-icon{width:42px;height:42px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--skill) 18%,rgba(255,255,255,.04));border:1px solid color-mix(in srgb,var(--skill) 45%,transparent);font-weight:900;color:#fff;}
+    .skill-row.unlocked .skill-icon{background:var(--skill);box-shadow:0 0 18px color-mix(in srgb,var(--skill) 34%,transparent);}
+    .skill-name{font-weight:900;color:#fff;font-size:.98rem}.skill-desc{font-size:.79rem;color:#9daacd;line-height:1.35;margin-top:2px}.skill-state{font-size:.68rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;color:#8894b0}.skill-row.unlocked .skill-state{color:#22c55e}.skill-row.current .skill-state{color:var(--skill)}
+    .next-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 30px 30px;}
+    .next-card{background:rgba(8,12,18,.36);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:18px;min-height:112px;}
+    .next-card strong{display:block;color:#fff;font-size:.86rem;margin-bottom:8px}.next-card span{color:#a7b4d5;font-size:.84rem;line-height:1.45}.next-card.primary{border-color:rgba(37,99,255,.35);background:rgba(37,99,255,.11)}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;}.btn-primary,.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:14px 24px;font-weight:900;text-decoration:none}.btn-primary{background:var(--blue);color:#fff;box-shadow:0 14px 35px rgba(37,99,255,.28)}.btn-secondary{border:1px solid var(--border);color:#d6e0f8;background:rgba(255,255,255,.02)}
+    .growth-note{margin-top:24px;border:1px solid rgba(34,197,94,.18);border-radius:24px;padding:24px;background:linear-gradient(135deg,rgba(34,197,94,.10),rgba(8,12,18,.32));display:flex;justify-content:space-between;gap:18px;align-items:center;}.growth-note strong{display:block;color:#fff;font-size:1.05rem}.growth-note p{color:#a7b4d5;font-size:.9rem;margin-top:4px;max-width:760px}.growth-note .sprout{font-size:2.2rem;}
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:.85rem}footer a{color:var(--text-muted);text-decoration:none} .logo img{height:40px;width:auto}.logo{text-decoration:none;}
+    @media(max-width:930px){.page-head{flex-direction:column;align-items:flex-start}.compass-grid{grid-template-columns:1fr}.ring-panel{min-height:0}.next-grid{grid-template-columns:1fr}.compass-top{flex-direction:column}.level-badge{width:100%}.growth-note{align-items:flex-start}}
+    @media(max-width:560px){main{padding:104px 16px 64px}.compass-grid{padding:20px}.compass-ring{width:210px;height:210px}.next-grid{padding:0 20px 20px}.skill-row{grid-template-columns:40px 1fr}.skill-state{grid-column:2}.footer,footer{flex-direction:column;gap:12px;text-align:center}}
+  </style>
+  <script>
+    fetch('nav.html').then(r=>r.text()).then(html=>{document.getElementById('nav-placeholder').outerHTML=html;window.toggleDropdown=function(btn){const isOpen=btn.classList.contains('open');document.querySelectorAll('.lessons-dropdown-btn').forEach(b=>b.classList.remove('open'));document.querySelectorAll('.lessons-dropdown-menu').forEach(m=>m.classList.remove('open'));if(!isOpen){btn.classList.add('open');const dd=document.getElementById('lessons-dropdown');if(dd)dd.classList.add('open')}};document.addEventListener('click',e=>{if(!e.target.closest('.lessons-dropdown-wrap')){document.querySelectorAll('.lessons-dropdown-btn').forEach(b=>b.classList.remove('open'));document.querySelectorAll('.lessons-dropdown-menu').forEach(m=>m.classList.remove('open'));}});}).catch(()=>{});
+  </script>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+  <main>
+    <div class="page-head">
+      <div>
+        <div class="kicker">🧭 Dein KI-Kompass</div>
+        <h1>Du arbeitest nicht nur an Sessions. Du arbeitest an deinem Kompass.</h1>
+      </div>
+      <p>Der Ring zeigt deine Fähigkeitsfelder. Neue Sessions erweitern den Weg laufend – der Kompass wächst mit.</p>
+    </div>
+
+    <section class="compass-shell" data-v9-compass>
+      <div class="compass-grid">
+        <div class="ring-panel">
+          <div class="compass-ring" id="v9-ring"><div class="ring-count" id="v9-ring-count">0/6</div></div>
+          <div class="progress-text"><strong id="v9-progress-title">0 von 6 Fähigkeiten</strong><span id="v9-progress-sub">freigeschaltet</span></div>
+        </div>
+        <div class="skills-panel">
+          <div class="compass-top">
+            <div class="compass-title"><h2>KI-Kompass</h2><p>Dein Fortschritt. Deine Fähigkeiten. Dein nächster sinnvoller Schritt.</p></div>
+            <div class="level-badge"><strong id="v9-level">🌱 KI-Neuling</strong><span id="v9-level-meta">0 von 6 Fähigkeiten · 0/11 Sessions</span></div>
+          </div>
+          <div class="skill-list" id="v9-skills"></div>
+        </div>
+      </div>
+      <div class="next-grid">
+        <div class="next-card primary"><strong>🎯 Nächste Fähigkeit</strong><span id="v9-next-skill">Kommunikation freischalten.</span></div>
+        <div class="next-card"><strong>▶ Empfehlung</strong><span id="v9-next-session">Starte mit Session 1.</span></div>
+        <div class="next-card"><strong>🌱 Der Weg wächst</strong><span>Neue Sessions erweitern deinen Kompass jede Woche.</span></div>
+      </div>
+    </section>
+
+    <div class="cta-row">
+      <a class="btn-primary" id="v9-start-link" href="/lektion-01.html">Empfohlene Session starten →</a>
+      <a class="btn-secondary" href="/lektionen.html">KI-Lernreise ansehen</a>
+    </div>
+
+    <div class="growth-note"><div><strong>Der Kompass ist kein abgeschlossenes Ziel.</strong><p>Die sechs Fähigkeiten bleiben als Orientierung stabil. Neue Sessions zahlen laufend auf diese Fähigkeiten ein – dadurch entwickelt sich dein Kompass weiter, ohne unübersichtlich zu werden.</p></div><div class="sprout">🌱</div></div>
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;"><a href="mailto:hi@dotry.ai">hi@dotry.ai</a><a href="/impressum.html">Impressum</a><a href="/datenschutz.html">Datenschutz</a></div>
+  </footer>
+
+<script>
+(function(){
+  var STORAGE_KEY="dotry_ai_progress_v1";
+  var SESSION_TOTAL=11;
+  var SKILLS=[
+    {id:"kommunikation",name:"Kommunikation",desc:"Bessere Prompts und klarere Antworten",color:"#2563ff",soft:"rgba(37,99,255,.20)",icon:"💬",sessions:[1,11]},
+    {id:"recherche",name:"Recherche",desc:"Tools vergleichen und Informationen prüfen",color:"#06b6d4",soft:"rgba(6,182,212,.18)",icon:"🔍",sessions:[3,5]},
+    {id:"produktivitaet",name:"Produktivität",desc:"Meetings, E-Mails und Aufgaben schneller erledigen",color:"#22c55e",soft:"rgba(34,197,94,.18)",icon:"⚡",sessions:[2,9]},
+    {id:"kreativitaet",name:"Kreativität",desc:"Ideen, Inhalte und Lernwege entwickeln",color:"#a855f7",soft:"rgba(168,85,247,.18)",icon:"🎨",sessions:[4,8]},
+    {id:"automatisierung",name:"Automatisierung",desc:"Wiederkehrende Aufgaben automatisieren",color:"#f59e0b",soft:"rgba(245,158,11,.18)",icon:"🔄",sessions:[7,10]},
+    {id:"agenten",name:"Agenten",desc:"Eigene KI-Agenten verstehen und bauen",color:"#ec4899",soft:"rgba(236,72,153,.18)",icon:"🤖",sessions:[6]}
+  ];
+  var LEVELS=[{min:0,name:"🌱 KI-Neuling"},{min:1,name:"✨ KI-Anwender"},{min:3,name:"🧭 KI-Navigator"},{min:5,name:"🚀 KI-Pilot"}];
+  function load(){try{var raw=localStorage.getItem(STORAGE_KEY);if(!raw)return{completed:[]};var d=JSON.parse(raw);return{completed:(d.completed||[]).map(Number).filter(Boolean)}}catch(e){return{completed:[]}}}
+  function has(arr,n){return arr.indexOf(n)!==-1}
+  function unlocked(skill,completed){return skill.sessions.some(function(s){return has(completed,s)})}
+  function nextSession(completed){for(var i=1;i<=SESSION_TOTAL;i++)if(!has(completed,i))return i;return SESSION_TOTAL}
+  function levelName(count){var name=LEVELS[0].name;LEVELS.forEach(function(l){if(count>=l.min)name=l.name});return name}
+  function render(){
+    var data=load(), completed=data.completed, unlockedMap={}, unlockedCount=0;
+    SKILLS.forEach(function(s){if(unlocked(s,completed)){unlockedMap[s.id]=true;unlockedCount++}});
+    var next=SKILLS.find(function(s){return !unlockedMap[s.id]}) || SKILLS[SKILLS.length-1];
+    var ring=document.getElementById('v9-ring');
+    SKILLS.forEach(function(s,i){ring.style.setProperty('--c'+(i+1), unlockedMap[s.id] ? s.color : s.soft)});
+    document.getElementById('v9-ring-count').textContent=unlockedCount+'/6';
+    document.getElementById('v9-progress-title').textContent=unlockedCount+' von 6 Fähigkeiten';
+    document.getElementById('v9-progress-sub').textContent='freigeschaltet';
+    document.getElementById('v9-level').textContent=levelName(unlockedCount);
+    document.getElementById('v9-level-meta').textContent=unlockedCount+' von 6 Fähigkeiten · '+completed.length+'/'+SESSION_TOTAL+' Sessions';
+    document.getElementById('v9-next-skill').textContent=next ? next.name+' freischalten.' : 'Neue Etappen folgen.';
+    var ns=nextSession(completed); document.getElementById('v9-next-session').textContent='Weiter mit Session '+ns+'.'; document.getElementById('v9-start-link').href='/lektion-'+String(ns).padStart(2,'0')+'.html';
+    var list=document.getElementById('v9-skills'); list.innerHTML='';
+    SKILLS.forEach(function(s,idx){var isU=!!unlockedMap[s.id], isC=next&&next.id===s.id&&!isU; var row=document.createElement('div'); row.className='skill-row '+(isU?'unlocked ':'')+(isC?'current ':''); row.style.setProperty('--skill',s.color); row.innerHTML='<div class="skill-icon">'+(isU?'✓':(idx+1))+'</div><div><div class="skill-name">'+s.name+'</div><div class="skill-desc">'+s.desc+'</div></div><div class="skill-state">'+(isU?'frei':(isC?'nächstes Ziel':'offen'))+'</div>'; list.appendChild(row);});
+  }
+  render(); window.addEventListener('storage',render);
+})();
+</script>
+</body>
+</html>

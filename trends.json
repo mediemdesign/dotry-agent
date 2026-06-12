@@ -1,63 +1,63 @@
 {
-  "updated": "2026-06-12 06:28:42",
+  "updated": "2026-06-08 18:12:23",
   "stats": {
     "sources_scanned": 15,
-    "signals_detected": 78,
+    "signals_detected": 54,
     "top_trends": 5
   },
   "trends": [
     {
       "name": "Pickle Flavored Foods",
-      "category": "Savory Condiment Revolution",
+      "category": "Savory Fusion",
       "trend_type": "Emerging",
-      "score": 92,
-      "confidence": 88,
-      "description": "Salzige, saure Pickle-Essenz erobert unerwartete Kategorien von Süßspeisen bis Getränken. Die kontraintuitive Geschmackskombination schafft massiven Surprise-Effekt und Teilbarkeit auf Social Media.",
-      "why_trending": "Sauer-süße Kontraste, virales Reaktionspotential"
-    },
-    {
-      "name": "Chili Crisp Everything Trend",
-      "category": "Umami Flavor Layering",
-      "trend_type": "Growing",
       "score": 89,
-      "confidence": 87,
-      "description": "Würzige Chili-Öl-Krummel auf Desserts, Getränken und unkonventionellen Speisen erzeugen visuell dramatische Aufnahmen. Der Trend kombiniert Instagram-Ästhetik mit echtem Geschmackserlebnis.",
-      "why_trending": "Visuell spektakulär, unendliche Kombinationsmöglichkeiten"
+      "confidence": 88,
+      "description": "Säuerliche Pickle-Aromen werden in unerwartete Kategorien integriert – von Desserts bis Getränke. Der kontrastive Geschmack und die virale Überraschungskomponente erzeugen massives Engagement und Sharing-Potential.",
+      "why_trending": "Unerwartete Geschmackskombination, viral surprise effect"
     },
     {
-      "name": "Frozen Honey TikTok Trend",
-      "category": "Textural Dessert Innovation",
-      "trend_type": "Peak",
-      "score": 85,
-      "confidence": 92,
-      "description": "Gefrorener Honig bietet faszinierende Konsistenz-Kontraste und ASMR-Potential für kurze Videoformate. Die extremen Closeup-Aufnahmen beim Schneiden generieren massive Engagement-Raten.",
-      "why_trending": "ASMR viral, visuelle Transformation, einfach nachzumachen"
-    },
-    {
-      "name": "Birria Tacos Global Localization",
-      "category": "Street Food Fusion",
+      "name": "Chili Crisp Everything",
+      "category": "Condiment Innovation",
       "trend_type": "Growing",
       "score": 87,
-      "confidence": 85,
-      "description": "Mexikanische Birria-Tacos werden regional adaptiert mit lokalen Würzungen und Zutaten, was authentische Global-Food-Inhalte schafft. Jede Region kreiert ihre Variation mit lokalem Appeal.",
-      "why_trending": "Lokale Adaptationen, globale Reichweite, authentische Geschichten"
+      "confidence": 89,
+      "description": "Chili Crisp wird zum Universal-Topping für alle Gerichte – sogar auf Desserts und in Getränken. Die Bewegung hat exponentielles Wachstum mit hochvisuellen Reels und eine noch nicht saturierte Nische.",
+      "why_trending": "Visuell spektakulär, unendlose Variationen möglich"
     },
     {
-      "name": "Bento Box Lunch Aesthetic",
-      "category": "Visual Food Composition",
+      "name": "Korean Street Food Elevated",
+      "category": "International Trending",
       "trend_type": "Growing",
-      "score": 91,
-      "confidence": 89,
-      "description": "Minimalistisch arrangierte japanische Lunchboxen mit perfekter Farbkomposition und Symmetrie erfüllen die Pinterest-Designästhetik. Die Kombination aus gesunder Ernährung und Kunstwerk-Präsentation erreicht Lifestyle-Zielgruppen.",
-      "why_trending": "Perfekte visuelle Balance, gesundheitsbewusst, wiederholbar täglich"
+      "score": 86,
+      "confidence": 87,
+      "description": "Authentische koreanische Straßengerichte wie Tteokbokki und Hotteok mit modernen Twists werden global viral. Der Trend verbindet Authentizität mit innovativen Fusion-Elementen und hat extreme visuelle Appeal.",
+      "why_trending": "Authentisch, hochgradig fotogen, globaler Hype"
+    },
+    {
+      "name": "Frozen Honey Alchemy",
+      "category": "Dessert Innovation",
+      "trend_type": "Peak",
+      "score": 84,
+      "confidence": 85,
+      "description": "Gefrorener Honig als texturelle Basis für Desserts und Cocktails schafft unerwartete mouthfeel-Momente. Die ASMR-Komponente und visuelle Transformation garantieren Wiederansichten und Shares.",
+      "why_trending": "ASMR-Element, extreme Visuellität, Textur-Neuheit"
+    },
+    {
+      "name": "Bento Box Luxury Styling",
+      "category": "Presentation Trend",
+      "trend_type": "Emerging",
+      "score": 85,
+      "confidence": 86,
+      "description": "Minimalistisch designte Premium-Bento-Boxen mit kurierten Zutaten und kunstvoller Anordnung werden zu Lifestyle-Content. Der Trend verbindet Ästhetik, Nachhaltigkeit und Japanische Kultur in einem perfekt inszeniertem Format.",
+      "why_trending": "Extrem fotogen, Lifestyle-Appeal, nachhaltig"
     }
   ],
   "logs": [
-    "[06:28:01] Agent gestartet...",
-    "[06:28:02] 15 Food-Themen geladen",
-    "[06:28:03] Claude API analysiert Trends...",
-    "[06:28:04] 5 Top-Trends identifiziert",
-    "[06:28:05] Virality-Scores berechnet",
-    "[06:28:06] trends.json aktualisiert ✓"
+    "[18:12:01] Agent gestartet...",
+    "[18:12:02] 15 Food-Themen geladen",
+    "[18:12:03] Claude API analysiert Trends...",
+    "[18:12:04] 5 Top-Trends identifiziert",
+    "[18:12:05] Virality-Scores berechnet",
+    "[18:12:06] trends.json aktualisiert ✓"
   ]
 }
