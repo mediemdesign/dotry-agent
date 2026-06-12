@@ -1094,37 +1094,51 @@ main > .ai-session-complete.clean .ai-session-next-panel {
 </style>
  
   <script>
-    // Zentraler Header laden
-    fetch('nav.html')
-      .then(r => r.text())
-      .then(html => {
-        document.getElementById('nav-placeholder').outerHTML = html;
-        // Progress bar scroll
-        window.addEventListener('scroll', () => {
-          const doc = document.documentElement;
-          const p = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
-          const bar = document.getElementById('progress');
-          if (bar) bar.style.width = Math.min(p, 100) + '%';
-        });
-        // Dropdown toggle
-        window.toggleDropdown = function(btn) {
-          const isOpen = btn.classList.contains('open');
-          document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
-          document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
-          if (!isOpen) {
-            btn.classList.add('open');
-            document.getElementById('lessons-dropdown').classList.add('open');
-          }
-        };
-        document.addEventListener('click', (e) => {
-          if (!e.target.closest('.lessons-dropdown-wrap')) {
-            document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
-            document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
-          }
-        });
+    // Zentralen Header laden
+    document.addEventListener('DOMContentLoaded', function () {
+      var placeholder = document.getElementById('nav-placeholder');
+      if (placeholder) {
+        fetch('nav.html')
+          .then(function (r) { return r.text(); })
+          .then(function (html) {
+            placeholder.outerHTML = html;
+            updateHeaderProgress();
+          })
+          .catch(function (err) {
+            console.error('Navigation konnte nicht geladen werden:', err);
+          });
+      }
+
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest('.lessons-dropdown-wrap')) {
+          document.querySelectorAll('.lessons-dropdown-btn').forEach(function (b) { b.classList.remove('open'); });
+          document.querySelectorAll('.lessons-dropdown-menu').forEach(function (m) { m.classList.remove('open'); });
+        }
       });
+    });
+
+    function toggleDropdown(btn) {
+      var isOpen = btn.classList.contains('open');
+      document.querySelectorAll('.lessons-dropdown-btn').forEach(function (b) { b.classList.remove('open'); });
+      document.querySelectorAll('.lessons-dropdown-menu').forEach(function (m) { m.classList.remove('open'); });
+      if (!isOpen) {
+        btn.classList.add('open');
+        var menu = document.getElementById('lessons-dropdown');
+        if (menu) menu.classList.add('open');
+      }
+    }
+
+    function updateHeaderProgress() {
+      var doc = document.documentElement;
+      var scrollHeight = doc.scrollHeight - doc.clientHeight;
+      var p = scrollHeight > 0 ? (doc.scrollTop / scrollHeight) * 100 : 0;
+      var bar = document.getElementById('progress');
+      if (bar) bar.style.width = Math.min(p, 100) + '%';
+    }
+
+    window.addEventListener('scroll', updateHeaderProgress, { passive: true });
+    window.addEventListener('resize', updateHeaderProgress);
   </script>
-  
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1140,21 +1154,15 @@ main > .ai-session-complete.clean .ai-session-next-panel {
   }
 }
   </script>
+  <link rel="stylesheet" href="nav.css" />
 </head>
-<<body>
+<body>
+
+  <div id="nav-placeholder"></div>
 
   <div class="dotry-scroll-progress" aria-hidden="true">
     <div class="dotry-scroll-progress-fill" id="dotry-scroll-progress-fill"></div>
   </div>
-
-
-  <nav>
-    <a href="/" class="logo"><img src="logo.png" alt="do try ai" /></a>
-
-<!-- NAV -->
-  <div id="nav-placeholder"></div>
-<a href="/lektionen.html" class="nav-back">← Alle Sessions</a>
-  </nav>
 
 
   <main>
@@ -1388,7 +1396,8 @@ main > .ai-session-complete.clean .ai-session-next-panel {
       const scrollTop = doc.scrollTop || document.body.scrollTop;
       const scrollHeight = doc.scrollHeight - doc.clientHeight;
       const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-      document.getElementById('progress').style.width = progress + '%';
+      var progressBar = document.getElementById('progress');
+      if (progressBar) progressBar.style.width = progress + '%';
     });
 
     function copyPrompt() {
@@ -1424,24 +1433,6 @@ main > .ai-session-complete.clean .ai-session-next-panel {
       if (consent === 'accepted') gtag('consent', 'update', { analytics_storage: 'granted' });
     });
   </script>
-
-  <script>
-    function toggleDropdown(btn) {
-      const isOpen = btn.classList.contains('open');
-      document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
-      document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
-      if (!isOpen) {
-        btn.classList.add('open');
-        document.getElementById('lessons-dropdown').classList.add('open');
-      }
-    }
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.lessons-dropdown-wrap')) {
-        document.querySelectorAll('.lessons-dropdown-btn').forEach(b => b.classList.remove('open'));
-        document.querySelectorAll('.lessons-dropdown-menu').forEach(m => m.classList.remove('open'));
-      }
-    });</script>
-
 <script>
   // Sichtbarer Scroll-Fortschritt für Sessions
   (function() {
