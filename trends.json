@@ -1,63 +1,63 @@
 {
-  "updated": "2026-06-08 18:12:23",
+  "updated": "2026-06-13 10:01:16",
   "stats": {
     "sources_scanned": 15,
-    "signals_detected": 54,
+    "signals_detected": 101,
     "top_trends": 5
   },
   "trends": [
     {
-      "name": "Pickle Flavored Foods",
-      "category": "Savory Fusion",
+      "name": "Pickle Flavored Foods Fusion",
+      "category": "Savory Innovation",
       "trend_type": "Emerging",
       "score": 89,
-      "confidence": 88,
-      "description": "Säuerliche Pickle-Aromen werden in unerwartete Kategorien integriert – von Desserts bis Getränke. Der kontrastive Geschmack und die virale Überraschungskomponente erzeugen massives Engagement und Sharing-Potential.",
-      "why_trending": "Unerwartete Geschmackskombination, viral surprise effect"
+      "confidence": 92,
+      "description": "Die Pickle-Bewegung expandiert über traditionelle Snacks hinaus in süß-salzige Desserts, Getränke und internationale Gerichte. Der scharfe Umami-Geschmack bietet extremen visuellen und geschmacklichen Kontrast für TikTok-Inhalte.",
+      "why_trending": "Kontrast-Geschmack, unerwartete Kombinationen"
     },
     {
-      "name": "Chili Crisp Everything",
-      "category": "Condiment Innovation",
+      "name": "Cloud Bread Advanced Variations",
+      "category": "Dessert & Baking",
+      "trend_type": "Growing",
+      "score": 85,
+      "confidence": 88,
+      "description": "Cloud Bread entwickelt sich von einfachen Rezepten zu elaborierten Layers, Füllungen und Toppings mit ästhetischem Appeal. Die fluffige Textur und minimalistischen Zutaten sprechen Fitness- und Aesthetic-Communities an.",
+      "why_trending": "Visuelle Schönheit, niedriger Kaloriengehalt"
+    },
+    {
+      "name": "Chili Crisp Gourmet Pairings",
+      "category": "Condiment Trend",
       "trend_type": "Growing",
       "score": 87,
       "confidence": 89,
-      "description": "Chili Crisp wird zum Universal-Topping für alle Gerichte – sogar auf Desserts und in Getränken. Die Bewegung hat exponentielles Wachstum mit hochvisuellen Reels und eine noch nicht saturierte Nische.",
-      "why_trending": "Visuell spektakulär, unendlose Variationen möglich"
+      "description": "Chili Crisp wird zur Premium-Zutat in unerwarteten Kontexten: auf Desserts, in Cocktails und Hochküchen-Präsentationen. Dieses Pairing-Konzept generiert maximalen Überraschungseffekt und Engagement.",
+      "why_trending": "Elegante Spicy-Sweet-Kombination, Wow-Effekt"
     },
     {
-      "name": "Korean Street Food Elevated",
-      "category": "International Trending",
-      "trend_type": "Growing",
+      "name": "Korean Street Food Modernization",
+      "category": "Asian Cuisine",
+      "trend_type": "Emerging",
       "score": 86,
       "confidence": 87,
-      "description": "Authentische koreanische Straßengerichte wie Tteokbokki und Hotteok mit modernen Twists werden global viral. Der Trend verbindet Authentizität mit innovativen Fusion-Elementen und hat extreme visuelle Appeal.",
-      "why_trending": "Authentisch, hochgradig fotogen, globaler Hype"
+      "description": "Klassische koreanische Street Foods werden mit westlichen Premium-Zutaten und Plating-Techniken neu interpretiert. Die visuellen Kontraste und komplexen Aromen erzeugen höchste Engagement-Raten auf Shorts.",
+      "why_trending": "Kulturelle Fusion, Ästhetik-fokussiert, international"
     },
     {
-      "name": "Frozen Honey Alchemy",
-      "category": "Dessert Innovation",
-      "trend_type": "Peak",
+      "name": "Smash Burger Gourmet Editions",
+      "category": "Savory Main",
+      "trend_type": "Growing",
       "score": 84,
-      "confidence": 85,
-      "description": "Gefrorener Honig als texturelle Basis für Desserts und Cocktails schafft unerwartete mouthfeel-Momente. Die ASMR-Komponente und visuelle Transformation garantieren Wiederansichten und Shares.",
-      "why_trending": "ASMR-Element, extreme Visuellität, Textur-Neuheit"
-    },
-    {
-      "name": "Bento Box Luxury Styling",
-      "category": "Presentation Trend",
-      "trend_type": "Emerging",
-      "score": 85,
       "confidence": 86,
-      "description": "Minimalistisch designte Premium-Bento-Boxen mit kurierten Zutaten und kunstvoller Anordnung werden zu Lifestyle-Content. Der Trend verbindet Ästhetik, Nachhaltigkeit und Japanische Kultur in einem perfekt inszeniertem Format.",
-      "why_trending": "Extrem fotogen, Lifestyle-Appeal, nachhaltig"
+      "description": "Smash Burgers werden mit unkonventionellen Saucen, internationalen Gewürzen und luxuriösen Zutaten als Gourmet-Produkt inszeniert. Der Kontrast zwischen Street-Food-Ästhetik und gehobener Zubereitung ist hochgradig viralitätsträchtig.",
+      "why_trending": "Handwerk-Fokus, visuelle Dramaturgie, Geschmacks-Neuheit"
     }
   ],
   "logs": [
-    "[18:12:01] Agent gestartet...",
-    "[18:12:02] 15 Food-Themen geladen",
-    "[18:12:03] Claude API analysiert Trends...",
-    "[18:12:04] 5 Top-Trends identifiziert",
-    "[18:12:05] Virality-Scores berechnet",
-    "[18:12:06] trends.json aktualisiert ✓"
+    "[10:01:01] Agent gestartet...",
+    "[10:01:02] 15 Food-Themen geladen",
+    "[10:01:03] Claude API analysiert Trends...",
+    "[10:01:04] 5 Top-Trends identifiziert",
+    "[10:01:05] Virality-Scores berechnet",
+    "[10:01:06] trends.json aktualisiert ✓"
   ]
 }
