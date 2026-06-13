@@ -1,0 +1,46 @@
+name: KI-Radar weekly update
+
+on:
+  schedule:
+    # Jeden Montag um 06:15 UTC
+    - cron: "15 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-ki-radar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run KI-Radar Agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          KI_RADAR_MODEL_ANTHROPIC: claude-3-5-haiku-latest
+          KI_RADAR_MODEL_OPENAI: gpt-4o-mini
+          KI_RADAR_MAX_ITEMS: "24"
+          KI_RADAR_LOOKBACK_DAYS: "14"
+        run: |
+          python agents/ki_radar_agent.py
+
+      - name: Commit updated KI-Radar
+        run: |
+          git config user.name "dotry-ai-radar-bot"
+          git config user.email "actions@github.com"
+          git add ki-radar.html data/ki-radar.json
+          if git diff --cached --quiet; then
+            echo "No KI-Radar changes to commit."
+          else
+            git commit -m "Update KI-Radar"
+            git push
+          fi
