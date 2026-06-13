@@ -1,68 +1,68 @@
 {
-  "summary": "Automatisch gesammelt; ohne LLM-Key wurde eine heuristische Vorauswahl erstellt.",
+  "summary": "Diese Woche steht praktische KI-Anwendung stärker im Fokus als reine Tool-News.",
   "trends": [
-    {
-      "title": "Disguising Claude + ChatGPT as a Google Doc",
-      "source": "Reddit r/ArtificialInteligence",
-      "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1u4klwh/disguising_claude_chatgpt_as_a_google_doc/",
-      "category": "Beobachten",
-      "skill": "Recherche",
-      "score": 10,
-      "summary": "I originally built a Chrome extension as a bit of a joke because I felt weirdly socially anxious using ChatGPT in public, so I made it look like Google Docs so it felt less like I was “talking to AI” and more like I was ",
-      "why_it_matters": "Der Trend könnte für Menschen relevant sein, die KI praktisch im Alltag oder Beruf nutzen möchten.",
-      "practical_use": "Prüfen, ob daraus ein konkreter Prompt, Workflow oder eine neue dotry.ai Session entstehen kann.",
-      "session_idea": "Session-Idee: Recherche im Alltag praktisch einsetzen"
-    },
-    {
-      "title": "I don’t see perplexity surviving in the near future",
-      "source": "Reddit r/ArtificialInteligence",
-      "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1u4fb7m/i_dont_see_perplexity_surviving_in_the_near_future/",
-      "category": "Beobachten",
-      "skill": "Agenten",
-      "score": 10,
-      "summary": "Perplexity is only used because Google hasn’t fully integrated ai search in their search engine. Once they do, they have no real reason for users to stay. ChatGPT, Claude, and Gemini already have web search and way more ",
-      "why_it_matters": "Der Trend könnte für Menschen relevant sein, die KI praktisch im Alltag oder Beruf nutzen möchten.",
-      "practical_use": "Prüfen, ob daraus ein konkreter Prompt, Workflow oder eine neue dotry.ai Session entstehen kann.",
-      "session_idea": "Session-Idee: Agenten im Alltag praktisch einsetzen"
-    },
     {
       "title": "New OpenAI Academy courses for the next era of work",
       "source": "OpenAI News",
       "url": "https://openai.com/index/academy-courses-applying-ai-at-work",
-      "category": "Beobachten",
+      "category": "Sofort relevant",
       "skill": "Agenten",
-      "score": 10,
+      "score": 15,
       "summary": "OpenAI introduces three Academy courses that help people build practical AI skills, create repeatable workflows, and apply agents in everyday work.",
-      "why_it_matters": "Der Trend könnte für Menschen relevant sein, die KI praktisch im Alltag oder Beruf nutzen möchten.",
-      "practical_use": "Prüfen, ob daraus ein konkreter Prompt, Workflow oder eine neue dotry.ai Session entstehen kann.",
-      "session_idea": "Session-Idee: Agenten im Alltag praktisch einsetzen"
+      "why_it_matters": "Relevant, wenn daraus ein einfacher Nutzen rund um agenten entsteht – etwa ein besserer Workflow, ein verständlicher Prompt oder eine konkrete Alltagshilfe.",
+      "practical_use": "Als Impuls prüfen: Kann daraus eine einfache Schritt-für-Schritt-Anleitung für Alltag, Beruf oder kleine Unternehmen werden?",
+      "session_idea": "Session-Idee: Agenten praktisch im Alltag einsetzen"
     },
     {
       "title": "OpenAI to acquire Ona",
       "source": "OpenAI News",
       "url": "https://openai.com/index/openai-to-acquire-ona",
-      "category": "Beobachten",
+      "category": "Sofort relevant",
       "skill": "Agenten",
-      "score": 9,
+      "score": 15,
       "summary": "OpenAI plans to acquire Ona to expand Codex with secure, persistent cloud environments, enabling long-running AI agents across enterprise workflows.",
-      "why_it_matters": "Der Trend könnte für Menschen relevant sein, die KI praktisch im Alltag oder Beruf nutzen möchten.",
-      "practical_use": "Prüfen, ob daraus ein konkreter Prompt, Workflow oder eine neue dotry.ai Session entstehen kann.",
-      "session_idea": "Session-Idee: Agenten im Alltag praktisch einsetzen"
+      "why_it_matters": "Relevant, wenn daraus ein einfacher Nutzen rund um agenten entsteht – etwa ein besserer Workflow, ein verständlicher Prompt oder eine konkrete Alltagshilfe.",
+      "practical_use": "Als Impuls prüfen: Kann daraus eine einfache Schritt-für-Schritt-Anleitung für Alltag, Beruf oder kleine Unternehmen werden?",
+      "session_idea": "Session-Idee: Agenten praktisch im Alltag einsetzen"
     },
     {
-      "title": "US government bans Claude Fable from non-Americans. Is it time to boycott the USA?",
-      "source": "Reddit r/ArtificialInteligence",
-      "url": "https://www.reddit.com/r/ArtificialInteligence/comments/1u4mx3x/us_government_bans_claude_fable_from_nonamericans/",
+      "title": "How Endava is redesigning software delivery around AI agents",
+      "source": "OpenAI News",
+      "url": "https://openai.com/index/endava-frontiers",
+      "category": "Sofort relevant",
+      "skill": "Agenten",
+      "score": 15,
+      "summary": "Learn how Endava is using AI agents, ChatGPT Enterprise, and Codex to accelerate software delivery, automate workflows, and build an AI-native culture across the enterprise.",
+      "why_it_matters": "Relevant, wenn daraus ein einfacher Nutzen rund um agenten entsteht – etwa ein besserer Workflow, ein verständlicher Prompt oder eine konkrete Alltagshilfe.",
+      "practical_use": "Als Impuls prüfen: Kann daraus eine einfache Schritt-für-Schritt-Anleitung für Alltag, Beruf oder kleine Unternehmen werden?",
+      "session_idea": "Session-Idee: Agenten praktisch im Alltag einsetzen"
+    },
+    {
+      "title": "Codex is becoming a productivity tool for everyone",
+      "source": "OpenAI News",
+      "url": "https://openai.com/index/codex-for-knowledge-work",
       "category": "Beobachten",
-      "skill": "Recherche",
-      "score": 8,
-      "summary": "News have been breaking today. The US government has brought capitalism and world politics to AI. The newest Claude model has been reserved for only Americans, messing it up for everyone not living there. Friends, wouldn",
-      "why_it_matters": "Der Trend könnte für Menschen relevant sein, die KI praktisch im Alltag oder Beruf nutzen möchten.",
-      "practical_use": "Prüfen, ob daraus ein konkreter Prompt, Workflow oder eine neue dotry.ai Session entstehen kann.",
-      "session_idea": "Session-Idee: Recherche im Alltag praktisch einsetzen"
+      "skill": "Agenten",
+      "score": 15,
+      "summary": "The Next Era of Knowledge Work report explores how Codex is transforming productivity through AI-powered research, data analysis, workflow automation, and content creation.",
+      "why_it_matters": "Relevant, wenn daraus ein einfacher Nutzen rund um agenten entsteht – etwa ein besserer Workflow, ein verständlicher Prompt oder eine konkrete Alltagshilfe.",
+      "practical_use": "Als Impuls prüfen: Kann daraus eine einfache Schritt-für-Schritt-Anleitung für Alltag, Beruf oder kleine Unternehmen werden?",
+      "session_idea": "Session-Idee: Agenten praktisch im Alltag einsetzen"
+    },
+    {
+      "title": "Travelers deploys AI-powered claims countrywide with OpenAI",
+      "source": "OpenAI News",
+      "url": "https://openai.com/index/travelers",
+      "category": "Beobachten",
+      "skill": "Agenten",
+      "score": 12,
+      "summary": "Travelers built an AI-powered Claim Assistant with OpenAI to guide customers through filing claims, provide 24/7 support, and scale operations during peak demand.",
+      "why_it_matters": "Relevant, wenn daraus ein einfacher Nutzen rund um agenten entsteht – etwa ein besserer Workflow, ein verständlicher Prompt oder eine konkrete Alltagshilfe.",
+      "practical_use": "Als Impuls prüfen: Kann daraus eine einfache Schritt-für-Schritt-Anleitung für Alltag, Beruf oder kleine Unternehmen werden?",
+      "session_idea": "Session-Idee: Agenten praktisch im Alltag einsetzen"
     }
   ],
-  "impulse": "Nicht jede neue KI-Meldung ist wichtig. Relevant wird sie erst, wenn sie eine Aufgabe im Alltag einfacher macht.",
-  "generated_at": "2026-06-13T09:59:39.756693Z",
+  "impulse": "Nicht jede KI-Meldung verdient Aufmerksamkeit. Relevant wird sie erst, wenn sie eine konkrete Aufgabe einfacher macht.",
+  "generated_at": "2026-06-13T10:15:43.471029Z",
   "week_label": "Diese Woche"
 }
