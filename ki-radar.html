@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KI-Radar: Die wichtigsten KI-Entwicklungen der Woche | do try ai</title>
+  <meta name="description" content="Der KI-Radar von do try ai filtert wöchentlich die wichtigsten KI-Entwicklungen – bewertet nach praktischem Nutzen für Alltag, Beruf und KMU." />
+  <meta name="keywords" content="KI Radar, KI Trends, AI Trends Deutsch, KI Entwicklungen Woche, KI News einordnen, dotry.ai" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dotry.ai/ki-radar.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dotry.ai/ki-radar.html" />
+  <meta property="og:title" content="KI-Radar: Die wichtigsten KI-Entwicklungen der Woche | do try ai" />
+  <meta property="og:description" content="Wöchentliche KI-Einordnung statt News-Flut: Was ist wirklich praktisch relevant?" />
+  <meta property="og:image" content="https://dotry.ai/logo.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="nav.css" />
+  <style>
+    :root{
+      --bg:#080c12;--bg2:#0e1420;--bg3:#141c2e;
+      --blue:#2563ff;--blue-light:#4d85ff;--text:#f0f4ff;--text-muted:#8894b0;
+      --border:rgba(255,255,255,.07);--radius:18px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Plus Jakarta Sans',sans-serif;background:radial-gradient(circle at 22% 0%,rgba(37,99,255,.08),transparent 34%),var(--bg);color:var(--text);line-height:1.66;overflow-x:hidden;}
+    a{color:inherit;}
+    main{max-width:980px;margin:0 auto;padding:122px 24px 76px;}
+    .hero{padding:18px 0 46px;border-bottom:1px solid var(--border);}
+    .kicker{display:inline-flex;align-items:center;gap:8px;color:var(--blue-light);font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:14px;}
+    h1{font-size:clamp(2.05rem,5vw,3.55rem);font-weight:720;letter-spacing:-.045em;line-height:1.06;max-width:760px;margin-bottom:18px;}
+    .hero-sub{font-size:1.02rem;color:var(--text-muted);max-width:680px;line-height:1.72;margin-bottom:22px;}
+    .hero-sub strong{color:var(--text);font-weight:650;}
+    .hero-meta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px;}
+    .meta-pill{border:1px solid var(--border);background:rgba(14,20,32,.58);border-radius:999px;padding:7px 12px;color:var(--text-muted);font-size:.78rem;font-weight:600;}
+    .btn-primary,.btn-secondary{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;padding:12px 20px;font-size:.9rem;font-weight:650;text-decoration:none;transition:background .18s,border-color .18s,transform .18s;}
+    .btn-primary{background:var(--blue);color:#fff;}.btn-primary:hover{background:var(--blue-light);transform:translateY(-1px);}
+    .btn-secondary{border:1px solid var(--border);color:var(--text-muted);background:rgba(14,20,32,.42);}.btn-secondary:hover{border-color:rgba(77,133,255,.42);color:var(--text);transform:translateY(-1px);}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;}
+    .section{padding:52px 0;border-bottom:1px solid var(--border);}
+    .section:last-of-type{border-bottom:none;}
+    .section-head{display:flex;justify-content:space-between;gap:28px;align-items:flex-start;margin-bottom:24px;}
+    .section-label{font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-light);margin-bottom:8px;}
+    .section-title{font-size:clamp(1.45rem,3vw,2.05rem);font-weight:700;letter-spacing:-.035em;line-height:1.16;}
+    .section-sub{font-size:.92rem;color:var(--text-muted);line-height:1.68;max-width:430px;}
+    .method-line{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px;}
+    .method-chip{background:rgba(14,20,32,.62);border:1px solid var(--border);border-radius:16px;padding:16px;}
+    .method-chip strong{display:block;font-size:.9rem;font-weight:650;color:var(--text);margin-bottom:5px;}.method-chip p{font-size:.84rem;color:var(--text-muted);line-height:1.56;}
+    .radar-list{display:grid;gap:14px;}
+    .radar-item{background:rgba(14,20,32,.68);border:1px solid var(--border);border-radius:20px;padding:20px 22px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:flex-start;}
+    .radar-item h3{font-size:1.02rem;font-weight:650;letter-spacing:-.015em;line-height:1.32;margin-bottom:10px;}
+    .radar-item p{font-size:.88rem;color:var(--text-muted);line-height:1.66;margin-bottom:10px;}
+    .radar-item p:last-child{margin-bottom:0;}
+    .score{display:inline-flex;align-items:center;justify-content:center;min-width:58px;border-radius:999px;border:1px solid rgba(34,197,94,.22);background:rgba(34,197,94,.06);color:#9dddb5;padding:6px 10px;font-size:.75rem;font-weight:650;white-space:nowrap;}
+    .watch-item{background:rgba(14,20,32,.58);border:1px solid var(--border);border-radius:20px;padding:20px 22px;max-width:760px;}.watch-item h3{font-size:1rem;font-weight:650;margin-bottom:8px;}.watch-item p{font-size:.88rem;color:var(--text-muted);line-height:1.66;}
+    .idea-card{background:rgba(14,20,32,.62);border:1px solid rgba(37,99,255,.20);border-radius:22px;padding:24px;display:grid;grid-template-columns:1fr .9fr;gap:24px;align-items:center;}
+    .idea-card h3{font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:700;letter-spacing:-.025em;margin-bottom:10px;}.idea-card p{font-size:.91rem;color:var(--text-muted);line-height:1.68;}
+    .idea-flow{display:grid;gap:10px;}.idea-step{border:1px solid var(--border);background:rgba(8,12,18,.34);border-radius:15px;padding:13px 15px;display:flex;gap:12px;align-items:center;}.idea-step strong{display:block;font-size:.86rem;font-weight:650}.idea-step span{display:block;font-size:.76rem;color:var(--text-muted);margin-top:2px}.idea-arrow{text-align:center;color:var(--text-muted);line-height:1;}
+    .impulse{padding:12px 0 6px;}.impulse blockquote{font-size:clamp(1.25rem,3vw,1.85rem);font-weight:650;letter-spacing:-.03em;line-height:1.22;max-width:820px;margin-bottom:14px;}.impulse p{font-size:.92rem;color:var(--text-muted);line-height:1.68;max-width:680px;}
+    .sources{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px;}.source{background:rgba(14,20,32,.56);border:1px solid var(--border);border-radius:14px;padding:12px 13px;font-size:.81rem;font-weight:600;color:var(--text-muted);display:flex;align-items:center;gap:8px;}
+    .newsletter-cta{background:rgba(14,20,32,.62);border:1px solid rgba(37,99,255,.18);border-radius:22px;padding:26px;display:grid;grid-template-columns:1fr auto;gap:22px;align-items:center;margin-top:10px;}.newsletter-cta h2{font-size:1.35rem;font-weight:700;letter-spacing:-.025em;margin-bottom:7px;}.newsletter-cta p{font-size:.91rem;color:var(--text-muted);line-height:1.62;max-width:650px;}
+    footer{border-top:1px solid var(--border);padding:32px 48px;display:flex;align-items:center;justify-content:space-between;color:var(--text-muted);font-size:.85rem;}footer a{color:var(--text-muted);text-decoration:none;}footer a:hover{color:var(--text);}
+    @media(max-width:820px){main{padding-top:108px}.section{padding:42px 0}.section-head,.idea-card,.newsletter-cta{display:block}.section-sub{margin-top:10px}.method-line,.sources{grid-template-columns:1fr 1fr}.radar-item{grid-template-columns:1fr}.score{width:max-content}.newsletter-cta .btn-primary{margin-top:18px}}
+    @media(max-width:560px){main{padding-left:18px;padding-right:18px}.hero-actions .btn-primary,.hero-actions .btn-secondary{width:100%}.method-line,.sources{grid-template-columns:1fr}footer{flex-direction:column;gap:12px;text-align:center;padding:28px 20px}}
+  </style>
+  <script>
+    fetch('nav.html')
+      .then(function(r){return r.text()})
+      .then(function(html){var ph=document.getElementById('nav-placeholder'); if(ph) ph.outerHTML=html;})
+      .catch(function(){var ph=document.getElementById('nav-placeholder'); if(ph){ph.outerHTML='<nav style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(8,12,18,0.92);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);"><a href="/" style="text-decoration:none;color:#fff;font-weight:700;">do try ai</a><div style="display:flex;gap:18px;"><a href="/ki-kompass.html" style="color:#8894b0;text-decoration:none;font-weight:600;">KI-Kompass</a><a href="/lektionen.html" style="color:#8894b0;text-decoration:none;font-weight:600;">Sessions</a></div></nav>';}});
+  </script>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
+  <main>
+    <section class="hero">
+      <div class="kicker">📡 KI-Radar · Wöchentlich</div>
+      <h1>KI-News gibt es genug.<br>Einordnung fehlt.</h1>
+      <p class="hero-sub"><strong>Der KI-Radar filtert die wichtigsten KI-Entwicklungen der Woche</strong> und bewertet sie nach praktischem Nutzen für Alltag, Beruf und kleine Unternehmen.</p>
+      <div class="hero-meta">
+        <span class="meta-pill">Aktuelle Ausgabe</span>
+        <span class="meta-pill">Bewertet nach Praxisnutzen</span>
+        <span class="meta-pill">Für Einsteiger, Beruf & KMU</span>
+      </div>
+      <div class="hero-actions">
+        <a href="#radar" class="btn-primary">Aktuelle Radar-Ausgabe ansehen →</a>
+        <a href="#methode" class="btn-secondary">Wie wir bewerten</a>
+      </div>
+    </section>
+
+    <section class="section" id="methode">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Bewertung</div>
+          <h2 class="section-title">Nicht was laut ist. Sondern was nützlich ist.</h2>
+        </div>
+        <p class="section-sub">Der Radar bewertet KI-Entwicklungen bewusst nach praktischer Relevanz für die Zielgruppe von dotry.ai.</p>
+      </div>
+      <div class="method-line">
+        <div class="method-chip"><strong>Alltagstauglichkeit</strong><p>Kann man den Trend zeitnah verstehen, testen oder sinnvoll anwenden?</p></div>
+        <div class="method-chip"><strong>Nutzen für Beruf & KMU</strong><p>Hilft die Entwicklung bei Kommunikation, Recherche, Produktivität oder Automatisierung?</p></div>
+        <div class="method-chip"><strong>Relevanz für Einsteiger</strong><p>Ist der Trend erklärbar, ohne tiefes technisches Vorwissen vorauszusetzen?</p></div>
+      </div>
+    </section>
+
+    <section class="section" id="radar">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Diese Woche</div>
+          <h2 class="section-title">🔥 Diese Woche wichtig</h2>
+        </div>
+        <p class="section-sub">Drei Entwicklungen, die für praktische KI-Nutzung besonders relevant sind.</p>
+      </div>
+      <div class="radar-list">
+        <article class="radar-item">
+          <div>
+            <h3>KI-Agenten werden alltagstauglicher</h3>
+            <p><strong>Warum relevant:</strong> Agenten entwickeln sich von technischen Experimenten zu praktischen Helfern, die mehrere Schritte einer Aufgabe übernehmen können.</p>
+            <p><strong>Praktischer Nutzen:</strong> Mehr praxisnahe Anwendungen wie Foto-Agent, Meeting-Agent oder E-Mail-Agent werden realistisch.</p>
+          </div>
+          <span class="score">14/15</span>
+        </article>
+        <article class="radar-item">
+          <div>
+            <h3>KI wandert in alltägliche Arbeitsprozesse</h3>
+            <p><strong>Warum relevant:</strong> Der Nutzen entsteht weniger durch neue Einzeltools, sondern durch KI direkt in E-Mail, Dokumenten, Meetings und Workflows.</p>
+            <p><strong>Praktischer Nutzen:</strong> Produktivität, Protokolle, E-Mail-Assistenten und persönliche Workflows werden leichter zugänglich.</p>
+          </div>
+          <span class="score">13/15</span>
+        </article>
+        <article class="radar-item">
+          <div>
+            <h3>KI-Suche wird wichtiger als Tool-Suche</h3>
+            <p><strong>Warum relevant:</strong> Menschen brauchen weniger Listen mit 100 Tools und mehr Orientierung, welches Werkzeug für welchen Zweck sinnvoll ist.</p>
+            <p><strong>Praktischer Nutzen:</strong> Weniger Hype, mehr nächste sinnvolle Schritte – genau dort setzt dotry.ai an.</p>
+          </div>
+          <span class="score">12/15</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Einordnen</div>
+          <h2 class="section-title">👀 Beobachten</h2>
+        </div>
+        <p class="section-sub">Spannend, aber noch nicht zwingend sofort relevant.</p>
+      </div>
+      <article class="watch-item">
+        <h3>Lokale KI auf Geräten</h3>
+        <p>Spannend für Datenschutz und Geschwindigkeit. Für viele Einsteiger aber noch zu technisch. Beobachten, bis einfache Anwendungen entstehen.</p>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Aus Trends werden Sessions</div>
+          <h2 class="section-title">🧭 Neue Session-Idee</h2>
+        </div>
+        <p class="section-sub">Der Radar zeigt transparent, wie neue Themen für dotry.ai entstehen können.</p>
+      </div>
+      <div class="idea-card">
+        <div>
+          <h3>Der Meeting-Agent</h3>
+          <p>Eine mögliche neue Session: Ein Agent, der Meeting-Notizen auswertet, Aufgaben erkennt und Follow-ups vorbereitet.</p>
+        </div>
+        <div class="idea-flow">
+          <div class="idea-step"><div>📥</div><div><strong>Input</strong><span>Meeting-Notizen oder Transkript</span></div></div>
+          <div class="idea-arrow">↓</div>
+          <div class="idea-step"><div>🤖</div><div><strong>Analyse</strong><span>KI erkennt Entscheidungen und Aufgaben</span></div></div>
+          <div class="idea-arrow">↓</div>
+          <div class="idea-step"><div>✅</div><div><strong>Output</strong><span>Protokoll, To-dos und Follow-up-Mail</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-label">💡 Impuls der Woche</div>
+      <div class="impulse">
+        <blockquote>Die Zukunft gehört nicht denen, die die meisten KI-Tools kennen. Sondern denen, die die richtigen Werkzeuge sinnvoll in ihren Alltag integrieren.</blockquote>
+        <p>Genau dafür gibt es den KI-Kompass und den KI-Radar: weniger Informationsflut, mehr Orientierung.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <div class="section-label">Quellen-Radar</div>
+          <h2 class="section-title">Wo der Radar hinschaut</h2>
+        </div>
+        <p class="section-sub">Der Radar beobachtet relevante KI-Quellen und ordnet die Entwicklungen für praktische Anwendung ein.</p>
+      </div>
+      <div class="sources">
+        <div class="source">🏢 OpenAI</div><div class="source">🟣 Anthropic</div><div class="source">🔎 Google AI</div><div class="source">🪟 Microsoft AI</div>
+        <div class="source">💻 GitHub Trending</div><div class="source">🚀 Product Hunt</div><div class="source">💬 Reddit AI</div><div class="source">🤗 Hugging Face</div>
+      </div>
+    </section>
+
+    <section class="newsletter-cta" id="newsletter">
+      <div>
+        <h2>Der KI-Radar wird wöchentlich aktualisiert.</h2>
+        <p>Aus dem Radar entstehen neue Session-Ideen, Newsletter-Impulse und praktische Beispiele für den KI-Kompass.</p>
+      </div>
+      <a href="/ki-kompass.html" class="btn-primary">Zum KI-Kompass →</a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/" class="logo"><img src="logo.png" alt="do try ai" style="height:28px;" /></a>
+    <span>© 2026 dotry.ai – Alle Rechte vorbehalten.</span>
+    <div style="display:flex;gap:20px;align-items:center;">
+      <a href="mailto:hi@dotry.ai">hi@dotry.ai</a>
+      <a href="/impressum.html">Impressum</a>
+      <a href="/datenschutz.html">Datenschutz</a>
+    </div>
+  </footer>
+</body>
+</html>

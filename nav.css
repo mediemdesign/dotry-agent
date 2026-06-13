@@ -165,3 +165,23 @@ nav {
     to   { opacity: 1; transform: translateY(0); }
   }
 }
+
+
+/* DESIGN POLISH V2 – Navigation ruhiger */
+nav { background: rgba(8,12,18,0.90); }
+.nav-back { font-weight: 500; }
+.lessons-dropdown-btn { font-weight: 650; }
+.dd-track-label { font-weight: 700; }
+.dd-title { font-weight: 650; }
+.dd-badge { font-weight: 650; }
+.progress-bar { height: 2px; }
+
+
+/* DESIGN POLISH V3 – Navigation ruhiger */
+nav{padding:16px 44px;background:rgba(8,12,18,0.88);}
+.nav-back{font-size:.86rem;font-weight:500;}
+.lessons-dropdown-btn{font-size:.82rem;font-weight:650;padding:8px 18px;}
+.dd-title{font-weight:650;}
+.dd-track-label{font-weight:700;letter-spacing:.085em;}
+.dd-badge{font-weight:650;}
+@media(max-width:640px){nav{padding:13px 16px;}}
