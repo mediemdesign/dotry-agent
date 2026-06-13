@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-06-12T00:00:00Z",
+  "week_label": "Beispielwoche",
+  "summary": "Beispieldaten für lokalen Test ohne API-Key.",
+  "trends": [
+    {
+      "title": "Agenten werden alltagstauglicher",
+      "source": "Beispiel",
+      "url": "https://dotry.ai/ki-radar.html",
+      "category": "Sofort relevant",
+      "skill": "Agenten",
+      "score": 14,
+      "summary": "Neue Funktionen machen Agenten einfacher nutzbar und besser kontrollierbar.",
+      "why_it_matters": "Für Einsteiger und KMU wird der Einstieg in Agenten-Workflows realistischer.",
+      "practical_use": "Ein einfacher Agent kann E-Mails, Fotos oder Rechercheaufgaben vorbereiten.",
+      "session_idea": "Session-Idee: Der Meeting-Agent für Alltag und Beruf"
+    },
+    {
+      "title": "Automatisierung wird weniger technisch",
+      "source": "Beispiel",
+      "url": "https://dotry.ai/ki-radar.html",
+      "category": "Beobachten",
+      "skill": "Automatisierung",
+      "score": 11,
+      "summary": "No-Code-Tools und KI-Assistenten wachsen enger zusammen.",
+      "why_it_matters": "Workflows werden für Nicht-Entwickler leichter zugänglich.",
+      "practical_use": "Wiederkehrende Aufgaben können Schritt für Schritt automatisiert werden.",
+      "session_idea": "Session-Idee: Der persönliche Wochenplan-Agent"
+    }
+  ],
+  "impulse": "Nicht jedes neue KI-Tool ist wichtig. Relevant wird ein Trend erst, wenn er im Alltag eine Entscheidung, Aufgabe oder Routine erleichtert."
+}
