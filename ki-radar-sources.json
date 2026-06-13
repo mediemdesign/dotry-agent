@@ -1,0 +1,46 @@
+{
+  "sources": [
+    {
+      "name": "OpenAI News",
+      "url": "https://openai.com/news/rss.xml",
+      "type": "rss",
+      "weight": 1.0
+    },
+    {
+      "name": "Anthropic News",
+      "url": "https://www.anthropic.com/news/rss.xml",
+      "type": "rss",
+      "weight": 1.0
+    },
+    {
+      "name": "Google AI Blog",
+      "url": "https://blog.google/technology/ai/rss/",
+      "type": "rss",
+      "weight": 0.9
+    },
+    {
+      "name": "Microsoft AI Blog",
+      "url": "https://blogs.microsoft.com/ai/feed/",
+      "type": "rss",
+      "weight": 0.8
+    },
+    {
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "type": "rss",
+      "weight": 0.7
+    },
+    {
+      "name": "Reddit r/ArtificialInteligence",
+      "url": "https://www.reddit.com/r/ArtificialInteligence/.rss",
+      "type": "rss",
+      "weight": 0.55
+    },
+    {
+      "name": "Reddit r/OpenAI",
+      "url": "https://www.reddit.com/r/OpenAI/.rss",
+      "type": "rss",
+      "weight": 0.55
+    }
+  ]
+}
